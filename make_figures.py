@@ -104,8 +104,10 @@ def main():
         ax.plot(x, m, "o", ms=9, zorder=4, color=SMALL if not single else "white",
                 markeredgecolor=SMALL, markeredgewidth=2)
         lab = f"{m:.3f}" + ("\n(1 seed)" if single else "")
-        ax.annotate(lab, (x, m), textcoords="offset points", xytext=(0, -26 if single else 12),
-                    ha="center", fontsize=10, color=INK)
+        # single-seed label goes above-left of its marker, clear of Claude's line and band
+        ax.annotate(lab, (x, m), textcoords="offset points", xytext=(-12, 8) if single else (0, 12),
+                    ha="right" if single else "center", va="bottom" if single else "baseline",
+                    fontsize=10, color=INK)
     if pts and pts[-1][1] == 9993 and len(pts[-1][2]) == 1:
         ax.plot([pts[-2][0], pts[-1][0]], [summary(pts[-2][2])[0], pts[-1][2][0]], color=SMALL, lw=2,
                 ls=(0, (3, 2)), zorder=3)
