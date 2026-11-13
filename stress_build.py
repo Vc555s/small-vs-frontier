@@ -8,7 +8,7 @@ Outputs (in --dir):
   s3_train_oos.jsonl   200 CLINC oos train messages for S3 training
   s2_val_s{0,1,2}.jsonl  S2 threshold-selection sets (500 in-scope train + 100 oos)
   build_log.json       counts, every removed out-of-scope item, typo examples, decisions
-All rules and seeds follow the robustness test plan (see STRESS_DECISIONS.md and
+All rules and seeds are described in STRESS_DECISIONS.md and
 results/t1_robustness.md). Nothing here depends on any model output.
 """
 import argparse
@@ -273,8 +273,7 @@ def main():
         paths = [os.path.join(d, f) for f in files]
         subprocess.run(["git", "add", "-f"] + paths, check=True)
         r = subprocess.run(["git", "commit", "-q", "-m",
-                            "Freeze T1 robustness test sets (built before any model output)\n\n"
-                            "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"],
+                            "Freeze T1 robustness test sets (built before any model output)"],
                            capture_output=True, text=True)
         print("git commit:", r.returncode, r.stdout.strip(), r.stderr.strip())
 

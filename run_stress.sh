@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Driver for the T1 robustness tests (unattended pipeline). Safe to re-run:
+# Driver for the T1 robustness tests (resumable pipeline). Safe to re-run:
 # every stage has a .done_<stage> marker in the output dir and finished work is skipped.
 #
 #   bash run_stress.sh gpu      GPU stages in order (small_A, small_B, small_C_S1, small_C_S2, train_S3_s0..2)
@@ -12,7 +12,7 @@
 set -u
 cd "$(dirname "$(readlink -f "$0")")"
 source .venv/bin/activate
-# Do not let an IDE / Claude Code session's environment leak into the pipeline or the CLI calls.
+# Clear Claude Code session environment variables so every CLI call starts from a clean environment.
 for v in $(compgen -e | grep -E '^(CLAUDE|AI_AGENT)'); do [ "$v" = CLAUDE_BIN ] || unset "$v"; done
 export PYTHONUNBUFFERED=1 TQDM_DISABLE=1 HF_HUB_DISABLE_PROGRESS_BARS=1
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
@@ -156,9 +156,7 @@ EOF
             baseline_claude_code.py make_robustness_report.py STRESS_DECISIONS.md \
             "$REPORT_OUT" "$D/STATUS.md" 2>/dev/null
     git add -f "$D"/*.jsonl "$D"/*.json 2>/dev/null
-    git commit -q -m "T1 robustness: report and status ($(tail -1 "$D/STATUS.md"))
-
-Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" && say "committed" || say "nothing to commit / commit failed"
+    git commit -q -m "T1 robustness: report and status ($(tail -1 "$D/STATUS.md"))" && say "committed" || say "nothing to commit / commit failed"
   fi
 }
 

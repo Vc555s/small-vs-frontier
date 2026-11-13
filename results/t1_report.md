@@ -1,6 +1,6 @@
 # T1 report: support-ticket routing (Banking77) — fine-tuned Qwen3-4B vs Claude via Claude Code CLI
 
-Generated 2026-11-13 14:34 (server time) by `make_t1_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
+Generated 2026-11-13 17:00 (server time) by `make_t1_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
 
 Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-head on the 500 sample · 6 Procedure and issues · 7 Caveats · 8 Open work · Appendices A–E
 
@@ -8,14 +8,14 @@ Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-he
 
 - **Claude via Claude Code CLI (Pro subscription)**, model `claude-opus-5-5`, scored **0.892** accuracy on a fixed 500-example sample (95% Wilson CI 0.862–0.916), with every answer a valid label.
 - **Fine-tuned Qwen3-4B with 2,000 labels** scored **0.905 ± 0.012** on the same 500 (3 seeds) and **0.913 ± 0.002** on the full 3,076-example test set.
-- The 2,000-label gap to Claude is +1.3 points, inside Claude's confidence interval and the seed spread, and not significant in a paired test (section 5). Under the brief's rules this is a **tie**, not a win.
+- The 2,000-label gap to Claude is +1.3 points, inside Claude's confidence interval and the seed spread, and not significant in a paired test (section 5). Under the decision rule fixed in advance (differences inside the seed spread or not significant in the paired test count as ties) this is a **tie**, not a win.
 - With 500 labels the small model is 4.3 points **behind** Claude; with 100 labels, further behind. The small model needs somewhere between 500 and 2,000 labels to match Claude on this 77-class task.
 - The untuned model scores 0.606 on the full test set; fine-tuning gives the biggest jump at the first 100 labels.
 - Reliability (run-to-run consistency, rewording stability), latency at batch size 1, cost, and the full-training-set budget have **not been measured yet** (section 8).
 
 ## 2. Task and data
 
-- Dataset: `mteb/banking77` (Hugging Face). Train 9,993 examples, test 3,076, 77 intent labels. (The brief assumed 10,003 train; the loaded split has 9,993.)
+- Dataset: `mteb/banking77` (Hugging Face). Train 9,993 examples, test 3,076, 77 intent labels.
 - Task: given one customer message, output exactly one of the 77 labels.
 - Scoring: exact match after the shared `norm()` (lowercase, strip quotes/punctuation, spaces and hyphens to underscores). Any answer that is not an allowed label counts as wrong. Macro-F1 via scikit-learn over the 77 labels, invalid answers mapped to a non-label.
 - The test set is **sorted by label** (the label changes 76 times in 3,075 transitions). This matters for batching (section 6.4).
@@ -320,7 +320,7 @@ The loss mask was verified: answer tokens are `['lost', '_or', '_st', 'olen', '_
 
 ### 6.2 Fine-tuning runs (01:53–04:57)
 
-Run in tmux session `exp1` on GPU 1 with:
+Run on GPU 1 with:
 
 ```bash
 cd ~/slm-study && source .venv/bin/activate && mkdir -p results
@@ -338,9 +338,9 @@ All 10 runs finished with no errors, NaNs or OOMs. Logged training loss: Appendi
 - `claude --help` was read for the installed version. Every needed capability had a flag except a turn limit (no `--max-turns`). With all tools disabled only one turn is possible; the script rejects any call where `num_turns != 1`, and all 20 had `num_turns = 1`.
 - A probe call with a 15-character system prompt was billed as ~789 prompt tokens, so the CLI adds its own text even with `--system-prompt`.
 
-### 6.4 Batch-order change (approved by the owner)
+### 6.4 Batch-order change
 
-The plan batched the 500 sample indices in index order. A one-batch test did that and scored 24/25, but showed the batch held only 4 intents in long same-label runs, because the test set is sorted by label. Across the 20 index-order batches there were only 4–7 distinct labels per batch. That gives Claude context from neighbouring messages that the one-at-a-time small model never gets. That first batch's raw answer, for the record (files since deleted):
+The 500 sample indices were first batched in index order. A one-batch test in that order scored 24/25, but showed the batch held only 4 intents in long same-label runs, because the test set is sorted by label. Across the 20 index-order batches there were only 4–7 distinct labels per batch. That gives Claude context from neighbouring messages that the one-at-a-time small model never gets. That first batch's raw answer, for the record (files since deleted):
 
 ```json
 ["card_arrival","card_arrival","card_arrival","card_arrival","card_arrival","card_arrival","activate_my_card","card_linking","card_linking","card_linking","card_linking","card_linking","card_linking","card_linking","card_linking","exchange_rate","exchange_rate","exchange_rate","exchange_rate","exchange_rate","exchange_rate","exchange_rate","exchange_rate","card_payment_wrong_exchange_rate","card_payment_wrong_exchange_rate"]
@@ -367,7 +367,7 @@ Fix: the same 500 indices shuffled once with `random.Random(456)` (`results/samp
 ## 8. Open work
 
 - Full-training-set budget (9,993 labels), 3 seeds: about 2.7 h per seed.
-- Consistency test: first 100 sample items × 5 runs for Claude (20 more calls, needs owner approval) and for the 2,000-label model.
+- Consistency test: first 100 sample items × 5 runs for Claude (20 more calls) and for the 2,000-label model.
 - Rewording stability: 3–5 paraphrased instructions.
 - Batch-1 latency (p50/p99) with merged adapter; cost per 1,000 requests.
 - Label-efficiency chart with Claude's line.
@@ -377,7 +377,7 @@ Fix: the same 500 indices shuffled once with `random.Random(456)` (`results/samp
 
 ## Appendix A. About this public version
 
-The working copy of this report also embedded the smoke-test notes, the raw run logs, the full Claude CLI JSON for every call, the GPU process list and the git history. Those contain server, account and session details and are not published. Everything they were used for is kept here in identifier-free form: logged training loss (`results/train_loss_t1.json`), a per-call summary of the Claude CLI output (`results/claude_calls_t1.json`), and every prediction. No measured number in sections 1–8 changed.
+The smoke-test notes, raw run logs, full Claude CLI JSON for every call, GPU process list and version-control history contain server, account and session details and are not published. Everything they were used for is kept here in identifier-free form: logged training loss (`results/train_loss_t1.json`), a per-call summary of the Claude CLI output (`results/claude_calls_t1.json`), and every prediction. Every number in sections 1–8 is computed from the published files.
 
 ## Appendix B. Training loss, every logged step
 

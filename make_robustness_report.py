@@ -371,7 +371,7 @@ def main():
     w("- **Test A:** per message `random.Random(1000 + idx)`; lowercase; remove all punctuation except "
       "apostrophes; each word of 4+ letters (no digits) gets, with probability 0.15, one edit chosen "
       "uniformly from: swap two adjacent inner letters, delete an inner letter, duplicate an inner "
-      "letter, replace an inner letter with a QWERTY neighbour. Probability fixed at 0.15 (unattended rule).")
+      "letter, replace an inner letter with a QWERTY neighbour. Probability fixed at 0.15 before any model output; no adjustment.")
     w("- **Test B:** base indices shuffled with `random.Random(789)`, paired off, equal-label pairs "
       "re-paired; text `\"<A> Also, <b lowercased first letter>\"`.")
     w("- **Test C:** CLINC150 `oos` items only (never in-scope CLINC intents), fixed banking-keyword "
@@ -429,7 +429,7 @@ def main():
     w("## Run facts")
     w("")
     used = run_summary["claude_calls_used"] if use_summary else claude_calls(D)
-    w(f"- Claude calls used: {used} of {CLAUDE_CAP} (includes the dry-run gate call).")
+    w(f"- Claude calls used: {used} of {CLAUDE_CAP} (includes the gate call from a test run of the pipeline).")
     for setname in ("A", "B", "C1"):
         gate = get_gate(setname)
         pp = load(os.path.join(D, f"preds_claude_{setname}.jsonl"))

@@ -373,7 +373,7 @@ def score(test, labels, idx):
               "- Each call ran in a fresh, empty temp directory; message texts only were sent.",
               f"- **Batch composition (changed after the one-batch test):** the 500 sample indices were "
               f"shuffled once with `random.Random({ORDER_SEED})` and split into 20 batches of 25 "
-              f"(order saved in `results/sample500_batch_order.json`). The original plan batched them "
+              f"(order saved in `results/sample500_batch_order.json`). They were first batched "
               "in index order, but the Banking77 test set is sorted by label, so each index-order batch "
               "held only 4–7 intents in long same-label runs. That lets Claude infer labels from "
               "neighbouring messages, which the one-at-a-time small model cannot. The discarded "

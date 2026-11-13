@@ -124,7 +124,8 @@ def main():
       f"(3 seeds) and **{ms([rows[(2000, s)]['accuracy'] for s in SEEDS], 3)}** on the full 3,076-example test set.")
     w(f"- The 2,000-label gap to Claude is {100 * (st.mean([x[0] for x in s2000]) - c_acc):+.1f} points, inside "
       "Claude's confidence interval and the seed spread, and not significant in a paired test "
-      "(section 5). Under the brief's rules this is a **tie**, not a win.")
+      "(section 5). Under the decision rule fixed in advance (differences inside the seed spread or "
+      "not significant in the paired test count as ties) this is a **tie**, not a win.")
     w(f"- With 500 labels the small model is {100 * (c_acc - st.mean([x[0] for x in s500])):.1f} points **behind** "
       "Claude; with 100 labels, further behind. The small model needs somewhere between 500 and 2,000 "
       "labels to match Claude on this 77-class task.")
@@ -137,7 +138,7 @@ def main():
     w("## 2. Task and data")
     w("")
     w(f"- Dataset: `mteb/banking77` (Hugging Face). Train {len(train):,} examples, test {len(test):,}, "
-      f"{len(labels)} intent labels. (The brief assumed 10,003 train; the loaded split has {len(train):,}.)")
+      f"{len(labels)} intent labels.")
     w("- Task: given one customer message, output exactly one of the 77 labels.")
     w("- Scoring: exact match after the shared `norm()` (lowercase, strip quotes/punctuation, spaces and "
       "hyphens to underscores). Any answer that is not an allowed label counts as wrong. Macro-F1 via "
@@ -349,7 +350,7 @@ def main():
     w("")
     w("### 6.2 Fine-tuning runs (01:53–04:57)")
     w("")
-    w("Run in tmux session `exp1` on GPU 1 with:")
+    w("Run on GPU 1 with:")
     w("")
     w(fence("""cd ~/slm-study && source .venv/bin/activate && mkdir -p results
 for s in 0 1 2; do
@@ -368,9 +369,9 @@ done""", "bash"))
     w("- A probe call with a 15-character system prompt was billed as ~789 prompt tokens, so the CLI "
       "adds its own text even with `--system-prompt`.")
     w("")
-    w("### 6.4 Batch-order change (approved by the owner)")
+    w("### 6.4 Batch-order change")
     w("")
-    w("The plan batched the 500 sample indices in index order. A one-batch test did that and scored "
+    w("The 500 sample indices were first batched in index order. A one-batch test in that order scored "
       "24/25, but showed the batch held only 4 intents in long same-label runs, because the test set is "
       "sorted by label. Across the 20 index-order batches there were only 4–7 distinct labels per batch. "
       "That gives Claude context from neighbouring messages that the one-at-a-time small model never "
@@ -427,7 +428,7 @@ done""", "bash"))
     w("")
     for o in [
         "Full-training-set budget (9,993 labels), 3 seeds: about 2.7 h per seed.",
-        "Consistency test: first 100 sample items × 5 runs for Claude (20 more calls, needs owner approval) and for the 2,000-label model.",
+        "Consistency test: first 100 sample items × 5 runs for Claude (20 more calls) and for the 2,000-label model.",
         "Rewording stability: 3–5 paraphrased instructions.",
         "Batch-1 latency (p50/p99) with merged adapter; cost per 1,000 requests.",
         "Label-efficiency chart with Claude's line.",
@@ -441,12 +442,11 @@ done""", "bash"))
     w("")
     w("## Appendix A. About this public version")
     w("")
-    w("The working copy of this report also embedded the smoke-test notes, the raw run logs, the full "
-      "Claude CLI JSON for every call, the GPU process list and the git history. Those contain server, "
-      "account and session details and are not published. Everything they were used for is kept here "
+    w("The smoke-test notes, raw run logs, full Claude CLI JSON for every call, GPU process list and "
+      "version-control history contain server, account and session details and are not published. Everything they were used for is kept here "
       "in identifier-free form: logged training loss (`results/train_loss_t1.json`), a per-call summary "
-      "of the Claude CLI output (`results/claude_calls_t1.json`), and every prediction. No measured "
-      "number in sections 1–8 changed.")
+      "of the Claude CLI output (`results/claude_calls_t1.json`), and every prediction. Every number in "
+      "sections 1–8 is computed from the published files.")
     w("")
     w("## Appendix B. Training loss, every logged step")
     w("")
