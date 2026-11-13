@@ -156,9 +156,7 @@ EOF
             baseline_claude_code.py make_robustness_report.py STRESS_DECISIONS.md \
             "$REPORT_OUT" "$D/STATUS.md" 2>/dev/null
     git add -f "$D"/*.jsonl "$D"/*.json 2>/dev/null
-    git commit -q -m "T1 robustness: report and status ($(tail -1 "$D/STATUS.md"))
-
-Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" && say "committed" || say "nothing to commit / commit failed"
+    git commit -q -m "T1 robustness: report and status ($(tail -1 "$D/STATUS.md"))" && say "committed" || say "nothing to commit / commit failed"
   fi
 }
 

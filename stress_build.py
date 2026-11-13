@@ -273,8 +273,7 @@ def main():
         paths = [os.path.join(d, f) for f in files]
         subprocess.run(["git", "add", "-f"] + paths, check=True)
         r = subprocess.run(["git", "commit", "-q", "-m",
-                            "Freeze T1 robustness test sets (built before any model output)\n\n"
-                            "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"],
+                            "Freeze T1 robustness test sets (built before any model output)"],
                            capture_output=True, text=True)
         print("git commit:", r.returncode, r.stdout.strip(), r.stderr.strip())
 
