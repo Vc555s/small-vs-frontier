@@ -38,6 +38,17 @@ STAGES = [
     ("train_S3_s2", "GPU", ["build"]),
     ("report", "CPU", []),
 ]
+# Stages of run_finish.sh (full-training-set run, figures, reports, push)
+FINISH_STAGES = [
+    ("full_train", "GPU", []),
+    ("full_collect", "CPU", ["full_train"]),
+    ("figures", "CPU", []),
+    ("reports", "CPU", []),
+    ("verify_light", "CPU", ["reports"]),
+    ("scan", "CPU", ["reports"]),
+    ("summary", "CPU", []),
+    ("commit_push", "CPU", ["scan"]),
+]
 TEST_C_STAGES = ["small_C_S1", "small_C_S2", "claude_C1", "train_S3_s0", "train_S3_s1", "train_S3_s2"]
 
 
@@ -178,9 +189,9 @@ def pid_alive(pid):
         return True
 
 
-def modes_alive(d):
+def modes_alive(d, modes=("gpu", "claude", "report", "all")):
     alive = []
-    for m in ("gpu", "claude", "report", "all"):
+    for m in modes:
         p = os.path.join(d, f".mode_{m}_running")
         if os.path.exists(p):
             try:
@@ -191,10 +202,13 @@ def modes_alive(d):
     return alive
 
 
-def write_status(d):
+def write_status(d, pipeline="stress"):
+    stages = FINISH_STAGES if pipeline == "finish" else STAGES
+    final_stage = "commit_push" if pipeline == "finish" else "report"
+    title = "T1 finishing pipeline status" if pipeline == "finish" else "T1 robustness pipeline status"
     os.makedirs(d, exist_ok=True)
     with locked(os.path.join(d, ".status.lock")):
-        L = [f"# T1 robustness pipeline status", "", f"Updated {now()} (server time).", ""]
+        L = [f"# {title}", "", f"Updated {now()} (server time).", ""]
         if os.path.exists(os.path.join(d, ".model_changed")):
             L += ["**WARNING: the Claude answering model changed during the run. Remaining Claude "
                   "stages were aborted.** " + open(os.path.join(d, ".model_changed")).read().strip(), ""]
@@ -202,7 +216,7 @@ def write_status(d):
               "|---|---|---|---|---|---|---|---|"]
         fails = []
         states = {}
-        for s, kind, _ in STAGES:
+        for s, kind, _ in stages:
             st, body = stage_state(d, s)
             states[s] = st
             tp = os.path.join(d, f".time_{s}.json")
@@ -216,23 +230,27 @@ def write_status(d):
                      f"{m.get('gpu', '')} | {m.get('peak_gb', '')} | {note} |")
             if st == "failed":
                 fails.append((s, body))
-        L += ["", f"Claude calls used: {claude_calls(d)} of {CLAUDE_CAP}."]
-        wp = os.path.join(d, ".claude_wait")
-        if os.path.exists(wp):
-            L.append(f"Claude: {open(wp).read().strip()}")
-        alive = modes_alive(d)
+        if pipeline == "stress":
+            L += ["", f"Claude calls used: {claude_calls(d)} of {CLAUDE_CAP}."]
+            wp = os.path.join(d, ".claude_wait")
+            if os.path.exists(wp):
+                L.append(f"Claude: {open(wp).read().strip()}")
+        else:
+            L.append("")
+        alive = modes_alive(d, ("finish",) if pipeline == "finish" else ("gpu", "claude", "report", "all"))
         L.append(f"Pipeline processes alive: {', '.join(alive) if alive else 'none'}.")
         for s, body in fails:
             L += ["", f"## Failure: {s}", "", "```", body, "```"]
-        if states["report"] == "done":
-            gaps = [s for s, _, _ in STAGES if states[s] != "done"]
+        if states[final_stage] in ("done", "failed", "skipped") and not alive:
+            gaps = [s for s, _, _ in stages if states[s] != "done"]
             if gaps:
                 L += ["", "Stages not done: " + ", ".join(gaps)]
             final = "STATE: FINISHED_WITH_GAPS" if gaps else "STATE: ALL_DONE"
         else:
             if not alive:
                 L += ["", "No pipeline process is alive. If this persists, resume with "
-                      "`cd ~/slm-study && bash run_stress.sh all`."]
+                      + ("`bash run_finish.sh`" if pipeline == "finish" else "`bash run_stress.sh all`")
+                      + " from the repository root."]
             final = "STATE: RUNNING"
         L += ["", final]
         tmp = os.path.join(d, "STATUS.md.tmp")
@@ -250,9 +268,10 @@ def main():
     p.add_argument("--state")
     p.add_argument("--reason", default="")
     p.add_argument("--log")
+    p.add_argument("--pipeline", default="stress", choices=["stress", "finish"])
     a = p.parse_args()
     if a.cmd == "status":
-        write_status(a.dir)
+        write_status(a.dir, a.pipeline)
     elif a.cmd == "pick_gpu":
         g = pick_gpu(a.min_mb)
         if g is None:
@@ -260,7 +279,7 @@ def main():
         print(g[0])
     elif a.cmd == "mark":
         mark(a.dir, a.stage, a.state, a.reason, a.log)
-        write_status(a.dir)
+        write_status(a.dir, a.pipeline)
 
 
 if __name__ == "__main__":

@@ -29,3 +29,12 @@ results/stress/.*
 results/stress/*.partial
 results/stress/STATUS.md
 results/stress_dryrun/
+
+# Full-training-set run outputs (adapter and raw copies; results are copied into results/)
+results/full_data/
+# Pipeline status, logs and markers for the finishing run
+results/finish/
+# Light virtual environment used to check the report scripts without PyTorch
+.venv-light/
+# Test runs of the finishing pipeline
+results/finish_dryrun/
