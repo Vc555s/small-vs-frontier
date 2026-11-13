@@ -18,7 +18,8 @@ from t1_common import load_data
 
 R = "results"
 TAG = "Qwen3-4B-Instruct-2507"
-BUDGETS = [0, 100, 500, 2000]
+BUDGETS = [0, 100, 500, 2000, 9993]
+FULL_N = 9993  # full training set, seed 0 only
 SEEDS = [0, 1, 2]
 OUT = os.path.join(R, "t1_report.md")
 
@@ -79,6 +80,11 @@ def main():
     for s in SEEDS:
         for r in json.load(open(os.path.join(R, f"exp1_{TAG}_s{s}.json"))):
             rows[(r["budget"], s)] = r
+    full_path = os.path.join(R, f"exp1_{TAG}_n{FULL_N}_s0.json")
+    if os.path.exists(full_path) and os.path.exists(os.path.join(R, f"preds_{TAG}_n{FULL_N}_s0.jsonl")):
+        for r in json.load(open(full_path)):
+            rows[(r["budget"], 0)] = r
+    have_full = (FULL_N, 0) in rows
     preds = {}
     for (n, s) in rows:
         p = jl(os.path.join(R, f"preds_{TAG}_n{n}_s{s}.jsonl"))
@@ -130,8 +136,23 @@ def main():
       "Claude; with 100 labels, further behind. The small model needs somewhere between 500 and 2,000 "
       "labels to match Claude on this 77-class task.")
     w("- The untuned model scores 0.606 on the full test set; fine-tuning gives the biggest jump at the first 100 labels.")
-    w("- Reliability (run-to-run consistency, rewording stability), latency at batch size 1, cost, "
-      "and the full-training-set budget have **not been measured yet** (section 8).")
+    if have_full:
+        sf = sample_scores(FULL_N)[0][0]
+        s0_2000 = sample_scores(2000)[0][0]
+        pf = preds[(FULL_N, 0)]
+        sr = [pf[i]["pred"] == pf[i]["gold"] for i in idx]
+        cr = [claude[i]["pred"] == claude[i]["gold"] for i in idx]
+        so = sum(a and not b for a, b in zip(sr, cr)); co = sum(b and not a for a, b in zip(sr, cr))
+        w(f"- **Full training set (9,993 labels, one seed):** {sf:.3f} on the 500 sample and "
+          f"{rows[(FULL_N, 0)]['accuracy']:.3f} on the full test set; versus the 2,000-label seed-0 run "
+          f"{100 * (sf - s0_2000):+.1f} points and versus the 2,000-label 3-seed mean "
+          f"{100 * (sf - st.mean([x[0] for x in s2000])):+.1f} points on the sample; versus Claude "
+          f"{100 * (sf - c_acc):+.1f} points (exact McNemar p = {mcnemar_exact(so, co):.3g}). "
+          "A single seed cannot show run-to-run spread, so this point has no error bar.")
+    else:
+        w("- **Full training set (9,993 labels):** not completed (no result file).")
+    w("- Run-to-run consistency and rewording stability have **not been measured yet** (section 8). "
+      "Latency and cost of a merged adapter are in section 4.5.")
     w("")
 
     # ---------------- 2. data
@@ -226,10 +247,14 @@ def main():
     w("|---|---|---|---|---|---|")
     for n in BUDGETS:
         rs = [(s, rows[(n, s)]) for s in SEEDS if (n, s) in rows]
+        if not rs:
+            w(f"| {n} | 0 | not completed | | | |")
+            continue
         f1s = [metrics([g["gold"] for g in preds[(n, s)]], [g["pred"] for g in preds[(n, s)]], labels)[1]
                for s, _ in rs]
         w(f"| {n} | {len(rs)} | {ms([r['accuracy'] for _, r in rs])} | {ms(f1s)} | "
-          f"{ms([r['valid_label_rate'] for _, r in rs])} | {st.mean(r['train_seconds'] for _, r in rs) / 60:.1f} min |")
+          f"{ms([r['valid_label_rate'] for _, r in rs])} | "
+          + (f"{st.mean(ts) / 60:.1f} min |" if (ts := [r['train_seconds'] for _, r in rs if r['train_seconds'] is not None]) else "n/a |"))
     w("")
     w("At budget 100, seeds 1 and 2 have identical accuracy (0.7585). This was checked: their training "
       "subsets share only 2 of 100 examples and their predictions differ on 644 test items, so the "
@@ -237,15 +262,20 @@ def main():
     w("")
     w("### 4.3 Label efficiency on the full test set")
     w("")
-    full = {n: st.mean(rows[(n, s)]["accuracy"] for s in SEEDS if (n, s) in rows) for n in BUDGETS}
+    full = {n: st.mean(rows[(n, s)]["accuracy"] for s in SEEDS if (n, s) in rows) for n in BUDGETS
+            if any((n, s) in rows for s in SEEDS)}
     w("| Labels | Accuracy (mean) | Gain over previous budget |")
     w("|---|---|---|")
     prev = None
-    for n in BUDGETS:
-        w(f"| {n} | {full[n]:.4f} | {'' if prev is None else f'{100 * (full[n] - full[prev]):+.1f} pts'} |")
+    for n in full:
+        w(f"| {n}{' (1 seed)' if n == FULL_N else ''} | {full[n]:.4f} | "
+          f"{'' if prev is None else f'{100 * (full[n] - full[prev]):+.1f} pts'} |")
         prev = n
     w("")
-    w("A chart of this curve with Claude's line has not been made yet.")
+    w("Accuracy on the 500-message sample against the number of labels, with Claude's accuracy and its "
+      "95% interval (`make_figures.py`). The 9,993-label point is a single seed (hollow marker).")
+    w("")
+    w("![Label efficiency](figures/label_efficiency.png)")
     w("")
     w("### 4.4 Training loss")
     w("")
@@ -259,11 +289,69 @@ def main():
     for s in SEEDS:
         for row in loss_doc["seeds"][str(s)]:
             final_loss[(row["budget"], s)] = (f"{row['step']}/{row['total_steps']}", f"{row['loss']:.4f}")
+    full_loss_path = os.path.join(R, f"train_loss_n{FULL_N}_s0.json")
+    full_loss = json.load(open(full_loss_path))["rows"] if os.path.exists(full_loss_path) else []
+    for row in full_loss:
+        final_loss[(FULL_N, 0)] = (f"{row['step']}/{row['total_steps']}", f"{row['loss']:.4f}")
     for n in BUDGETS[1:]:
         for s in SEEDS:
             if (n, s) in final_loss:
                 steps, loss = final_loss[(n, s)]
                 w(f"| {n} | {s} | {steps} | {loss} |")
+    w("")
+
+    # ---------------- 4.5 latency and cost
+    w("### 4.5 Latency and cost")
+    w("")
+    lat_p, cost_p = os.path.join(R, "latency_t1.json"), os.path.join(R, "cost_t1.json")
+    if os.path.exists(lat_p) and os.path.exists(cost_p):
+        lat, cost = json.load(open(lat_p)), json.load(open(cost_p))
+        b1, thr, pw = lat["batch1_latency_ms"], lat["throughput"], lat["power_during_batch16"]
+        g = lat["gpu_state_before"]
+        w(f"Measured on the merged out-of-scope adapter (S3, seed 0; same base model and LoRA settings, "
+          f"extended prompt), fp16, greedy decoding, max 16 new tokens, {lat['prompt_tokens']['mean']:.0f} prompt "
+          f"tokens on average, 200 messages after 20 warm-up requests (`measure_latency.py`). "
+          f"**The card ({lat['gpu']}) was shared:** {g['other_processes']} other processes held "
+          f"{g['other_processes_memory_mib'] / 1024:.1f} GB and the card was at {g['gpu_utilization_percent']:.0f}% "
+          "utilisation when the measurement started, so these are not best-case numbers.")
+        w("")
+        w("| Measure | Value |")
+        w("|---|---|")
+        w(f"| Batch size 1, end to end (tokenise + generate + decode) | p50 {b1['p50']} ms · p95 {b1['p95']} ms · "
+          f"p99 {b1['p99']} ms · mean {b1['mean']} ms |")
+        for bs in ("8", "16", "32"):
+            v = thr[bs]
+            w(f"| Throughput, batch {bs} | " + (f"{v['messages_per_second']} messages/s (peak {v['peak_memory_gb']} GB) |"
+                                             if "messages_per_second" in v else f"{v.get('error')} |"))
+        w(f"| Mean power during the batch-16 run (whole card) | {pw['mean_watts']:.0f} W |")
+        sc = lat["sanity_check"]
+        w(f"| Sanity check: merged vs saved unmerged predictions | {sc['merged_correct']} vs {sc['saved_unmerged_correct']} "
+          f"correct of {sc['n']}; {sc['prediction_agreement']} identical predictions |")
+        w("")
+        w("Cost per 1,000 requests (`compute_cost.py`). **Every hourly rate is an assumption, not a quoted "
+          "market price.**")
+        w("")
+        w("| System | Assumed rate | Cost per 1,000 requests | Break-even volume |")
+        w("|---|---|---|---|")
+        sm = cost["small_model"]
+        for r in sm["rates"]:
+            w(f"| Qwen3-4B + LoRA, batch 16 | {r['name']} (EUR {r['eur_per_gpu_hour']:.3f}/h) | "
+              f"EUR {r['eur_per_1000_requests']:.4f} | {r['break_even_requests_per_hour']:,.0f} requests/hour |")
+        w(f"| {LABEL} | {cost['claude']['label']} | USD {cost['claude']['usd_per_1000_requests']:.2f} | n/a |")
+        w("")
+        w(f"{cost['break_even_logic']} The break-even volumes treat 1 USD as 1 EUR "
+          f"(a simplification; scale by your own exchange rate). At batch 16 the measured maximum is "
+          f"{sm['throughput_batch16_messages_per_second'] * 3600:,.0f} requests per hour.")
+    else:
+        w("Not measured (no `latency_t1.json` / `cost_t1.json`).")
+    w("")
+    w("### 4.6 Robustness at a glance")
+    w("")
+    w("Details, paired tests and caveats are in `results/t1_robustness.md`.")
+    w("")
+    w("![Clean, typo and two-issue accuracy](figures/stress_tests.png)")
+    w("")
+    w("![Out-of-scope recall and overall accuracy](figures/out_of_scope.png)")
     w("")
 
     # ---------------- 5. head to head
@@ -274,6 +362,9 @@ def main():
     w(f"| {LABEL} | prompted | {c_acc:.3f} (95% Wilson CI {c_lo:.3f}–{c_hi:.3f}) | {c_f1:.3f} | {c_val:.3f} | 1 |")
     for n in BUDGETS:
         sc = sample_scores(n)
+        if not sc:
+            w(f"| {TAG} LoRA | {n} | not completed | | | |")
+            continue
         name = f"{TAG} " + ("untuned" if n == 0 else "LoRA")
         w(f"| {name} | {n} | {ms([x[0] for x in sc], 3)} | {ms([x[1] for x in sc], 3)} | "
           f"{ms([x[2] for x in sc], 3)} | {len(sc)} seed(s) |")
@@ -311,7 +402,8 @@ def main():
     w("")
     w("Reading: at budgets 0–500 Claude is significantly better in every run. At 2,000 labels no run "
       "differs significantly from Claude; this supports calling it a tie, not a win. "
-      "(Three seeds are tested separately, so treat p-values near 0.05 with care.)")
+      "(Three seeds are tested separately, so treat p-values near 0.05 with care.)"
+      + (" The 9,993-label row is a single seed; read its p-value as one run, not as a robust result." if have_full else ""))
     w("")
     w("### 5.2 Where they disagree (budget 2000, seed 0 vs Claude)")
     w("")
@@ -406,6 +498,17 @@ done""", "bash"))
       "charge, and it is not an API cost measurement. Per-call summary: Appendix C; every raw answer: Appendix D.")
     w("")
 
+    if have_full:
+        rf = rows[(FULL_N, 0)]
+        w("### 6.6 Full-training-set run")
+        w("")
+        w("Budget 9,993 (the whole training set, checked to contain every training example exactly once "
+          "and no test item), seed 0, 3 epochs, same hyperparameters as every other run, via `full_data.py`, "
+          "which runs `exp1_routing.py --budgets 9993 --seed 0` unchanged. Training took "
+          + (f"{rf['train_seconds'] / 3600:.1f} hours" if rf.get("train_seconds") else "an unrecorded time")
+          + f"; evaluation on the full test set {rf['eval_seconds'] / 60:.0f} minutes. One seed only.")
+        w("")
+
     # ---------------- 7. caveats
     w("## 7. Caveats (read before quoting any number)")
     w("")
@@ -417,22 +520,21 @@ done""", "bash"))
         "This is **one Claude model through one CLI. It is not an API baseline** and says nothing about GPT or other frontier models.",
         "Claude was run once on the 500 sample; its CI reflects sampling of test items, not run-to-run variation.",
         "Claude's wall time includes CLI start-up and network and is not model latency. The small model's "
-        "ms/example is at eval batch 16 with an unmerged adapter. **Neither is a latency measurement**; batch-1 p50/p99 is still to do.",
+        "ms/example is at eval batch 16 with an unmerged adapter. **Neither is a latency measurement**; batch-1 latency of a merged adapter is in section 4.5.",
         "Some Banking77 intents overlap (for example, the test message \"I would like to reactivate my card\" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. This was observed, not measured.",
         "The 500-sample comparison has wider error bars than the full-test-set numbers; the small model's full-set numbers are more precise but have no Claude counterpart.",
         "Budget 0 was run once (greedy decoding is deterministic, so other seeds would match).",
+        "The full-training-set budget (9,993 labels) was run with one seed only, so it shows no run-to-run spread.",
     ]:
         w(f"- {c}")
     w("")
     w("## 8. Open work")
     w("")
     for o in [
-        "Full-training-set budget (9,993 labels), 3 seeds: about 2.7 h per seed.",
         "Consistency test: first 100 sample items × 5 runs for Claude (20 more calls) and for the 2,000-label model.",
         "Rewording stability: 3–5 paraphrased instructions.",
-        "Batch-1 latency (p50/p99) with merged adapter; cost per 1,000 requests.",
-        "Label-efficiency chart with Claude's line.",
-        "API baselines (Claude API, GPT) once keys are supplied.",
+        "API baselines (Claude API, GPT).",
+        "A second dataset, to test whether the label-efficiency curve transfers.",
     ]:
         w(f"- {o}")
     w("")
@@ -460,13 +562,27 @@ done""", "bash"))
         for row in loss_doc["seeds"][str(s)]:
             w(f"| {row['budget']} | {row['epoch']}/{row['epochs']} | {row['step']}/{row['total_steps']} | "
               f"{row['loss']:.4f} | {row['elapsed_s']} |")
+    if full_loss:
+        w("")
+        w("### B.4 full training set (9,993 labels), seed 0")
+        w("")
+        w("| Budget | Epoch | Step | Loss | Elapsed s |")
+        w("|---|---|---|---|---|")
+        for row in full_loss:
+            w(f"| {row['budget']} | {row['epoch']}/{row['epochs']} | {row['step']}/{row['total_steps']} | "
+              f"{row['loss']:.4f} | {row['elapsed_s']} |")
     w("")
-    w("### B.4 Result JSON per seed")
+    w("### B.5 Result JSON per seed")
     for s in SEEDS:
         w("")
         w(f"`results/exp1_{TAG}_s{s}.json`")
         w("")
         w(fence(read(os.path.join(R, f"exp1_{TAG}_s{s}.json")), "json"))
+    if have_full:
+        w("")
+        w(f"`results/exp1_{TAG}_n{FULL_N}_s0.json`")
+        w("")
+        w(fence(read(full_path), "json"))
     w("")
     w("## Appendix C. Claude calls, one row per call (`results/claude_calls_t1.json`)")
     w("")

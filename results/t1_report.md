@@ -1,6 +1,6 @@
 # T1 report: support-ticket routing (Banking77) — fine-tuned Qwen3-4B vs Claude via Claude Code CLI
 
-Generated 2026-11-13 17:00 (server time) by `make_t1_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
+Generated 2026-11-13 22:05 (server time) by `make_t1_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
 
 Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-head on the 500 sample · 6 Procedure and issues · 7 Caveats · 8 Open work · Appendices A–E
 
@@ -11,7 +11,8 @@ Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-he
 - The 2,000-label gap to Claude is +1.3 points, inside Claude's confidence interval and the seed spread, and not significant in a paired test (section 5). Under the decision rule fixed in advance (differences inside the seed spread or not significant in the paired test count as ties) this is a **tie**, not a win.
 - With 500 labels the small model is 4.3 points **behind** Claude; with 100 labels, further behind. The small model needs somewhere between 500 and 2,000 labels to match Claude on this 77-class task.
 - The untuned model scores 0.606 on the full test set; fine-tuning gives the biggest jump at the first 100 labels.
-- Reliability (run-to-run consistency, rewording stability), latency at batch size 1, cost, and the full-training-set budget have **not been measured yet** (section 8).
+- **Full training set (9,993 labels, one seed):** 0.938 on the 500 sample and 0.948 on the full test set; versus the 2,000-label seed-0 run +2.8 points and versus the 2,000-label 3-seed mean +3.3 points on the sample; versus Claude +4.6 points (exact McNemar p = 0.000431). A single seed cannot show run-to-run spread, so this point has no error bar.
+- Run-to-run consistency and rewording stability have **not been measured yet** (section 8). Latency and cost of a merged adapter are in section 4.5.
 
 ## 2. Task and data
 
@@ -160,6 +161,7 @@ You will receive 25 numbered customer messages. Return only a JSON array of exac
 | 2000 | 0 | 3 | 0.9138 | 1.0000 | 1925 | 333 | 108.1 | 9.6 |
 | 2000 | 1 | 3 | 0.9148 | 0.9997 | 1912 | 333 | 108.1 | 9.6 |
 | 2000 | 2 | 3 | 0.9106 | 1.0000 | 1909 | 330 | 107.3 | 9.6 |
+| 9993 | 0 | 3 | 0.9477 | 0.9997 | 9593 | 332 | 107.9 | 9.6 |
 
 \* eval time ÷ examples at eval batch 16, adapter not merged. **Not** batch-1 latency.
 
@@ -171,6 +173,7 @@ You will receive 25 numbered customer messages. Return only a JSON array of exac
 | 100 | 3 | 0.7583 ± 0.0004 | 0.7532 ± 0.0021 | 0.9932 ± 0.0015 | 2.7 min |
 | 500 | 3 | 0.8551 ± 0.0089 | 0.8542 ± 0.0086 | 0.9988 ± 0.0008 | 8.0 min |
 | 2000 | 3 | 0.9131 ± 0.0022 | 0.9129 ± 0.0021 | 0.9999 ± 0.0002 | 31.9 min |
+| 9993 | 1 | 0.9477 | 0.9478 | 0.9997 | 159.9 min |
 
 At budget 100, seeds 1 and 2 have identical accuracy (0.7585). This was checked: their training subsets share only 2 of 100 examples and their predictions differ on 644 test items, so the match is a coincidence.
 
@@ -182,8 +185,11 @@ At budget 100, seeds 1 and 2 have identical accuracy (0.7585). This was checked:
 | 100 | 0.7583 | +15.3 pts |
 | 500 | 0.8551 | +9.7 pts |
 | 2000 | 0.9131 | +5.8 pts |
+| 9993 (1 seed) | 0.9477 | +3.5 pts |
 
-A chart of this curve with Claude's line has not been made yet.
+Accuracy on the 500-message sample against the number of labels, with Claude's accuracy and its 95% interval (`make_figures.py`). The 9,993-label point is a single seed (hollow marker).
+
+![Label efficiency](figures/label_efficiency.png)
 
 ### 4.4 Training loss
 
@@ -200,6 +206,39 @@ Loss is logged every 20 optimiser steps and is a single-batch value, so it is no
 | 2000 | 0 | 750/750 | 0.0003 |
 | 2000 | 1 | 750/750 | 0.1190 |
 | 2000 | 2 | 750/750 | 0.0006 |
+| 9993 | 0 | 3749/3749 | 0.0001 |
+
+### 4.5 Latency and cost
+
+Measured on the merged out-of-scope adapter (S3, seed 0; same base model and LoRA settings, extended prompt), fp16, greedy decoding, max 16 new tokens, 455 prompt tokens on average, 200 messages after 20 warm-up requests (`measure_latency.py`). **The card (Quadro RTX 6000) was shared:** 3 other processes held 10.5 GB and the card was at 54% utilisation when the measurement started, so these are not best-case numbers.
+
+| Measure | Value |
+|---|---|
+| Batch size 1, end to end (tokenise + generate + decode) | p50 258.2 ms · p95 350.7 ms · p99 442.5 ms · mean 258.5 ms |
+| Throughput, batch 8 | 9.45 messages/s (peak 8.31 GB) |
+| Throughput, batch 16 | 11.19 messages/s (peak 9.12 GB) |
+| Throughput, batch 32 | 11.52 messages/s (peak 10.74 GB) |
+| Mean power during the batch-16 run (whole card) | 251 W |
+| Sanity check: merged vs saved unmerged predictions | 191 vs 191 correct of 200; 200 identical predictions |
+
+Cost per 1,000 requests (`compute_cost.py`). **Every hourly rate is an assumption, not a quoted market price.**
+
+| System | Assumed rate | Cost per 1,000 requests | Break-even volume |
+|---|---|---|---|
+| Qwen3-4B + LoRA, batch 16 | energy only: measured 251 W at EUR 0.3/kWh (EUR 0.075/h) | EUR 0.0019 | 80 requests/hour |
+| Qwen3-4B + LoRA, batch 16 | illustrative rental at EUR 0.25/GPU-hour (EUR 0.250/h) | EUR 0.0062 | 265 requests/hour |
+| Qwen3-4B + LoRA, batch 16 | illustrative rental at EUR 0.50/GPU-hour (EUR 0.500/h) | EUR 0.0124 | 530 requests/hour |
+| Claude via Claude Code CLI (Pro subscription) | the Claude Code CLI's list-price estimate with 25 messages per call and prompt caching; not a measured API bill, and not a charge on a subscription | USD 0.94 | n/a |
+
+A dedicated GPU costs the same whether it handles 10 or 10,000 requests an hour, so the small model is cheaper only above the break-even volume = hourly GPU rate / Claude cost per request. The break-even volumes treat 1 USD as 1 EUR (a simplification; scale by your own exchange rate). At batch 16 the measured maximum is 40,284 requests per hour.
+
+### 4.6 Robustness at a glance
+
+Details, paired tests and caveats are in `results/t1_robustness.md`.
+
+![Clean, typo and two-issue accuracy](figures/stress_tests.png)
+
+![Out-of-scope recall and overall accuracy](figures/out_of_scope.png)
 
 ## 5. Head-to-head on the same 500 examples
 
@@ -210,6 +249,7 @@ Loss is logged every 20 optimiser steps and is a single-batch value, so it is no
 | Qwen3-4B-Instruct-2507 LoRA | 100 | 0.762 ± 0.014 | 0.749 ± 0.017 | 0.997 ± 0.002 | 3 seed(s) |
 | Qwen3-4B-Instruct-2507 LoRA | 500 | 0.849 ± 0.013 | 0.847 ± 0.012 | 0.999 ± 0.001 | 3 seed(s) |
 | Qwen3-4B-Instruct-2507 LoRA | 2000 | 0.905 ± 0.012 | 0.901 ± 0.007 | 1.000 ± 0.000 | 3 seed(s) |
+| Qwen3-4B-Instruct-2507 LoRA | 9993 | 0.938 | 0.935 | 1.000 | 1 seed(s) |
 
 Per seed on the 500 sample:
 
@@ -225,6 +265,7 @@ Per seed on the 500 sample:
 | 2000 | 0 | 0.910 | 0.906 | 1.000 |
 | 2000 | 1 | 0.914 | 0.905 | 1.000 |
 | 2000 | 2 | 0.892 | 0.893 | 1.000 |
+| 9993 | 0 | 0.938 | 0.935 | 1.000 |
 
 ### 5.1 Paired comparison with Claude (exact McNemar test, two-sided)
 
@@ -242,8 +283,9 @@ Each row compares one small-model run with Claude on the same 500 items. *Small 
 | 2000 | 0 | 428 | 27 | 18 | 27 | 0.233 |
 | 2000 | 1 | 427 | 30 | 19 | 24 | 0.152 |
 | 2000 | 2 | 425 | 21 | 21 | 33 | 1 |
+| 9993 | 0 | 437 | 32 | 9 | 22 | 0.000431 |
 
-Reading: at budgets 0–500 Claude is significantly better in every run. At 2,000 labels no run differs significantly from Claude; this supports calling it a tie, not a win. (Three seeds are tested separately, so treat p-values near 0.05 with care.)
+Reading: at budgets 0–500 Claude is significantly better in every run. At 2,000 labels no run differs significantly from Claude; this supports calling it a tie, not a win. (Three seeds are tested separately, so treat p-values near 0.05 with care.) The 9,993-label row is a single seed; read its p-value as one run, not as a robust result.
 
 ### 5.2 Where they disagree (budget 2000, seed 0 vs Claude)
 
@@ -352,6 +394,10 @@ Fix: the same 500 indices shuffled once with `random.Random(456)` (`results/samp
 
 20/20 batches returned a valid 25-item array on the first attempt: 0 retries, 0 failures, 0 rate limits. Wall time per call 3.9–9.9 s (median 6.8 s), including CLI start-up and network. Answering-model tokens over 20 calls: input 40, cache-creation 24,454, cache-read 17,340, output 13,427. The CLI's own list-price estimate was $0.47 in total; on a Pro plan this is not a charge, and it is not an API cost measurement. Per-call summary: Appendix C; every raw answer: Appendix D.
 
+### 6.6 Full-training-set run
+
+Budget 9,993 (the whole training set, checked to contain every training example exactly once and no test item), seed 0, 3 epochs, same hyperparameters as every other run, via `full_data.py`, which runs `exp1_routing.py --budgets 9993 --seed 0` unchanged. Training took 2.7 hours; evaluation on the full test set 6 minutes. One seed only.
+
 ## 7. Caveats (read before quoting any number)
 
 - **Claude saw 25 messages per call**; the small model saw one at a time. Mixed batches still give Claude some context across messages.
@@ -359,19 +405,18 @@ Fix: the same 500 indices shuffled once with `random.Random(456)` (`results/samp
 - **Claude's temperature could not be set**; the small model used greedy decoding.
 - Claude's model is whatever the Pro plan served (`claude-opus-5-5`), not a chosen API model. This is **one Claude model through one CLI. It is not an API baseline** and says nothing about GPT or other frontier models.
 - Claude was run once on the 500 sample; its CI reflects sampling of test items, not run-to-run variation.
-- Claude's wall time includes CLI start-up and network and is not model latency. The small model's ms/example is at eval batch 16 with an unmerged adapter. **Neither is a latency measurement**; batch-1 p50/p99 is still to do.
+- Claude's wall time includes CLI start-up and network and is not model latency. The small model's ms/example is at eval batch 16 with an unmerged adapter. **Neither is a latency measurement**; batch-1 latency of a merged adapter is in section 4.5.
 - Some Banking77 intents overlap (for example, the test message "I would like to reactivate my card" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. This was observed, not measured.
 - The 500-sample comparison has wider error bars than the full-test-set numbers; the small model's full-set numbers are more precise but have no Claude counterpart.
 - Budget 0 was run once (greedy decoding is deterministic, so other seeds would match).
+- The full-training-set budget (9,993 labels) was run with one seed only, so it shows no run-to-run spread.
 
 ## 8. Open work
 
-- Full-training-set budget (9,993 labels), 3 seeds: about 2.7 h per seed.
 - Consistency test: first 100 sample items × 5 runs for Claude (20 more calls) and for the 2,000-label model.
 - Rewording stability: 3–5 paraphrased instructions.
-- Batch-1 latency (p50/p99) with merged adapter; cost per 1,000 requests.
-- Label-efficiency chart with Claude's line.
-- API baselines (Claude API, GPT) once keys are supplied.
+- API baselines (Claude API, GPT).
+- A second dataset, to test whether the label-efficiency curve transfers.
 
 ---
 
@@ -554,7 +599,200 @@ Single-batch loss logged every 20 optimiser steps by `exp1_routing.py`.
 | 2000 | 3/3 | 740/750 | 0.0649 | 1884 |
 | 2000 | 3/3 | 750/750 | 0.0006 | 1909 |
 
-### B.4 Result JSON per seed
+### B.4 full training set (9,993 labels), seed 0
+
+| Budget | Epoch | Step | Loss | Elapsed s |
+|---|---|---|---|---|
+| 9993 | 1/3 | 20/3749 | 0.0000 | 52 |
+| 9993 | 1/3 | 40/3749 | 0.3702 | 104 |
+| 9993 | 1/3 | 60/3749 | 0.1482 | 155 |
+| 9993 | 1/3 | 80/3749 | 0.0686 | 206 |
+| 9993 | 1/3 | 100/3749 | 0.1274 | 258 |
+| 9993 | 1/3 | 120/3749 | 0.1862 | 309 |
+| 9993 | 1/3 | 140/3749 | 0.3368 | 360 |
+| 9993 | 1/3 | 160/3749 | 0.2623 | 411 |
+| 9993 | 1/3 | 180/3749 | 0.0250 | 462 |
+| 9993 | 1/3 | 200/3749 | 0.7809 | 514 |
+| 9993 | 1/3 | 220/3749 | 0.0387 | 565 |
+| 9993 | 1/3 | 240/3749 | 0.2335 | 616 |
+| 9993 | 1/3 | 260/3749 | 0.1578 | 668 |
+| 9993 | 1/3 | 280/3749 | 0.3347 | 719 |
+| 9993 | 1/3 | 300/3749 | 0.0002 | 770 |
+| 9993 | 1/3 | 320/3749 | 0.0107 | 821 |
+| 9993 | 1/3 | 340/3749 | 0.0292 | 872 |
+| 9993 | 1/3 | 360/3749 | 0.1481 | 923 |
+| 9993 | 1/3 | 380/3749 | 0.0010 | 975 |
+| 9993 | 1/3 | 400/3749 | 0.0258 | 1026 |
+| 9993 | 1/3 | 420/3749 | 0.0116 | 1077 |
+| 9993 | 1/3 | 440/3749 | 0.2233 | 1129 |
+| 9993 | 1/3 | 460/3749 | 0.0303 | 1181 |
+| 9993 | 1/3 | 480/3749 | 0.0882 | 1232 |
+| 9993 | 1/3 | 500/3749 | 0.0715 | 1283 |
+| 9993 | 1/3 | 520/3749 | 0.3966 | 1334 |
+| 9993 | 1/3 | 540/3749 | 0.0648 | 1386 |
+| 9993 | 1/3 | 560/3749 | 0.2959 | 1437 |
+| 9993 | 1/3 | 580/3749 | 0.0007 | 1488 |
+| 9993 | 1/3 | 600/3749 | 0.0080 | 1539 |
+| 9993 | 1/3 | 620/3749 | 0.3354 | 1591 |
+| 9993 | 1/3 | 640/3749 | 0.0995 | 1642 |
+| 9993 | 1/3 | 660/3749 | 0.0731 | 1694 |
+| 9993 | 1/3 | 680/3749 | 0.1430 | 1744 |
+| 9993 | 1/3 | 700/3749 | 0.0065 | 1795 |
+| 9993 | 1/3 | 720/3749 | 0.0522 | 1846 |
+| 9993 | 1/3 | 740/3749 | 0.0083 | 1897 |
+| 9993 | 1/3 | 760/3749 | 0.3606 | 1948 |
+| 9993 | 1/3 | 780/3749 | 0.1746 | 1999 |
+| 9993 | 1/3 | 800/3749 | 0.3515 | 2051 |
+| 9993 | 1/3 | 820/3749 | 0.0043 | 2102 |
+| 9993 | 1/3 | 840/3749 | 0.0043 | 2152 |
+| 9993 | 1/3 | 860/3749 | 0.2732 | 2204 |
+| 9993 | 1/3 | 880/3749 | 0.0030 | 2256 |
+| 9993 | 1/3 | 900/3749 | 0.0049 | 2307 |
+| 9993 | 1/3 | 920/3749 | 0.0035 | 2358 |
+| 9993 | 1/3 | 940/3749 | 0.1348 | 2410 |
+| 9993 | 1/3 | 960/3749 | 0.0013 | 2461 |
+| 9993 | 1/3 | 980/3749 | 0.0267 | 2513 |
+| 9993 | 1/3 | 1000/3749 | 0.1302 | 2564 |
+| 9993 | 1/3 | 1020/3749 | 0.0541 | 2615 |
+| 9993 | 1/3 | 1040/3749 | 0.1634 | 2666 |
+| 9993 | 1/3 | 1060/3749 | 0.0362 | 2717 |
+| 9993 | 1/3 | 1080/3749 | 0.0332 | 2768 |
+| 9993 | 1/3 | 1100/3749 | 0.0096 | 2820 |
+| 9993 | 1/3 | 1120/3749 | 0.0024 | 2871 |
+| 9993 | 1/3 | 1140/3749 | 0.0003 | 2922 |
+| 9993 | 1/3 | 1160/3749 | 0.0019 | 2973 |
+| 9993 | 1/3 | 1180/3749 | 0.0175 | 3024 |
+| 9993 | 1/3 | 1200/3749 | 0.0824 | 3076 |
+| 9993 | 1/3 | 1220/3749 | 0.0012 | 3127 |
+| 9993 | 1/3 | 1240/3749 | 0.2177 | 3178 |
+| 9993 | 2/3 | 1260/3749 | 0.0489 | 3227 |
+| 9993 | 2/3 | 1280/3749 | 0.2092 | 3278 |
+| 9993 | 2/3 | 1300/3749 | 0.0049 | 3329 |
+| 9993 | 2/3 | 1320/3749 | 0.1321 | 3380 |
+| 9993 | 2/3 | 1340/3749 | 0.0012 | 3430 |
+| 9993 | 2/3 | 1360/3749 | 0.0001 | 3482 |
+| 9993 | 2/3 | 1380/3749 | 0.0068 | 3533 |
+| 9993 | 2/3 | 1400/3749 | 0.0072 | 3584 |
+| 9993 | 2/3 | 1420/3749 | 0.0520 | 3635 |
+| 9993 | 2/3 | 1440/3749 | 0.0586 | 3686 |
+| 9993 | 2/3 | 1460/3749 | 0.0035 | 3738 |
+| 9993 | 2/3 | 1480/3749 | 0.0299 | 3789 |
+| 9993 | 2/3 | 1500/3749 | 0.0776 | 3840 |
+| 9993 | 2/3 | 1520/3749 | 0.0401 | 3892 |
+| 9993 | 2/3 | 1540/3749 | 0.0256 | 3943 |
+| 9993 | 2/3 | 1560/3749 | 0.0307 | 3994 |
+| 9993 | 2/3 | 1580/3749 | 0.0191 | 4044 |
+| 9993 | 2/3 | 1600/3749 | 0.0026 | 4096 |
+| 9993 | 2/3 | 1620/3749 | 0.0927 | 4147 |
+| 9993 | 2/3 | 1640/3749 | 0.0981 | 4199 |
+| 9993 | 2/3 | 1660/3749 | 0.0046 | 4250 |
+| 9993 | 2/3 | 1680/3749 | 0.1240 | 4301 |
+| 9993 | 2/3 | 1700/3749 | 0.0030 | 4353 |
+| 9993 | 2/3 | 1720/3749 | 0.0036 | 4404 |
+| 9993 | 2/3 | 1740/3749 | 0.0748 | 4455 |
+| 9993 | 2/3 | 1760/3749 | 0.0016 | 4506 |
+| 9993 | 2/3 | 1780/3749 | 0.0260 | 4557 |
+| 9993 | 2/3 | 1800/3749 | 0.0020 | 4609 |
+| 9993 | 2/3 | 1820/3749 | 0.0004 | 4660 |
+| 9993 | 2/3 | 1840/3749 | 0.0013 | 4711 |
+| 9993 | 2/3 | 1860/3749 | 0.0005 | 4762 |
+| 9993 | 2/3 | 1880/3749 | 0.2742 | 4813 |
+| 9993 | 2/3 | 1900/3749 | 0.0112 | 4864 |
+| 9993 | 2/3 | 1920/3749 | 0.0043 | 4916 |
+| 9993 | 2/3 | 1940/3749 | 0.0965 | 4967 |
+| 9993 | 2/3 | 1960/3749 | 0.1531 | 5018 |
+| 9993 | 2/3 | 1980/3749 | 0.0070 | 5069 |
+| 9993 | 2/3 | 2000/3749 | 0.1504 | 5121 |
+| 9993 | 2/3 | 2020/3749 | 0.0299 | 5172 |
+| 9993 | 2/3 | 2040/3749 | 0.2839 | 5223 |
+| 9993 | 2/3 | 2060/3749 | 0.0011 | 5275 |
+| 9993 | 2/3 | 2080/3749 | 0.0125 | 5326 |
+| 9993 | 2/3 | 2100/3749 | 0.0182 | 5377 |
+| 9993 | 2/3 | 2120/3749 | 0.0022 | 5428 |
+| 9993 | 2/3 | 2140/3749 | 0.0044 | 5478 |
+| 9993 | 2/3 | 2160/3749 | 0.0010 | 5530 |
+| 9993 | 2/3 | 2180/3749 | 0.0013 | 5581 |
+| 9993 | 2/3 | 2200/3749 | 0.0777 | 5632 |
+| 9993 | 2/3 | 2220/3749 | 0.0112 | 5683 |
+| 9993 | 2/3 | 2240/3749 | 0.0122 | 5734 |
+| 9993 | 2/3 | 2260/3749 | 0.4862 | 5786 |
+| 9993 | 2/3 | 2280/3749 | 0.0159 | 5837 |
+| 9993 | 2/3 | 2300/3749 | 0.0118 | 5888 |
+| 9993 | 2/3 | 2320/3749 | 0.0003 | 5939 |
+| 9993 | 2/3 | 2340/3749 | 0.0131 | 5991 |
+| 9993 | 2/3 | 2360/3749 | 0.0067 | 6042 |
+| 9993 | 2/3 | 2380/3749 | 0.0004 | 6093 |
+| 9993 | 2/3 | 2400/3749 | 0.0014 | 6145 |
+| 9993 | 2/3 | 2420/3749 | 0.0048 | 6196 |
+| 9993 | 2/3 | 2440/3749 | 0.0002 | 6247 |
+| 9993 | 2/3 | 2460/3749 | 0.0001 | 6298 |
+| 9993 | 2/3 | 2480/3749 | 0.0023 | 6349 |
+| 9993 | 2/3 | 2500/3749 | 0.0008 | 6398 |
+| 9993 | 3/3 | 2520/3749 | 0.0004 | 6449 |
+| 9993 | 3/3 | 2540/3749 | 0.0002 | 6500 |
+| 9993 | 3/3 | 2560/3749 | 0.0015 | 6551 |
+| 9993 | 3/3 | 2580/3749 | 0.0007 | 6602 |
+| 9993 | 3/3 | 2600/3749 | 0.0001 | 6653 |
+| 9993 | 3/3 | 2620/3749 | 0.0077 | 6705 |
+| 9993 | 3/3 | 2640/3749 | 0.0107 | 6755 |
+| 9993 | 3/3 | 2660/3749 | 0.0055 | 6807 |
+| 9993 | 3/3 | 2680/3749 | 0.0012 | 6858 |
+| 9993 | 3/3 | 2700/3749 | 0.0028 | 6909 |
+| 9993 | 3/3 | 2720/3749 | 0.0005 | 6961 |
+| 9993 | 3/3 | 2740/3749 | 0.0005 | 7012 |
+| 9993 | 3/3 | 2760/3749 | 0.0348 | 7064 |
+| 9993 | 3/3 | 2780/3749 | 0.0004 | 7116 |
+| 9993 | 3/3 | 2800/3749 | 0.0286 | 7166 |
+| 9993 | 3/3 | 2820/3749 | 0.0117 | 7217 |
+| 9993 | 3/3 | 2840/3749 | 0.0006 | 7269 |
+| 9993 | 3/3 | 2860/3749 | 0.0000 | 7320 |
+| 9993 | 3/3 | 2880/3749 | 0.0023 | 7371 |
+| 9993 | 3/3 | 2900/3749 | 0.0030 | 7423 |
+| 9993 | 3/3 | 2920/3749 | 0.0008 | 7474 |
+| 9993 | 3/3 | 2940/3749 | 0.0002 | 7525 |
+| 9993 | 3/3 | 2960/3749 | 0.0010 | 7576 |
+| 9993 | 3/3 | 2980/3749 | 0.0709 | 7627 |
+| 9993 | 3/3 | 3000/3749 | 0.1207 | 7679 |
+| 9993 | 3/3 | 3020/3749 | 0.0017 | 7730 |
+| 9993 | 3/3 | 3040/3749 | 0.0035 | 7781 |
+| 9993 | 3/3 | 3060/3749 | 0.0512 | 7832 |
+| 9993 | 3/3 | 3080/3749 | 0.0001 | 7883 |
+| 9993 | 3/3 | 3100/3749 | 0.1284 | 7934 |
+| 9993 | 3/3 | 3120/3749 | 0.0906 | 7985 |
+| 9993 | 3/3 | 3140/3749 | 0.0024 | 8036 |
+| 9993 | 3/3 | 3160/3749 | 0.0018 | 8087 |
+| 9993 | 3/3 | 3180/3749 | 0.0002 | 8139 |
+| 9993 | 3/3 | 3200/3749 | 0.0023 | 8189 |
+| 9993 | 3/3 | 3220/3749 | 0.0035 | 8240 |
+| 9993 | 3/3 | 3240/3749 | 0.0022 | 8292 |
+| 9993 | 3/3 | 3260/3749 | 0.0005 | 8343 |
+| 9993 | 3/3 | 3280/3749 | 0.0214 | 8394 |
+| 9993 | 3/3 | 3300/3749 | 0.0085 | 8445 |
+| 9993 | 3/3 | 3320/3749 | 0.1267 | 8496 |
+| 9993 | 3/3 | 3340/3749 | 0.0006 | 8547 |
+| 9993 | 3/3 | 3360/3749 | 0.0014 | 8599 |
+| 9993 | 3/3 | 3380/3749 | 0.0023 | 8650 |
+| 9993 | 3/3 | 3400/3749 | 0.0002 | 8701 |
+| 9993 | 3/3 | 3420/3749 | 0.0002 | 8752 |
+| 9993 | 3/3 | 3440/3749 | 0.0045 | 8803 |
+| 9993 | 3/3 | 3460/3749 | 0.0006 | 8854 |
+| 9993 | 3/3 | 3480/3749 | 0.0000 | 8905 |
+| 9993 | 3/3 | 3500/3749 | 0.1244 | 8957 |
+| 9993 | 3/3 | 3520/3749 | 0.0000 | 9008 |
+| 9993 | 3/3 | 3540/3749 | 0.0001 | 9059 |
+| 9993 | 3/3 | 3560/3749 | 0.0001 | 9110 |
+| 9993 | 3/3 | 3580/3749 | 0.0091 | 9161 |
+| 9993 | 3/3 | 3600/3749 | 0.0023 | 9212 |
+| 9993 | 3/3 | 3620/3749 | 0.0001 | 9263 |
+| 9993 | 3/3 | 3640/3749 | 0.0001 | 9315 |
+| 9993 | 3/3 | 3660/3749 | 0.0007 | 9366 |
+| 9993 | 3/3 | 3680/3749 | 0.0000 | 9416 |
+| 9993 | 3/3 | 3700/3749 | 0.0001 | 9468 |
+| 9993 | 3/3 | 3720/3749 | 0.0000 | 9518 |
+| 9993 | 3/3 | 3740/3749 | 0.0004 | 9570 |
+| 9993 | 3/3 | 3749/3749 | 0.0001 | 9593 |
+
+### B.5 Result JSON per seed
 
 `results/exp1_Qwen3-4B-Instruct-2507_s0.json`
 
@@ -701,6 +939,26 @@ Single-batch loss logged every 20 optimiser steps by `exp1_routing.py`.
     "train_seconds": 1909,
     "eval_seconds": 330,
     "ms_per_example": 107.3,
+    "peak_gpu_gb": 9.6,
+    "test_n": 3076
+  }
+]
+```
+
+`results/exp1_Qwen3-4B-Instruct-2507_n9993_s0.json`
+
+```json
+[
+  {
+    "model": "Qwen3-4B-Instruct-2507",
+    "budget": 9993,
+    "seed": 0,
+    "epochs": 3,
+    "accuracy": 0.9477,
+    "valid_label_rate": 0.9997,
+    "train_seconds": 9593,
+    "eval_seconds": 332,
+    "ms_per_example": 107.9,
     "peak_gpu_gb": 9.6,
     "test_n": 3076
   }
