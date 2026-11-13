@@ -1,0 +1,69 @@
+{
+ "model": "Qwen/Qwen3-4B-Instruct-2507 + LoRA adapter_S3_s0 merged (merge_and_unload), fp16, greedy, max 16 new tokens",
+ "prompt": "extended prompt (77 labels + none_of_these)",
+ "inputs": "results/stress/oos_mixed.jsonl items 1-20 warm-up, 21-220 measured",
+ "gpu": "Quadro RTX 6000",
+ "shared_gpu": true,
+ "shared_gpu_note": "The card was shared with other users' jobs; these are not best-case numbers.",
+ "gpu_state_before": {
+  "other_processes": 3,
+  "other_processes_memory_mib": 10724,
+  "gpu_utilization_percent": 54.0,
+  "gpu_memory_used_mib": 19067,
+  "gpu_memory_total_mib": 24576
+ },
+ "gpu_state_after": {
+  "other_processes": 3,
+  "other_processes_memory_mib": 10724,
+  "gpu_utilization_percent": 62.0,
+  "gpu_memory_used_mib": 22549,
+  "gpu_memory_total_mib": 24576
+ },
+ "batch1_latency_ms": {
+  "n": 200,
+  "p50": 258.2,
+  "p95": 350.7,
+  "p99": 442.5,
+  "mean": 258.5,
+  "min": 165.8,
+  "max": 443.2
+ },
+ "batch1_timing_scope": "tokenise + generate + decode, torch.cuda.synchronize() around the region",
+ "prompt_tokens": {
+  "mean": 455.1,
+  "max": 480
+ },
+ "batch1_peak_memory_gb": 7.59,
+ "throughput": {
+  "8": {
+   "seconds": 21.163,
+   "messages_per_second": 9.45,
+   "peak_memory_gb": 8.31
+  },
+  "16": {
+   "seconds": 17.867,
+   "messages_per_second": 11.19,
+   "peak_memory_gb": 9.12
+  },
+  "32": {
+   "seconds": 17.366,
+   "messages_per_second": 11.52,
+   "peak_memory_gb": 10.74
+  }
+ },
+ "power_during_batch16": {
+  "samples": 17,
+  "mean_watts": 250.65176470588236,
+  "max_watts": 258.32,
+  "mean_gpu_utilization_percent": 94.3529411764706,
+  "note": "whole-GPU power draw (nvidia-smi power.draw, 1 Hz), includes any other process on the card"
+ },
+ "sanity_check": {
+  "merged_correct": 191,
+  "saved_unmerged_correct": 191,
+  "n": 200,
+  "prediction_agreement": 200,
+  "rule": "accuracy must match within 1 item",
+  "passed": true
+ }
+}
