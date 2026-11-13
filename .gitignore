@@ -1,0 +1,31 @@
+# Python environment and caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Secrets (never commit API keys)
+.env
+.env.*
+
+# Model weights, LoRA adapters, Hugging Face caches
+results/adapter_*/
+results/stress/adapter_*/
+*.safetensors
+*.bin
+*.pt
+hf_cache/
+.cache/
+
+# Raw Claude CLI output (contains session identifiers) and run logs
+results/claude_code_raw/
+results/stress/claude_raw/
+results/stress/logs/
+results/stress/pipeline.log
+results/*log*.txt
+
+# Pipeline state files and partial outputs
+results/stress/.*
+results/stress/*.partial
+results/stress/STATUS.md
+results/stress_dryrun/

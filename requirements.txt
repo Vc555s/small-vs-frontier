@@ -1,0 +1,17 @@
+# Exact versions used for every result in this repository (Python 3.11.15, Linux).
+# torch was the CUDA 13.2 build (2.15.0+cu132); install the build matching your CUDA, e.g.
+#   pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cu132
+torch==2.15.0
+transformers==5.22.2
+peft==0.21.2
+datasets==5.2.0
+accelerate==1.15.0
+huggingface_hub==2.4.0
+tokenizers==0.23.3
+safetensors==0.8.0
+numpy==2.4.6
+scikit-learn==1.9.1
+# only needed for exp1_routing.py --load4bit (not used for any reported result)
+bitsandbytes==0.50.2
+# The Claude baseline additionally needs the Claude Code CLI (version 2.1.322 was used),
+# which is not a Python package.

@@ -1,0 +1,600 @@
+{"id": "V1-b7055", "text": "Why would a transfer to a beneficiary not go through?", "gold": "beneficiary_not_allowed", "source": "banking77_train", "src_idx": 7055}
+{"id": "V1-b4878", "text": "Can you tell me my code to get into the app?", "gold": "passcode_forgotten", "source": "banking77_train", "src_idx": 4878}
+{"id": "V1-b1965", "text": "Hello, I am a new customer, and just tried topping up for the first time. According to your information, the transaction should be instant - why does it still show as pending?", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 1965}
+{"id": "V1-b6421", "text": "My card is showing multiple charges for the same items on my recent statement. I was wondering what actions of needed to take to fix this issue", "gold": "transaction_charged_twice", "source": "banking77_train", "src_idx": 6421}
+{"id": "V1-b5855", "text": "I couldn't pay with my card", "gold": "declined_card_payment", "source": "banking77_train", "src_idx": 5855}
+{"id": "V1-b7247", "text": "Why was I charged a random fee for a transfer I made?", "gold": "transfer_fee_charged", "source": "banking77_train", "src_idx": 7247}
+{"id": "V1-b7899", "text": "Will it cost me to get a second card?", "gold": "getting_spare_card", "source": "banking77_train", "src_idx": 7899}
+{"id": "V1-b4782", "text": "I don't know what this Direct Debit payment on my account is for.", "gold": "direct_debit_payment_not_recognised", "source": "banking77_train", "src_idx": 4782}
+{"id": "V1-b8349", "text": "I am travelling and I tried to withdraw cash but didn't get what I was supposed to get.", "gold": "wrong_exchange_rate_for_cash_withdrawal", "source": "banking77_train", "src_idx": 8349}
+{"id": "V1-b5452", "text": "I bought a product a week ago, but may need to return it.", "gold": "request_refund", "source": "banking77_train", "src_idx": 5452}
+{"id": "V1-b8817", "text": "My app shows cash I didn't get.", "gold": "cash_withdrawal_not_recognised", "source": "banking77_train", "src_idx": 8817}
+{"id": "V1-b7248", "text": "Why am I seeing a fee for transferring money?", "gold": "transfer_fee_charged", "source": "banking77_train", "src_idx": 7248}
+{"id": "V1-b2953", "text": "I just have one additional card from the USA. Do you support that?", "gold": "supported_cards_and_currencies", "source": "banking77_train", "src_idx": 2953}
+{"id": "V1-b377", "text": "How do you decide what your exchange rates are?", "gold": "exchange_rate", "source": "banking77_train", "src_idx": 377}
+{"id": "V1-b8762", "text": "How long does a transfer from the UK account usually take? After completing the transfer it is not showing up. I need to know that everything I actually went okay.", "gold": "balance_not_updated_after_bank_transfer", "source": "banking77_train", "src_idx": 8762}
+{"id": "V1-b313", "text": "I need to know what foreign exchange rate I can get.", "gold": "exchange_rate", "source": "banking77_train", "src_idx": 313}
+{"id": "V1-b4026", "text": "Where is my PIN located?", "gold": "get_physical_card", "source": "banking77_train", "src_idx": 4026}
+{"id": "V1-b9026", "text": "What are the charges if I exchange foreign currency?", "gold": "exchange_charge", "source": "banking77_train", "src_idx": 9026}
+{"id": "V1-b6382", "text": "I think I was double charged", "gold": "transaction_charged_twice", "source": "banking77_train", "src_idx": 6382}
+{"id": "V1-b2304", "text": "Do you have any top-up limits?", "gold": "top_up_limits", "source": "banking77_train", "src_idx": 2304}
+{"id": "V1-b5205", "text": "How long does it actually take for a card payment to go through? There's one stuck since a couple of days already that doesn't seem to move", "gold": "pending_card_payment", "source": "banking77_train", "src_idx": 5205}
+{"id": "V1-b6762", "text": "My money is back in my account after a seller contacted me stating they never received payment. I am positive it was deducted out of my account. Please get this sorted out right away.", "gold": "reverted_card_payment?", "source": "banking77_train", "src_idx": 6762}
+{"id": "V1-b1824", "text": "What is the charge for receiving a SEPA transfer?", "gold": "top_up_by_bank_transfer_charge", "source": "banking77_train", "src_idx": 1824}
+{"id": "V1-b6638", "text": "What's the wait time for European transfers?", "gold": "transfer_timing", "source": "banking77_train", "src_idx": 6638}
+{"id": "V1-b7065", "text": "Am I allowed to transfer money to a beneficiary?", "gold": "beneficiary_not_allowed", "source": "banking77_train", "src_idx": 7065}
+{"id": "V1-b6683", "text": "How long will it take to transfer from europe?", "gold": "transfer_timing", "source": "banking77_train", "src_idx": 6683}
+{"id": "V1-b815", "text": "There is a pending transaction on my account for when I tried to get money from the ATM earlier and it did not work. Can you fix this?", "gold": "pending_cash_withdrawal", "source": "banking77_train", "src_idx": 815}
+{"id": "V1-b5151", "text": "I don't understand why my card payment is pending.  It has been pending for too long.  Why is this and when might it go through?", "gold": "pending_card_payment", "source": "banking77_train", "src_idx": 5151}
+{"id": "V1-b300", "text": "If I need to cash foreign transfers, how does that work?", "gold": "exchange_rate", "source": "banking77_train", "src_idx": 300}
+{"id": "V1-b2870", "text": "Can I use my American Express card to add money into my account?", "gold": "supported_cards_and_currencies", "source": "banking77_train", "src_idx": 2870}
+{"id": "V1-b8265", "text": "I needed some cash while abroad, and I'm pretty sure the wrong exchange rate was applied.", "gold": "wrong_exchange_rate_for_cash_withdrawal", "source": "banking77_train", "src_idx": 8265}
+{"id": "V1-b349", "text": "How does the exchange rate work?", "gold": "exchange_rate", "source": "banking77_train", "src_idx": 349}
+{"id": "V1-b7377", "text": "Can I transfer my salary onto here?", "gold": "receiving_money", "source": "banking77_train", "src_idx": 7377}
+{"id": "V1-b1254", "text": "What do I do if i accidentally broke my card?", "gold": "card_not_working", "source": "banking77_train", "src_idx": 1254}
+{"id": "V1-b1943", "text": "I topped up but it isn't in my account", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 1943}
+{"id": "V1-b8973", "text": "If I exchange currencies on a regular basis, is there a discount?", "gold": "exchange_charge", "source": "banking77_train", "src_idx": 8973}
+{"id": "V1-b1498", "text": "I think my card is stolen!", "gold": "lost_or_stolen_card", "source": "banking77_train", "src_idx": 1498}
+{"id": "V1-b2657", "text": "Is it normal to get charged extra when i use my card?", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2657}
+{"id": "V1-b1307", "text": "I wasn't able to use my card today when I went out for lunch. Wondering why that is?", "gold": "card_not_working", "source": "banking77_train", "src_idx": 1307}
+{"id": "V1-b8416", "text": "Please tell me about disposable cards.", "gold": "get_disposable_virtual_card", "source": "banking77_train", "src_idx": 8416}
+{"id": "V1-b9705", "text": "How do i top up my google pay?", "gold": "apple_pay_or_google_pay", "source": "banking77_train", "src_idx": 9705}
+{"id": "V1-b1275", "text": "My card isn't working at all. What happened?", "gold": "card_not_working", "source": "banking77_train", "src_idx": 1275}
+{"id": "V1-b4399", "text": "How many disposable cards per person?", "gold": "disposable_card_limits", "source": "banking77_train", "src_idx": 4399}
+{"id": "V1-b6105", "text": "Why is my transfer stuck on pending?", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 6105}
+{"id": "V1-b3861", "text": "How to verify my identity", "gold": "why_verify_identity", "source": "banking77_train", "src_idx": 3861}
+{"id": "V1-b4790", "text": "What should I do about a direct debit that I did not set up?", "gold": "direct_debit_payment_not_recognised", "source": "banking77_train", "src_idx": 4790}
+{"id": "V1-b7236", "text": "I was under the impression I can make transfers for free. I made an online purchase for something that was obroad and there's some additional strange fee. I've never seen this before and this isn't fair.", "gold": "transfer_fee_charged", "source": "banking77_train", "src_idx": 7236}
+{"id": "V1-b8093", "text": "I would like a card please.", "gold": "order_physical_card", "source": "banking77_train", "src_idx": 8093}
+{"id": "V1-b8565", "text": "Hi I've been trying to top up my card for the past day but it gets declined, I need it topped up urgently! Can somebody get back to me to resolve this or explain any different ways I can top up my card?", "gold": "top_up_failed", "source": "banking77_train", "src_idx": 8565}
+{"id": "V1-b8577", "text": "Hello, I tried to top up with my card, but it didn't work. I just got it a couple days before and it works fine. What's the deal? Can you check into this?", "gold": "top_up_failed", "source": "banking77_train", "src_idx": 8577}
+{"id": "V1-b7207", "text": "Why am I being charged for transfers? Are they not free?", "gold": "transfer_fee_charged", "source": "banking77_train", "src_idx": 7207}
+{"id": "V1-b914", "text": "What fiat currencies do you support?", "gold": "fiat_currency_support", "source": "banking77_train", "src_idx": 914}
+{"id": "V1-b7979", "text": "Where can I find top up by cash deposit?", "gold": "top_up_by_cash_or_cheque", "source": "banking77_train", "src_idx": 7979}
+{"id": "V1-b6505", "text": "What kind of security protects my money?", "gold": "verify_source_of_funds", "source": "banking77_train", "src_idx": 6505}
+{"id": "V1-b549", "text": "The exchange rate for my electronic payment is incorrect.", "gold": "card_payment_wrong_exchange_rate", "source": "banking77_train", "src_idx": 549}
+{"id": "V1-b7408", "text": "Can my job deposit my wages directly into the account.", "gold": "receiving_money", "source": "banking77_train", "src_idx": 7408}
+{"id": "V1-b9017", "text": "Does a discount apply if I exchange currencies frequently?", "gold": "exchange_charge", "source": "banking77_train", "src_idx": 9017}
+{"id": "V1-b9392", "text": "Tell me why there is a charge on my cash withdrawl.", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9392}
+{"id": "V1-b6210", "text": "I would like to delete my account. I'm not happy with the service you're providing", "gold": "terminate_account", "source": "banking77_train", "src_idx": 6210}
+{"id": "V1-b3896", "text": "I need help verifying my identity.", "gold": "unable_to_verify_identity", "source": "banking77_train", "src_idx": 3896}
+{"id": "V1-b5119", "text": "Why is my payment still pending?", "gold": "pending_card_payment", "source": "banking77_train", "src_idx": 5119}
+{"id": "V1-b4985", "text": "Why couldn't I get cash from an ATM?", "gold": "declined_cash_withdrawal", "source": "banking77_train", "src_idx": 4985}
+{"id": "V1-b4711", "text": "The app is showing a direct debit payment that I never made", "gold": "direct_debit_payment_not_recognised", "source": "banking77_train", "src_idx": 4711}
+{"id": "V1-b5000", "text": "I tried to get money out of the Notting Hill ATM earlier, but I wasn't able to get it to work. Is my card with issue? It's the first time I tried using it.", "gold": "declined_cash_withdrawal", "source": "banking77_train", "src_idx": 5000}
+{"id": "V1-b7469", "text": "The app says my transfer failed", "gold": "failed_transfer", "source": "banking77_train", "src_idx": 7469}
+{"id": "V1-b6043", "text": "Why isn't my pending transfer finished?", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 6043}
+{"id": "V1-b7335", "text": "Will my GPB update my salary", "gold": "receiving_money", "source": "banking77_train", "src_idx": 7335}
+{"id": "V1-b851", "text": "Please cancel the latest ATM charge on my card as my card was declined earlier today and I did not receive that cash.", "gold": "pending_cash_withdrawal", "source": "banking77_train", "src_idx": 851}
+{"id": "V1-b2678", "text": "Why was there an additional fee on the payment I just made? I don't usually have additional fees applied to my payments.", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2678}
+{"id": "V1-b3552", "text": "why do I have an unknown payment?", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3552}
+{"id": "V1-b9870", "text": "If I live outside of the UK am I still eligible for a card?", "gold": "country_support", "source": "banking77_train", "src_idx": 9870}
+{"id": "V1-b7769", "text": "Where can I find the verification code for a top-up?", "gold": "verify_top_up", "source": "banking77_train", "src_idx": 7769}
+{"id": "V1-b2498", "text": "I tried to withdraw 50 pounds but it only gave me 30. Where is the rest of my money?", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2498}
+{"id": "V1-b4236", "text": "I tried topping up using my card, but the money is gone?", "gold": "topping_up_by_card", "source": "banking77_train", "src_idx": 4236}
+{"id": "V1-b4617", "text": "Can you tell me the ATMs I can use with my card?", "gold": "atm_support", "source": "banking77_train", "src_idx": 4617}
+{"id": "V1-b2165", "text": "I need to cancel my recent transfer as soon as possible. I made an error there. Please help before it goes through.", "gold": "cancel_transfer", "source": "banking77_train", "src_idx": 2165}
+{"id": "V1-b1642", "text": "Do you have to be 18 to make an account?", "gold": "age_limit", "source": "banking77_train", "src_idx": 1642}
+{"id": "V1-b2837", "text": "I sent some money and the account hasn't recived the transfer I made.", "gold": "transfer_not_received_by_recipient", "source": "banking77_train", "src_idx": 2837}
+{"id": "V1-b8836", "text": "I see a cash withdrawal in the app that I did not do.", "gold": "cash_withdrawal_not_recognised", "source": "banking77_train", "src_idx": 8836}
+{"id": "V1-b906", "text": "Can I change or hold different currency?", "gold": "fiat_currency_support", "source": "banking77_train", "src_idx": 906}
+{"id": "V1-b2403", "text": "I tried withdrawing but my cash is not showing up?", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2403}
+{"id": "V1-b5078", "text": "Why did the ATM cancel my transaction", "gold": "declined_cash_withdrawal", "source": "banking77_train", "src_idx": 5078}
+{"id": "V1-b9828", "text": "What forms of ID work for verification?", "gold": "verify_my_identity", "source": "banking77_train", "src_idx": 9828}
+{"id": "V1-b7139", "text": "Hi i received an error message informing me about the transaction failure. I have done the money transfer before and it never failed. Please let me know what is the issue this time.", "gold": "beneficiary_not_allowed", "source": "banking77_train", "src_idx": 7139}
+{"id": "V1-b2883", "text": "How can I fund another account with my American Express?", "gold": "supported_cards_and_currencies", "source": "banking77_train", "src_idx": 2883}
+{"id": "V1-b3067", "text": "Please let me know how to place an order for a virtual card", "gold": "getting_virtual_card", "source": "banking77_train", "src_idx": 3067}
+{"id": "V1-b8856", "text": "There is a cash withdrawal in my account that isn't mine.", "gold": "cash_withdrawal_not_recognised", "source": "banking77_train", "src_idx": 8856}
+{"id": "V1-b2254", "text": "Do top-ups have limits?", "gold": "top_up_limits", "source": "banking77_train", "src_idx": 2254}
+{"id": "V1-b6371", "text": "I was charged more than once for a card payment I made.", "gold": "transaction_charged_twice", "source": "banking77_train", "src_idx": 6371}
+{"id": "V1-b3429", "text": "I am still waiting for the cash to be returned from a cheque I deposited!", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3429}
+{"id": "V1-b4525", "text": "How do I report fraud on my card?", "gold": "compromised_card", "source": "banking77_train", "src_idx": 4525}
+{"id": "V1-b3174", "text": "How come I can't put money in my top up account?", "gold": "top_up_reverted", "source": "banking77_train", "src_idx": 3174}
+{"id": "V1-b5490", "text": "I need my purchase cancelled.", "gold": "request_refund", "source": "banking77_train", "src_idx": 5490}
+{"id": "V1-b1998", "text": "My top is still pending.", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 1998}
+{"id": "V1-b7958", "text": "Can I cash deposit to top up my account", "gold": "top_up_by_cash_or_cheque", "source": "banking77_train", "src_idx": 7958}
+{"id": "V1-b1461", "text": "How do I change to AUD from GBP?", "gold": "exchange_via_app", "source": "banking77_train", "src_idx": 1461}
+{"id": "V1-b1792", "text": "I can't get a contactless payment to work.", "gold": "contactless_not_working", "source": "banking77_train", "src_idx": 1792}
+{"id": "V1-b4085", "text": "Is my PIN the same thing as my passcode?", "gold": "get_physical_card", "source": "banking77_train", "src_idx": 4085}
+{"id": "V1-b6715", "text": "I tried to use my debit card, but the payment did not work.", "gold": "reverted_card_payment?", "source": "banking77_train", "src_idx": 6715}
+{"id": "V1-b2950", "text": "Will you accept my credit card?", "gold": "supported_cards_and_currencies", "source": "banking77_train", "src_idx": 2950}
+{"id": "V1-b6162", "text": "I would like to cancel my account.", "gold": "terminate_account", "source": "banking77_train", "src_idx": 6162}
+{"id": "V1-b4574", "text": "Please provide me a list of ATMs that accept my card.", "gold": "atm_support", "source": "banking77_train", "src_idx": 4574}
+{"id": "V1-b2160", "text": "I need urgent help. I realize I sent my payment to the wrong account number. I made a typo. Please cancel the transfer immediately. I cannot do anything from the app.", "gold": "cancel_transfer", "source": "banking77_train", "src_idx": 2160}
+{"id": "V1-b2685", "text": "Why am I being charged a hidden fee?", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2685}
+{"id": "V1-b3754", "text": "I need to update my phone number.", "gold": "edit_personal_details", "source": "banking77_train", "src_idx": 3754}
+{"id": "V1-b3095", "text": "How do I know where I can use my card?", "gold": "card_acceptance", "source": "banking77_train", "src_idx": 3095}
+{"id": "V1-b3348", "text": "I've deposited a check but the cash isn't showing that it's there yet.", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3348}
+{"id": "V1-b2135", "text": "It is extremely important that I cancel the transfer I made yesterday and put the money into a different account.  Is this possible?", "gold": "cancel_transfer", "source": "banking77_train", "src_idx": 2135}
+{"id": "V1-b9953", "text": "If I don't live in the UK, can I still get a card?", "gold": "country_support", "source": "banking77_train", "src_idx": 9953}
+{"id": "V1-b7725", "text": "Why verify the top-ups?", "gold": "verify_top_up", "source": "banking77_train", "src_idx": 7725}
+{"id": "V1-b7103", "text": "Hello I am unable to exchange the crypto currency through the app, i am very keen to buy. Please let me know the issue.    interested buying crypto currency but i am unable to purchase it through the application,i do want to do the exchange, Could you please let me know what is the problem?", "gold": "beneficiary_not_allowed", "source": "banking77_train", "src_idx": 7103}
+{"id": "V1-b9418", "text": "Why are you charging fees on cash withdrawals? I went to withdraw some money earlier today after buying groceries. There's a fee that wasn't there before.", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9418}
+{"id": "V1-b8202", "text": "I believe a wrong exchange rate was applied towards a cash transaction I made abroad.", "gold": "wrong_exchange_rate_for_cash_withdrawal", "source": "banking77_train", "src_idx": 8202}
+{"id": "V1-b6146", "text": "cancel my account", "gold": "terminate_account", "source": "banking77_train", "src_idx": 6146}
+{"id": "V1-b1505", "text": "Could you please freeze my card immediately?", "gold": "lost_or_stolen_card", "source": "banking77_train", "src_idx": 1505}
+{"id": "V1-b8223", "text": "When I made a cash transfer abroad the wrong exchange rate was applied", "gold": "wrong_exchange_rate_for_cash_withdrawal", "source": "banking77_train", "src_idx": 8223}
+{"id": "V1-b1056", "text": "I need my card as quick as possible", "gold": "card_delivery_estimate", "source": "banking77_train", "src_idx": 1056}
+{"id": "V1-b900", "text": "Which fiat currencies are supported by you?", "gold": "fiat_currency_support", "source": "banking77_train", "src_idx": 900}
+{"id": "V1-b1190", "text": "When I'm traveling is it possible to add money automatically at certain time points?", "gold": "automatic_top_up", "source": "banking77_train", "src_idx": 1190}
+{"id": "V1-b5517", "text": "I just bought an item and would like to stop payment can you tell me if the item has been sent yet?", "gold": "request_refund", "source": "banking77_train", "src_idx": 5517}
+{"id": "V1-b196", "text": "Will I need a new card or can I put my old card back into the app?", "gold": "card_linking", "source": "banking77_train", "src_idx": 196}
+{"id": "V1-b2423", "text": "My cash received does not match what has been requested", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2423}
+{"id": "V1-b394", "text": "I'd like to know what you guys look at to decide an exchange rate", "gold": "exchange_rate", "source": "banking77_train", "src_idx": 394}
+{"id": "V1-b425", "text": "Why was the exchange rate so wrong when I bought something!", "gold": "card_payment_wrong_exchange_rate", "source": "banking77_train", "src_idx": 425}
+{"id": "V1-b5455", "text": "I would like to cancel a purchase.", "gold": "request_refund", "source": "banking77_train", "src_idx": 5455}
+{"id": "V1-b609", "text": "I think I may have been charged $1 extra on my app.  Could you provide some insight as to why this may have happened?", "gold": "extra_charge_on_statement", "source": "banking77_train", "src_idx": 609}
+{"id": "V1-b3468", "text": "Why hasn't my balance been updated? I've deposited a few cheques some days ago!", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3468}
+{"id": "V1-b640", "text": "I was made to pay an additional pound!", "gold": "extra_charge_on_statement", "source": "banking77_train", "src_idx": 640}
+{"id": "V1-b3028", "text": "How can I obtain a virtual card?", "gold": "getting_virtual_card", "source": "banking77_train", "src_idx": 3028}
+{"id": "V1-b99", "text": "Is there a tracking number for the card?", "gold": "card_arrival", "source": "banking77_train", "src_idx": 99}
+{"id": "V1-b5769", "text": "Can I check my recent refund in my statement?", "gold": "Refund_not_showing_up", "source": "banking77_train", "src_idx": 5769}
+{"id": "V1-b8851", "text": "There is money missing from my account.", "gold": "cash_withdrawal_not_recognised", "source": "banking77_train", "src_idx": 8851}
+{"id": "V1-b8608", "text": "After I transferred money the balance remained the same.", "gold": "balance_not_updated_after_bank_transfer", "source": "banking77_train", "src_idx": 8608}
+{"id": "V1-b5231", "text": "What is the pending payment on my card about?", "gold": "pending_card_payment", "source": "banking77_train", "src_idx": 5231}
+{"id": "V1-b6016", "text": "How long until transfers complete?", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 6016}
+{"id": "V1-b8350", "text": "I got some cash out of the ATM over the holiday and it seems that I've been grossly overcharged. I wouldn't have done that if I knew of these outrageous charges!", "gold": "wrong_exchange_rate_for_cash_withdrawal", "source": "banking77_train", "src_idx": 8350}
+{"id": "V1-b4732", "text": "Why is there a direct debit set up in my name?", "gold": "direct_debit_payment_not_recognised", "source": "banking77_train", "src_idx": 4732}
+{"id": "V1-b6415", "text": "Hi. Please can you help me fix a double charge on my card? I'm looking at my transactions and this restaurant I went to earlier in the week has charged me twice! Please remove the additional charge for me.", "gold": "transaction_charged_twice", "source": "banking77_train", "src_idx": 6415}
+{"id": "V1-b1185", "text": "I am traveling, what can I do to set up auto top-up?", "gold": "automatic_top_up", "source": "banking77_train", "src_idx": 1185}
+{"id": "V1-b9465", "text": "I was charged a fee with my cash withdrawal that I shouldn't have been charged.", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9465}
+{"id": "V1-b5974", "text": "I had a problem with my card payment, can you help?", "gold": "declined_card_payment", "source": "banking77_train", "src_idx": 5974}
+{"id": "V1-b898", "text": "What currencies can I not hold many in, if so what are they?", "gold": "fiat_currency_support", "source": "banking77_train", "src_idx": 898}
+{"id": "V1-b4081", "text": "When do I get my card PIN?", "gold": "get_physical_card", "source": "banking77_train", "src_idx": 4081}
+{"id": "V1-b9660", "text": "Am I able to top up with Apple Pay?", "gold": "apple_pay_or_google_pay", "source": "banking77_train", "src_idx": 9660}
+{"id": "V1-b2094", "text": "I need to change a transfer.", "gold": "cancel_transfer", "source": "banking77_train", "src_idx": 2094}
+{"id": "V1-b2545", "text": "I have a fee showing from last time I used my card.", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2545}
+{"id": "V1-b2668", "text": "Why have I been charged a small fee to use my card?", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2668}
+{"id": "V1-b4202", "text": "How can I get a Visa and Mastercard?", "gold": "visa_or_mastercard", "source": "banking77_train", "src_idx": 4202}
+{"id": "V1-b9859", "text": "What do I use to verify my identity?", "gold": "verify_my_identity", "source": "banking77_train", "src_idx": 9859}
+{"id": "V1-b6888", "text": "Do I need to speak to a representative to change my pin?", "gold": "change_pin", "source": "banking77_train", "src_idx": 6888}
+{"id": "V1-b4007", "text": "I am not able to see the card PIN anywhere?", "gold": "get_physical_card", "source": "banking77_train", "src_idx": 4007}
+{"id": "V1-b1337", "text": "My card doesn't work when I use it.", "gold": "card_not_working", "source": "banking77_train", "src_idx": 1337}
+{"id": "V1-b6670", "text": "What is the estimated wait time on a US transfer into my account?", "gold": "transfer_timing", "source": "banking77_train", "src_idx": 6670}
+{"id": "V1-b386", "text": "Could you tell me what your exchange rates are?", "gold": "exchange_rate", "source": "banking77_train", "src_idx": 386}
+{"id": "V1-b642", "text": "It appears I have a fee in my statement.", "gold": "extra_charge_on_statement", "source": "banking77_train", "src_idx": 642}
+{"id": "V1-b3283", "text": "It appears my top-ups have been canceled.", "gold": "top_up_reverted", "source": "banking77_train", "src_idx": 3283}
+{"id": "V1-b1938", "text": "Seems like my top-up has not gone through", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 1938}
+{"id": "V1-b2006", "text": "Why is the top-up I made still pending.", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 2006}
+{"id": "V1-b5037", "text": "The ATM wouldn't let me withdraw cash.", "gold": "declined_cash_withdrawal", "source": "banking77_train", "src_idx": 5037}
+{"id": "V1-b2907", "text": "Do you accept credit cards from the US", "gold": "supported_cards_and_currencies", "source": "banking77_train", "src_idx": 2907}
+{"id": "V1-b2306", "text": "Can I top up any amount?", "gold": "top_up_limits", "source": "banking77_train", "src_idx": 2306}
+{"id": "V1-b4964", "text": "This morning I wanted to make a withdrawal before work, but my card was declined! Please double check it for me as this is the first time it was declined.", "gold": "declined_cash_withdrawal", "source": "banking77_train", "src_idx": 4964}
+{"id": "V1-b6031", "text": "Why is my transfer still pending after all this time?", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 6031}
+{"id": "V1-b2772", "text": "my friend has not got the money I sent last week.", "gold": "transfer_not_received_by_recipient", "source": "banking77_train", "src_idx": 2772}
+{"id": "V1-b7172", "text": "Why is my transfer more expensive than I thought?", "gold": "transfer_fee_charged", "source": "banking77_train", "src_idx": 7172}
+{"id": "V1-b4126", "text": "is it ok if i use both visa and mastercard", "gold": "visa_or_mastercard", "source": "banking77_train", "src_idx": 4126}
+{"id": "V1-b3779", "text": "Why is identity verification required?", "gold": "why_verify_identity", "source": "banking77_train", "src_idx": 3779}
+{"id": "V1-b9206", "text": "How can my new card be activated?", "gold": "activate_my_card", "source": "banking77_train", "src_idx": 9206}
+{"id": "V1-b2107", "text": "My transfer was wrong, are you able to stop it before it goes through please?", "gold": "cancel_transfer", "source": "banking77_train", "src_idx": 2107}
+{"id": "V1-b2527", "text": "Why is there a fee for using my card?", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2527}
+{"id": "V1-b2425", "text": "I was not distributed all of cash that I requested", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2425}
+{"id": "V1-b3169", "text": "Seems like my top up has been cancelled", "gold": "top_up_reverted", "source": "banking77_train", "src_idx": 3169}
+{"id": "V1-b1276", "text": "Today I was out eating and my card was declined. Why's that?", "gold": "card_not_working", "source": "banking77_train", "src_idx": 1276}
+{"id": "V1-b7042", "text": "I wasn't able to do a transfer to an account", "gold": "beneficiary_not_allowed", "source": "banking77_train", "src_idx": 7042}
+{"id": "V1-b2494", "text": "I did not receive the correct amount of cash.", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2494}
+{"id": "V1-b8537", "text": "My top-up was rejected", "gold": "top_up_failed", "source": "banking77_train", "src_idx": 8537}
+{"id": "V1-b4753", "text": "There's a payment showing in the app today even though I have not used my card at all. I want a refund.", "gold": "direct_debit_payment_not_recognised", "source": "banking77_train", "src_idx": 4753}
+{"id": "V1-b3918", "text": "The app is not able to realize that it is me.", "gold": "unable_to_verify_identity", "source": "banking77_train", "src_idx": 3918}
+{"id": "V1-b6066", "text": "How long does it take for pending transfer transactions to post?", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 6066}
+{"id": "V1-b5341", "text": "My phone is missing.", "gold": "lost_or_stolen_phone", "source": "banking77_train", "src_idx": 5341}
+{"id": "V1-b7429", "text": "A transfer could not be completed.", "gold": "failed_transfer", "source": "banking77_train", "src_idx": 7429}
+{"id": "V1-b6671", "text": "How long will it take to transfer something to China urgently?", "gold": "transfer_timing", "source": "banking77_train", "src_idx": 6671}
+{"id": "V1-b5159", "text": "I have a card payment that has been pending for some time and would like to know when it is going to go through.", "gold": "pending_card_payment", "source": "banking77_train", "src_idx": 5159}
+{"id": "V1-b3336", "text": "I made a deposit and the balance hasn't been updated.", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3336}
+{"id": "V1-b3551", "text": "This card payment isn't is recognition.", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3551}
+{"id": "V1-b666", "text": "There is a 1\u00a3 charge that appears as pending on my statement. What is that? I haven't purchased anything for a pound there.", "gold": "extra_charge_on_statement", "source": "banking77_train", "src_idx": 666}
+{"id": "V1-b3327", "text": "i need help. I updated my balance with a check yesterday and Im not seeing it. Can you look at my account to see what went wrong?", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3327}
+{"id": "V1-b6695", "text": "What's the transfer time from Europe?", "gold": "transfer_timing", "source": "banking77_train", "src_idx": 6695}
+{"id": "V1-b6052", "text": "I didn't think my country-to-country money transfer would take so long. It still says that it's pending so I re-checked all of the account information--everything seems right, so what's the deal?", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 6052}
+{"id": "V1-b2893", "text": "why don't you accept american express for adding money to my account", "gold": "supported_cards_and_currencies", "source": "banking77_train", "src_idx": 2893}
+{"id": "V1-b3982", "text": "I am having trouble to verify my identity", "gold": "unable_to_verify_identity", "source": "banking77_train", "src_idx": 3982}
+{"id": "V1-b9262", "text": "I would like to get help from someone in your customer service department with assisting me with activating my card.", "gold": "activate_my_card", "source": "banking77_train", "src_idx": 9262}
+{"id": "V1-b653", "text": "why was i charged a small amount", "gold": "extra_charge_on_statement", "source": "banking77_train", "src_idx": 653}
+{"id": "V1-b5030", "text": "What was the cause for my card to be declined?", "gold": "declined_cash_withdrawal", "source": "banking77_train", "src_idx": 5030}
+{"id": "V1-b6273", "text": "My card is stuck inside the ATM.", "gold": "card_swallowed", "source": "banking77_train", "src_idx": 6273}
+{"id": "V1-b1512", "text": "Report stolen card", "gold": "lost_or_stolen_card", "source": "banking77_train", "src_idx": 1512}
+{"id": "V1-b2449", "text": "I did not receive the right amount of cash.", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2449}
+{"id": "V1-b8220", "text": "I withdrew  money from the ATM and was overcharged.  It said nothing about an extra fee.", "gold": "wrong_exchange_rate_for_cash_withdrawal", "source": "banking77_train", "src_idx": 8220}
+{"id": "V1-b6321", "text": "Hi, I just looked at my card transactions and saw that I've been charged twice for a restaurant I went to this week. Can you remove the double charge, please?", "gold": "transaction_charged_twice", "source": "banking77_train", "src_idx": 6321}
+{"id": "V1-b8786", "text": "help, I see money missing I didn't take out.", "gold": "cash_withdrawal_not_recognised", "source": "banking77_train", "src_idx": 8786}
+{"id": "V1-b5076", "text": "How come the ATM won't give me my money?", "gold": "declined_cash_withdrawal", "source": "banking77_train", "src_idx": 5076}
+{"id": "V1-b6128", "text": "Pending still shows on this transfer, why?", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 6128}
+{"id": "V1-b4534", "text": "I might be paranoid, but someone may be using my card.", "gold": "compromised_card", "source": "banking77_train", "src_idx": 4534}
+{"id": "V1-b786", "text": "How long does it take for cash withdrawals to hit my account?", "gold": "pending_cash_withdrawal", "source": "banking77_train", "src_idx": 786}
+{"id": "V1-b8516", "text": "My top up has failed", "gold": "top_up_failed", "source": "banking77_train", "src_idx": 8516}
+{"id": "V1-b9388", "text": "There was an extra fee when I was at the ATM.  Why?", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9388}
+{"id": "V1-b6843", "text": "I did a payment but the app cancelled it.", "gold": "reverted_card_payment?", "source": "banking77_train", "src_idx": 6843}
+{"id": "V1-b227", "text": "I would like to link my card to my account.", "gold": "card_linking", "source": "banking77_train", "src_idx": 227}
+{"id": "V1-b5945", "text": "I made a card payment but it didn't work. Why not?", "gold": "declined_card_payment", "source": "banking77_train", "src_idx": 5945}
+{"id": "V1-b5651", "text": "I have double-checked all of my recipient details but for some reason all of my transfers keep getting declined. I have no clue as to why.", "gold": "declined_transfer", "source": "banking77_train", "src_idx": 5651}
+{"id": "V1-b7523", "text": "Why was my transaction declined?", "gold": "failed_transfer", "source": "banking77_train", "src_idx": 7523}
+{"id": "V1-b500", "text": "Why is the exchange rate different from what I expected?", "gold": "card_payment_wrong_exchange_rate", "source": "banking77_train", "src_idx": 500}
+{"id": "V1-b2307", "text": "Can I use as many top-ups as I want?", "gold": "top_up_limits", "source": "banking77_train", "src_idx": 2307}
+{"id": "V1-b6161", "text": "I am upset with your service.  Please delete my account.", "gold": "terminate_account", "source": "banking77_train", "src_idx": 6161}
+{"id": "V1-b5821", "text": "Im not sure if a seller is giving me my money back! I asked them to refund my money for the item but It's been a week now and still nothing has been given back to me. Can you resolve this for me?", "gold": "Refund_not_showing_up", "source": "banking77_train", "src_idx": 5821}
+{"id": "V1-b1082", "text": "My card is needed soon", "gold": "card_delivery_estimate", "source": "banking77_train", "src_idx": 1082}
+{"id": "V1-b1870", "text": "Does this program take SWIFT transfers?", "gold": "top_up_by_bank_transfer_charge", "source": "banking77_train", "src_idx": 1870}
+{"id": "V1-b2803", "text": "When will I get my money? It's been too long.", "gold": "transfer_not_received_by_recipient", "source": "banking77_train", "src_idx": 2803}
+{"id": "V1-b8830", "text": "I am seeing unathorized transactions in the app, on my account.", "gold": "cash_withdrawal_not_recognised", "source": "banking77_train", "src_idx": 8830}
+{"id": "V1-b7613", "text": "Can I add money to top up my account via a bank transfer?", "gold": "transfer_into_account", "source": "banking77_train", "src_idx": 7613}
+{"id": "V1-b6819", "text": "How come I can't find my payment?", "gold": "reverted_card_payment?", "source": "banking77_train", "src_idx": 6819}
+{"id": "V1-b2492", "text": "I am at the ATM and tried to withdraw 30 pounds and it only gave me 10 pounds, what do I do?", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2492}
+{"id": "V1-b1104", "text": "When can I expect to receive my card?", "gold": "card_delivery_estimate", "source": "banking77_train", "src_idx": 1104}
+{"id": "V1-b7948", "text": "I want to top up my account with a cheque", "gold": "top_up_by_cash_or_cheque", "source": "banking77_train", "src_idx": 7948}
+{"id": "V1-b7926", "text": "Is there somewhere I can send a check to add to my account?", "gold": "top_up_by_cash_or_cheque", "source": "banking77_train", "src_idx": 7926}
+{"id": "V1-b3343", "text": "I placed a cheque but the funds aren't there", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3343}
+{"id": "V1-b2932", "text": "I want to add money to my card, what payments do you accept?", "gold": "supported_cards_and_currencies", "source": "banking77_train", "src_idx": 2932}
+{"id": "V1-b9544", "text": "What steps should I take before my card expires?", "gold": "card_about_to_expire", "source": "banking77_train", "src_idx": 9544}
+{"id": "V1-b8156", "text": "can i order cards on the app", "gold": "order_physical_card", "source": "banking77_train", "src_idx": 8156}
+{"id": "V1-b9606", "text": "Can I keep using my card after it expires?", "gold": "card_about_to_expire", "source": "banking77_train", "src_idx": 9606}
+{"id": "V1-b2845", "text": "Could you please help me?  I made my rent payment and have double checked that I sent it to the right account.  The person receiving it says he has not received it but it shows complete on my side.", "gold": "transfer_not_received_by_recipient", "source": "banking77_train", "src_idx": 2845}
+{"id": "V1-b9303", "text": "Could you please tell me how to activate my new card?", "gold": "activate_my_card", "source": "banking77_train", "src_idx": 9303}
+{"id": "V1-b7594", "text": "I want to do a bank transfer to this bank, from an account at another bank.", "gold": "transfer_into_account", "source": "banking77_train", "src_idx": 7594}
+{"id": "V1-b1960", "text": "My top-up didn't go through; it still says pending. What's up with that?", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 1960}
+{"id": "V1-b2273", "text": "What is the maximum top up?", "gold": "top_up_limits", "source": "banking77_train", "src_idx": 2273}
+{"id": "V1-b4741", "text": "I have gone through my statements and noticed there is a large payment that I did not make. Can i still dispute the payment? its been a while", "gold": "direct_debit_payment_not_recognised", "source": "banking77_train", "src_idx": 4741}
+{"id": "V1-b5138", "text": "When will my payment go through?", "gold": "pending_card_payment", "source": "banking77_train", "src_idx": 5138}
+{"id": "V1-b3314", "text": "Last week I put a cash deposit into my account and it is still isn't there.", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3314}
+{"id": "V1-b5959", "text": "Whats the reason for my payment being declined? It looked like everything went through ok and my account was good.", "gold": "declined_card_payment", "source": "banking77_train", "src_idx": 5959}
+{"id": "V1-b5249", "text": "My phone was stolen! What do I need to do?", "gold": "lost_or_stolen_phone", "source": "banking77_train", "src_idx": 5249}
+{"id": "V1-b933", "text": "Is my country's currency supported by your system?", "gold": "fiat_currency_support", "source": "banking77_train", "src_idx": 933}
+{"id": "V1-b358", "text": "What exchange rates do you use?", "gold": "exchange_rate", "source": "banking77_train", "src_idx": 358}
+{"id": "V1-b768", "text": "I tried to access money earlier but the machine seems not to be working. After looking, the transaction actually shows to still being process. Can you find out what is going on here? I don't want to be charged for some money I never got.", "gold": "pending_cash_withdrawal", "source": "banking77_train", "src_idx": 768}
+{"id": "V1-b9355", "text": "Why was my account assessed a fee for an ATM transaction?", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9355}
+{"id": "V1-b9445", "text": "Why am I being charged for getting cash?", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9445}
+{"id": "V1-b9629", "text": "Can you give me info about what to do when my card expires?", "gold": "card_about_to_expire", "source": "banking77_train", "src_idx": 9629}
+{"id": "V1-b332", "text": "Where can I get your exchange rates from?", "gold": "exchange_rate", "source": "banking77_train", "src_idx": 332}
+{"id": "V1-b5005", "text": "Why am I not able to get cash from the ATM?", "gold": "declined_cash_withdrawal", "source": "banking77_train", "src_idx": 5005}
+{"id": "V1-b449", "text": "You did not give me the correct exchange rate for an item that I bought.", "gold": "card_payment_wrong_exchange_rate", "source": "banking77_train", "src_idx": 449}
+{"id": "V1-b2933", "text": "What are my payment options?", "gold": "supported_cards_and_currencies", "source": "banking77_train", "src_idx": 2933}
+{"id": "V1-b974", "text": "Which flat currencies can I use from you?", "gold": "fiat_currency_support", "source": "banking77_train", "src_idx": 974}
+{"id": "V1-b3554", "text": "I just saw some charges on my card from the past days that I dont recognize, I need to freeze the card asap! Will I be able to get my money back?", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3554}
+{"id": "V1-b1230", "text": "where can I find the auto-top up option?", "gold": "automatic_top_up", "source": "banking77_train", "src_idx": 1230}
+{"id": "V1-b833", "text": "Explain pending transactions.", "gold": "pending_cash_withdrawal", "source": "banking77_train", "src_idx": 833}
+{"id": "V1-b8351", "text": "The exchange rate was wrong in the foreign country I got cash in.", "gold": "wrong_exchange_rate_for_cash_withdrawal", "source": "banking77_train", "src_idx": 8351}
+{"id": "V1-b2687", "text": "Why did I get charged a fee on my card?", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2687}
+{"id": "V1-b3771", "text": "DO you know the reason for the identity check?", "gold": "why_verify_identity", "source": "banking77_train", "src_idx": 3771}
+{"id": "V1-b143", "text": "I was supposed to receive my new card by now, but it hasn't came in.", "gold": "card_arrival", "source": "banking77_train", "src_idx": 143}
+{"id": "V1-b2925", "text": "I'd like to use my American Express to place money into my account.", "gold": "supported_cards_and_currencies", "source": "banking77_train", "src_idx": 2925}
+{"id": "V1-b2642", "text": "I was unaware of the additional charge that was added onto my previous payment. A notification of extra charges would be appreciated in the future.", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2642}
+{"id": "V1-b1210", "text": "How many times can I auto top-up?", "gold": "automatic_top_up", "source": "banking77_train", "src_idx": 1210}
+{"id": "V1-b7048", "text": "I'm suddenly getting an error while attempting a transfer that it isn't possible. Why? I've done it before.", "gold": "beneficiary_not_allowed", "source": "banking77_train", "src_idx": 7048}
+{"id": "V1-b5384", "text": "My product hasn't arrived even though I ordered it a while ago. I want a refund!", "gold": "request_refund", "source": "banking77_train", "src_idx": 5384}
+{"id": "V1-b8676", "text": "I made a bank transfer from my UK account today, but it's not showing.  Can you check status?", "gold": "balance_not_updated_after_bank_transfer", "source": "banking77_train", "src_idx": 8676}
+{"id": "V1-b5225", "text": "What's the pending length for credit transactions? I've had one in my pending category now for days and it won't move to processed.", "gold": "pending_card_payment", "source": "banking77_train", "src_idx": 5225}
+{"id": "V1-b2792", "text": "How long should it take for a transfer to go through? I have been waiting a while.", "gold": "transfer_not_received_by_recipient", "source": "banking77_train", "src_idx": 2792}
+{"id": "V1-b3955", "text": "How come I can't seem to verify my id?", "gold": "unable_to_verify_identity", "source": "banking77_train", "src_idx": 3955}
+{"id": "V1-b7585", "text": "How does it work when I transfer money into my account?", "gold": "transfer_into_account", "source": "banking77_train", "src_idx": 7585}
+{"id": "V1-b3388", "text": "What's going on with my balance? Shouldn't it be a bit higher since I deposited a cheque a day ago?", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3388}
+{"id": "V1-b1687", "text": "How do I make my PIN work again?", "gold": "pin_blocked", "source": "banking77_train", "src_idx": 1687}
+{"id": "V1-b4530", "text": "i dont recognise some of these transactions, i think someone has my card details", "gold": "compromised_card", "source": "banking77_train", "src_idx": 4530}
+{"id": "V1-b8968", "text": "Since I need to exchange currencies frequently, would you be able to offer me a discount?", "gold": "exchange_charge", "source": "banking77_train", "src_idx": 8968}
+{"id": "V1-b651", "text": "I was charged extra or a hidden fee when I purchased something from you. What's the deal? I didn't authorize that charge.", "gold": "extra_charge_on_statement", "source": "banking77_train", "src_idx": 651}
+{"id": "V1-b9402", "text": "Please help!  There was an extra fee when I got cash.", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9402}
+{"id": "V1-b7427", "text": "Why wont the other bank take my money?? Is it not good enough?? There's sufficient funds but I keep getting denied a standard transfer. Ive tried 5 times!", "gold": "failed_transfer", "source": "banking77_train", "src_idx": 7427}
+{"id": "V1-b5636", "text": "I have tried a couple of times to make a purchase and my card keeps getting declined. Why do you keep denying my transfers? I have already tried a couple of times and it's not working.", "gold": "declined_transfer", "source": "banking77_train", "src_idx": 5636}
+{"id": "V1-b5681", "text": "How come my refund hasn't appeared on my statement?", "gold": "Refund_not_showing_up", "source": "banking77_train", "src_idx": 5681}
+{"id": "V1-b6944", "text": "Am I able to change my PIN at certain cash machines?", "gold": "change_pin", "source": "banking77_train", "src_idx": 6944}
+{"id": "V1-b6880", "text": "Can I change my PIN abroad?", "gold": "change_pin", "source": "banking77_train", "src_idx": 6880}
+{"id": "V1-b5801", "text": "Why did I not get my refund yet?", "gold": "Refund_not_showing_up", "source": "banking77_train", "src_idx": 5801}
+{"id": "V1-b3163", "text": "Hello, I have tried using crypto top up but it is not working. I had some money in my account but I'm not sure what happened", "gold": "top_up_reverted", "source": "banking77_train", "src_idx": 3163}
+{"id": "V1-b1667", "text": "I mistook my pin and now I am locked.  Can you unlock me?", "gold": "pin_blocked", "source": "banking77_train", "src_idx": 1667}
+{"id": "V1-b4978", "text": "I tried using my ATM card at your Notting Hill location today.  It did not work.  Am I doing something wrong?", "gold": "declined_cash_withdrawal", "source": "banking77_train", "src_idx": 4978}
+{"id": "V1-b1122", "text": "Does the auto top-up have any limits?", "gold": "automatic_top_up", "source": "banking77_train", "src_idx": 1122}
+{"id": "V1-b8128", "text": "How do I go about ordering a card?", "gold": "order_physical_card", "source": "banking77_train", "src_idx": 8128}
+{"id": "V1-b406", "text": "I think the currency exchange that's been applied is wrong.", "gold": "card_payment_wrong_exchange_rate", "source": "banking77_train", "src_idx": 406}
+{"id": "V1-b7358", "text": "Can I receive payments in another currency?", "gold": "receiving_money", "source": "banking77_train", "src_idx": 7358}
+{"id": "V1-b7357", "text": "What are the steps for my friend to send me money?", "gold": "receiving_money", "source": "banking77_train", "src_idx": 7357}
+{"id": "V1-b9433", "text": "Why am I being charged for withdrawing cash but haven't in the past?", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9433}
+{"id": "V1-b7356", "text": "Is it possible for a friend to personally send me a payment?", "gold": "receiving_money", "source": "banking77_train", "src_idx": 7356}
+{"id": "V1-b8044", "text": "what steps do i do to get a real card", "gold": "order_physical_card", "source": "banking77_train", "src_idx": 8044}
+{"id": "V1-b8242", "text": "Hello,  In my most recent ATM transaction, I didn't receive nearly as much cash as I thought I would - what is your exchange rate policy?", "gold": "wrong_exchange_rate_for_cash_withdrawal", "source": "banking77_train", "src_idx": 8242}
+{"id": "V1-b7605", "text": "I would like to transfer money from my checking account to my savings account.", "gold": "transfer_into_account", "source": "banking77_train", "src_idx": 7605}
+{"id": "V1-b3624", "text": "There is a fraudulent payment!", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3624}
+{"id": "V1-b5924", "text": "My card payment has been declined, why?", "gold": "declined_card_payment", "source": "banking77_train", "src_idx": 5924}
+{"id": "V1-b5990", "text": "What's the time frame on EU transfers? I purchased something a couple of days ago but the seller hasn't received my payment.", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 5990}
+{"id": "V1-b9787", "text": "What documents do I need to get together to verify my identity?", "gold": "verify_my_identity", "source": "banking77_train", "src_idx": 9787}
+{"id": "V1-b7228", "text": "I had an unexpected fee", "gold": "transfer_fee_charged", "source": "banking77_train", "src_idx": 7228}
+{"id": "V1-b2413", "text": "Why did I not get all the money that I asked for? I asked for all the cash in my my account, but I only got about half. Why is that??", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2413}
+{"id": "V1-b3081", "text": "How do I receive a virtual card?", "gold": "getting_virtual_card", "source": "banking77_train", "src_idx": 3081}
+{"id": "V1-b9746", "text": "How can I top up using google pay?", "gold": "apple_pay_or_google_pay", "source": "banking77_train", "src_idx": 9746}
+{"id": "V1-b2632", "text": "Why was I charged extra using my card?", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2632}
+{"id": "V1-b7866", "text": "How do I get extra physical cards?", "gold": "getting_spare_card", "source": "banking77_train", "src_idx": 7866}
+{"id": "V1-b711", "text": "Is the 1 pound charge going to be reimbursed on my card?", "gold": "extra_charge_on_statement", "source": "banking77_train", "src_idx": 711}
+{"id": "V1-b4147", "text": "Do you let me choose between Visa and Mastercard?", "gold": "visa_or_mastercard", "source": "banking77_train", "src_idx": 4147}
+{"id": "V1-b3389", "text": "Why am I not seeing the check I deposited this morning in my account?", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3389}
+{"id": "V1-b6178", "text": "I want to end my account", "gold": "terminate_account", "source": "banking77_train", "src_idx": 6178}
+{"id": "V1-b6886", "text": "If I want to select a new PIN what do I do?", "gold": "change_pin", "source": "banking77_train", "src_idx": 6886}
+{"id": "V1-b2368", "text": "I tried taking out 30 pounds from the ATM just now and it only gave me 10. Why would it do that? I need the 30 pounds now!", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2368}
+{"id": "V1-b6860", "text": "Did a card payment that I made get cancelled?", "gold": "reverted_card_payment?", "source": "banking77_train", "src_idx": 6860}
+{"id": "V1-b5999", "text": "How long do I have to wait for the transfer to be finalized?", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 5999}
+{"id": "V1-b6657", "text": "How quickly can I transfer something to China?", "gold": "transfer_timing", "source": "banking77_train", "src_idx": 6657}
+{"id": "V1-b7546", "text": "I tried and tried, but I could not complete my transfer. Tell me what is wrong.", "gold": "failed_transfer", "source": "banking77_train", "src_idx": 7546}
+{"id": "V1-b6711", "text": "How long does a transfer transaction take?", "gold": "transfer_timing", "source": "banking77_train", "src_idx": 6711}
+{"id": "V1-b6369", "text": "I was charged multiple times for one transaction.", "gold": "transaction_charged_twice", "source": "banking77_train", "src_idx": 6369}
+{"id": "V1-b6708", "text": "Transfers from the US how long will the wait be?", "gold": "transfer_timing", "source": "banking77_train", "src_idx": 6708}
+{"id": "V1-b4487", "text": "am suspicious of my card's security", "gold": "compromised_card", "source": "banking77_train", "src_idx": 4487}
+{"id": "V1-b3743", "text": "I moved and need to change my personal information.", "gold": "edit_personal_details", "source": "banking77_train", "src_idx": 3743}
+{"id": "V1-b7180", "text": "I did a transfer.  What is the extra fee?", "gold": "transfer_fee_charged", "source": "banking77_train", "src_idx": 7180}
+{"id": "V1-b4885", "text": "Disaster, I've totally forgotten my passcode, can you help me?", "gold": "passcode_forgotten", "source": "banking77_train", "src_idx": 4885}
+{"id": "V1-b241", "text": "What if I want to add a card I already have to the app?", "gold": "card_linking", "source": "banking77_train", "src_idx": 241}
+{"id": "V1-b1457", "text": "How can I trade currencies with this app?", "gold": "exchange_via_app", "source": "banking77_train", "src_idx": 1457}
+{"id": "V1-b1375", "text": "I do not need GBP, I need AUD, how do I convert it?", "gold": "exchange_via_app", "source": "banking77_train", "src_idx": 1375}
+{"id": "V1-b9046", "text": "Do I need to pay more for exchanging currencies?", "gold": "exchange_charge", "source": "banking77_train", "src_idx": 9046}
+{"id": "V1-b2634", "text": "When do i get charged a fee for using the card?", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2634}
+{"id": "V1-b6514", "text": "help me find where this money came from", "gold": "verify_source_of_funds", "source": "banking77_train", "src_idx": 6514}
+{"id": "V1-b397", "text": "I want to know your exchange rates.", "gold": "exchange_rate", "source": "banking77_train", "src_idx": 397}
+{"id": "V1-b7556", "text": "I want to transfer money. How do I do that for my account?", "gold": "transfer_into_account", "source": "banking77_train", "src_idx": 7556}
+{"id": "V1-b2082", "text": "I just realized I made the wrong transaction yesterday. Would  you please make it correct?I need it by tomorrow Please.", "gold": "cancel_transfer", "source": "banking77_train", "src_idx": 2082}
+{"id": "V1-b4434", "text": "Is there a limit to using a disposable virtual card?", "gold": "disposable_card_limits", "source": "banking77_train", "src_idx": 4434}
+{"id": "V1-b3553", "text": "Payment I did not make.", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3553}
+{"id": "V1-b1108", "text": "How long are deliveries to the US?", "gold": "card_delivery_estimate", "source": "banking77_train", "src_idx": 1108}
+{"id": "V1-b7723", "text": "I just tried to top-up and now I'm getting an additional verification message, why?", "gold": "verify_top_up", "source": "banking77_train", "src_idx": 7723}
+{"id": "V1-b2072", "text": "I'm not certain my top-up went through yet.", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 2072}
+{"id": "V1-b1431", "text": "How can I exchange currencies with this app?", "gold": "exchange_via_app", "source": "banking77_train", "src_idx": 1431}
+{"id": "V1-b6827", "text": "One of my card payments has reverted", "gold": "reverted_card_payment?", "source": "banking77_train", "src_idx": 6827}
+{"id": "V1-b9487", "text": "What is the extra fee I was charged when using an ATM?", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9487}
+{"id": "V1-b3405", "text": "I deposited cash into my account a week ago and it is still not available, please tell me why? I need the cash back now.", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3405}
+{"id": "V1-b2769", "text": "What happens when I money transaction doesn't show up on the receiving side?", "gold": "transfer_not_received_by_recipient", "source": "banking77_train", "src_idx": 2769}
+{"id": "V1-b9472", "text": "Why did I get charged a fee, I thought it was free?", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9472}
+{"id": "V1-b4313", "text": "I cannot tell what my top up currently is.", "gold": "topping_up_by_card", "source": "banking77_train", "src_idx": 4313}
+{"id": "V1-b9523", "text": "In a month, my card will reach its expiration date, am I required to request the next card?", "gold": "card_about_to_expire", "source": "banking77_train", "src_idx": 9523}
+{"id": "V1-b1415", "text": "Can I exchange from USD to GBP?", "gold": "exchange_via_app", "source": "banking77_train", "src_idx": 1415}
+{"id": "V1-b7563", "text": "Can I add money to my account via bank transfer?", "gold": "transfer_into_account", "source": "banking77_train", "src_idx": 7563}
+{"id": "V1-b2596", "text": "My card is showing a fee from when I used it, but I thought this card was supposed to be fee free?", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2596}
+{"id": "V1-b4097", "text": "Is there a way I can have a mastercard?", "gold": "visa_or_mastercard", "source": "banking77_train", "src_idx": 4097}
+{"id": "V1-b7489", "text": "Why does it say my transfer failed?", "gold": "failed_transfer", "source": "banking77_train", "src_idx": 7489}
+{"id": "V1-b2013", "text": "Why hasn't my top-up gone through?", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 2013}
+{"id": "V1-b6157", "text": "I am not satisfied with your company and wish to delete all accounts immediately.", "gold": "terminate_account", "source": "banking77_train", "src_idx": 6157}
+{"id": "V1-b5116", "text": "How is my card payment still pending?", "gold": "pending_card_payment", "source": "banking77_train", "src_idx": 5116}
+{"id": "V1-b3397", "text": "My cheque deposit didn't seem to work.", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3397}
+{"id": "V1-b7651", "text": "My account is depleted. Can I transfer funds from another bank?", "gold": "transfer_into_account", "source": "banking77_train", "src_idx": 7651}
+{"id": "V1-b923", "text": "What fiat currencies are used with holdings and exchanges?", "gold": "fiat_currency_support", "source": "banking77_train", "src_idx": 923}
+{"id": "V1-b6470", "text": "My account seems a bit off and getting weird charges.", "gold": "transaction_charged_twice", "source": "banking77_train", "src_idx": 6470}
+{"id": "V1-b3564", "text": "There is a payment made with my card that I don't recognize at all.", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3564}
+{"id": "V1-b4722", "text": "I notice a transaction a couple of weeks ago in my account, from a seller that I don't recognize. Is there a way we can trace back the information to make sure it was truly something I did?", "gold": "direct_debit_payment_not_recognised", "source": "banking77_train", "src_idx": 4722}
+{"id": "V1-b6116", "text": "For what reason is my transfer still pending now?", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 6116}
+{"id": "V1-b1632", "text": "What age do you have to be to open an account?", "gold": "age_limit", "source": "banking77_train", "src_idx": 1632}
+{"id": "V1-b907", "text": "Which flat currencies are supported for holding and exchange?", "gold": "fiat_currency_support", "source": "banking77_train", "src_idx": 907}
+{"id": "V1-b8308", "text": "I withdraw money abroad but I didn't get the right amount.", "gold": "wrong_exchange_rate_for_cash_withdrawal", "source": "banking77_train", "src_idx": 8308}
+{"id": "V1-b3246", "text": "I topped up but the app declined it", "gold": "top_up_reverted", "source": "banking77_train", "src_idx": 3246}
+{"id": "V1-b9724", "text": "How can I top up with my apple watch?", "gold": "apple_pay_or_google_pay", "source": "banking77_train", "src_idx": 9724}
+{"id": "V1-b9369", "text": "I just pulled money out of the ATM and was charged a fee, WHy?", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9369}
+{"id": "V1-b3927", "text": "I have no way to prove my identity.", "gold": "unable_to_verify_identity", "source": "banking77_train", "src_idx": 3927}
+{"id": "V1-b3727", "text": "I just got married and need to change my name on the account", "gold": "edit_personal_details", "source": "banking77_train", "src_idx": 3727}
+{"id": "V1-b4012", "text": "When do I get my PIN?", "gold": "get_physical_card", "source": "banking77_train", "src_idx": 4012}
+{"id": "V1-b9164", "text": "Is there a fee for adding funds with a credit card?", "gold": "top_up_by_card_charge", "source": "banking77_train", "src_idx": 9164}
+{"id": "V1-b9391", "text": "What's up with the extra fee I got?", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9391}
+{"id": "V1-b9872", "text": "Can I use my card in Austria?", "gold": "country_support", "source": "banking77_train", "src_idx": 9872}
+{"id": "V1-b7084", "text": "I don't understand why you aren't accepting my transfer. After a couple times trying I'm still getting an error message.", "gold": "beneficiary_not_allowed", "source": "banking77_train", "src_idx": 7084}
+{"id": "V1-b7087", "text": "Why can't I use my beneficiary?", "gold": "beneficiary_not_allowed", "source": "banking77_train", "src_idx": 7087}
+{"id": "V1-b491", "text": "The exchange rate was not correct for the item I bought.", "gold": "card_payment_wrong_exchange_rate", "source": "banking77_train", "src_idx": 491}
+{"id": "V1-b9018", "text": "How high is the exchange fee?", "gold": "exchange_charge", "source": "banking77_train", "src_idx": 9018}
+{"id": "V1-b5823", "text": "When will I be able to see my refund?", "gold": "Refund_not_showing_up", "source": "banking77_train", "src_idx": 5823}
+{"id": "V1-b2623", "text": "Let me know when applying extra charges for payments. I just checked the app and saw a fee that I wasn't warned about.", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2623}
+{"id": "V1-b3127", "text": "Can I use my card while on vacation overseas?", "gold": "card_acceptance", "source": "banking77_train", "src_idx": 3127}
+{"id": "V1-b2014", "text": "Should my top up still be pending?", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 2014}
+{"id": "V1-b2047", "text": "When will my top up be applied?", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 2047}
+{"id": "V1-b6085", "text": "The transfer finally worked, but how long does it stay pending?", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 6085}
+{"id": "V1-b9738", "text": "I can't see my Google Pay top up. Is it not working correctly?", "gold": "apple_pay_or_google_pay", "source": "banking77_train", "src_idx": 9738}
+{"id": "V1-b3513", "text": "There is payment showing that I didn't do.", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3513}
+{"id": "V1-b8186", "text": "I received my Virtual card information, but was unable to use it to make a purchase. Why did this happen and what can I do?", "gold": "virtual_card_not_working", "source": "banking77_train", "src_idx": 8186}
+{"id": "V1-b3500", "text": "I don't recognize what this payment on my statement would be for.", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3500}
+{"id": "V1-b119", "text": "How long does it take to recieve my new card?", "gold": "card_arrival", "source": "banking77_train", "src_idx": 119}
+{"id": "V1-b7758", "text": "Can I verify my top-up card?", "gold": "verify_top_up", "source": "banking77_train", "src_idx": 7758}
+{"id": "V1-b163", "text": "Can you show me where to link the new card?", "gold": "card_linking", "source": "banking77_train", "src_idx": 163}
+{"id": "V1-b4596", "text": "Is there a list of ATMs that take this card?", "gold": "atm_support", "source": "banking77_train", "src_idx": 4596}
+{"id": "V1-b2851", "text": "when will my transfer arrive", "gold": "transfer_not_received_by_recipient", "source": "banking77_train", "src_idx": 2851}
+{"id": "V1-b4021", "text": "Where should I look for my PIN number at?", "gold": "get_physical_card", "source": "banking77_train", "src_idx": 4021}
+{"id": "V1-b1967", "text": "My account is  new  why can I  not top up", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 1967}
+{"id": "V1-b1517", "text": "What do I do if my card has been lost or stolen?", "gold": "lost_or_stolen_card", "source": "banking77_train", "src_idx": 1517}
+{"id": "V1-b1946", "text": "What is the reason my top-up is still pending?", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 1946}
+{"id": "V1-b5250", "text": "Can I use the app without my phone?", "gold": "lost_or_stolen_phone", "source": "banking77_train", "src_idx": 5250}
+{"id": "V1-b24", "text": "where is my new card?", "gold": "card_arrival", "source": "banking77_train", "src_idx": 24}
+{"id": "V1-b3204", "text": "What's the problem? I thought you offered crypto top up. This doesn't appear to be working at all. My money has now vanished from my account.", "gold": "top_up_reverted", "source": "banking77_train", "src_idx": 3204}
+{"id": "V1-b5066", "text": "I tried to make a withdrawal from the ATM, but it was cancelled.", "gold": "declined_cash_withdrawal", "source": "banking77_train", "src_idx": 5066}
+{"id": "V1-b5188", "text": "Why is the payment I made still pending?", "gold": "pending_card_payment", "source": "banking77_train", "src_idx": 5188}
+{"id": "V1-b742", "text": "What does it mean if my cash withdrawal does not show up properly?", "gold": "pending_cash_withdrawal", "source": "banking77_train", "src_idx": 742}
+{"id": "V1-b1086", "text": "How will I get my card?", "gold": "card_delivery_estimate", "source": "banking77_train", "src_idx": 1086}
+{"id": "V1-b5914", "text": "Why do you keep declining my payment? I tried several times already with this card and it is just not working.", "gold": "declined_card_payment", "source": "banking77_train", "src_idx": 5914}
+{"id": "V1-b5696", "text": "I can't see my refund in my history.", "gold": "Refund_not_showing_up", "source": "banking77_train", "src_idx": 5696}
+{"id": "V1-b3444", "text": "I deposited a check a few days ago and it's still not gone in! Please help me with this", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3444}
+{"id": "V1-b5630", "text": "Why did I get declined during a transfer?", "gold": "declined_transfer", "source": "banking77_train", "src_idx": 5630}
+{"id": "V1-b6014", "text": "What is going on? I have checked over and over and the details of my account are right. Why is my transfer still pending? It's 2018 not 1818. Transfering money to another country can't be that hard.", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 6014}
+{"id": "V1-b7702", "text": "Do I need to verify my top-up?", "gold": "verify_top_up", "source": "banking77_train", "src_idx": 7702}
+{"id": "V1-b8122", "text": "Do I get an actual card?", "gold": "order_physical_card", "source": "banking77_train", "src_idx": 8122}
+{"id": "V1-b5873", "text": "My card payment wasn't accepted.", "gold": "declined_card_payment", "source": "banking77_train", "src_idx": 5873}
+{"id": "V1-b9480", "text": "Is there a charge for getting cash?", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9480}
+{"id": "V1-b6927", "text": "How do I change the PIN?", "gold": "change_pin", "source": "banking77_train", "src_idx": 6927}
+{"id": "V1-b3138", "text": "In what places can I use my card?", "gold": "card_acceptance", "source": "banking77_train", "src_idx": 3138}
+{"id": "V1-b122", "text": "i havent got my card", "gold": "card_arrival", "source": "banking77_train", "src_idx": 122}
+{"id": "V1-b5135", "text": "I've made a card payment a couple of days ago now but it looks like the money is stuck. How long does it typically take for the payment to go through?", "gold": "pending_card_payment", "source": "banking77_train", "src_idx": 5135}
+{"id": "V1-b9826", "text": "If I'm getting my identity verified, what all do I need?", "gold": "verify_my_identity", "source": "banking77_train", "src_idx": 9826}
+{"id": "V1-b3641", "text": "I need to cancel my card.  There are a few charges from a couple days ago that I didn't make.  Can I get credit for these charges?", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3641}
+{"id": "V1-b6560", "text": "where did my funds come from?", "gold": "verify_source_of_funds", "source": "banking77_train", "src_idx": 6560}
+{"id": "V1-b3020", "text": "Can you help me find the virtual card?", "gold": "getting_virtual_card", "source": "banking77_train", "src_idx": 3020}
+{"id": "V1-b4664", "text": "I'm seeing a direct debit payment that is not me.", "gold": "direct_debit_payment_not_recognised", "source": "banking77_train", "src_idx": 4664}
+{"id": "V1-b6411", "text": "Hi, I checked my transactions and saw that I was charged twice during a restaurant visit. I would like to get my money back.", "gold": "transaction_charged_twice", "source": "banking77_train", "src_idx": 6411}
+{"id": "V1-b3903", "text": "The app does not know it is me.", "gold": "unable_to_verify_identity", "source": "banking77_train", "src_idx": 3903}
+{"id": "V1-b2046", "text": "What is taking so long with my top up?", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 2046}
+{"id": "V1-b4710", "text": "The app is showing a direct debit transaction that I did not perform", "gold": "direct_debit_payment_not_recognised", "source": "banking77_train", "src_idx": 4710}
+{"id": "V1-b531", "text": "I think the exchange rate on my card payment is incorrect.", "gold": "card_payment_wrong_exchange_rate", "source": "banking77_train", "src_idx": 531}
+{"id": "V1-b1282", "text": "I tried using my card, but it doesn't work.", "gold": "card_not_working", "source": "banking77_train", "src_idx": 1282}
+{"id": "V1-b594", "text": "I see a $1 charge in a transaction.", "gold": "extra_charge_on_statement", "source": "banking77_train", "src_idx": 594}
+{"id": "V1-b8775", "text": "I looked on the app and it says I withdrew cash.  I didn't!", "gold": "cash_withdrawal_not_recognised", "source": "banking77_train", "src_idx": 8775}
+{"id": "V1-b8793", "text": "What is this witdrawal", "gold": "cash_withdrawal_not_recognised", "source": "banking77_train", "src_idx": 8793}
+{"id": "V1-b7018", "text": "My beneficiary didn't receive my transfer", "gold": "beneficiary_not_allowed", "source": "banking77_train", "src_idx": 7018}
+{"id": "V1-b6875", "text": "Is it possible for me to change my PIN number?", "gold": "change_pin", "source": "banking77_train", "src_idx": 6875}
+{"id": "V1-b5694", "text": "My refund has not arrived, and I am unsure why. Who do I contact?", "gold": "Refund_not_showing_up", "source": "banking77_train", "src_idx": 5694}
+{"id": "V1-b9426", "text": "I was under the impression ATM cash withdrawals were free. Why was I suddenly charged for my most recent ATM transaction?", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9426}
+{"id": "V1-b8755", "text": "I transferred some money a couple days ago but haven't received it yet. How long should I expect to wait?", "gold": "balance_not_updated_after_bank_transfer", "source": "banking77_train", "src_idx": 8755}
+{"id": "V1-b3886", "text": "What is identity check?", "gold": "why_verify_identity", "source": "banking77_train", "src_idx": 3886}
+{"id": "V1-b2115", "text": "Can you help me to quickly cancel a transaction I accidentally did to the wrong account?", "gold": "cancel_transfer", "source": "banking77_train", "src_idx": 2115}
+{"id": "V1-b7420", "text": "Is there a reason that my transfer failed?", "gold": "failed_transfer", "source": "banking77_train", "src_idx": 7420}
+{"id": "V1-b8112", "text": "How do I order a card?", "gold": "order_physical_card", "source": "banking77_train", "src_idx": 8112}
+{"id": "V1-b2381", "text": "ATM is broken. It did not give me the full amount (30 pounds.)  I'm standing here with only 10 pounds and it's telling me it gave me 30 pounds. I need assistance now!", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2381}
+{"id": "V1-b8514", "text": "My credit card was just denied for top up! Can you tell me why this happened and what's going on?", "gold": "top_up_failed", "source": "banking77_train", "src_idx": 8514}
+{"id": "V1-b26", "text": "How do I track the card you sent me?", "gold": "card_arrival", "source": "banking77_train", "src_idx": 26}
+{"id": "V1-b845", "text": "Its been several days and my cash withdrawal is still pending. Why?", "gold": "pending_cash_withdrawal", "source": "banking77_train", "src_idx": 845}
+{"id": "V1-b4063", "text": "I havn't received my PIN yet.", "gold": "get_physical_card", "source": "banking77_train", "src_idx": 4063}
+{"id": "V1-b2520", "text": "I had to pay money for paying with my card.", "gold": "card_payment_fee_charged", "source": "banking77_train", "src_idx": 2520}
+{"id": "V1-b451", "text": "I seem to have been charged to much for my holiday purchases, the exchange rate is wrong.", "gold": "card_payment_wrong_exchange_rate", "source": "banking77_train", "src_idx": 451}
+{"id": "V1-b8695", "text": "Although I transferred some money, it has not as of yet, arrived.", "gold": "balance_not_updated_after_bank_transfer", "source": "banking77_train", "src_idx": 8695}
+{"id": "V1-b7904", "text": "What is the charge for sending out more cards?", "gold": "getting_spare_card", "source": "banking77_train", "src_idx": 7904}
+{"id": "V1-b6339", "text": "Looks like my card payment was made twice by mistake. I went to pay at the store earlier which rejected once, second time it worked. App is on pending for one of the payments. Can you please remove one of them as it's wrong and clearly was declined?", "gold": "transaction_charged_twice", "source": "banking77_train", "src_idx": 6339}
+{"id": "V1-b4005", "text": "I need my PIN, where is it?", "gold": "get_physical_card", "source": "banking77_train", "src_idx": 4005}
+{"id": "V1-b6991", "text": "Please tell me how to change my pin.", "gold": "change_pin", "source": "banking77_train", "src_idx": 6991}
+{"id": "V1-b7959", "text": "What apps can I use to top up my account?", "gold": "top_up_by_cash_or_cheque", "source": "banking77_train", "src_idx": 7959}
+{"id": "V1-b1732", "text": "I blocked my card by mistake, how do I unblock it?", "gold": "pin_blocked", "source": "banking77_train", "src_idx": 1732}
+{"id": "V1-b9518", "text": "My card is about to expire.  How do I get a new card?", "gold": "card_about_to_expire", "source": "banking77_train", "src_idx": 9518}
+{"id": "V1-b8524", "text": "I attempted to top up my car today, it failed! I just got it a couple of days before and it worked then. What is going on with it?", "gold": "top_up_failed", "source": "banking77_train", "src_idx": 8524}
+{"id": "V1-b2", "text": "I have been waiting over a week. Is the card still coming?", "gold": "card_arrival", "source": "banking77_train", "src_idx": 2}
+{"id": "V1-b8497", "text": "I need to top-up my card today urgently but my card keeps getting declined!! Can you please resolve this problem or let me know if you have any alternatives", "gold": "top_up_failed", "source": "banking77_train", "src_idx": 8497}
+{"id": "V1-b3639", "text": "I have a charge I did not make.", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3639}
+{"id": "V1-b6967", "text": "Can I change my PIN without going to a bank branch?", "gold": "change_pin", "source": "banking77_train", "src_idx": 6967}
+{"id": "V1-b2042", "text": "It appears my top-up has not gone through.", "gold": "pending_top_up", "source": "banking77_train", "src_idx": 2042}
+{"id": "V1-b3369", "text": "I sent you a cheque a few days ago and I noticed that nothing has happened yet. Can you tell me the status of my cheque please?", "gold": "balance_not_updated_after_cheque_or_cash_deposit", "source": "banking77_train", "src_idx": 3369}
+{"id": "V1-b2805", "text": "I haven't received money from a transfer?", "gold": "transfer_not_received_by_recipient", "source": "banking77_train", "src_idx": 2805}
+{"id": "V1-b495", "text": "I bought something in another currency, but the exchange rate was incorrect.", "gold": "card_payment_wrong_exchange_rate", "source": "banking77_train", "src_idx": 495}
+{"id": "V1-b2735", "text": "How long do transfers typically take? Is there a way of speeding the process up? My friend needs the money I sent her desperately.", "gold": "transfer_not_received_by_recipient", "source": "banking77_train", "src_idx": 2735}
+{"id": "V1-b6863", "text": "I an not sure but it looks as if a card payment I made was cancelled.", "gold": "reverted_card_payment?", "source": "banking77_train", "src_idx": 6863}
+{"id": "V1-b1281", "text": "Why doesn't my card work for any transactions?", "gold": "card_not_working", "source": "banking77_train", "src_idx": 1281}
+{"id": "V1-b9228", "text": "How can I activate my new card?", "gold": "activate_my_card", "source": "banking77_train", "src_idx": 9228}
+{"id": "V1-b3653", "text": "My address details have changed and I want to update them", "gold": "edit_personal_details", "source": "banking77_train", "src_idx": 3653}
+{"id": "V1-b7131", "text": "Hi, I'm trying to by some crypto and the app isn't allowing it. I really want to exchange this, what am I doing wrong?", "gold": "beneficiary_not_allowed", "source": "banking77_train", "src_idx": 7131}
+{"id": "V1-b6452", "text": "Looks like my card payment was duplicated after all. I went to pay at the store earlier, got declined once,second time it works. App still stays pending for one of the payments. Can you please remove one of them as it's wrong and was declined?", "gold": "transaction_charged_twice", "source": "banking77_train", "src_idx": 6452}
+{"id": "V1-b4234", "text": "I can't see my top up in my wallet!", "gold": "topping_up_by_card", "source": "banking77_train", "src_idx": 4234}
+{"id": "V1-b3621", "text": "Why is there a payment I didn't do?", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3621}
+{"id": "V1-b6287", "text": "My card was eaten by the cash machine what do I do?", "gold": "card_swallowed", "source": "banking77_train", "src_idx": 6287}
+{"id": "V1-b3494", "text": "If I see a payment in the app that I don't recognize, what should I do?", "gold": "card_payment_not_recognised", "source": "banking77_train", "src_idx": 3494}
+{"id": "V1-b1832", "text": "Do you accept SWIFT transfers?", "gold": "top_up_by_bank_transfer_charge", "source": "banking77_train", "src_idx": 1832}
+{"id": "V1-b7289", "text": "Hey there's a fee for a transfer on my account.  Why?!", "gold": "transfer_fee_charged", "source": "banking77_train", "src_idx": 7289}
+{"id": "V1-b917", "text": "What are all the fiat currencies that are supported for both exchange and holding?", "gold": "fiat_currency_support", "source": "banking77_train", "src_idx": 917}
+{"id": "V1-b524", "text": "I made a purchase and was charged at the wrong foreign exchange rate.", "gold": "card_payment_wrong_exchange_rate", "source": "banking77_train", "src_idx": 524}
+{"id": "V1-b6082", "text": "Why is the transfer still pending?  Can I do something?", "gold": "pending_transfer", "source": "banking77_train", "src_idx": 6082}
+{"id": "V1-b4339", "text": "i tried using a virtual card for a hotel but it didn't work, why not", "gold": "disposable_card_limits", "source": "banking77_train", "src_idx": 4339}
+{"id": "V1-b8025", "text": "How do you top-up using cash?", "gold": "top_up_by_cash_or_cheque", "source": "banking77_train", "src_idx": 8025}
+{"id": "V1-b9393", "text": "Why was I charged for getting cash?", "gold": "cash_withdrawal_charge", "source": "banking77_train", "src_idx": 9393}
+{"id": "V1-b4378", "text": "I have to make several disposable cards per day.", "gold": "disposable_card_limits", "source": "banking77_train", "src_idx": 4378}
+{"id": "V1-b290", "text": "My new card isn't in my app, how do I get it in there?", "gold": "card_linking", "source": "banking77_train", "src_idx": 290}
+{"id": "V1-b4470", "text": "I suspect someone used my card.", "gold": "compromised_card", "source": "banking77_train", "src_idx": 4470}
+{"id": "V1-b7535", "text": "What are the reasons that my mortgage payment won't go through? I'm getting an error and don't know how to correct to get this transfer to go through.", "gold": "failed_transfer", "source": "banking77_train", "src_idx": 7535}
+{"id": "V1-b8277", "text": "what is going on with my cash withdrawal? the exchange rate is wrong", "gold": "wrong_exchange_rate_for_cash_withdrawal", "source": "banking77_train", "src_idx": 8277}
+{"id": "V1-b146", "text": "Was there a number to track that I could get?", "gold": "card_arrival", "source": "banking77_train", "src_idx": 146}
+{"id": "V1-b9118", "text": "Is it free for top ups?", "gold": "top_up_by_card_charge", "source": "banking77_train", "src_idx": 9118}
+{"id": "V1-b3052", "text": "Can you assist me in acquiring a virtual card?", "gold": "getting_virtual_card", "source": "banking77_train", "src_idx": 3052}
+{"id": "V1-b7516", "text": "I couldn't make a transfer", "gold": "failed_transfer", "source": "banking77_train", "src_idx": 7516}
+{"id": "V1-b4383", "text": "What are the restrictions on the virtual cards?", "gold": "disposable_card_limits", "source": "banking77_train", "src_idx": 4383}
+{"id": "V1-b2427", "text": "I asked for a certain amount of money from the ATM, but it gave me a different amount. Less than what I asked for.", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2427}
+{"id": "V1-b2338", "text": "Did a WD earlier at an ATM.  The amount showing in the App is more than I got though.", "gold": "wrong_amount_of_cash_received", "source": "banking77_train", "src_idx": 2338}
+{"id": "V1-b633", "text": "I was overcharged one extra pound!", "gold": "extra_charge_on_statement", "source": "banking77_train", "src_idx": 633}
+{"id": "V1-b4351", "text": "What are the disposable cards restrictions?", "gold": "disposable_card_limits", "source": "banking77_train", "src_idx": 4351}
+{"id": "V1-b4018", "text": "I cannot see the card PIN anywhere?", "gold": "get_physical_card", "source": "banking77_train", "src_idx": 4018}
+{"id": "V1-b8523", "text": "The app has rejected my top up.", "gold": "top_up_failed", "source": "banking77_train", "src_idx": 8523}
+{"id": "V1-b9895", "text": "Which countries are supported", "gold": "country_support", "source": "banking77_train", "src_idx": 9895}
+{"id": "V1-b4656", "text": "I was just going over my transactions for the past couple of months and noticed a large type charge that I know I did not make. Even though it's been a while can I please still dispute this?", "gold": "direct_debit_payment_not_recognised", "source": "banking77_train", "src_idx": 4656}
+{"id": "V1-b2909", "text": "Do you accept Mastercard?", "gold": "supported_cards_and_currencies", "source": "banking77_train", "src_idx": 2909}
+{"id": "V1-b5077", "text": "I tried to withdraw cash from your ATM but my transaction was cancelled.", "gold": "declined_cash_withdrawal", "source": "banking77_train", "src_idx": 5077}
+{"id": "V1-b6430", "text": "I need a transaction reversed from my account.", "gold": "transaction_charged_twice", "source": "banking77_train", "src_idx": 6430}
+{"id": "V1-b1025", "text": "When will my card be delivered?", "gold": "card_delivery_estimate", "source": "banking77_train", "src_idx": 1025}
+{"id": "V-otrain15135", "text": "how do the anti-lock brakes work", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15135}
+{"id": "V-ovalidation3067", "text": "how many firewalls should i have and what type", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3067}
+{"id": "V-ovalidation3098", "text": "is cnn really fake news", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3098}
+{"id": "V-ovalidation3078", "text": "how much food should i feed my cat", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3078}
+{"id": "V-ovalidation3059", "text": "how high does my sat score need to be to get into harvard", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3059}
+{"id": "V-otrain15180", "text": "how can i protect myself online", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15180}
+{"id": "V-ovalidation3004", "text": "how many onions do i have on hand", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3004}
+{"id": "V-otrain15173", "text": "what are some ways to prepare portabello mushrooms", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15173}
+{"id": "V-ovalidation3051", "text": "where does cannabis originate from", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3051}
+{"id": "V-otrain15186", "text": "are deer indigenous to north america", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15186}
+{"id": "V-ovalidation3006", "text": "show me recent activity in my backyard", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3006}
+{"id": "V-otrain15161", "text": "how does a optical mouse work", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15161}
+{"id": "V-otrain15072", "text": "please find the capital of pakistan and its population", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15072}
+{"id": "V-ovalidation3015", "text": "when was the last time the president visited floridau", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3015}
+{"id": "V-otrain15227", "text": "is time travel to the past theoretically possible", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15227}
+{"id": "V-ovalidation3099", "text": "why is there fake news", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3099}
+{"id": "V-otrain15035", "text": "how many players are on the chicago bulls", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15035}
+{"id": "V-ovalidation3076", "text": "how do you know when your dog is ill", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3076}
+{"id": "V-ovalidation3066", "text": "are there any cybersecurity jobs available in pittsburgh", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3066}
+{"id": "V-ovalidation3011", "text": "are any earning reports due", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3011}
+{"id": "V-ovalidation3036", "text": "does hypnosis work to break bad habits", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3036}
+{"id": "V-ovalidation3050", "text": "how the birds fly", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3050}
+{"id": "V-ovalidation3049", "text": "the birds fly with there wings", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3049}
+{"id": "V-ovalidation3040", "text": "what's the definition of nuclear engineering", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3040}
+{"id": "V-ovalidation3034", "text": "please inform me on bad habits and overcoming them", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3034}
+{"id": "V-ovalidation3037", "text": "king of acid", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3037}
+{"id": "V-otrain15158", "text": "can you send an email to client b", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15158}
+{"id": "V-ovalidation3097", "text": "can you tell me some fake news", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3097}
+{"id": "V-ovalidation3047", "text": "can you tell me the latest georgia news", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3047}
+{"id": "V-ovalidation3070", "text": "how many countries in the world are democracies", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3070}
+{"id": "V-otrain15162", "text": "which stocks should i invest in to get at least 5% back on my investment this year", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15162}
+{"id": "V-otrain15070", "text": "when is the next nintendo direct", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15070}
+{"id": "V-ovalidation3017", "text": "how do i compute the median of a set of numbers", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3017}
+{"id": "V-otrain15080", "text": "what's the biggest saas marketing company in the united states", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15080}
+{"id": "V-ovalidation3095", "text": "what does it mean to have equality", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3095}
+{"id": "V-ovalidation3041", "text": "when was electrical engineering created", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3041}
+{"id": "V-otrain15125", "text": "what cleaning product should i use on wood floors", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15125}
+{"id": "V-ovalidation3012", "text": "show me the channel guide", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3012}
+{"id": "V-otrain15235", "text": "how much has the market gone up or down so far in 2019", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15235}
+{"id": "V-ovalidation3029", "text": "who are some famous living architects", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3029}
+{"id": "V-ovalidation3060", "text": "what'll an education at boulder state college run", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3060}
+{"id": "V-ovalidation3058", "text": "how do i get better at go", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3058}
+{"id": "V-otrain15231", "text": "what species of oak tree grows to be the tallest", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15231}
+{"id": "V-ovalidation3030", "text": "find out for me as to why people get autism", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3030}
+{"id": "V-ovalidation3090", "text": "how can i easily replace a string on my guitar", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3090}
+{"id": "V-ovalidation3093", "text": "what is the cheapest electric guitar", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3093}
+{"id": "V-ovalidation3020", "text": "can you tell me how to compute price per ounce", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3020}
+{"id": "V-ovalidation3044", "text": "where do black holes come from", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3044}
+{"id": "V-otrain15214", "text": "what is a semitic language", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15214}
+{"id": "V-otrain15052", "text": "how many points per game is lebron james averaging this season", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15052}
+{"id": "V-ovalidation3016", "text": "how can i keep my windshield from fogging up in winter", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3016}
+{"id": "V-ovalidation3069", "text": "how does cybersecurity work", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3069}
+{"id": "V-ovalidation3063", "text": "what cryptocurrency gained the most in 2018", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3063}
+{"id": "V-ovalidation3025", "text": "how can i root an android phone", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3025}
+{"id": "V-ovalidation3074", "text": "please get me my wheelchair", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3074}
+{"id": "V-ovalidation3081", "text": "why do we dream", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3081}
+{"id": "V-ovalidation3045", "text": "what are black holes", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3045}
+{"id": "V-otrain15040", "text": "when was the theory of evolution first considered", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15040}
+{"id": "V-otrain15017", "text": "how do i remove a coffee blemish", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15017}
+{"id": "V-ovalidation3035", "text": "are bad habits closely related with addictions", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3035}
+{"id": "V-otrain15168", "text": "what's the most effective bug repellant", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15168}
+{"id": "V-ovalidation3094", "text": "you want to know about current time now", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3094}
+{"id": "V-ovalidation3042", "text": "what is naval engineering", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3042}
+{"id": "V-otrain15098", "text": "why do males want to be alpha", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15098}
+{"id": "V-ovalidation3092", "text": "can you give me the standard tuning notes", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3092}
+{"id": "V-ovalidation3079", "text": "what does it mean if i dream of falling off a building", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3079}
+{"id": "V-ovalidation3022", "text": "am kind of busy now", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3022}
+{"id": "V-ovalidation3065", "text": "how is crypto legal", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3065}
+{"id": "V-ovalidation3052", "text": "how are my cannabis stocks doing", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3052}
+{"id": "V-ovalidation3091", "text": "how do you learn how to play electric violin", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3091}
+{"id": "V-ovalidation3038", "text": "suo2", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3038}
+{"id": "V-otrain15155", "text": "is the shutdown over", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15155}
+{"id": "V-ovalidation3054", "text": "should i hit or stay at 17 in blackjack", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3054}
+{"id": "V-ovalidation3084", "text": "what do geese eat", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3084}
+{"id": "V-otrain15068", "text": "what's the best price on super smash bros ultimate right now", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15068}
+{"id": "V-otrain15064", "text": "can you tell me something about the nfl", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15064}
+{"id": "V-ovalidation3019", "text": "are there any new companies to look out for", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3019}
+{"id": "V-ovalidation3053", "text": "is marijuana addictive", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3053}
+{"id": "V-otrain15237", "text": "is it difficult to be successful on wall street", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15237}
+{"id": "V-ovalidation3068", "text": "how can i breach a network", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3068}
+{"id": "V-ovalidation3043", "text": "is it possible to survive in a black hole", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3043}
+{"id": "V-ovalidation3071", "text": "is the united states a democracy", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3071}
+{"id": "V-ovalidation3080", "text": "is it bad to not remember your dreams", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3080}
+{"id": "V-ovalidation3077", "text": "what dog breed sold the most in 2018", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3077}
+{"id": "V-ovalidation3027", "text": "are androids expensive", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3027}
+{"id": "V-ovalidation3086", "text": "are over the ear headphones better than in ear headphones", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3086}
+{"id": "V-otrain15006", "text": "any headlines from my areai", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15006}
+{"id": "V-ovalidation3021", "text": "how to unclog a drain", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3021}
+{"id": "V-ovalidation3073", "text": "how does a democracy work", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3073}
+{"id": "V-ovalidation3061", "text": "what's the average gpa to get into yale", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3061}
+{"id": "V-ovalidation3014", "text": "where does the power steering fluid go", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3014}
+{"id": "V-otrain15222", "text": "what's on for sports today", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15222}
+{"id": "V-ovalidation3031", "text": "is autism a genetic disease", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3031}
+{"id": "V-ovalidation3046", "text": "what was the final vote count in the brexit referendum", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3046}
+{"id": "V-ovalidation3062", "text": "what act score is considered good", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3062}
+{"id": "V-ovalidation3055", "text": "what game has the best odds at a casino", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3055}
+{"id": "V-ovalidation3002", "text": "who has the best record in the nfl", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3002}
+{"id": "V-ovalidation3075", "text": "what's the best dog food to feed my puppy", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3075}
+{"id": "V-otrain15025", "text": "what are some deals on amazon", "gold": "none_of_these", "source": "clinc_oos_train", "src_idx": 15025}
+{"id": "V-ovalidation3032", "text": "is flu contagious", "gold": "none_of_these", "source": "clinc_oos_validation", "src_idx": 3032}

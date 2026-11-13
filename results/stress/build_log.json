@@ -1,0 +1,414 @@
+{
+ "decisions": [
+  "Test A rows are stored in the T1 Claude batch order (results/sample500_batch_order.json, Random(456)), so Claude's typo batches contain the same messages as its clean T1 batches.",
+  "Test B re-pairing: items from equal-label pairs (and any odd item) are re-paired greedily in shuffled order with the first remaining item of a different label; unpairable items are dropped.",
+  "CLINC source: clinc/clinc_oos, config 'plus' (the config with the most oos train examples: 250; 'small' and 'imbalanced' have 100). oos intent id 42.",
+  "S2 validation oos items: 100 drawn with Random(655) from the 'plus' train oos items not used by S3 plus the 'plus' validation-split oos items, because the train split alone cannot supply 200 (S3) + 100 (S2) after filtering. The test split is never used for either.",
+  "S2 validation in-scope items: 500 Banking77 train examples not in that seed's 2,000-example subset, drawn with Random(555 + seed)."
+ ],
+ "counts": {
+  "typo500": 500,
+  "typo_messages_with_at_least_one_edit": 257,
+  "merged_pairs": 249,
+  "merged_equal_label_pairs_redrawn": 1,
+  "merged_dropped": 2,
+  "oos_test": 200,
+  "oos_s3_train": 200,
+  "oos_s2_val": 100,
+  "oos_removed_by_filter": 44,
+  "oos_mixed": 700
+ },
+ "typo_edit_fallbacks": [],
+ "typo_examples": [
+  {
+   "src_idx": 2896,
+   "before": "Why was my account charged for using an ATM?",
+   "after": "why was my account charged for using an atm"
+  },
+  {
+   "src_idx": 1716,
+   "before": "I need to cancel a purchase I made.",
+   "after": "i need to cancel a purchaze i mdae"
+  },
+  {
+   "src_idx": 2732,
+   "before": "I am seeing in the App a some cash withdrawal that its not mine",
+   "after": "i am seeing in the app a some cash withdrawal that its not mine"
+  },
+  {
+   "src_idx": 2238,
+   "before": "Can I receive my salary in a currency other than what it is deposited in?",
+   "after": "can i receive my salaary in a currency other than what it is deposited in"
+  },
+  {
+   "src_idx": 791,
+   "before": "I didn't receive all the cash I asked for",
+   "after": "i didn't receive all the cash i asked for"
+  },
+  {
+   "src_idx": 211,
+   "before": "Why is a transaction showing as pending when I recieved cash from an ATM?",
+   "after": "why is a transaction showing as pending when i recieved caash froom an atm"
+  },
+  {
+   "src_idx": 761,
+   "before": "How come the ATM gave me less cash than what I asked for?",
+   "after": "how coke the atm gave me lses cash than what i asked for"
+  },
+  {
+   "src_idx": 6,
+   "before": "Do you know if there is a tracking number for the new card you sent me?",
+   "after": "do you know if there is a trackinng numer for the new card you sent me"
+  },
+  {
+   "src_idx": 2781,
+   "before": "how much you charge for exhcange",
+   "after": "how much you charrge for exhcange"
+  },
+  {
+   "src_idx": 131,
+   "before": "The rate of exchange for my card payment is incorrect",
+   "after": "the rate of exchange for my cqrd paymnt is incorrect"
+  },
+  {
+   "src_idx": 2179,
+   "before": "Why did I receive an error message saying that my transfer was not possible?",
+   "after": "why did i receive an error messsge saying tht my transfer was not possible"
+  },
+  {
+   "src_idx": 2234,
+   "before": "I got charged and extra fee when I transferred money so why was I charged?",
+   "after": "i got charged and extra fee when i transferred moeny so why was i charged"
+  },
+  {
+   "src_idx": 1661,
+   "before": "I believe I left my smartphone at the hotel I was staying at.",
+   "after": "i believe i left my smartphone at the hotel i was staying at"
+  },
+  {
+   "src_idx": 3009,
+   "before": "I need some help with identity verification.",
+   "after": "i need soome help with identity verification"
+  },
+  {
+   "src_idx": 1245,
+   "before": "is my card PIN saved in the app",
+   "after": "is my cqrd pin saed in the app"
+  }
+ ],
+ "merged_dropped_idx": [
+  214,
+  230
+ ],
+ "removed_out_of_scope": [
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 5462,
+   "text": "how much should i tip on this bill",
+   "keyword": "bill"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4659,
+   "text": "add my wife as an authorized user to checking account 20905432",
+   "keyword": "account"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4537,
+   "text": "can you fill in my credit card number on the screen",
+   "keyword": "credit"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 5300,
+   "text": "i have too many credit cards, is there any way you can help me organize them",
+   "keyword": "credit"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 5494,
+   "text": "give me my wallet location",
+   "keyword": "wallet"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4704,
+   "text": "can you check my voicemail",
+   "keyword": "check"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4625,
+   "text": "what is the cashback rate for my credit card",
+   "keyword": "credit"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 5226,
+   "text": "can you check on what it would cost me to upgrade my iphone with t-mobile",
+   "keyword": "check"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4579,
+   "text": "what is the fee for a cash advance",
+   "keyword": "fee"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4995,
+   "text": "how do you get a safe deposit box",
+   "keyword": "deposit"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4752,
+   "text": "how do i make money",
+   "keyword": "money"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4868,
+   "text": "what to use to design my business cards",
+   "keyword": "cards"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4655,
+   "text": "how long do i have to wait to get my refund",
+   "keyword": "refund"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4681,
+   "text": "how much of a refund will i get this year",
+   "keyword": "refund"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 5016,
+   "text": "tell me more about bill gates",
+   "keyword": "bill"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4584,
+   "text": "can i deposit a check",
+   "keyword": "deposit"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4576,
+   "text": "what is my checking account number",
+   "keyword": "account"
+  },
+  {
+   "group": "test",
+   "split": "test",
+   "clinc_idx": 4528,
+   "text": "can you tell me what credit cards i have open",
+   "keyword": "credit"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15179,
+   "text": "can you check my privacy online settting",
+   "keyword": "check"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15124,
+   "text": "can you tell me who else is on my account",
+   "keyword": "account"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15153,
+   "text": "can you show me my credit card number",
+   "keyword": "credit"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15108,
+   "text": "how win money in internet",
+   "keyword": "money"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15078,
+   "text": "how much money does radiohead earn a year",
+   "keyword": "money"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15112,
+   "text": "how do you store my card information",
+   "keyword": "card"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15011,
+   "text": "what are some ways to reduce spending",
+   "keyword": "spending"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15106,
+   "text": "what are the pros and cons of credit cards",
+   "keyword": "credit"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15107,
+   "text": "can you show me my 3-digit credit card verification number",
+   "keyword": "credit"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15000,
+   "text": "how much is an overdraft fee for bank",
+   "keyword": "fee"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15024,
+   "text": "how long do wire transfers take",
+   "keyword": "transfers"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15122,
+   "text": "what is the account number",
+   "keyword": "account"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15101,
+   "text": "can you tell me when the bank closes",
+   "keyword": "bank"
+  },
+  {
+   "group": "s3_train",
+   "split": "train",
+   "clinc_idx": 15016,
+   "text": "how do i open an online line of credit",
+   "keyword": "credit"
+  },
+  {
+   "group": "s2_val",
+   "split": "validation",
+   "clinc_idx": 3024,
+   "text": "what is the purpose or benefit of a cash advance",
+   "keyword": "cash"
+  },
+  {
+   "group": "s2_val",
+   "split": "validation",
+   "clinc_idx": 3013,
+   "text": "is the pnc bank open",
+   "keyword": "bank"
+  },
+  {
+   "group": "s2_val",
+   "split": "validation",
+   "clinc_idx": 3007,
+   "text": "how long will it take me to pay off my card if i pay an extra $50 a month over the minimum",
+   "keyword": "pay"
+  },
+  {
+   "group": "s2_val",
+   "split": "train",
+   "clinc_idx": 15160,
+   "text": "does my credit card have a balance transfer promotions currently going on",
+   "keyword": "credit"
+  },
+  {
+   "group": "s2_val",
+   "split": "train",
+   "clinc_idx": 15016,
+   "text": "how do i open an online line of credit",
+   "keyword": "credit"
+  },
+  {
+   "group": "s2_val",
+   "split": "train",
+   "clinc_idx": 15124,
+   "text": "can you tell me who else is on my account",
+   "keyword": "account"
+  },
+  {
+   "group": "s2_val",
+   "split": "train",
+   "clinc_idx": 15024,
+   "text": "how long do wire transfers take",
+   "keyword": "transfers"
+  },
+  {
+   "group": "s2_val",
+   "split": "train",
+   "clinc_idx": 15122,
+   "text": "what is the account number",
+   "keyword": "account"
+  },
+  {
+   "group": "s2_val",
+   "split": "train",
+   "clinc_idx": 15108,
+   "text": "how win money in internet",
+   "keyword": "money"
+  },
+  {
+   "group": "s2_val",
+   "split": "train",
+   "clinc_idx": 15153,
+   "text": "can you show me my credit card number",
+   "keyword": "credit"
+  },
+  {
+   "group": "s2_val",
+   "split": "train",
+   "clinc_idx": 15112,
+   "text": "how do you store my card information",
+   "keyword": "card"
+  },
+  {
+   "group": "s2_val",
+   "split": "validation",
+   "clinc_idx": 3008,
+   "text": "does our bank have free notary",
+   "keyword": "bank"
+  }
+ ],
+ "test_c_available": true
+}

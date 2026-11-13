@@ -1,0 +1,747 @@
+{
+ "note": "Per-call summary of the Claude Code CLI JSON output. Identifiers removed: session_id, uuid, credential expiry time, binary path, temp-directory names, the argument list (the prompt is reproducible from the code) and timing internals. 'cli_list_price_estimate_usd' is the CLI's own list-price estimate; on a Pro subscription it is not a charge.",
+ "cli_version": "2.1.322 (Claude Code)",
+ "cli_version_source": "`claude --version` of the binary used, recorded when the T1 report was generated",
+ "calls": [
+  {
+   "set": "T1",
+   "batch": 0,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 8.57,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 7685,
+   "duration_api_ms": 8003,
+   "cli_list_price_estimate_usd": 0.027551,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1249,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 860
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1666,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 22
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1249,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 860
+    }
+   },
+   "result": "[\"wrong_amount_of_cash_received\",\"Refund_not_showing_up\",\"verify_my_identity\",\"apple_pay_or_google_pay\",\"extra_charge_on_statement\",\"cash_withdrawal_charge\",\"receiving_money\",\"failed_transfer\",\"request_refund\",\"get_physical_card\",\"country_support\",\"compromised_card\",\"apple_pay_or_google_pay\",\"exchange_rate\",\"card_about_to_expire\",\"transaction_charged_twice\",\"pending_card_payment\",\"failed_transfer\",\"cash_withdrawal_not_recognised\",\"declined_cash_withdrawal\",\"disposable_card_limits\",\"card_payment_not_recognised\",\"transfer_fee_charged\",\"card_delivery_estimate\",\"activate_my_card\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 1,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 6.13,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 5061,
+   "duration_api_ms": 5680,
+   "cli_list_price_estimate_usd": 0.0220884,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1182,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 614
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1610,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 20
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1182,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 614
+    }
+   },
+   "result": "[\"declined_card_payment\",\"disposable_card_limits\",\"pending_card_payment\",\"receiving_money\",\"declined_cash_withdrawal\",\"verify_source_of_funds\",\"card_about_to_expire\",\"supported_cards_and_currencies\",\"transfer_timing\",\"exchange_via_app\",\"pending_transfer\",\"verify_my_identity\",\"top_up_reverted\",\"top_up_reverted\",\"cancel_transfer\",\"visa_or_mastercard\",\"card_acceptance\",\"card_linking\",\"edit_personal_details\",\"visa_or_mastercard\",\"transfer_fee_charged\",\"exchange_via_app\",\"pin_blocked\",\"extra_charge_on_statement\",\"disposable_card_limits\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 2,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 9.9,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 9030,
+   "duration_api_ms": 9441,
+   "cli_list_price_estimate_usd": 0.030439300000000002,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1186,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 1030
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1604,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 19
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1186,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 1030
+    }
+   },
+   "result": "[\"card_not_working\",\"get_disposable_virtual_card\",\"card_payment_not_recognised\",\"failed_transfer\",\"card_delivery_estimate\",\"why_verify_identity\",\"get_disposable_virtual_card\",\"top_up_reverted\",\"card_payment_not_recognised\",\"extra_charge_on_statement\",\"atm_support\",\"virtual_card_not_working\",\"declined_cash_withdrawal\",\"activate_my_card\",\"transfer_into_account\",\"change_pin\",\"supported_cards_and_currencies\",\"request_refund\",\"lost_or_stolen_phone\",\"declined_card_payment\",\"transfer_timing\",\"wrong_amount_of_cash_received\",\"top_up_by_bank_transfer_charge\",\"top_up_failed\",\"card_swallowed\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 3,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 6.74,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 5875,
+   "duration_api_ms": 6328,
+   "cli_list_price_estimate_usd": 0.0226613,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1201,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 635
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1624,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 19
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1201,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 635
+    }
+   },
+   "result": "[\"wrong_amount_of_cash_received\",\"pending_cash_withdrawal\",\"topping_up_by_card\",\"failed_transfer\",\"verify_source_of_funds\",\"pending_cash_withdrawal\",\"card_not_working\",\"pending_top_up\",\"compromised_card\",\"fiat_currency_support\",\"transfer_timing\",\"compromised_card\",\"get_disposable_virtual_card\",\"getting_spare_card\",\"verify_source_of_funds\",\"card_linking\",\"verify_my_identity\",\"pending_card_payment\",\"card_payment_wrong_exchange_rate\",\"card_acceptance\",\"top_up_by_cash_or_cheque\",\"card_arrival\",\"top_up_by_card_charge\",\"terminate_account\",\"change_pin\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 4,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 6.51,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 5651,
+   "duration_api_ms": 6395,
+   "cli_list_price_estimate_usd": 0.022784699999999998,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1199,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 642
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1623,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 18
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1199,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 642
+    }
+   },
+   "result": "[\"reverted_card_payment?\",\"get_disposable_virtual_card\",\"compromised_card\",\"fiat_currency_support\",\"country_support\",\"pin_blocked\",\"wrong_amount_of_cash_received\",\"transfer_timing\",\"request_refund\",\"transaction_charged_twice\",\"card_payment_not_recognised\",\"cash_withdrawal_not_recognised\",\"disposable_card_limits\",\"contactless_not_working\",\"fiat_currency_support\",\"pending_transfer\",\"extra_charge_on_statement\",\"lost_or_stolen_card\",\"supported_cards_and_currencies\",\"automatic_top_up\",\"verify_top_up\",\"disposable_card_limits\",\"card_arrival\",\"order_physical_card\",\"balance_not_updated_after_bank_transfer\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 5,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 3.94,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 2749,
+   "duration_api_ms": 3356,
+   "cli_list_price_estimate_usd": 0.015202,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1250,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 242
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1676,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 26
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1250,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 242
+    }
+   },
+   "result": "[\"exchange_via_app\",\"pending_transfer\",\"topping_up_by_card\",\"extra_charge_on_statement\",\"why_verify_identity\",\"atm_support\",\"card_linking\",\"declined_cash_withdrawal\",\"compromised_card\",\"declined_card_payment\",\"wrong_exchange_rate_for_cash_withdrawal\",\"transfer_timing\",\"declined_cash_withdrawal\",\"verify_my_identity\",\"automatic_top_up\",\"card_arrival\",\"reverted_card_payment?\",\"transfer_not_received_by_recipient\",\"get_disposable_virtual_card\",\"card_payment_not_recognised\",\"reverted_card_payment?\",\"top_up_failed\",\"card_linking\",\"wrong_exchange_rate_for_cash_withdrawal\",\"change_pin\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 6,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 8.05,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 7180,
+   "duration_api_ms": 7568,
+   "cli_list_price_estimate_usd": 0.026157200000000002,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1232,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 797
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1658,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 28
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1232,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 797
+    }
+   },
+   "result": "[\"pending_transfer\", \"order_physical_card\", \"transfer_not_received_by_recipient\", \"card_payment_not_recognised\", \"Refund_not_showing_up\", \"card_about_to_expire\", \"pending_top_up\", \"card_swallowed\", \"change_pin\", \"declined_transfer\", \"automatic_top_up\", \"top_up_failed\", \"card_linking\", \"edit_personal_details\", \"age_limit\", \"card_acceptance\", \"top_up_by_card_charge\", \"get_physical_card\", \"verify_my_identity\", \"card_payment_wrong_exchange_rate\", \"card_payment_fee_charged\", \"beneficiary_not_allowed\", \"verify_top_up\", \"Refund_not_showing_up\", \"card_payment_wrong_exchange_rate\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 7,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 6.8,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 5943,
+   "duration_api_ms": 6557,
+   "cli_list_price_estimate_usd": 0.0237093,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1187,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 693
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1614,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 21
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1187,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 693
+    }
+   },
+   "result": "[\"pending_cash_withdrawal\",\"pending_top_up\",\"contactless_not_working\",\"declined_transfer\",\"disposable_card_limits\",\"apple_pay_or_google_pay\",\"exchange_via_app\",\"card_about_to_expire\",\"compromised_card\",\"balance_not_updated_after_bank_transfer\",\"age_limit\",\"cash_withdrawal_charge\",\"country_support\",\"top_up_failed\",\"unable_to_verify_identity\",\"get_disposable_virtual_card\",\"disposable_card_limits\",\"balance_not_updated_after_cheque_or_cash_deposit\",\"cancel_transfer\",\"top_up_by_cash_or_cheque\",\"fiat_currency_support\",\"apple_pay_or_google_pay\",\"declined_card_payment\",\"exchange_rate\",\"declined_cash_withdrawal\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 8,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 7.49,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 6636,
+   "duration_api_ms": 7318,
+   "cli_list_price_estimate_usd": 0.026678300000000005,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1324,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 786
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1744,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 21
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1324,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 786
+    }
+   },
+   "result": "[\"transfer_not_received_by_recipient\",\"wrong_amount_of_cash_received\",\"Refund_not_showing_up\",\"receiving_money\",\"failed_transfer\",\"verify_my_identity\",\"lost_or_stolen_phone\",\"transfer_not_received_by_recipient\",\"cash_withdrawal_not_recognised\",\"declined_transfer\",\"top_up_limits\",\"transfer_timing\",\"card_payment_wrong_exchange_rate\",\"exchange_rate\",\"transfer_timing\",\"transfer_timing\",\"pending_transfer\",\"declined_card_payment\",\"card_arrival\",\"top_up_by_cash_or_cheque\",\"lost_or_stolen_card\",\"transfer_fee_charged\",\"transfer_fee_charged\",\"pending_transfer\",\"transfer_into_account\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 9,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 8.37,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 7497,
+   "duration_api_ms": 8761,
+   "cli_list_price_estimate_usd": 0.027418,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1223,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 864
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1646,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 16
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1223,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 864
+    }
+   },
+   "result": "[\"supported_cards_and_currencies\",\"pin_blocked\",\"wrong_amount_of_cash_received\",\"get_disposable_virtual_card\",\"lost_or_stolen_phone\",\"cash_withdrawal_charge\",\"contactless_not_working\",\"extra_charge_on_statement\",\"getting_virtual_card\",\"direct_debit_payment_not_recognised\",\"card_swallowed\",\"card_payment_fee_charged\",\"disposable_card_limits\",\"fiat_currency_support\",\"cancel_transfer\",\"lost_or_stolen_phone\",\"top_up_by_bank_transfer_charge\",\"getting_virtual_card\",\"declined_card_payment\",\"direct_debit_payment_not_recognised\",\"balance_not_updated_after_cheque_or_cash_deposit\",\"top_up_limits\",\"transfer_not_received_by_recipient\",\"contactless_not_working\",\"declined_cash_withdrawal\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 10,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 6.63,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 5763,
+   "duration_api_ms": 6352,
+   "cli_list_price_estimate_usd": 0.023868100000000003,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1219,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 688
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1647,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 20
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1219,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 688
+    }
+   },
+   "result": "[\"fiat_currency_support\",\"top_up_reverted\",\"terminate_account\",\"edit_personal_details\",\"card_swallowed\",\"Refund_not_showing_up\",\"cash_withdrawal_charge\",\"declined_card_payment\",\"card_linking\",\"extra_charge_on_statement\",\"lost_or_stolen_card\",\"cash_withdrawal_not_recognised\",\"passcode_forgotten\",\"card_swallowed\",\"beneficiary_not_allowed\",\"balance_not_updated_after_bank_transfer\",\"exchange_charge\",\"cash_withdrawal_not_recognised\",\"card_delivery_estimate\",\"why_verify_identity\",\"pin_blocked\",\"contactless_not_working\",\"failed_transfer\",\"verify_my_identity\",\"verify_my_identity\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 11,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 6.14,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 5194,
+   "duration_api_ms": 5694,
+   "cli_list_price_estimate_usd": 0.021432099999999996,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1153,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 593
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1577,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 18
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1153,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 593
+    }
+   },
+   "result": "[\"lost_or_stolen_card\",\"transfer_timing\",\"compromised_card\",\"card_payment_wrong_exchange_rate\",\"top_up_by_cash_or_cheque\",\"declined_card_payment\",\"pin_blocked\",\"exchange_via_app\",\"unable_to_verify_identity\",\"transfer_fee_charged\",\"change_pin\",\"disposable_card_limits\",\"age_limit\",\"transfer_fee_charged\",\"order_physical_card\",\"card_not_working\",\"passcode_forgotten\",\"apple_pay_or_google_pay\",\"pending_top_up\",\"getting_virtual_card\",\"card_about_to_expire\",\"exchange_via_app\",\"Refund_not_showing_up\",\"extra_charge_on_statement\",\"automatic_top_up\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 12,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 5.69,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 4565,
+   "duration_api_ms": 5176,
+   "cli_list_price_estimate_usd": 0.020704799999999995,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1241,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 521
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1664,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 18
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1241,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 521
+    }
+   },
+   "result": "[\"card_payment_fee_charged\",\"declined_card_payment\",\"extra_charge_on_statement\",\"declined_cash_withdrawal\",\"why_verify_identity\",\"passcode_forgotten\",\"atm_support\",\"card_not_working\",\"virtual_card_not_working\",\"transaction_charged_twice\",\"pending_transfer\",\"wrong_exchange_rate_for_cash_withdrawal\",\"exchange_rate\",\"receiving_money\",\"getting_spare_card\",\"age_limit\",\"verify_top_up\",\"terminate_account\",\"change_pin\",\"card_swallowed\",\"extra_charge_on_statement\",\"transfer_into_account\",\"pending_card_payment\",\"Refund_not_showing_up\",\"automatic_top_up\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 13,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 7.73,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 6631,
+   "duration_api_ms": 7649,
+   "cli_list_price_estimate_usd": 0.0254263,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1209,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 770
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1639,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 18
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1209,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 770
+    }
+   },
+   "result": "[\"passcode_forgotten\",\"apple_pay_or_google_pay\",\"verify_source_of_funds\",\"verify_source_of_funds\",\"transfer_not_received_by_recipient\",\"activate_my_card\",\"activate_my_card\",\"activate_my_card\",\"top_up_limits\",\"pending_cash_withdrawal\",\"getting_virtual_card\",\"compromised_card\",\"wrong_amount_of_cash_received\",\"declined_card_payment\",\"Refund_not_showing_up\",\"getting_virtual_card\",\"pending_top_up\",\"lost_or_stolen_card\",\"pending_card_payment\",\"get_disposable_virtual_card\",\"receiving_money\",\"cash_withdrawal_charge\",\"top_up_by_card_charge\",\"card_payment_wrong_exchange_rate\",\"activate_my_card\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 14,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 8.86,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 7995,
+   "duration_api_ms": 9397,
+   "cli_list_price_estimate_usd": 0.028044399999999997,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1210,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 896
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1635,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 199
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1210,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 896
+    }
+   },
+   "result": "[\"extra_charge_on_statement\",\"order_physical_card\",\"transfer_timing\",\"country_support\",\"disposable_card_limits\",\"top_up_by_card_charge\",\"card_payment_wrong_exchange_rate\",\"extra_charge_on_statement\",\"getting_virtual_card\",\"cancel_transfer\",\"transfer_into_account\",\"pending_top_up\",\"get_physical_card\",\"declined_cash_withdrawal\",\"cash_withdrawal_not_recognised\",\"topping_up_by_card\",\"automatic_top_up\",\"card_payment_not_recognised\",\"apple_pay_or_google_pay\",\"top_up_limits\",\"transfer_timing\",\"age_limit\",\"pending_transfer\",\"card_payment_fee_charged\",\"card_arrival\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 15,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 6.15,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 5225,
+   "duration_api_ms": 5856,
+   "cli_list_price_estimate_usd": 0.0232774,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1329,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 614
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1750,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 18
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1329,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 614
+    }
+   },
+   "result": "[\"card_linking\",\"declined_transfer\",\"exchange_rate\",\"card_arrival\",\"failed_transfer\",\"verify_source_of_funds\",\"lost_or_stolen_phone\",\"direct_debit_payment_not_recognised\",\"supported_cards_and_currencies\",\"Refund_not_showing_up\",\"card_payment_fee_charged\",\"age_limit\",\"age_limit\",\"Refund_not_showing_up\",\"card_not_working\",\"card_about_to_expire\",\"card_acceptance\",\"top_up_by_cash_or_cheque\",\"request_refund\",\"get_disposable_virtual_card\",\"pending_card_payment\",\"transaction_charged_twice\",\"terminate_account\",\"extra_charge_on_statement\",\"top_up_by_bank_transfer_charge\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 16,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 6.92,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 6051,
+   "duration_api_ms": 6535,
+   "cli_list_price_estimate_usd": 0.022993999999999997,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1225,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 642
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1646,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 16
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1225,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 642
+    }
+   },
+   "result": "[\"passcode_forgotten\",\"top_up_limits\",\"declined_card_payment\",\"apple_pay_or_google_pay\",\"request_refund\",\"atm_support\",\"cancel_transfer\",\"atm_support\",\"exchange_rate\",\"terminate_account\",\"atm_support\",\"failed_transfer\",\"transfer_fee_charged\",\"declined_card_payment\",\"Refund_not_showing_up\",\"beneficiary_not_allowed\",\"apple_pay_or_google_pay\",\"visa_or_mastercard\",\"pending_cash_withdrawal\",\"transfer_into_account\",\"topping_up_by_card\",\"transfer_timing\",\"declined_card_payment\",\"change_pin\",\"lost_or_stolen_card\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 17,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 4.33,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 2951,
+   "duration_api_ms": 3340,
+   "cli_list_price_estimate_usd": 0.0145223,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1238,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 213
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1664,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 21
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1238,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 213
+    }
+   },
+   "result": "[\"order_physical_card\",\"supported_cards_and_currencies\",\"transfer_into_account\",\"card_acceptance\",\"card_linking\",\"card_acceptance\",\"why_verify_identity\",\"card_swallowed\",\"transfer_timing\",\"card_not_working\",\"compromised_card\",\"pending_top_up\",\"automatic_top_up\",\"getting_spare_card\",\"compromised_card\",\"contactless_not_working\",\"disposable_card_limits\",\"top_up_failed\",\"verify_my_identity\",\"getting_virtual_card\",\"beneficiary_not_allowed\",\"reverted_card_payment?\",\"wrong_exchange_rate_for_cash_withdrawal\",\"edit_personal_details\",\"exchange_rate\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 18,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 7.82,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 6960,
+   "duration_api_ms": 8310,
+   "cli_list_price_estimate_usd": 0.025853100000000004,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1234,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 777
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1657,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 188
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1234,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 777
+    }
+   },
+   "result": "[\"lost_or_stolen_phone\",\"Refund_not_showing_up\",\"extra_charge_on_statement\",\"balance_not_updated_after_cheque_or_cash_deposit\",\"order_physical_card\",\"extra_charge_on_statement\",\"transfer_timing\",\"reverted_card_payment?\",\"declined_transfer\",\"Refund_not_showing_up\",\"verify_source_of_funds\",\"change_pin\",\"cancel_transfer\",\"transfer_into_account\",\"terminate_account\",\"pending_card_payment\",\"country_support\",\"verify_my_identity\",\"pin_blocked\",\"change_pin\",\"automatic_top_up\",\"exchange_via_app\",\"wrong_amount_of_cash_received\",\"exchange_rate\",\"compromised_card\"]"
+  },
+  {
+   "set": "T1",
+   "batch": 19,
+   "attempt": 1,
+   "returncode": 0,
+   "timed_out": false,
+   "wall_seconds": 6.06,
+   "temp_dir_empty_before_and_after": true,
+   "num_turns": 1,
+   "subtype": "success",
+   "is_error": false,
+   "stop_reason": "end_turn",
+   "duration_ms": 4905,
+   "duration_api_ms": 5538,
+   "cli_list_price_estimate_usd": 0.020652200000000002,
+   "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1163,
+    "cache_read_input_tokens": 867,
+    "output_tokens": 550
+   },
+   "models": {
+    "claude-haiku-5-5": {
+     "input_tokens": 1588,
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 0,
+     "output_tokens": 16
+    },
+    "claude-opus-5-5": {
+     "input_tokens": 2,
+     "cache_creation_input_tokens": 1163,
+     "cache_read_input_tokens": 867,
+     "output_tokens": 550
+    }
+   },
+   "result": "[\"reverted_card_payment?\",\"passcode_forgotten\",\"pending_cash_withdrawal\",\"card_delivery_estimate\",\"receiving_money\",\"passcode_forgotten\",\"top_up_failed\",\"automatic_top_up\",\"cash_withdrawal_not_recognised\",\"pending_card_payment\",\"verify_top_up\",\"activate_my_card\",\"order_physical_card\",\"transfer_fee_charged\",\"terminate_account\",\"exchange_rate\",\"transaction_charged_twice\",\"exchange_charge\",\"getting_spare_card\",\"get_physical_card\",\"disposable_card_limits\",\"direct_debit_payment_not_recognised\",\"verify_my_identity\",\"atm_support\",\"receiving_money\"]"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "model": "Qwen3-4B-Instruct-2507",
+    "budget": 100,
+    "seed": 2,
+    "epochs": 5,
+    "accuracy": 0.7585,
+    "valid_label_rate": 0.9941,
+    "train_seconds": 161,
+    "eval_seconds": 360,
+    "ms_per_example": 117.0,
+    "peak_gpu_gb": 9.6,
+    "test_n": 3076
+  },
+  {
+    "model": "Qwen3-4B-Instruct-2507",
+    "budget": 500,
+    "seed": 2,
+    "epochs": 3,
+    "accuracy": 0.8576,
+    "valid_label_rate": 0.9984,
+    "train_seconds": 479,
+    "eval_seconds": 353,
+    "ms_per_example": 114.8,
+    "peak_gpu_gb": 9.6,
+    "test_n": 3076
+  },
+  {
+    "model": "Qwen3-4B-Instruct-2507",
+    "budget": 2000,
+    "seed": 2,
+    "epochs": 3,
+    "accuracy": 0.9106,
+    "valid_label_rate": 1.0,
+    "train_seconds": 1909,
+    "eval_seconds": 330,
+    "ms_per_example": 107.3,
+    "peak_gpu_gb": 9.6,
+    "test_n": 3076
+  }
+]

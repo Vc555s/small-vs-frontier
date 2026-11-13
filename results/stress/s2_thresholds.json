@@ -1,0 +1,20 @@
+{
+ "0": {
+  "threshold": 0.6631937026977539,
+  "val_accuracy": 0.8716666666666667,
+  "val_n": 600,
+  "rule": "none_of_these if conf < threshold; conf = P(greedy answer)"
+ },
+ "1": {
+  "threshold": 0.4882180988788605,
+  "val_accuracy": 0.8716666666666667,
+  "val_n": 600,
+  "rule": "none_of_these if conf < threshold; conf = P(greedy answer)"
+ },
+ "2": {
+  "threshold": 0.4817489683628082,
+  "val_accuracy": 0.8816666666666667,
+  "val_n": 600,
+  "rule": "none_of_these if conf < threshold; conf = P(greedy answer)"
+ }
+}
