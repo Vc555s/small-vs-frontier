@@ -14,7 +14,7 @@ import subprocess
 from datetime import datetime
 
 from baseline_claude_code import LABEL, metrics, wilson
-from exp1_routing import load_data
+from t1_common import load_data
 
 R = "results"
 TAG = "Qwen3-4B-Instruct-2507"
@@ -200,7 +200,7 @@ def main():
     w("The exact prompt text sent:")
     w("")
     from baseline_claude_code import BATCH_ADDITION
-    from exp1_routing import system_prompt
+    from t1_common import system_prompt
     w(fence(system_prompt(labels) + BATCH_ADDITION))
     w("")
 

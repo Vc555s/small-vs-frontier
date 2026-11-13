@@ -13,7 +13,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from exp1_routing import load_data  # noqa: E402
+from t1_common import load_data  # noqa: E402
 from stress_common import extended_prompt, read_jsonl  # noqa: E402
 
 ap = argparse.ArgumentParser()

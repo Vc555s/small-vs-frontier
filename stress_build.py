@@ -18,7 +18,7 @@ import random
 import re
 import subprocess
 
-from exp1_routing import load_data, pick_subset
+from t1_common import load_data, pick_subset
 from stress_common import NONE_LABEL, SEEDS, write_json_atomic, write_jsonl_atomic
 
 TYPO_P = 0.15

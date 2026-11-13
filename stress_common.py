@@ -47,7 +47,7 @@ def now():
 
 def extended_prompt(labels):
     """Prompt for C1 / S1 / S3: one extra label line plus one sentence."""
-    from exp1_routing import system_prompt  # lazy: keeps the status CLI free of torch
+    from t1_common import system_prompt  # lazy: keeps the status CLI light
     return system_prompt(list(labels) + [NONE_LABEL]) + "\n\n" + NONE_SENTENCE
 
 

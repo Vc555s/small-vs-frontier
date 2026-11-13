@@ -28,7 +28,7 @@ import tempfile
 import time
 from datetime import date
 
-from exp1_routing import load_data, norm, system_prompt
+from t1_common import load_data, norm, system_prompt
 
 BATCH = 25
 SAMPLE_N = 500

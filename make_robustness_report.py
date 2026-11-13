@@ -12,7 +12,7 @@ import math
 import os
 import statistics as st
 
-from exp1_routing import load_data
+from t1_common import load_data
 from stress_common import (CLAUDE_CAP, NONE_LABEL, SEEDS, SMALL_TAG, STAGES, claude_calls,
                            read_jsonl, stage_state)
 
