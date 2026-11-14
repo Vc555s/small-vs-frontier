@@ -128,7 +128,7 @@ Three adapters were trained with identical settings and seeds 0, 1 and 2. **The 
 | Accuracy, full test set (3,076) | 0.947 ± 0.003 | 0.948 |
 | Answers that are one of the 77 labels, full test set | 0.9998 ± 0.0002 | 0.9997 |
 
-6 test messages also occur in the training split once case and surrounding whitespace are ignored (0 match exactly; 1 of them is in the 500-message sample). Removing them leaves the accuracy of every seed on both test sets unchanged to three decimals. Comparisons with other systems are in the repository report ([baselines](https://github.com/Vc555s/small-vs-frontier/blob/next-experiments/results/t1_baselines.md)). This card makes no claim about any other model.
+6 test messages also occur in the training split once case and surrounding whitespace are ignored (0 match exactly; 1 of them is in the 500-message sample). Removing them leaves the accuracy of every seed on both test sets unchanged to three decimals. Comparisons with other systems are in the repository report ([baselines](https://github.com/Vc555s/small-vs-frontier/blob/main/results/t1_baselines.md)). This card makes no claim about any other model.
 
 Latency was not measured separately for this adapter. It has the same base model and LoRA size as [vishal77796/qwen3-4b-banking77-router-lora](https://huggingface.co/vishal77796/qwen3-4b-banking77-router-lora), whose card reports latency, and a slightly shorter prompt (no `none_of_these` label or instruction).
 
