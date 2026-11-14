@@ -1,0 +1,779 @@
+{
+ "batch": 18,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 119,
+ "neighbours_by_message": {
+  "T1661": [
+   1946,
+   608,
+   451,
+   958,
+   459
+  ],
+  "T1774": [
+   1440,
+   1306,
+   1698,
+   1174,
+   56
+  ],
+  "T179": [
+   1567,
+   112,
+   1009,
+   1923,
+   393
+  ],
+  "T1072": [
+   1141,
+   1234,
+   675,
+   1656,
+   630
+  ],
+  "T2479": [
+   327,
+   32,
+   1006,
+   739,
+   1198
+  ],
+  "T1514": [
+   25,
+   490,
+   747,
+   1863,
+   101
+  ],
+  "T2052": [
+   591,
+   1115,
+   52,
+   732,
+   1670
+  ],
+  "T2111": [
+   1983,
+   754,
+   730,
+   1968,
+   1212
+  ],
+  "T1721": [
+   772,
+   512,
+   1655,
+   1252,
+   386
+  ],
+  "T1784": [
+   1306,
+   56,
+   1698,
+   1440,
+   250
+  ],
+  "T2020": [
+   799,
+   439,
+   1467,
+   17,
+   548
+  ],
+  "T2136": [
+   850,
+   1604,
+   1696,
+   1447,
+   1163
+  ],
+  "T1688": [
+   1104,
+   1094,
+   886,
+   659,
+   1210
+  ],
+  "T2355": [
+   174,
+   557,
+   673,
+   1502,
+   1846
+  ],
+  "T1884": [
+   1299,
+   793,
+   1415,
+   60,
+   1899
+  ],
+  "T1621": [
+   53,
+   981,
+   401,
+   483,
+   1014
+  ],
+  "T3050": [
+   1791,
+   1729,
+   298,
+   1500,
+   1145
+  ],
+  "T3009": [
+   118,
+   882,
+   1463,
+   1313,
+   465
+  ],
+  "T540": [
+   823,
+   1105,
+   81,
+   1786,
+   1889
+  ],
+  "T551": [
+   823,
+   81,
+   964,
+   440,
+   1261
+  ],
+  "T348": [
+   1337,
+   1230,
+   1090,
+   936,
+   1876
+  ],
+  "T422": [
+   911,
+   1573,
+   661,
+   97,
+   1362
+  ],
+  "T794": [
+   826,
+   28,
+   1383,
+   819,
+   1225
+  ],
+  "T115": [
+   1375,
+   1760,
+   1220,
+   74,
+   952
+  ],
+  "T1482": [
+   1918,
+   1126,
+   1819,
+   1539,
+   807
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 1115,
+   "text": "How long do I have to wait for my bank transfer to appear in my account?",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1126,
+   "text": "Is there a strict timeline regarding disputing transactions made on my account? I just noticed a fraudulent charge on a statement from a couple months ago.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1846,
+   "text": "I am out of money in my account and I was wondering if I could do a bank transfer is put more in it?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1337,
+   "text": "I am traveling, what can I do to set up auto top-up?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 32,
+   "text": "Where can I pay with my card?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1876,
+   "text": "How do I top-up while traveling?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 981,
+   "text": "How long does a payment show as pending before i should worry about it?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 1655,
+   "text": "Why was my transfer request decline?",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 465,
+   "text": "I'm trying to verify my identity but can't figure out how, what do I do?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 17,
+   "text": "Can you tell me how to tell where my funds come from?",
+   "label": "verify_source_of_funds"
+  },
+  {
+   "subset_pos": 1696,
+   "text": "Are there any specific cash machines that I have to go to in order to change my PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 440,
+   "text": "How can I set a new pin.",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1983,
+   "text": "Looks like my card payment was cancelled.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 958,
+   "text": "My phone was left behind.  Can I still use my card?",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1375,
+   "text": "Does the exchange rate change?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 298,
+   "text": "How can i get new card?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1009,
+   "text": "Why is there an additional fee showing on the statement I received?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 174,
+   "text": "Can I use a bank transfer to add money to my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 661,
+   "text": "Is exchanging currencies a feature of the app?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 823,
+   "text": "What do I do if I forgot my PIN?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 799,
+   "text": "Can I see where my funds come from?",
+   "label": "verify_source_of_funds"
+  },
+  {
+   "subset_pos": 882,
+   "text": "I don't know how to verify my identity.",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1567,
+   "text": "How come there is an extra fee on my statement?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1014,
+   "text": "How long does a payment usually show as pending? Is it normal that mine is still pending?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 739,
+   "text": "Where are cards available to order?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1447,
+   "text": "Can I change my pin at an atm?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1225,
+   "text": "I wasn't able to withdraw money at an ATM",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 28,
+   "text": "The atm didn't give me all my cash",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1006,
+   "text": "At what places accept my card?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 25,
+   "text": "I got charged a fee that shouldn't be there from my cash",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 1573,
+   "text": "Does this app allow currencies to be exchanged?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 1090,
+   "text": "I want to set up an auto top-up",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1899,
+   "text": "I want to terminate my account",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 754,
+   "text": "I notice that I have a card payment that's been cancelled.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 97,
+   "text": "Does this app exchange currencies?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 1786,
+   "text": "I forgot my PIN number.",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 608,
+   "text": "left my phone at hotel, cant use app",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1105,
+   "text": "My PIN can't access my card, can you help?.",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 1729,
+   "text": "I have my residency in the US, but I would love to get a card.",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 730,
+   "text": "I dont know what happened, but my payment was cancelled",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1230,
+   "text": "I going to be traveling, can I set up auto top-up if I run low on money?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1923,
+   "text": "There seems to be an additional charge of \u00a31 on my statement, what is the reason for this?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 439,
+   "text": "Where can I see where my funds came from?",
+   "label": "verify_source_of_funds"
+  },
+  {
+   "subset_pos": 591,
+   "text": "How long should I have to wait before I see the transfer in my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 630,
+   "text": "Why has my account balance not changed after depositing a cheque?",
+   "label": "balance_not_updated_after_cheque_or_cash_deposit"
+  },
+  {
+   "subset_pos": 1234,
+   "text": "The cheque I sent to you to have deposited a couple days ago has not cleared in my account yet. What is the issue?",
+   "label": "balance_not_updated_after_cheque_or_cash_deposit"
+  },
+  {
+   "subset_pos": 673,
+   "text": "Can I transfer money to my account with the app?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1306,
+   "text": "I have received my statement but I do not see my refund, why is that?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 886,
+   "text": "Please cancel my last transaction.",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 793,
+   "text": "I need to delete my account.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 1604,
+   "text": "Are their certain cash machines where I can change my pin?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1362,
+   "text": "How can I trade currencies with this app?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 1220,
+   "text": "Why is the exchange rate different from what I expected?",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 1968,
+   "text": "What reasons would cause my card payment to be cancelled?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1502,
+   "text": "How can I transfer money into my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 964,
+   "text": "I can't input my pin again.",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 1252,
+   "text": "I just noticed my transfer was declined and I don't know why. Can you help me?",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 548,
+   "text": "How can I know where did my funds come from?",
+   "label": "verify_source_of_funds"
+  },
+  {
+   "subset_pos": 401,
+   "text": "How long does it take for a payment to change from pending?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 826,
+   "text": "Why didn't I get the amount I requested at the ATM?",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1889,
+   "text": "My PIN is unlocked, what do I do?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 659,
+   "text": "I just bought an item and would like to stop payment, is this possible?  The item has not been received yet.",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 772,
+   "text": "It appears my transfer was declined.",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 1094,
+   "text": "I'm going to cancel a purchase.",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 483,
+   "text": "Why is my payment still pending?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 1415,
+   "text": "I don't want this account anymore, how do I delete it?",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 1656,
+   "text": "The cheque I deposited isn't showing in my account",
+   "label": "balance_not_updated_after_cheque_or_cash_deposit"
+  },
+  {
+   "subset_pos": 1863,
+   "text": "There is a duplicate charge on my account.",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 819,
+   "text": "I requested money from the ATM and it didn't give me as much as I requested.",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 459,
+   "text": "Do I need to do anything? My phone was stolen yesterday.",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 118,
+   "text": "Help me verify my identity.",
+   "label": "unable_to_verify_identity"
+  },
+  {
+   "subset_pos": 451,
+   "text": "I have lost my phone.",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1299,
+   "text": "How can I delete my account?",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 732,
+   "text": "It's been a couple days how much longer do I have to wait for my transfer?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1383,
+   "text": "Why didn't I receive the right amount of cash at the ATM?",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1500,
+   "text": "can i get a card if i live in the US?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 1145,
+   "text": "can i get a card if I live in the usa?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 386,
+   "text": "how come my transfer declined",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 1670,
+   "text": "How long does it take for a transfer to show up in my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 675,
+   "text": "How long does it take to get my money",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 327,
+   "text": "Can I receive my card anywhere?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1174,
+   "text": "I can't see a refund for a return I completed recently.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 53,
+   "text": "How is my card payment still pending?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 1467,
+   "text": "Is there a way to lookup where funds came from?",
+   "label": "verify_source_of_funds"
+  },
+  {
+   "subset_pos": 1918,
+   "text": "I did all that was asked of me and I am rather frustrated. I don't understand why you just won't credit me my money back. I have contacted the seller and nothing has been done. It's been a week!",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1946,
+   "text": "I left my phone at the hotel.",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1440,
+   "text": "How can I check if I have received a refund if it is not yet on my statement?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1210,
+   "text": "I want to stop my account",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 1539,
+   "text": "Hey i need help urgently. I just realised I sent my payment to the wrong account number, there is a typo! Please cancel it immediately, I can't do it anymore from the app",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1819,
+   "text": "Hello I changed my mind and want a refund on one of things I bought recently. Can you please cancel the transaction and get me my money back. Please it's urgent.",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 1463,
+   "text": "I need to verify my identity. How do I do that?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1261,
+   "text": "How do I change the PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 512,
+   "text": "What are the reasons for a declined transfer?",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 250,
+   "text": "I don't see a refund in my account.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1198,
+   "text": "Where can my card be used?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1791,
+   "text": "I reside in the US, but I want a card.",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 936,
+   "text": "I want to auto top-up.",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1163,
+   "text": "Is there a way to change my PIN without having to go to the bank?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1698,
+   "text": "Where is the refund on my statement?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 557,
+   "text": "HOW DO I TRANSFER MONEY FROM MY BANK ACCOUNT?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 74,
+   "text": "Your exchange rates come from where?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 911,
+   "text": "Is this app capable of exchanging currencies?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 952,
+   "text": "Why is your exchange rate so bad?",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 101,
+   "text": "I have no idea why there is a dollar that has been charged to my account.",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 52,
+   "text": "How long do I have to wait until the transferred money shows up?",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 490,
+   "text": "I have a charge I did not make.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1104,
+   "text": "I want to cancel a purchase",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 60,
+   "text": "How do I delete my account now",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 1212,
+   "text": "I did a payment but the app cancelled it.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 807,
+   "text": "Hello I changed my mind and really need a refund on one of things I bought recently. Can you please cancel the transaction and get me my money back. Pls it's urgent",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 112,
+   "text": "My statement shows an extra fee - what is it?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1141,
+   "text": "I deposited a cheque but the cash hasn't arrived yet",
+   "label": "balance_not_updated_after_cheque_or_cash_deposit"
+  },
+  {
+   "subset_pos": 1760,
+   "text": "Please explain your exchange rate policy.",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 81,
+   "text": "My PIN is locked, how do I unlock it?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 56,
+   "text": "My refund isn't showing up",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1313,
+   "text": "How can you assist on verifying my identity?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 850,
+   "text": "Can I change my PIN at any cash machines?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 393,
+   "text": "Why was I charged an extra fee when paying with card?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 747,
+   "text": "I got cash and was charged a fee that shouldn't be there!",
+   "label": "cash_withdrawal_charge"
+  }
+ ]
+}

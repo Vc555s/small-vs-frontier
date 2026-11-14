@@ -17,3 +17,5 @@ bitsandbytes==0.50.2
 # which is not a Python package.
 # only needed for make_figures.py (the figures in results/figures/)
 matplotlib==3.11.2
+# only needed for the next experiments (embeddings for E2b and E4a)
+sentence-transformers==6.3.0

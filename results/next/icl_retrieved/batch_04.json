@@ -1,0 +1,804 @@
+{
+ "batch": 4,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 124,
+ "neighbours_by_message": {
+  "T2091": [
+   339,
+   397,
+   575,
+   1761,
+   1290
+  ],
+  "T2597": [
+   1300,
+   1922,
+   1938,
+   301,
+   468
+  ],
+  "T1103": [
+   1690,
+   1996,
+   1190,
+   563,
+   1743
+  ],
+  "T277": [
+   1860,
+   1249,
+   1744,
+   409,
+   1197
+  ],
+  "T3047": [
+   1599,
+   1471,
+   1198,
+   644,
+   32
+  ],
+  "T553": [
+   128,
+   1309,
+   359,
+   1740,
+   133
+  ],
+  "T761": [
+   819,
+   1468,
+   28,
+   1383,
+   1228
+  ],
+  "T2047": [
+   699,
+   1754,
+   1670,
+   591,
+   1559
+  ],
+  "T1704": [
+   338,
+   328,
+   384,
+   151,
+   136
+  ],
+  "T1994": [
+   226,
+   861,
+   759,
+   534,
+   455
+  ],
+  "T1096": [
+   656,
+   852,
+   215,
+   1652,
+   447
+  ],
+  "T2737": [
+   760,
+   492,
+   1222,
+   1516,
+   1180
+  ],
+  "T1397": [
+   583,
+   114,
+   135,
+   499,
+   806
+  ],
+  "T582": [
+   275,
+   930,
+   1544,
+   1472,
+   829
+  ],
+  "T263": [
+   1271,
+   126,
+   743,
+   1197,
+   1808
+  ],
+  "T1837": [
+   310,
+   1037,
+   1835,
+   1513,
+   857
+  ],
+  "T193": [
+   112,
+   1567,
+   1009,
+   1410,
+   1923
+  ],
+  "T444": [
+   1583,
+   869,
+   676,
+   1620,
+   120
+  ],
+  "T897": [
+   424,
+   1687,
+   1950,
+   1406,
+   943
+  ],
+  "T338": [
+   858,
+   875,
+   718,
+   1699,
+   537
+  ],
+  "T2367": [
+   980,
+   1450,
+   782,
+   288,
+   896
+  ],
+  "T1380": [
+   1348,
+   973,
+   1913,
+   184,
+   750
+  ],
+  "T6": [
+   1098,
+   1602,
+   1484,
+   233,
+   724
+  ],
+  "T2494": [
+   900,
+   585,
+   227,
+   1601,
+   1018
+  ],
+  "T2679": [
+   1548,
+   160,
+   816,
+   1868,
+   263
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 534,
+   "text": "Why have I been charged more than once for the same transaction?",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 359,
+   "text": "Can I unblock my pin using the app?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 1471,
+   "text": "What countries do your services support?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 875,
+   "text": "Is there a function where I can top-up automatically?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 114,
+   "text": "Can you tell me more about limits to disposable virtual cards?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1601,
+   "text": "how much does a card cost and why do you charge me",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1743,
+   "text": "Is it possible someone has access to my card? I noticed that there are a couple of payments in the app I'm sure I did not make. Can you find out what's going on here?",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1740,
+   "text": "Can you unblock my account?  I entered the PIN wrong.",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 233,
+   "text": "Can you tell me why I haven't received my new card?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1996,
+   "text": "There seems to be a couple of payments listed in the app I know weren't made by me. Is there a possibility someone has access to my card? Can you find out what's going on?",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 28,
+   "text": "The atm didn't give me all my cash",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 760,
+   "text": "Some cash I didn't get shows in my app",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1620,
+   "text": "Help Me!  I lost my card.  What should I do?",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 1450,
+   "text": "I need to find the top up verification code",
+   "label": "verify_top_up"
+  },
+  {
+   "subset_pos": 699,
+   "text": "When can I expect money to be transferred to my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1348,
+   "text": "Can i make several disposable cardsper day?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1567,
+   "text": "How come there is an extra fee on my statement?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 829,
+   "text": "It seems like my card payment didn't work.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 32,
+   "text": "Where can I pay with my card?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 861,
+   "text": "I was charged two times for the same thing.",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 499,
+   "text": "Can I use a disposable virtual card for any purchase?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1516,
+   "text": "Help!  The app says I took out cash but I didn't!",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 869,
+   "text": "Help! I lost my card!",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 743,
+   "text": "What currencies can my account be in?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 226,
+   "text": "I got charged two times for a transaction",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 930,
+   "text": "I tried to pay with my card and it didn't work",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 782,
+   "text": "can you tell me where to find the top-up verification code?",
+   "label": "verify_top_up"
+  },
+  {
+   "subset_pos": 1300,
+   "text": "How do I create a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1687,
+   "text": "I'd like to use my American Express to place money into my account.",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 328,
+   "text": "Please could you give me a refund",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 656,
+   "text": "I do not recognise this card payment.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 301,
+   "text": "How can I obtain a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 644,
+   "text": "Can I use my card anywhere?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 112,
+   "text": "My statement shows an extra fee - what is it?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1222,
+   "text": "There are funds in my app that I did not receive.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1198,
+   "text": "Where can my card be used?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1868,
+   "text": "Why wasn't my bank balance updated?",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1761,
+   "text": "why did my payment revert",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 151,
+   "text": "Can I get a refund on an item?",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 973,
+   "text": "How many disposable cards can I make in a day?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 468,
+   "text": "Is there a disposable virtual card option?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1835,
+   "text": "Why is there a pending time on my transfer?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1699,
+   "text": "is there a way to do automatic top up",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 575,
+   "text": "Tell me why my card payment would be reverted.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1290,
+   "text": "I see a reverted payment on my account. Why has this happened?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1410,
+   "text": "What is the extra fee that showed up on my card?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 310,
+   "text": "Can you tell me why my transfer is pending still?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 455,
+   "text": "I have a duplicate charge",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 492,
+   "text": "My app is showing a cash balance that I did not receive.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 857,
+   "text": "I have a pending money transfer",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 537,
+   "text": "Is it possible to do auto top up?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1406,
+   "text": "How can I fund another account with my American Express?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 852,
+   "text": "I don't recognize this payment",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 750,
+   "text": "I need more than one disposable card",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 676,
+   "text": "My card has gone missing.",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 1602,
+   "text": "Does the card you sent have a tracking number?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1468,
+   "text": "I asked for a certain amount of money from the ATM, but it gave me a different amount. Less than what I asked for.",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1249,
+   "text": "Is my fiat currency supported for both hold and exchange?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 1950,
+   "text": "How can I get funds into my account from my American Express?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 1197,
+   "text": "What currencies can I hold?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 424,
+   "text": "Am I able to use my American Express to add money to my account balance?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 943,
+   "text": "I want to add money to my card, what payments do you accept?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 1922,
+   "text": "I want a disposable virtual card, how do I do that?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 858,
+   "text": "Is it possible to top-up automatically?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 585,
+   "text": "Can I get a physical card for free, or is there a charge?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1599,
+   "text": "Is there restrictions on where I can use my card?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 896,
+   "text": "How do I find the code needed in order to verify my top-up card?",
+   "label": "verify_top_up"
+  },
+  {
+   "subset_pos": 384,
+   "text": "What is your refund policy for products I have purchased?",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 1484,
+   "text": "What can I do to track the card you sent me?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1652,
+   "text": "There is a payment on my card that I do not recognize.  I've never seen the name on the transaction before.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1808,
+   "text": "How many different currencies can I have my money in?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 724,
+   "text": "Can I track the card that was just sent to me?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 339,
+   "text": "What is the reason for my card payment to be reverted?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1228,
+   "text": "I only got some of the cash I requested from the ATM",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 215,
+   "text": "I don't recognize this payment at all!  Help!",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 338,
+   "text": "I want a refund for an item",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 1383,
+   "text": "Why didn't I receive the right amount of cash at the ATM?",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 583,
+   "text": "How many times can I use a virtual card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1472,
+   "text": "The contactless payments are not working.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1559,
+   "text": "When does my transfer from the US arrive in my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1009,
+   "text": "Why is there an additional fee showing on the statement I received?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 275,
+   "text": "How come when I tried to pay contactless at the bus it didnt work?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1860,
+   "text": "Which fiat currencies are supported for holding and exchanging?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 563,
+   "text": "I think my card is being used by someone else to make purchases that I didn't authorize! I checked my account and see that there have been quite a few purchases over the last two days that I have no idea where they came from. We need to freeze my card now! And I need to find a way to get my money back.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 263,
+   "text": "I deposited money but my balance hasn't been updated yet.",
+   "label": "balance_not_updated_after_cheque_or_cash_deposit"
+  },
+  {
+   "subset_pos": 1037,
+   "text": "why have I got a pending transfer? I'm confused!!",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 126,
+   "text": "Please tell me the types of currency I can hold.",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 1548,
+   "text": "Balance hasn't been updated following a bank transfer",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1913,
+   "text": "I need several disposable cards made per day.",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1923,
+   "text": "There seems to be an additional charge of \u00a31 on my statement, what is the reason for this?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1513,
+   "text": "Why is my transfer still pending after all this time?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1180,
+   "text": "I see in the app some cash was withdrawn, but it's not mine.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1583,
+   "text": "i need help, i lost my card",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 1754,
+   "text": "When will my transfer post to my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1544,
+   "text": "The terminal I paid at wouldn't take my card. Is something wrong?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1271,
+   "text": "What currencies can I have?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 409,
+   "text": "What fiat currencies are used for exchange?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 227,
+   "text": "What is the charge for paying with my card?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1098,
+   "text": "What's the card you sent me's tracking number?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1744,
+   "text": "What are all the fiat currencies that are supported for both exchange and holding?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 816,
+   "text": "I transferred money and it didn't get there.",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1018,
+   "text": "I would like a physical card",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1690,
+   "text": "There are a few payments in the app that I didn't make! Does someone else have my card?  What should I do?",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 447,
+   "text": "There's a card payment with a name I don't recognize",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 135,
+   "text": "Whats the maximum disposable virtual cards?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 806,
+   "text": "Are there restrictions on disposable virtual cards?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 819,
+   "text": "I requested money from the ATM and it didn't give me as much as I requested.",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 160,
+   "text": "I did a bank transfer and my balance isn't current.",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 120,
+   "text": "I've lost my card. What can I do about that?",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 397,
+   "text": "Is it possible that my card payment was reverted?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 900,
+   "text": "Is there a fee for physical cards?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 133,
+   "text": "My PIN was entered wrong and now I am blocked.  Please unblock.",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 1190,
+   "text": "There are a couple payments with my card shown that I'm not responsible for. What is going on? Maybe someone has access to my account.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 718,
+   "text": "Can I auto-top up?  How do I do it?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 184,
+   "text": "I need several cards per day. And I need to be able to throw away all of the cards I make.",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 980,
+   "text": "Where can i find my top-up verification code?",
+   "label": "verify_top_up"
+  },
+  {
+   "subset_pos": 1670,
+   "text": "How long does it take for a transfer to show up in my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 136,
+   "text": "I would like it if I could get an item refunded",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 128,
+   "text": "How can I get my PIN unblocked?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 1309,
+   "text": "What is the procedure of unblocking my PIN?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 759,
+   "text": "Why is there a payment showing twice?",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 288,
+   "text": "where is the code for verifying the top up card?",
+   "label": "verify_top_up"
+  },
+  {
+   "subset_pos": 1938,
+   "text": "Is there a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 591,
+   "text": "How long should I have to wait before I see the transfer in my account?",
+   "label": "transfer_timing"
+  }
+ ]
+}

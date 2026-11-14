@@ -38,3 +38,14 @@ results/finish/
 .venv-light/
 # Test runs of the finishing pipeline
 results/finish_dryrun/
+
+# Next experiments: embeddings, raw CLI output, adapters, pipeline state, test runs
+results/next/emb/
+results/next/claude_raw/
+results/next/full_data_s*/
+results/next/logs/
+results/next/.*
+results/next/STATUS.md
+results/next/*.tmp
+results/next_testrun/
+results/next/pipeline.log

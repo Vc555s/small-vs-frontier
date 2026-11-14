@@ -51,7 +51,16 @@ python compute_cost.py
 python make_model_card.py
 ```
 
-## 6. Reports and figures
+## 6. Baselines: examples in the prompt, Claude Haiku, non-generative models, more seeds
+
+```bash
+python next_build.py                 # frozen inputs: the 500 messages in batch order and the example lists
+bash run_next.sh all                 # E4a, E4b, E1 seeds 1-2 on the GPU; E2a, E2b, E3a, E3b via the CLI; report
+```
+
+Resumable. About 6 hours on one GPU (most of it the two full-data Qwen seeds, about 2.75 hours each) and 80 Claude CLI calls (the pipeline stops at 140). `make_baselines_report.py` writes `results/t1_baselines.md`. Needs `sentence-transformers` (see `requirements.txt`).
+
+## 7. Reports and figures
 
 These need no GPU. The report scripts need only `datasets` and `scikit-learn`; the figures also need `matplotlib`.
 

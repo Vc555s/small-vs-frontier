@@ -80,14 +80,29 @@ def main():
     for s in SEEDS:
         for r in json.load(open(os.path.join(R, f"exp1_{TAG}_s{s}.json"))):
             rows[(r["budget"], s)] = r
-    full_path = os.path.join(R, f"exp1_{TAG}_n{FULL_N}_s0.json")
-    if os.path.exists(full_path) and os.path.exists(os.path.join(R, f"preds_{TAG}_n{FULL_N}_s0.jsonl")):
-        for r in json.load(open(full_path)):
-            rows[(r["budget"], 0)] = r
+    # full training set: seed 0 lives in results/, further seeds (E1) in results/next/
+    NEXT = os.path.join(R, "next")
+
+    def find(name):
+        for base in (R, NEXT):
+            if os.path.exists(os.path.join(base, name)):
+                return os.path.join(base, name)
+        return None
+
+    full_paths = {}
+    for s in SEEDS:
+        fp, pp = find(f"exp1_{TAG}_n{FULL_N}_s{s}.json"), find(f"preds_{TAG}_n{FULL_N}_s{s}.jsonl")
+        if fp and pp:
+            for r in json.load(open(fp)):
+                rows[(r["budget"], s)] = r
+            full_paths[s] = fp
+    full_path = full_paths.get(0)
     have_full = (FULL_N, 0) in rows
+    full_seeds = sorted(full_paths)
+    n_full = len(full_seeds)
     preds = {}
     for (n, s) in rows:
-        p = jl(os.path.join(R, f"preds_{TAG}_n{n}_s{s}.jsonl"))
+        p = jl(find(f"preds_{TAG}_n{n}_s{s}.jsonl"))
         assert len(p) == len(test)
         assert all(p[i]["text"] == test[i][0] for i in range(len(test))), (n, s)
         preds[(n, s)] = p
@@ -136,7 +151,20 @@ def main():
       "Claude; with 100 labels, further behind. The small model needs somewhere between 500 and 2,000 "
       "labels to match Claude on this 77-class task.")
     w("- The untuned model scores 0.606 on the full test set; fine-tuning gives the biggest jump at the first 100 labels.")
-    if have_full:
+    if have_full and n_full > 1:
+        sfs = [x[0] for x in sample_scores(FULL_N)]
+        cr = [claude[i]["pred"] == claude[i]["gold"] for i in idx]
+        per = []
+        for s in full_seeds:
+            pf = preds[(FULL_N, s)]
+            sr = [pf[i]["pred"] == pf[i]["gold"] for i in idx]
+            per.append(f"seed {s} {100 * (sum(sr) - sum(cr)) / len(idx):+.1f} pts, p = "
+                       f"{mcnemar_exact(sum(a and not b for a, b in zip(sr, cr)), sum(b and not a for a, b in zip(sr, cr))):.3g}")
+        w(f"- **Full training set (9,993 labels, {n_full} seeds):** {ms(sfs, 3)} on the 500 sample and "
+          f"{ms([rows[(FULL_N, s)]['accuracy'] for s in full_seeds], 4)} on the full test set, against "
+          f"{ms([x[0] for x in s2000], 3)} at 2,000 labels. Against Claude (exact McNemar per seed, uncorrected): "
+          + "; ".join(per) + ". The seeds share the same training set and differ only in initialisation and data order.")
+    elif have_full:
         sf = sample_scores(FULL_N)[0][0]
         s0_2000 = sample_scores(2000)[0][0]
         pf = preds[(FULL_N, 0)]
@@ -268,12 +296,13 @@ def main():
     w("|---|---|---|")
     prev = None
     for n in full:
-        w(f"| {n}{' (1 seed)' if n == FULL_N else ''} | {full[n]:.4f} | "
+        w(f"| {n}{' (1 seed)' if n == FULL_N and n_full == 1 else ''} | {full[n]:.4f} | "
           f"{'' if prev is None else f'{100 * (full[n] - full[prev]):+.1f} pts'} |")
         prev = n
     w("")
     w("Accuracy on the 500-message sample against the number of labels, with Claude's accuracy and its "
-      "95% interval (`make_figures.py`). The 9,993-label point is a single seed (hollow marker).")
+      "95% interval (`make_figures.py`). The 9,993-label point is a single seed (hollow marker)"
+      + (f"; the figure was drawn when only seed 0 existed, and the tables here include all {n_full} seeds." if n_full > 1 else "."))
     w("")
     w("![Label efficiency](figures/label_efficiency.png)")
     w("")
@@ -289,10 +318,14 @@ def main():
     for s in SEEDS:
         for row in loss_doc["seeds"][str(s)]:
             final_loss[(row["budget"], s)] = (f"{row['step']}/{row['total_steps']}", f"{row['loss']:.4f}")
-    full_loss_path = os.path.join(R, f"train_loss_n{FULL_N}_s0.json")
-    full_loss = json.load(open(full_loss_path))["rows"] if os.path.exists(full_loss_path) else []
-    for row in full_loss:
-        final_loss[(FULL_N, 0)] = (f"{row['step']}/{row['total_steps']}", f"{row['loss']:.4f}")
+    full_loss_by_seed = {}
+    for s in SEEDS:
+        lp = find(f"train_loss_n{FULL_N}_s{s}.json")
+        if lp:
+            full_loss_by_seed[s] = json.load(open(lp))["rows"]
+            for row in full_loss_by_seed[s]:
+                final_loss[(FULL_N, s)] = (f"{row['step']}/{row['total_steps']}", f"{row['loss']:.4f}")
+    full_loss = full_loss_by_seed.get(0, [])
     for n in BUDGETS[1:]:
         for s in SEEDS:
             if (n, s) in final_loss:
@@ -403,7 +436,7 @@ def main():
     w("Reading: at budgets 0–500 Claude is significantly better in every run. At 2,000 labels no run "
       "differs significantly from Claude; this supports calling it a tie, not a win. "
       "(Three seeds are tested separately, so treat p-values near 0.05 with care.)"
-      + (" The 9,993-label row is a single seed; read its p-value as one run, not as a robust result." if have_full else ""))
+      + (" The 9,993-label row is a single seed; read its p-value as one run, not as a robust result." if n_full == 1 else ""))
     w("")
     w("### 5.2 Where they disagree (budget 2000, seed 0 vs Claude)")
     w("")
@@ -506,7 +539,9 @@ done""", "bash"))
           "and no test item), seed 0, 3 epochs, same hyperparameters as every other run, via `full_data.py`, "
           "which runs `exp1_routing.py --budgets 9993 --seed 0` unchanged. Training took "
           + (f"{rf['train_seconds'] / 3600:.1f} hours" if rf.get("train_seconds") else "an unrecorded time")
-          + f"; evaluation on the full test set {rf['eval_seconds'] / 60:.0f} minutes. One seed only.")
+          + f"; evaluation on the full test set {rf['eval_seconds'] / 60:.0f} minutes. "
+          + ("One seed only." if n_full == 1 else f"Seeds {', '.join(str(s) for s in full_seeds[1:])} were added "
+             "later with every other setting identical (`full_data.py --seed`)."))
         w("")
 
     # ---------------- 7. caveats
@@ -524,7 +559,9 @@ done""", "bash"))
         "Some Banking77 intents overlap (for example, the test message \"I would like to reactivate my card\" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. This was observed, not measured.",
         "The 500-sample comparison has wider error bars than the full-test-set numbers; the small model's full-set numbers are more precise but have no Claude counterpart.",
         "Budget 0 was run once (greedy decoding is deterministic, so other seeds would match).",
-        "The full-training-set budget (9,993 labels) was run with one seed only, so it shows no run-to-run spread.",
+        ("The full-training-set budget (9,993 labels) was run with one seed only, so it shows no run-to-run spread."
+         if n_full == 1 else "At 9,993 labels all seeds use the same training set, so their spread reflects only "
+         "initialisation and data order."),
     ]:
         w(f"- {c}")
     w("")
@@ -562,13 +599,15 @@ done""", "bash"))
         for row in loss_doc["seeds"][str(s)]:
             w(f"| {row['budget']} | {row['epoch']}/{row['epochs']} | {row['step']}/{row['total_steps']} | "
               f"{row['loss']:.4f} | {row['elapsed_s']} |")
-    if full_loss:
+    for fs, fl in sorted(full_loss_by_seed.items()):
+        if not fl:
+            continue
         w("")
-        w("### B.4 full training set (9,993 labels), seed 0")
+        w(f"### B.4 full training set (9,993 labels), seed {fs}")
         w("")
         w("| Budget | Epoch | Step | Loss | Elapsed s |")
         w("|---|---|---|---|---|")
-        for row in full_loss:
+        for row in fl:
             w(f"| {row['budget']} | {row['epoch']}/{row['epochs']} | {row['step']}/{row['total_steps']} | "
               f"{row['loss']:.4f} | {row['elapsed_s']} |")
     w("")
@@ -578,11 +617,11 @@ done""", "bash"))
         w(f"`results/exp1_{TAG}_s{s}.json`")
         w("")
         w(fence(read(os.path.join(R, f"exp1_{TAG}_s{s}.json")), "json"))
-    if have_full:
+    for s, fp in sorted(full_paths.items()):
         w("")
-        w(f"`results/exp1_{TAG}_n{FULL_N}_s0.json`")
+        w(f"`{os.path.relpath(fp)}`")
         w("")
-        w(fence(read(full_path), "json"))
+        w(fence(read(fp), "json"))
     w("")
     w("## Appendix C. Claude calls, one row per call (`results/claude_calls_t1.json`)")
     w("")

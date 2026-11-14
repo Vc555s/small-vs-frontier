@@ -49,6 +49,21 @@ FINISH_STAGES = [
     ("summary", "CPU", []),
     ("commit_push", "CPU", ["scan"]),
 ]
+# Stages of run_next.sh (next experiments)
+NEXT_STAGES = [
+    ("e4a", "GPU", []),
+    ("e4b", "GPU", []),
+    ("e1_s1", "GPU", []),
+    ("e1_s2", "GPU", []),
+    ("e2a", "Claude", []),
+    ("e2b", "Claude", []),
+    ("e3a", "Claude", []),
+    ("e3b", "Claude", []),
+    ("report", "CPU", []),
+    ("scan", "CPU", ["report"]),
+    ("commit_push", "CPU", ["scan"]),
+]
+NEXT_CAP = 140
 TEST_C_STAGES = ["small_C_S1", "small_C_S2", "claude_C1", "train_S3_s0", "train_S3_s1", "train_S3_s2"]
 
 
@@ -101,12 +116,13 @@ def claude_calls(d):
         return 0
 
 
-def take_claude_call(d):
+def take_claude_call(d, cap=None):
     """Reserve one call. Returns the new count, or None if the cap is reached."""
+    cap = CLAUDE_CAP if cap is None else cap
     p = os.path.join(d, ".claude_calls")
     with locked(os.path.join(d, ".claude_calls.lock")):
         n = claude_calls(d)
-        if n >= CLAUDE_CAP:
+        if n >= cap:
             return None
         with open(p + ".tmp", "w") as f:
             f.write(str(n + 1))
@@ -203,9 +219,10 @@ def modes_alive(d, modes=("gpu", "claude", "report", "all")):
 
 
 def write_status(d, pipeline="stress"):
-    stages = FINISH_STAGES if pipeline == "finish" else STAGES
-    final_stage = "commit_push" if pipeline == "finish" else "report"
-    title = "T1 finishing pipeline status" if pipeline == "finish" else "T1 robustness pipeline status"
+    stages = {"finish": FINISH_STAGES, "next": NEXT_STAGES}.get(pipeline, STAGES)
+    final_stage = "report" if pipeline == "stress" else "commit_push"
+    title = {"finish": "T1 finishing pipeline status", "next": "T1 next-experiments pipeline status"}.get(
+        pipeline, "T1 robustness pipeline status")
     os.makedirs(d, exist_ok=True)
     with locked(os.path.join(d, ".status.lock")):
         L = [f"# {title}", "", f"Updated {now()} (server time).", ""]
@@ -230,18 +247,19 @@ def write_status(d, pipeline="stress"):
                      f"{m.get('gpu', '')} | {m.get('peak_gb', '')} | {note} |")
             if st == "failed":
                 fails.append((s, body))
-        if pipeline == "stress":
-            L += ["", f"Claude calls used: {claude_calls(d)} of {CLAUDE_CAP}."]
+        if pipeline in ("stress", "next"):
+            L += ["", f"Claude calls used: {claude_calls(d)} of {NEXT_CAP if pipeline == 'next' else CLAUDE_CAP}."]
             wp = os.path.join(d, ".claude_wait")
             if os.path.exists(wp):
                 L.append(f"Claude: {open(wp).read().strip()}")
         else:
             L.append("")
         alive = modes_alive(d, ("finish",) if pipeline == "finish" else ("gpu", "claude", "report", "all"))
+        final_ready = states[final_stage] in ("done", "failed", "skipped") and not alive
         L.append(f"Pipeline processes alive: {', '.join(alive) if alive else 'none'}.")
         for s, body in fails:
             L += ["", f"## Failure: {s}", "", "```", body, "```"]
-        if states[final_stage] in ("done", "failed", "skipped") and not alive:
+        if final_ready:
             gaps = [s for s, _, _ in stages if states[s] != "done"]
             if gaps:
                 L += ["", "Stages not done: " + ", ".join(gaps)]
@@ -249,7 +267,7 @@ def write_status(d, pipeline="stress"):
         else:
             if not alive:
                 L += ["", "No pipeline process is alive. If this persists, resume with "
-                      + ("`bash run_finish.sh`" if pipeline == "finish" else "`bash run_stress.sh all`")
+                      + {"finish": "`bash run_finish.sh`", "next": "`bash run_next.sh all`"}.get(pipeline, "`bash run_stress.sh all`")
                       + " from the repository root."]
             final = "STATE: RUNNING"
         L += ["", final]
@@ -268,7 +286,7 @@ def main():
     p.add_argument("--state")
     p.add_argument("--reason", default="")
     p.add_argument("--log")
-    p.add_argument("--pipeline", default="stress", choices=["stress", "finish"])
+    p.add_argument("--pipeline", default="stress", choices=["stress", "finish", "next"])
     a = p.parse_args()
     if a.cmd == "status":
         write_status(a.dir, a.pipeline)

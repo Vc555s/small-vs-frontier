@@ -23,9 +23,20 @@ N, SEED = (64 if DRY else 9993), 0
 TAG = "Qwen3-4B-Instruct-2507"
 OUT = "results/finish_dryrun/full_data" if DRY else "results/full_data"
 DEST = "results/finish_dryrun" if DRY else "results"
-ADAPTER = os.path.join(OUT, f"adapter_{TAG}_n{N}_s{SEED}")
-PREDS = os.path.join(OUT, f"preds_{TAG}_n{N}_s{SEED}.jsonl")
-RESULT = os.path.join(OUT, f"exp1_{TAG}_s{SEED}.json")
+
+
+def set_paths(seed, out=None, dest=None):
+    """Seed 0 keeps its original paths; other seeds (E1) pass their own output folders."""
+    global SEED, OUT, DEST, ADAPTER, PREDS, RESULT
+    SEED = seed
+    OUT = out or OUT
+    DEST = dest or DEST
+    ADAPTER = os.path.join(OUT, f"adapter_{TAG}_n{N}_s{SEED}")
+    PREDS = os.path.join(OUT, f"preds_{TAG}_n{N}_s{SEED}.jsonl")
+    RESULT = os.path.join(OUT, f"exp1_{TAG}_s{SEED}.json")
+
+
+set_paths(SEED)
 
 
 def check_subset():
@@ -130,5 +141,9 @@ if __name__ == "__main__":
     ap.add_argument("--collect", action="store_true")
     ap.add_argument("--log", default="", help="stage log to extract training loss from (with --collect)")
     ap.add_argument("--low_mem", action="store_true")
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--out", default="", help="working folder (adapter, raw outputs); default results/full_data")
+    ap.add_argument("--dest", default="", help="where --collect copies the results; default results")
     a = ap.parse_args()
+    set_paths(a.seed, a.out or None, a.dest or None)
     collect(a.log) if a.collect else run(a.low_mem)

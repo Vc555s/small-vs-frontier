@@ -1,0 +1,754 @@
+{
+ "batch": 9,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 114,
+ "neighbours_by_message": {
+  "T2462": [
+   1214,
+   367,
+   95,
+   1611,
+   929
+  ],
+  "T554": [
+   1717,
+   24,
+   972,
+   102,
+   648
+  ],
+  "T788": [
+   819,
+   1383,
+   1468,
+   826,
+   28
+  ],
+  "T2616": [
+   1300,
+   1922,
+   301,
+   1396,
+   1938
+  ],
+  "T1655": [
+   642,
+   451,
+   243,
+   1453,
+   511
+  ],
+  "T2908": [
+   1773,
+   1201,
+   443,
+   1746,
+   747
+  ],
+  "T562": [
+   181,
+   716,
+   281,
+   1050,
+   1295
+  ],
+  "T1488": [
+   405,
+   1043,
+   822,
+   1987,
+   9
+  ],
+  "T918": [
+   385,
+   1661,
+   19,
+   1894,
+   1691
+  ],
+  "T1485": [
+   1051,
+   580,
+   405,
+   1395,
+   1466
+  ],
+  "T1955": [
+   805,
+   1195,
+   1159,
+   1446,
+   130
+  ],
+  "T822": [
+   360,
+   1057,
+   1066,
+   1373,
+   1891
+  ],
+  "T1392": [
+   499,
+   1922,
+   301,
+   1938,
+   1665
+  ],
+  "T254": [
+   321,
+   444,
+   193,
+   500,
+   536
+  ],
+  "T688": [
+   1434,
+   1436,
+   1624,
+   1638,
+   897
+  ],
+  "T1657": [
+   1946,
+   608,
+   451,
+   169,
+   958
+  ],
+  "T630": [
+   652,
+   1658,
+   917,
+   704,
+   1843
+  ],
+  "T938": [
+   385,
+   1661,
+   1894,
+   1691,
+   19
+  ],
+  "T2090": [
+   1911,
+   1212,
+   383,
+   618,
+   1167
+  ],
+  "T1511": [
+   46,
+   830,
+   1556,
+   405,
+   437
+  ],
+  "T1075": [
+   16,
+   1779,
+   630,
+   1082,
+   1548
+  ],
+  "T746": [
+   1903,
+   1404,
+   649,
+   860,
+   781
+  ],
+  "T868": [
+   1581,
+   816,
+   1330,
+   395,
+   1538
+  ],
+  "T589": [
+   275,
+   1177,
+   1472,
+   208,
+   50
+  ],
+  "T1582": [
+   1232,
+   27,
+   1821,
+   677,
+   867
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 1057,
+   "text": "I had to pay a fee when buying items with my card.",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1903,
+   "text": "Is there a top-up limit?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 1395,
+   "text": "On my app I can see that a direct debit payment that I didn't do, appears.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 383,
+   "text": "my payment was rejected, do you know why?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1050,
+   "text": "My contactless stopped working today no matter where I try to use it. How do I get it to start working again?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1624,
+   "text": "Help me cancel a transfer.",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 929,
+   "text": "Can I allow other people to top up my account?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1746,
+   "text": "Why was I charged a fee for withdrawing money?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 9,
+   "text": "What is this fee debit on my account?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 275,
+   "text": "How come when I tried to pay contactless at the bus it didnt work?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1987,
+   "text": "I see a charge for a direct debit that was not me.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 917,
+   "text": "If I top up by transfer, am I going to be charged?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 826,
+   "text": "Why didn't I get the amount I requested at the ATM?",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 405,
+   "text": "There is a direct debit charge on my account that I don't recognize.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 649,
+   "text": "is there a limit to top up",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 1556,
+   "text": "There was a direct debit I don't recognize.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 208,
+   "text": "I can't get a contactless payment to work.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1661,
+   "text": "Where do i go to receive a virtual card",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 1821,
+   "text": "I tried to withdraw cash, but got declined!",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1434,
+   "text": "How do I cancel a transfer?",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1453,
+   "text": "What should I do if I lost my phone?",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 677,
+   "text": "Can you tell me why I was declined from getting cash?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1300,
+   "text": "How do I create a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 19,
+   "text": "Is there a way to get a virtual card?",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 642,
+   "text": "What do I do to lock my phone after losing it so my account isn't accessed",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 16,
+   "text": "My balance was not updated with my checque or cash deposit.",
+   "label": "balance_not_updated_after_cheque_or_cash_deposit"
+  },
+  {
+   "subset_pos": 972,
+   "text": "What do I do if my card gets broken?",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 747,
+   "text": "I got cash and was charged a fee that shouldn't be there!",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 608,
+   "text": "left my phone at hotel, cant use app",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1043,
+   "text": "There is a potentially fraudulent direct debit on my account.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1159,
+   "text": "What should I do since my card is trapped in the ATM?",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 130,
+   "text": "I can't get my card out of the ATM",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 437,
+   "text": "I am seeing a direct debit I wasn't aware of.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 511,
+   "text": "I lost my phone. What do I need to do?",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1922,
+   "text": "I want a disposable virtual card, how do I do that?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1691,
+   "text": "How do I receive a virtual card?",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 1538,
+   "text": "Why can't the recepient of my money transaction see it?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1383,
+   "text": "Why didn't I receive the right amount of cash at the ATM?",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 367,
+   "text": "What apps can I use to top up my account?",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 958,
+   "text": "My phone was left behind.  Can I still use my card?",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 536,
+   "text": "What currencies do you accept for adding money to my account?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 816,
+   "text": "I transferred money and it didn't get there.",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1051,
+   "text": "I didn't make the direct debit payment on my account.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1373,
+   "text": "Why, when paying with the card, was I charged an extra fee?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1082,
+   "text": "After depositing a cheque my balance did not change.",
+   "label": "balance_not_updated_after_cheque_or_cash_deposit"
+  },
+  {
+   "subset_pos": 716,
+   "text": "I'm confused. My contactless is suddenly not working anywhere that I try to use it. How do I fix it?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1611,
+   "text": "How do I use bank transfer to top up my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1581,
+   "text": "Why can't the person I sent the money transfer to see it?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1946,
+   "text": "I left my phone at the hotel.",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1891,
+   "text": "I was charged an extra fee for a card payment. I was unaware of these fees beforehand.",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 830,
+   "text": "There is a direct debit payment I don't recognize.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1404,
+   "text": "Whats the limit on my top up",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 451,
+   "text": "I have lost my phone.",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 360,
+   "text": "I was made to pay a fee for making a transaction with card.",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 819,
+   "text": "I requested money from the ATM and it didn't give me as much as I requested.",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1717,
+   "text": "Can you provide information for freezing my card immediately?",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 580,
+   "text": "I see a direct debit that I didn't authorize",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 704,
+   "text": "Will I be charged for a top off transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 500,
+   "text": "What currencies do you accept to add money?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 1167,
+   "text": "Do you know the reason why my card payment was declined?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1330,
+   "text": "My account did not allow the transfer.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 24,
+   "text": "Could you please freeze my card immediately?",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 618,
+   "text": "I have a payment which has not been approved.",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 1638,
+   "text": "I would like to cancel a transfer...is this possible?",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1894,
+   "text": "Please tell me how I can get a virtual card.",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 805,
+   "text": "My card got stuck in an ATM.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 395,
+   "text": "Is there a reason why a recipient might not see my money transaction",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 193,
+   "text": "What currencies do you offer?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 385,
+   "text": "How can I obtain a virtual card?",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 648,
+   "text": "Suddenly, my card won't work.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1472,
+   "text": "The contactless payments are not working.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1195,
+   "text": "My card is stuck inside the ATM.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 301,
+   "text": "How can I obtain a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1658,
+   "text": "Does it cost anything to transfer money for a top-up?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 630,
+   "text": "Why has my account balance not changed after depositing a cheque?",
+   "label": "balance_not_updated_after_cheque_or_cash_deposit"
+  },
+  {
+   "subset_pos": 281,
+   "text": "I've tried using my contactless in several locations today and it's not working anywhere. It seemed fine before. How do I get it to work again?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1212,
+   "text": "I did a payment but the app cancelled it.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 28,
+   "text": "The atm didn't give me all my cash",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1468,
+   "text": "I asked for a certain amount of money from the ATM, but it gave me a different amount. Less than what I asked for.",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1911,
+   "text": "There is a payment in the app that I did not approve",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1938,
+   "text": "Is there a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1446,
+   "text": "I can't get my card out of the ATM, what should I do now?",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1232,
+   "text": "My cash withdrawal was declined.  Why?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1548,
+   "text": "Balance hasn't been updated following a bank transfer",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1779,
+   "text": "My balance is not right. It has not been updated for the cash or cheque deposit.",
+   "label": "balance_not_updated_after_cheque_or_cash_deposit"
+  },
+  {
+   "subset_pos": 1466,
+   "text": "There is a direct debit set up that was not authorized by me.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1396,
+   "text": "How can I get disposable virtual cards?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 444,
+   "text": "What currencies do you accept for adding money?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 243,
+   "text": "phone is gone, dont want others to access account information",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1214,
+   "text": "What currencies and methods can i use to top up my account?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 1773,
+   "text": "Can you tell me why I was charged to withdraw cash?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 867,
+   "text": "My card rejected a cash withdrawal. Why?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1201,
+   "text": "Why did I get charged for withdrawing cash?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 1665,
+   "text": "Are there any disposable virtual cards?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 499,
+   "text": "Can I use a disposable virtual card for any purchase?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 95,
+   "text": "Tell me how to top up my account using bank transfer.",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 860,
+   "text": "is there a limit on top ups",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 897,
+   "text": "Can I cancel a transfer I made",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 169,
+   "text": "phone is gone, what should i do",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 27,
+   "text": "Why do I get declined when I try to withdraw cash?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 443,
+   "text": "Are there charges for cash withdrawals?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 1066,
+   "text": "I paid with my card so so why was I charged a transaction fee?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 50,
+   "text": "I was trying to use contactless earlier, but it didn't work.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1295,
+   "text": "How do I troubleshoot when contactless doesn't work?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 781,
+   "text": "What is the maximum top up?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 181,
+   "text": "My contactless stopped working today for no good reason. It's not working no matter where I try to use it. Can you please help me fix it?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1177,
+   "text": "My contactless payments don't work.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1843,
+   "text": "Is there a fee for transferring money",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 102,
+   "text": "My card is not working.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 46,
+   "text": "I have an unfamiliar direct debit in my statement.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1436,
+   "text": "What do I have to do to cancel a transfer?",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 822,
+   "text": "I have an unknown debit charge in my statement, why?",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 321,
+   "text": "Which currencies do you accept for adding money?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 652,
+   "text": "Is there a top up fee for transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  }
+ ]
+}

@@ -1,0 +1,789 @@
+{
+ "batch": 10,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 121,
+ "neighbours_by_message": {
+  "T2161": [
+   1303,
+   1072,
+   213,
+   1906,
+   1362
+  ],
+  "T1037": [
+   540,
+   82,
+   774,
+   910,
+   1557
+  ],
+  "T1908": [
+   1315,
+   703,
+   317,
+   904,
+   1299
+  ],
+  "T1157": [
+   1804,
+   1508,
+   207,
+   98,
+   244
+  ],
+  "T1953": [
+   1836,
+   177,
+   42,
+   122,
+   805
+  ],
+  "T1766": [
+   1306,
+   56,
+   1698,
+   1825,
+   1440
+  ],
+  "T2891": [
+   1326,
+   1746,
+   1871,
+   735,
+   1069
+  ],
+  "T1824": [
+   1850,
+   811,
+   1167,
+   1119,
+   1349
+  ],
+  "T71": [
+   343,
+   1840,
+   438,
+   957,
+   601
+  ],
+  "T171": [
+   1695,
+   948,
+   586,
+   1478,
+   1839
+  ],
+  "T441": [
+   784,
+   1399,
+   1226,
+   1807,
+   792
+  ],
+  "T2731": [
+   541,
+   390,
+   1095,
+   1217,
+   10
+  ],
+  "T1552": [
+   1686,
+   787,
+   23,
+   949,
+   1914
+  ],
+  "T1926": [
+   1787,
+   1276,
+   946,
+   293,
+   605
+  ],
+  "T2175": [
+   325,
+   651,
+   351,
+   1488,
+   306
+  ],
+  "T2695": [
+   1768,
+   1115,
+   1909,
+   1789,
+   1771
+  ],
+  "T2781": [
+   539,
+   1762,
+   225,
+   948,
+   634
+  ],
+  "T2730": [
+   178,
+   287,
+   289,
+   1734,
+   329
+  ],
+  "T300": [
+   1861,
+   821,
+   962,
+   1233,
+   1872
+  ],
+  "T1195": [
+   1463,
+   1976,
+   1200,
+   1305,
+   1205
+  ],
+  "T546": [
+   128,
+   133,
+   1740,
+   359,
+   1309
+  ],
+  "T575": [
+   497,
+   925,
+   1053,
+   1591,
+   1323
+  ],
+  "T2289": [
+   1512,
+   767,
+   1033,
+   1758,
+   988
+  ],
+  "T3015": [
+   1305,
+   1205,
+   1463,
+   21,
+   1313
+  ],
+  "T3024": [
+   239,
+   1048,
+   606,
+   1613,
+   432
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 1440,
+   "text": "How can I check if I have received a refund if it is not yet on my statement?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 306,
+   "text": "Why can't I transfer money to a beneficiery?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1695,
+   "text": "There is an unexplained $1\u00a0charge on my statement, can you please explain this to me?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1309,
+   "text": "What is the procedure of unblocking my PIN?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 244,
+   "text": "I need to change my personal details in my account.",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 42,
+   "text": "The ATM took my card.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1771,
+   "text": "Why has my transfer not arrived yet?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 601,
+   "text": "My new card isn't in my app, how do I get it in there?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 925,
+   "text": "My contactless is non-functional.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 586,
+   "text": "What is this $1 charge on my account?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 10,
+   "text": "Someone else used my card to withdraw cash from an ATM",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 21,
+   "text": "What are the requirements to verify my identity?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1758,
+   "text": "What may be the reason that my transfer did not go through?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 988,
+   "text": "Why is my transfer not working? I tried multiple times to transfer money, and all that happens is an error message pops up.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1115,
+   "text": "How long do I have to wait for my bank transfer to appear in my account?",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1850,
+   "text": "Why has my card been declined?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1048,
+   "text": "For the identity check, do I need any kind of documentation?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1303,
+   "text": "I was trying to purchase some crypto and the app won't allow me to do it. What's the deal with this? I really wanted to complete the exchange.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 225,
+   "text": "What do you charge for an exchange fee?",
+   "label": "exchange_charge"
+  },
+  {
+   "subset_pos": 1557,
+   "text": "Looks like my top-up has been cancelled",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 910,
+   "text": "Seems like my top-up has been cancelled",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 811,
+   "text": "Why has my card been declined?  whats the deal?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1807,
+   "text": "Need help with a stolen card.",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 325,
+   "text": "Why is a transfer to a beneficiary not possible?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1804,
+   "text": "I got a new address and need to change my old one.",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 1053,
+   "text": "I have a contactless that's broken.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1740,
+   "text": "Can you unblock my account?  I entered the PIN wrong.",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 351,
+   "text": "I tried to transfer funds to a beneficiary and was denied. Can you tell me why?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 774,
+   "text": "Is there a reason for my top up to be cancelled?",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 1326,
+   "text": "I withdrew money and got a fee, please explain",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 1478,
+   "text": "Hello, I see that I have been charged an extra $1 on my app.  Could you please provide me with a reason for this charge?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1976,
+   "text": "Why is it required to verify my identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 23,
+   "text": "How do I get the passcode reset?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 767,
+   "text": "Why didn't my transfer work?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1839,
+   "text": "I checked my statement and am being charged one pound. Where did this charge come from?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1871,
+   "text": "I withdrew  money from the ATM and was overcharged.  It said nothing about an extra fee.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 787,
+   "text": "Is there a way to reset the passcode?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 177,
+   "text": "The ATM sucked my card in.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1119,
+   "text": "Why was my payment declined? I keep trying my card but it's not working.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 540,
+   "text": "Is there a reason my top-up has been cancelled?",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 1167,
+   "text": "Do you know the reason why my card payment was declined?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1789,
+   "text": "I am still waiting for a transfer to show up",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 634,
+   "text": "Is there a charge for getting my money?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 1313,
+   "text": "How can you assist on verifying my identity?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1399,
+   "text": "How can I report that my card was stolen? I made a police report first.",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 317,
+   "text": "I am upset with your service.  Please delete my account.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 539,
+   "text": "How much will I be charged for a cross-currency exchange?",
+   "label": "exchange_charge"
+  },
+  {
+   "subset_pos": 541,
+   "text": "I lost my wallet and I think someone is withdrawing cash with my card. Please help. It is urgent.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 962,
+   "text": "What is the wait time for delivery to the US?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 605,
+   "text": "An ATM machine didn't give me back my card.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1362,
+   "text": "How can I trade currencies with this app?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 957,
+   "text": "How do I add a new card?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 821,
+   "text": "How long is a delivery to the US?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 784,
+   "text": "My card has been stolen. I reported it with the police, but I need to report it with you as well.",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 1746,
+   "text": "Why was I charged a fee for withdrawing money?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 1463,
+   "text": "I need to verify my identity. How do I do that?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1306,
+   "text": "I have received my statement but I do not see my refund, why is that?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1914,
+   "text": "I need to reset my passcode. Where do I go to do that?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 1305,
+   "text": "How do I verify my identity?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1069,
+   "text": "I'm upset because I got charged a ridiculous fee when making an ATM withdrawal over a holiday weekend.  It didn't notify me beforehand either or I wouldn't have ever done it.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1033,
+   "text": "When I attempted to make a transfer, it failed.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1323,
+   "text": "I need help fixing my contactless. It's not working anywhere I go today.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 438,
+   "text": "How can I add a new card?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 703,
+   "text": "I am not happy with your company. Please delete my account asap.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 1734,
+   "text": "What do I do if I see a cash withdrawal on my account that I don't remember making?",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1072,
+   "text": "My thoughts were that you offered crypto top up which does not seem to be working. The money has now been taken from my account. What is the problem here?",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 359,
+   "text": "Can I unblock my pin using the app?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 1508,
+   "text": "I moved and would like to change my address.",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 1762,
+   "text": "How much more do you charge for currency exchange?",
+   "label": "exchange_charge"
+  },
+  {
+   "subset_pos": 1840,
+   "text": "I found my card again. Can I put it back into the app?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 805,
+   "text": "My card got stuck in an ATM.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 343,
+   "text": "how do I link an old card?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 213,
+   "text": "HI,Accordingly you offer crypto top up but it doesn't seem to be working? Money just disappeared from my account.What should be done now?",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 329,
+   "text": "I saw on the app that a cash withdrawal was completed on my account; however, I did not complete it.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1906,
+   "text": "I thought crypto top up with something you offered and it does not appear that it's working even though the money has disappeared out of my account. Can you tell me what's going on?",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 651,
+   "text": "Why didn't my transfer to a beneficiary go through?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1488,
+   "text": "My transfer to a beneficiary was rejected.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1686,
+   "text": "How do I reset my passcode?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 1205,
+   "text": "How to verify my identity",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 289,
+   "text": "My app shows a money withdrawal that I did not do.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1768,
+   "text": "The transfer on my account is not showing up.",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 606,
+   "text": "What needs to be provided for identity verification?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 287,
+   "text": "I have a cash withdrawal that I don't recognize.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1226,
+   "text": "How do I report my card as lost or stolen?",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 82,
+   "text": "I went to look at my top-up and it was canceled, can you tell me why this happend?",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 1613,
+   "text": "For the identity verification, what do you need?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1872,
+   "text": "When will it get delivered?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 1909,
+   "text": "My money transfer has not happened yet",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1512,
+   "text": "My transfer did not work, what was the reason?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1276,
+   "text": "The ATM did not give me my card back?",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1698,
+   "text": "Where is the refund on my statement?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1836,
+   "text": "Please help, the atm swallowed my card, what do I do?",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1591,
+   "text": "How do I troubleshoot my contactless?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1315,
+   "text": "your company is awful, i would like to delete my account please",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 432,
+   "text": "What do you require for identity verification?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 239,
+   "text": "what documentation do I need for the identity check?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1233,
+   "text": "How quickly can you get me my card?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 1825,
+   "text": "My refund has not shown up in my account.   Where is it?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 948,
+   "text": "What was the $1 charge for on my statement?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1217,
+   "text": "I have transactions that I don't recognize - I think someone is using my card.",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 1861,
+   "text": "How long does it take for deliver to the US?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 497,
+   "text": "I am having problems with my contactless.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 128,
+   "text": "How can I get my PIN unblocked?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 946,
+   "text": "The ATM machine would not give my card back",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 949,
+   "text": "Where do I go to reset my passcode?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 178,
+   "text": "There's a cash withdrawal I am certain I did not make",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 56,
+   "text": "My refund isn't showing up",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 390,
+   "text": "Somebody stole my wallet and is using my card! Can you do something so they can't keep taking my money?",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1095,
+   "text": "Someone has copied my card. I have my card with me, but someone just made a 500\u00a3 cash withdrawal. Please help now.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 122,
+   "text": "How do I get my card back after the ATM swallowed it.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1299,
+   "text": "How can I delete my account?",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 792,
+   "text": "My card was stolen",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 207,
+   "text": "I moved to a new city and need to change my address",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 1200,
+   "text": "What will I need to verify my identity",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1787,
+   "text": "The ATM won't give me my card back. I need it back now!",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 133,
+   "text": "My PIN was entered wrong and now I am blocked.  Please unblock.",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 98,
+   "text": "I must change my address.",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 1349,
+   "text": "Why would you decline my card?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 904,
+   "text": "I would like to invalidate my account.  I am very disappointed with your services.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 293,
+   "text": "A Bank ATM did not give my card back. What do I do now?",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 735,
+   "text": "I used my card the other day to get cash from an ATM and was charged an extra fee. I don't understand why I am being charged a fee all of a sudden. I thought it was free to withdraw from an ATM?",
+   "label": "cash_withdrawal_charge"
+  }
+ ]
+}

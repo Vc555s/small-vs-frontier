@@ -1,0 +1,794 @@
+{
+ "batch": 7,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 122,
+ "neighbours_by_message": {
+  "T230": [
+   1241,
+   1822,
+   1158,
+   1022,
+   142
+  ],
+  "T674": [
+   1648,
+   474,
+   392,
+   361,
+   1379
+  ],
+  "T579": [
+   497,
+   50,
+   1295,
+   1586,
+   1591
+  ],
+  "T1740": [
+   391,
+   145,
+   1684,
+   386,
+   36
+  ],
+  "T1381": [
+   973,
+   1913,
+   1348,
+   1657,
+   403
+  ],
+  "T598": [
+   1212,
+   755,
+   575,
+   1911,
+   397
+  ],
+  "T433": [
+   1435,
+   1465,
+   219,
+   1988,
+   954
+  ],
+  "T2955": [
+   1833,
+   1541,
+   1571,
+   672,
+   1152
+  ],
+  "T1407": [
+   1217,
+   577,
+   1065,
+   1042,
+   1817
+  ],
+  "T1870": [
+   1768,
+   1040,
+   1576,
+   1706,
+   1581
+  ],
+  "T517": [
+   653,
+   1199,
+   773,
+   1081,
+   157
+  ],
+  "T2895": [
+   1201,
+   1773,
+   1746,
+   1853,
+   1704
+  ],
+  "T3060": [
+   1793,
+   1712,
+   1318,
+   1545,
+   1959
+  ],
+  "T649": [
+   400,
+   1542,
+   348,
+   292,
+   862
+  ],
+  "T1222": [
+   1391,
+   1216,
+   39,
+   1035,
+   1976
+  ],
+  "T2601": [
+   1938,
+   1665,
+   1922,
+   301,
+   468
+  ],
+  "T1371": [
+   1657,
+   750,
+   501,
+   1697,
+   403
+  ],
+  "T1052": [
+   889,
+   115,
+   1920,
+   1768,
+   54
+  ],
+  "T683": [
+   1434,
+   1624,
+   1436,
+   1638,
+   897
+  ],
+  "T2443": [
+   411,
+   1519,
+   1831,
+   614,
+   532
+  ],
+  "T256": [
+   1860,
+   1744,
+   159,
+   409,
+   1249
+  ],
+  "T2991": [
+   353,
+   1045,
+   132,
+   312,
+   1827
+  ],
+  "T1822": [
+   168,
+   829,
+   930,
+   167,
+   427
+  ],
+  "T84": [
+   1311,
+   93,
+   1524,
+   7,
+   376
+  ],
+  "T1590": [
+   375,
+   240,
+   725,
+   1225,
+   28
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 474,
+   "text": "My top up says it is still pending",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 386,
+   "text": "how come my transfer declined",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 1391,
+   "text": "What am i missing to verify my id?",
+   "label": "unable_to_verify_identity"
+  },
+  {
+   "subset_pos": 1152,
+   "text": "My card is about to expire.  Are there any costs with a replacement card?  How quick do you mail it to me?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 39,
+   "text": "I am having a problem with verifying my identity.",
+   "label": "unable_to_verify_identity"
+  },
+  {
+   "subset_pos": 1706,
+   "text": "Why hasn't the money transfer arrived yet?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1827,
+   "text": "How do i top up my google pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 1822,
+   "text": "Why is my ATM withdrawal still pending?",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 240,
+   "text": "How come I can't get money at the ATM",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1988,
+   "text": "How can I convert currencies?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 7,
+   "text": "Where can I find your exchange rates?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 897,
+   "text": "Can I cancel a transfer I made",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1744,
+   "text": "What are all the fiat currencies that are supported for both exchange and holding?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 1571,
+   "text": "If I order a new card, how much will it be and how long will it take me to get it?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 750,
+   "text": "I need more than one disposable card",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1938,
+   "text": "Is there a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1684,
+   "text": "Is there a reason my transfer would have been declined?",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 1035,
+   "text": "What's the reason for needing to verify my identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 28,
+   "text": "The atm didn't give me all my cash",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1065,
+   "text": "i dont recognise some of these transactions, i think someone has my card details",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 468,
+   "text": "Is there a disposable virtual card option?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1435,
+   "text": "Can you change my currency to EUR?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 1081,
+   "text": "Can I start an account for my kids?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 829,
+   "text": "It seems like my card payment didn't work.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 168,
+   "text": "Can you tell me why my card payment did not work?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1201,
+   "text": "Why did I get charged for withdrawing cash?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 930,
+   "text": "I tried to pay with my card and it didn't work",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1465,
+   "text": "How can I change to another currency?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 1913,
+   "text": "I need several disposable cards made per day.",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 361,
+   "text": "How long will my top-up stay pending?",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 672,
+   "text": "Can I get an update on my replacement card?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 348,
+   "text": "My top-up didn't work.",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 653,
+   "text": "At what age can a person open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 36,
+   "text": "I didn't see any reason why my transfer was declined. What gives?",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 1379,
+   "text": "My top up hasn't gone through yet, why?",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 1348,
+   "text": "Can i make several disposable cardsper day?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1920,
+   "text": "My balance doesn't show my deposit.",
+   "label": "balance_not_updated_after_cheque_or_cash_deposit"
+  },
+  {
+   "subset_pos": 1853,
+   "text": "Can you tell me why I was charged extra when I withdrew money?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 145,
+   "text": "Tell me why my transfer was declined.",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 1216,
+   "text": "I am having trouble verifying my id.",
+   "label": "unable_to_verify_identity"
+  },
+  {
+   "subset_pos": 411,
+   "text": "Where can I find top up by cash deposit?",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 1911,
+   "text": "There is a payment in the app that I did not approve",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1817,
+   "text": "I can't be sure, but I think that someone may be using my card.",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 532,
+   "text": "Help me please, I need to top up cash.",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 1638,
+   "text": "I would like to cancel a transfer...is this possible?",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1545,
+   "text": "Which countries does your service work in?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 353,
+   "text": "What do I do if my Google pay top up isn't working?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 409,
+   "text": "What fiat currencies are used for exchange?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 427,
+   "text": "Card payment didn't go through.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1042,
+   "text": "I think that someone may be using my card, but I'm not sure,.",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 497,
+   "text": "I am having problems with my contactless.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1542,
+   "text": "My top-up didn't go through",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 1040,
+   "text": "Why isn't the transfer I made to a friend showing?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 862,
+   "text": "Has my top up gone through?",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 725,
+   "text": "I can't get the ATM to give me any cash",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1712,
+   "text": "Where are you present globally?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 1576,
+   "text": "I transferred some funds but I don't see it",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1434,
+   "text": "How do I cancel a transfer?",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1976,
+   "text": "Why is it required to verify my identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1581,
+   "text": "Why can't the person I sent the money transfer to see it?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 400,
+   "text": "My topping up didn't go through.",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 1212,
+   "text": "I did a payment but the app cancelled it.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1519,
+   "text": "I want to do a cash deposit to top up. How do I do this?",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 1045,
+   "text": "Why doesn't my Google pay top up work?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 577,
+   "text": "I am not sure but someone else might be using my card",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 1704,
+   "text": "Why is there a fee for cash withdrawal?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 1158,
+   "text": "Why is the pending status on my cash withdrawal taking so long?",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 391,
+   "text": "My transfer was declined. Why did this happen?",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 1591,
+   "text": "How do I troubleshoot my contactless?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1746,
+   "text": "Why was I charged a fee for withdrawing money?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 1860,
+   "text": "Which fiat currencies are supported for holding and exchanging?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 773,
+   "text": "What are the requirements to open an account for a minor?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 376,
+   "text": "how do you get exchange rates",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 167,
+   "text": "Why didn;t my payment work",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 375,
+   "text": "I could not get money from an ATM",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1541,
+   "text": "I lost my card and need a new one, will it cost me?",
+   "label": "getting_spare_card"
+  },
+  {
+   "subset_pos": 575,
+   "text": "Tell me why my card payment would be reverted.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1586,
+   "text": "What do I have to do to get the contactless to work?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1665,
+   "text": "Are there any disposable virtual cards?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1225,
+   "text": "I wasn't able to withdraw money at an ATM",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 301,
+   "text": "How can I obtain a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1768,
+   "text": "The transfer on my account is not showing up.",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 501,
+   "text": "how many transactions can go on a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 292,
+   "text": "Tell me why my topup wouldn't go through?",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 1249,
+   "text": "Is my fiat currency supported for both hold and exchange?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 54,
+   "text": "The money is still in my account even though I already paid -- I don't understand what happened.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1657,
+   "text": "How many transactions can I do with a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1922,
+   "text": "I want a disposable virtual card, how do I do that?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1959,
+   "text": "What countries are you issuing cards for?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 1624,
+   "text": "Help me cancel a transfer.",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1311,
+   "text": "How do you determine the exchange rate?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1697,
+   "text": "Am I limited on the amount of disposable cards I can possess?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1833,
+   "text": "I need a new card to replace an expired one. Will it cost anything, and how soon?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 1648,
+   "text": "Is there a reason that my top-up is still pending?",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 1436,
+   "text": "What do I have to do to cancel a transfer?",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 397,
+   "text": "Is it possible that my card payment was reverted?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 219,
+   "text": "How do I switch to a different currency?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 1295,
+   "text": "How do I troubleshoot when contactless doesn't work?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1831,
+   "text": "Where do I look for cash top up?",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 973,
+   "text": "How many disposable cards can I make in a day?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1241,
+   "text": "Why is my cash withdrawal pending?",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1793,
+   "text": "What countries are you located in?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 403,
+   "text": "How many disposable  cards are available per account?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 132,
+   "text": "I can't see my Google Pay top up. Is it not working correctly?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 954,
+   "text": "How can I change USD to GBP?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 1022,
+   "text": "Why is the cash withdraw I made shown as pending?",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 157,
+   "text": "Do you have to be 18 to make an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 50,
+   "text": "I was trying to use contactless earlier, but it didn't work.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 392,
+   "text": "I'm pretty sure my top up is still pending.",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 1199,
+   "text": "How old does my daughter have to be to open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 115,
+   "text": "I sent a payment but now it's not showing up.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1318,
+   "text": "Are you able to guide me to my card's location?",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 755,
+   "text": "Looks like my card payment was made twice by mistake. I went to pay at the store earlier which rejected once, second time it worked. App is on pending for one of the payments. Can you please remove one of them as it's wrong and clearly was declined?",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 159,
+   "text": "What fiat currencies are supported?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 1217,
+   "text": "I have transactions that I don't recognize - I think someone is using my card.",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 1773,
+   "text": "Can you tell me why I was charged to withdraw cash?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 142,
+   "text": "I made a cash withdraw and it shows up as pending why is that?",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 93,
+   "text": "How will I know what the exchange rate is?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1524,
+   "text": "How do you determine exchange rates?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 889,
+   "text": "I put some cash into my account but it's not displaying that on my balance.",
+   "label": "balance_not_updated_after_cheque_or_cash_deposit"
+  },
+  {
+   "subset_pos": 312,
+   "text": "How can I top up using google pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 614,
+   "text": "Where is the option to top up with a cheque?",
+   "label": "top_up_by_cash_or_cheque"
+  }
+ ]
+}

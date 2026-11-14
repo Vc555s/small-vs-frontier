@@ -1,0 +1,784 @@
+{
+ "batch": 6,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 120,
+ "neighbours_by_message": {
+  "T1839": [
+   1771,
+   310,
+   1706,
+   1513,
+   1909
+  ],
+  "T2486": [
+   900,
+   585,
+   1018,
+   51,
+   1634
+  ],
+  "T843": [
+   3,
+   1581,
+   566,
+   395,
+   816
+  ],
+  "T1319": [
+   676,
+   1183,
+   907,
+   1156,
+   1509
+  ],
+  "T1778": [
+   250,
+   1825,
+   56,
+   1306,
+   679
+  ],
+  "T2941": [
+   667,
+   1785,
+   332,
+   1880,
+   1075
+  ],
+  "T653": [
+   1427,
+   786,
+   1448,
+   474,
+   123
+  ],
+  "T1935": [
+   42,
+   1931,
+   1195,
+   805,
+   670
+  ],
+  "T2149": [
+   1307,
+   615,
+   1261,
+   331,
+   681
+  ],
+  "T2313": [
+   573,
+   1231,
+   951,
+   988,
+   1985
+  ],
+  "T353": [
+   858,
+   537,
+   718,
+   936,
+   1699
+  ],
+  "T2649": [
+   292,
+   1542,
+   1837,
+   197,
+   963
+  ],
+  "T53": [
+   957,
+   438,
+   1995,
+   1595,
+   1361
+  ],
+  "T1156": [
+   1508,
+   1804,
+   207,
+   98,
+   859
+  ],
+  "T501": [
+   653,
+   1199,
+   157,
+   773,
+   1270
+  ],
+  "T963": [
+   1494,
+   644,
+   1198,
+   419,
+   1599
+  ],
+  "T2805": [
+   719,
+   652,
+   917,
+   195,
+   1658
+  ],
+  "T1244": [
+   1784,
+   788,
+   1215,
+   290,
+   106
+  ],
+  "T3001": [
+   1200,
+   75,
+   1613,
+   239,
+   21
+  ],
+  "T135": [
+   1794,
+   1711,
+   433,
+   777,
+   173
+  ],
+  "T832": [
+   1070,
+   1066,
+   1155,
+   1493,
+   191
+  ],
+  "T2158": [
+   705,
+   1137,
+   1107,
+   545,
+   1330
+  ],
+  "T2394": [
+   782,
+   980,
+   288,
+   1721,
+   1450
+  ],
+  "T1772": [
+   250,
+   679,
+   1174,
+   965,
+   269
+  ],
+  "T153": [
+   1736,
+   1794,
+   433,
+   1123,
+   1711
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 1070,
+   "text": "Do you have charges now when you pay with a card?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1804,
+   "text": "I got a new address and need to change my old one.",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 615,
+   "text": "Please let me know how to change my PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1307,
+   "text": "Where can I update my pin number?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 51,
+   "text": "Is it possible to get a physical card?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 805,
+   "text": "My card got stuck in an ATM.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 963,
+   "text": "Problem with my top up going through",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 1183,
+   "text": "I wasn't able to use my top up card because the money I put on there wasn't there anymore",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1995,
+   "text": "How do I link my card in the app.",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 3,
+   "text": "I sent a payment, but the person I sent it to says they don't have it",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 21,
+   "text": "What are the requirements to verify my identity?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 917,
+   "text": "If I top up by transfer, am I going to be charged?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 936,
+   "text": "I want to auto top-up.",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1361,
+   "text": "Now that I have my card, how do I connect it to the app?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 676,
+   "text": "My card has gone missing.",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 250,
+   "text": "I don't see a refund in my account.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 705,
+   "text": "I cannot make a transfer to another account.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 207,
+   "text": "I moved to a new city and need to change my address",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 419,
+   "text": "Can I use my card no matter where I go?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1736,
+   "text": "I made a purchase and was charged at the wrong foreign exchange rate.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 1198,
+   "text": "Where can my card be used?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1200,
+   "text": "What will I need to verify my identity",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 331,
+   "text": "What is the process to change my PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1721,
+   "text": "How is top-up verified?",
+   "label": "verify_top_up"
+  },
+  {
+   "subset_pos": 782,
+   "text": "can you tell me where to find the top-up verification code?",
+   "label": "verify_top_up"
+  },
+  {
+   "subset_pos": 681,
+   "text": "Can you tell me what I need to do to have my pin changed?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1231,
+   "text": "I've been trying to make a transfer and it doesn't seem to be working. (5 times) What is wrong with your system?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1595,
+   "text": "I've obtained the card, how do I enable it on the app?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 1785,
+   "text": "My card is about to expire.  How do I order another?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 644,
+   "text": "Can I use my card anywhere?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1613,
+   "text": "For the identity verification, what do you need?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 42,
+   "text": "The ATM took my card.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 951,
+   "text": "What is happening?  I have tried to transfer money 5x already.  Is the system down?  This shouldnt be happening as this is a basic transfer.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 719,
+   "text": "Will you charge me if I top up by card?",
+   "label": "top_up_by_card_charge"
+  },
+  {
+   "subset_pos": 1837,
+   "text": "Is my top up not working?",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 816,
+   "text": "I transferred money and it didn't get there.",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 173,
+   "text": "I made a purchase but the exchange rate is wrong?",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 1018,
+   "text": "I would like a physical card",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 573,
+   "text": "Hi there, I've tried to make a transfer 5 different times and its not working. Is your system down or something?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1066,
+   "text": "I paid with my card so so why was I charged a transaction fee?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1825,
+   "text": "My refund has not shown up in my account.   Where is it?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 667,
+   "text": "My card is expiring soon, How do I order a new card?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 1199,
+   "text": "How old does my daughter have to be to open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 1306,
+   "text": "I have received my statement but I do not see my refund, why is that?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 310,
+   "text": "Can you tell me why my transfer is pending still?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 566,
+   "text": "Could you please help me figure out why the seller has not received their money after I sent it.",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 585,
+   "text": "Can I get a physical card for free, or is there a charge?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 907,
+   "text": "I left my card at a restaurant and now its missing.",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 652,
+   "text": "Is there a top up fee for transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 1909,
+   "text": "My money transfer has not happened yet",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1699,
+   "text": "is there a way to do automatic top up",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 965,
+   "text": "I purchased something and the seller hasn't received the money yet, but it has been deducted from my account.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 718,
+   "text": "Can I auto-top up?  How do I do it?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1599,
+   "text": "Is there restrictions on where I can use my card?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1330,
+   "text": "My account did not allow the transfer.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1195,
+   "text": "My card is stuck inside the ATM.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1985,
+   "text": "I don't understand why you aren't accepting my transfer. After a couple times trying I'm still getting an error message.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1513,
+   "text": "Why is my transfer still pending after all this time?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 957,
+   "text": "How do I add a new card?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 1493,
+   "text": "A payment on my statement is wrong.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 537,
+   "text": "Is it possible to do auto top up?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 292,
+   "text": "Tell me why my topup wouldn't go through?",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 786,
+   "text": "i have a pending top-up",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 1581,
+   "text": "Why can't the person I sent the money transfer to see it?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 980,
+   "text": "Where can i find my top-up verification code?",
+   "label": "verify_top_up"
+  },
+  {
+   "subset_pos": 433,
+   "text": "I bought an item and the exchange rate was wrong.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 1448,
+   "text": "Hi, I tried topping up for the first time today (I'm a new customer), and the transaction has shown as pending for the last half an hour. Can you fix it?",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 1634,
+   "text": "Is a physical charge extra",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1794,
+   "text": "I purchased an item and the exchange rate was wrong",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 777,
+   "text": "When I bought something abroad, the exchange rate was wrong.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 395,
+   "text": "Is there a reason why a recipient might not see my money transaction",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 197,
+   "text": "Why did my top-up not work?",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 332,
+   "text": "How do I replace a card that's going to expire?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 1261,
+   "text": "How do I change the PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 670,
+   "text": "My atm withdraw is stillpending",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1427,
+   "text": "Can you please sort out your top up? I need this to go through asap because I really need the money. It's already been pending for an hour.",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 1509,
+   "text": "Please help me.  My card is missing.",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 1107,
+   "text": "Explain why I can't do a transfer to an account.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 288,
+   "text": "where is the code for verifying the top up card?",
+   "label": "verify_top_up"
+  },
+  {
+   "subset_pos": 1658,
+   "text": "Does it cost anything to transfer money for a top-up?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 653,
+   "text": "At what age can a person open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 269,
+   "text": "There is a refund missing.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1137,
+   "text": "I couldn't transfer to an account.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 75,
+   "text": "What do you need my identity details for?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1508,
+   "text": "I moved and would like to change my address.",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 1880,
+   "text": "What do I do if my card is about to expire?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 1931,
+   "text": "Why did the ATM take my card and keep it?",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1450,
+   "text": "I need to find the top up verification code",
+   "label": "verify_top_up"
+  },
+  {
+   "subset_pos": 1156,
+   "text": "The money disappeared when I tried to use my card to top up.",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1542,
+   "text": "My top-up didn't go through",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 1784,
+   "text": "Where do I find PIN for my card?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 1494,
+   "text": "Can I use my card wherever I want?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1215,
+   "text": "How do I find my PIN?",
+   "label": "get_physical_card"
+  },
+  {
+   "subset_pos": 474,
+   "text": "My top up says it is still pending",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 239,
+   "text": "what documentation do I need for the identity check?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1155,
+   "text": "My transaction went through but I was charged a fee. Why?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1771,
+   "text": "Why has my transfer not arrived yet?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 859,
+   "text": "I've just moved and I need to change my details",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 1123,
+   "text": "The exchange rate was incorrect for this item I bought.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 1706,
+   "text": "Why hasn't the money transfer arrived yet?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 545,
+   "text": "why didnt my account allow a transfer",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 123,
+   "text": "I made a top up yesterday but it's still pending.",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 858,
+   "text": "Is it possible to top-up automatically?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 900,
+   "text": "Is there a fee for physical cards?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 191,
+   "text": "I do not understand why there is a pending 1\u00a3 charge on my statement, I do not recall making this transaction. Can you please tell me what this is about?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 56,
+   "text": "My refund isn't showing up",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 438,
+   "text": "How can I add a new card?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 988,
+   "text": "Why is my transfer not working? I tried multiple times to transfer money, and all that happens is an error message pops up.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 106,
+   "text": "How do I find the PIN?",
+   "label": "get_physical_card"
+  },
+  {
+   "subset_pos": 1174,
+   "text": "I can't see a refund for a return I completed recently.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 773,
+   "text": "What are the requirements to open an account for a minor?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 195,
+   "text": "What fees are charged when I top up",
+   "label": "top_up_by_card_charge"
+  },
+  {
+   "subset_pos": 1075,
+   "text": "I need a new card, my old card is expiring.",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 1711,
+   "text": "I bought something in another currency, but the exchange rate was incorrect.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 157,
+   "text": "Do you have to be 18 to make an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 98,
+   "text": "I must change my address.",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 1270,
+   "text": "What is needed for my daughter to open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 788,
+   "text": "Where is my card PIN?",
+   "label": "get_physical_card"
+  },
+  {
+   "subset_pos": 290,
+   "text": "Where's my card PIN?",
+   "label": "get_physical_card"
+  },
+  {
+   "subset_pos": 679,
+   "text": "I am missing my refund.",
+   "label": "Refund_not_showing_up"
+  }
+ ]
+}

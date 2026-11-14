@@ -1,0 +1,809 @@
+{
+ "batch": 12,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 125,
+ "neighbours_by_message": {
+  "T799": [
+   393,
+   1428,
+   1373,
+   370,
+   1891
+  ],
+  "T1836": [
+   1242,
+   1119,
+   1138,
+   148,
+   1167
+  ],
+  "T199": [
+   1567,
+   112,
+   1009,
+   1923,
+   1410
+  ],
+  "T1583": [
+   677,
+   1479,
+   240,
+   725,
+   1383
+  ],
+  "T1182": [
+   305,
+   75,
+   1001,
+   1035,
+   808
+  ],
+  "T1541": [
+   1062,
+   23,
+   1686,
+   787,
+   949
+  ],
+  "T1464": [
+   119,
+   994,
+   1046,
+   1915,
+   879
+  ],
+  "T388": [
+   102,
+   1491,
+   369,
+   1991,
+   1879
+  ],
+  "T2529": [
+   129,
+   214,
+   828,
+   1922,
+   1300
+  ],
+  "T1991": [
+   1863,
+   455,
+   226,
+   1849,
+   265
+  ],
+  "T1865": [
+   310,
+   1835,
+   1513,
+   1926,
+   1037
+  ],
+  "T2580": [
+   940,
+   1566,
+   778,
+   1710,
+   29
+  ],
+  "T81": [
+   14,
+   147,
+   193,
+   37,
+   1760
+  ],
+  "T2271": [
+   1451,
+   1165,
+   1469,
+   1486,
+   152
+  ],
+  "T2401": [
+   1018,
+   51,
+   1224,
+   874,
+   1293
+  ],
+  "T518": [
+   653,
+   157,
+   1199,
+   1256,
+   773
+  ],
+  "T2646": [
+   697,
+   165,
+   742,
+   862,
+   1837
+  ],
+  "T1898": [
+   1315,
+   703,
+   317,
+   529,
+   904
+  ],
+  "T2133": [
+   440,
+   502,
+   641,
+   221,
+   804
+  ],
+  "T1946": [
+   62,
+   1787,
+   1276,
+   122,
+   1446
+  ],
+  "T180": [
+   1839,
+   1350,
+   1999,
+   906,
+   2
+  ],
+  "T2191": [
+   698,
+   1107,
+   1483,
+   646,
+   720
+  ],
+  "T1862": [
+   483,
+   48,
+   53,
+   982,
+   1002
+  ],
+  "T1780": [
+   1306,
+   56,
+   1698,
+   1440,
+   250
+  ],
+  "T329": [
+   399,
+   430,
+   543,
+   835,
+   1866
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 430,
+   "text": "I will be traveling and want money to be added automatically in certain intervals. Is this possible?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 240,
+   "text": "How come I can't get money at the ATM",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1062,
+   "text": "Where can I get a new passcode?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 904,
+   "text": "I would like to invalidate my account.  I am very disappointed with your services.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 29,
+   "text": "When I got cash, the exchange rate applied was wrong.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1491,
+   "text": "My card don't work.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1835,
+   "text": "Why is there a pending time on my transfer?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1787,
+   "text": "The ATM won't give me my card back. I need it back now!",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 147,
+   "text": "I want to know your exchange rates.",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1999,
+   "text": "Could you inform me as to why I have been charged a higher fee for doing banking abroad.",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 2,
+   "text": "Can you tell me about the exchange fee?",
+   "label": "exchange_charge"
+  },
+  {
+   "subset_pos": 742,
+   "text": "Has my top-up gone through?",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 1566,
+   "text": "I tried using a foreign currency at an ATM, but the ATM provided me an incorrect rate. Why is that?",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1315,
+   "text": "your company is awful, i would like to delete my account please",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 677,
+   "text": "Can you tell me why I was declined from getting cash?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1276,
+   "text": "The ATM did not give me my card back?",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1479,
+   "text": "Why am I unable to withdrawal cash?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 808,
+   "text": "I don't understand why you want so much of my personal info.",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 14,
+   "text": "Can you tell me your exchange rates?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 874,
+   "text": "I would like some more physical cards, what is my limit?",
+   "label": "getting_spare_card"
+  },
+  {
+   "subset_pos": 399,
+   "text": "I'm going to travel, can I have it add money automatically in certain intervals?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1199,
+   "text": "How old does my daughter have to be to open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 879,
+   "text": "Are there any ATM's near me that accept this card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 703,
+   "text": "I am not happy with your company. Please delete my account asap.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 122,
+   "text": "How do I get my card back after the ATM swallowed it.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 949,
+   "text": "Where do I go to reset my passcode?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 773,
+   "text": "What are the requirements to open an account for a minor?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 1922,
+   "text": "I want a disposable virtual card, how do I do that?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1698,
+   "text": "Where is the refund on my statement?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 214,
+   "text": "I cannot get my disposable virtual card to work",
+   "label": "virtual_card_not_working"
+  },
+  {
+   "subset_pos": 646,
+   "text": "I would like to know how to transfer money into my account.",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 165,
+   "text": "Can you explain to me the way to verify my top up has gone through?",
+   "label": "verify_top_up"
+  },
+  {
+   "subset_pos": 641,
+   "text": "I must change my PIN as soon as possible.",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 23,
+   "text": "How do I get the passcode reset?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 1138,
+   "text": "Why won't you accept my payment? I keep trying with this card and it's not working.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1119,
+   "text": "Why was my payment declined? I keep trying my card but it's not working.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1891,
+   "text": "I was charged an extra fee for a card payment. I was unaware of these fees beforehand.",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1849,
+   "text": "There are two of the same charges on my account.",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 75,
+   "text": "What do you need my identity details for?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 994,
+   "text": "Can you tell me the ATMs I can use with my card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 370,
+   "text": "Why was there an extra charge because I used my card to pay?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1866,
+   "text": "Can I set it up to add money every few days automatically while I am traveling?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1760,
+   "text": "Please explain your exchange rate policy.",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 483,
+   "text": "Why is my payment still pending?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 1224,
+   "text": "Can I have a spare card for this account please?",
+   "label": "getting_spare_card"
+  },
+  {
+   "subset_pos": 1306,
+   "text": "I have received my statement but I do not see my refund, why is that?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 193,
+   "text": "What currencies do you offer?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 369,
+   "text": "How do I get my card to work?",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 393,
+   "text": "Why was I charged an extra fee when paying with card?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 835,
+   "text": "When I'm traveling is it possible to add money automatically at certain time points?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 440,
+   "text": "How can I set a new pin.",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1300,
+   "text": "How do I create a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 828,
+   "text": "I can't use my virtual disposable card",
+   "label": "virtual_card_not_working"
+  },
+  {
+   "subset_pos": 720,
+   "text": "I need money put into this account from another one.",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 653,
+   "text": "At what age can a person open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 1513,
+   "text": "Why is my transfer still pending after all this time?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1350,
+   "text": "what was the $1 fee i got",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1440,
+   "text": "How can I check if I have received a refund if it is not yet on my statement?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1926,
+   "text": "My transfer is still pending",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1107,
+   "text": "Explain why I can't do a transfer to an account.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 310,
+   "text": "Can you tell me why my transfer is pending still?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 982,
+   "text": "It says pending status for my payment. Why?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 1256,
+   "text": "How many years old do I have to be?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 862,
+   "text": "Has my top up gone through?",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 529,
+   "text": "I am very dissatisfied with the services that you are providing.  I want to cancel my account.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 1486,
+   "text": "Can I receive payment in another currency?",
+   "label": "receiving_money"
+  },
+  {
+   "subset_pos": 906,
+   "text": "I'm going on holiday to France for 6 weeks with my family and the cat, Fluffy.  I just purchased \u20ac10,000 from a currency exchange to ensure we don't run short but there appears to be a fee.  What is this for?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 250,
+   "text": "I don't see a refund in my account.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1410,
+   "text": "What is the extra fee that showed up on my card?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1879,
+   "text": "Can you tell me whats going on with my card it seems to be not working?",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1863,
+   "text": "There is a duplicate charge on my account.",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 698,
+   "text": "I want to transfer money from another account into this one.",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 226,
+   "text": "I got charged two times for a transaction",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 1165,
+   "text": "I was wondering, Can I get my pay in another currency?",
+   "label": "receiving_money"
+  },
+  {
+   "subset_pos": 1373,
+   "text": "Why, when paying with the card, was I charged an extra fee?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 119,
+   "text": "I can use this card at which ATMs?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 221,
+   "text": "I really need to know how to change my pin.",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1293,
+   "text": "I would like an extra card.",
+   "label": "getting_spare_card"
+  },
+  {
+   "subset_pos": 502,
+   "text": "I want to create a new pin.",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1383,
+   "text": "Why didn't I receive the right amount of cash at the ATM?",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1469,
+   "text": "Can I use a different currency with my salary?",
+   "label": "receiving_money"
+  },
+  {
+   "subset_pos": 1002,
+   "text": "What does it mean if my payment is pending?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 152,
+   "text": "Can I transfer money using a different currency?",
+   "label": "receiving_money"
+  },
+  {
+   "subset_pos": 1686,
+   "text": "How do I reset my passcode?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 455,
+   "text": "I have a duplicate charge",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 148,
+   "text": "My card payment is being declined and I've tried several times.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1018,
+   "text": "I would like a physical card",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 48,
+   "text": "I made a payment but it's still pending",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 1451,
+   "text": "May I get my salary paid out in a different currency?",
+   "label": "receiving_money"
+  },
+  {
+   "subset_pos": 1915,
+   "text": "What kind of ATMs would this card be accepted at?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 1991,
+   "text": "Something's wrong my card won't work.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1428,
+   "text": "How come I was charged an extra fee when paying with the card?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1037,
+   "text": "why have I got a pending transfer? I'm confused!!",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1483,
+   "text": "please help my transfer go through",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1839,
+   "text": "I checked my statement and am being charged one pound. Where did this charge come from?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1446,
+   "text": "I can't get my card out of the ATM, what should I do now?",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1167,
+   "text": "Do you know the reason why my card payment was declined?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 305,
+   "text": "Why do you guys need to verify my identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 129,
+   "text": "Why isn't my disposable virtual card working?",
+   "label": "virtual_card_not_working"
+  },
+  {
+   "subset_pos": 1035,
+   "text": "What's the reason for needing to verify my identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1837,
+   "text": "Is my top up not working?",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 787,
+   "text": "Is there a way to reset the passcode?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 1009,
+   "text": "Why is there an additional fee showing on the statement I received?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1710,
+   "text": "When I received my cash, the exchange rate was wrong.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 317,
+   "text": "I am upset with your service.  Please delete my account.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 56,
+   "text": "My refund isn't showing up",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 778,
+   "text": "the exchange rate I got for cash was wrong",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 804,
+   "text": "I want to choose a new PIN.",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 102,
+   "text": "My card is not working.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 37,
+   "text": "Do you know what your exchange rates are?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 265,
+   "text": "My transaction history is looking a little off. I have been charged twice for multiple different purchases, and would like to have those duplicate charges refunded.",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 940,
+   "text": "Foreign currency rates were put in wrong at an ATM i used.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 53,
+   "text": "How is my card payment still pending?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 1046,
+   "text": "Where are the ATMs that accept this card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 697,
+   "text": "How do I know if my top up worked?",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 112,
+   "text": "My statement shows an extra fee - what is it?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1001,
+   "text": "Why do you need me to verify who I am?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1567,
+   "text": "How come there is an extra fee on my statement?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 62,
+   "text": "I didn't get my card back from the ATM.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 51,
+   "text": "Is it possible to get a physical card?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1242,
+   "text": "Why do you keep declining my payment? I tried several times already with this card and it is just not working.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 725,
+   "text": "I can't get the ATM to give me any cash",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 157,
+   "text": "Do you have to be 18 to make an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 1923,
+   "text": "There seems to be an additional charge of \u00a31 on my statement, what is the reason for this?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 543,
+   "text": "When I travel, can it automatically add money in certain intervals?",
+   "label": "automatic_top_up"
+  }
+ ]
+}
