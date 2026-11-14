@@ -14,6 +14,7 @@ import subprocess
 from datetime import datetime
 
 from baseline_claude_code import LABEL, metrics, wilson
+from summarise_review import review_caveat
 from t1_common import load_data
 
 R = "results"
@@ -570,7 +571,7 @@ done""", "bash"))
         ("The full-training-set budget (9,993 labels) was run with one seed only, so it shows no run-to-run spread."
          if n_full == 1 else "At 9,993 labels all seeds use the same training set, so their spread reflects only "
          "initialisation and data order."),
-    ]:
+    ] + [c for c in [review_caveat()] if c]:
         w(f"- {c}")
     w("")
     w("## 8. Open work")

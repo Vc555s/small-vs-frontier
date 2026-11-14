@@ -1,6 +1,6 @@
 # T1 report: support-ticket routing (Banking77) — fine-tuned Qwen3-4B vs Claude via Claude Code CLI
 
-Generated 2026-11-14 17:20 (server time) by `make_t1_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
+Generated 2026-11-15 00:48 (server time) by `make_t1_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
 
 Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-head on the 500 sample · 6 Procedure and issues · 7 Caveats · 8 Open work · Appendices A–E
 
@@ -419,6 +419,7 @@ Budget 9,993 (the whole training set, checked to contain every training example 
 - Budget 0 was run once (greedy decoding is deterministic, so other seeds would match).
 - Exact-text overlap between the test and training splits is 0; after lowercasing and trimming whitespace, 6 test messages also occur in training (1 of them in the 500 sample). The same overlap exists in the original Banking77 splits. Accuracies with these messages removed are in `results/t1_baselines.md`, section 6.
 - At 9,993 labels all seeds use the same training set, so their spread reflects only initialisation and data order.
+- Of the 22 messages both systems got wrong, a manual review judged 7 to have a wrong gold label and 14 to be ambiguous.
 
 ## 8. Open work
 
