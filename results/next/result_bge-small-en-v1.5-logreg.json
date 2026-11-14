@@ -1,0 +1,122 @@
+[
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 100,
+  "seed": 0,
+  "accuracy": 0.2617,
+  "valid_label_rate": 1.0,
+  "train_seconds": 0.9,
+  "n_iter": 6,
+  "test_n": 3076
+ },
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 100,
+  "seed": 1,
+  "accuracy": 0.2441,
+  "valid_label_rate": 1.0,
+  "train_seconds": 0.8,
+  "n_iter": 6,
+  "test_n": 3076
+ },
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 100,
+  "seed": 2,
+  "accuracy": 0.2516,
+  "valid_label_rate": 1.0,
+  "train_seconds": 1.2,
+  "n_iter": 6,
+  "test_n": 3076
+ },
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 500,
+  "seed": 0,
+  "accuracy": 0.7559,
+  "valid_label_rate": 1.0,
+  "train_seconds": 3.3,
+  "n_iter": 9,
+  "test_n": 3076
+ },
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 500,
+  "seed": 1,
+  "accuracy": 0.7211,
+  "valid_label_rate": 1.0,
+  "train_seconds": 3.0,
+  "n_iter": 9,
+  "test_n": 3076
+ },
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 500,
+  "seed": 2,
+  "accuracy": 0.7165,
+  "valid_label_rate": 1.0,
+  "train_seconds": 2.7,
+  "n_iter": 9,
+  "test_n": 3076
+ },
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 2000,
+  "seed": 0,
+  "accuracy": 0.8791,
+  "valid_label_rate": 1.0,
+  "train_seconds": 5.7,
+  "n_iter": 13,
+  "test_n": 3076
+ },
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 2000,
+  "seed": 1,
+  "accuracy": 0.8781,
+  "valid_label_rate": 1.0,
+  "train_seconds": 5.9,
+  "n_iter": 14,
+  "test_n": 3076
+ },
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 2000,
+  "seed": 2,
+  "accuracy": 0.881,
+  "valid_label_rate": 1.0,
+  "train_seconds": 6.2,
+  "n_iter": 13,
+  "test_n": 3076
+ },
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 9993,
+  "seed": 0,
+  "accuracy": 0.906,
+  "valid_label_rate": 1.0,
+  "train_seconds": 14.9,
+  "n_iter": 35,
+  "test_n": 3076
+ },
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 9993,
+  "seed": 1,
+  "accuracy": 0.9054,
+  "valid_label_rate": 1.0,
+  "train_seconds": 15.8,
+  "n_iter": 37,
+  "test_n": 3076
+ },
+ {
+  "model": "bge-small-en-v1.5-logreg",
+  "budget": 9993,
+  "seed": 2,
+  "accuracy": 0.9057,
+  "valid_label_rate": 1.0,
+  "train_seconds": 15.6,
+  "n_iter": 36,
+  "test_n": 3076
+ }
+]

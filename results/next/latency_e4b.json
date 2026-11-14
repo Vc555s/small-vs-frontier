@@ -1,0 +1,27 @@
+{
+ "model": "ModernBERT-base-ft (2,000 labels, seed 0), fp16 inference",
+ "device": "Quadro RTX 6000",
+ "shared_gpu": true,
+ "shared_gpu_note": "The card was shared with other users' jobs; these are not best-case numbers.",
+ "gpu_state_before": {
+  "other_processes": 3,
+  "other_processes_memory_mib": 10724,
+  "gpu_utilization_percent": 0.0,
+  "gpu_memory_used_mib": 14383,
+  "gpu_memory_total_mib": 24576
+ },
+ "batch1_latency_ms": {
+  "n": 200,
+  "p50": 15.89,
+  "p95": 16.26,
+  "p99": 16.48,
+  "mean": 15.93
+ },
+ "batch1_timing_scope": "tokenise + forward + argmax, torch.cuda.synchronize() around the region",
+ "throughput": {
+  "16": {
+   "messages_per_second": 618.1
+  }
+ },
+ "peak_memory_gb": 0.783
+}
