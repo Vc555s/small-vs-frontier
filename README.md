@@ -8,27 +8,27 @@ This repository holds the code, frozen inputs, every prediction from every syste
 
 ## Key findings
 
-- **With all 9,993 labelled examples,** fine-tuned Qwen3-4B reached **94.3%** (± 0.5 over 3 runs). That ties Claude Opus 5.5 given the five most similar labelled examples per message (**94.2%**), and is significantly better than Claude Opus 5.5 without examples (89.2%) in every run, after Holm correction across 40 comparisons.
+- **With all 9,993 labelled examples,** fine-tuned Qwen3-4B reached **94.3%** (± 0.5 over 3 runs), closely matching Claude Opus 5.5 given the five most similar labelled examples per message (**94.2%**; the difference is not significant, and no formal equivalence test was run). It is significantly better than Claude Opus 5.5 without examples (89.2%) in every run, after Holm correction across 40 comparisons.
 - **At equal data (2,000 labels),** Claude with retrieved examples beat the fine-tuned model in all three runs (94.2% vs 90.5%; significant before correction). The small model needed about five times as much labelled data to catch up.
-- **The fine-tuned LLM learns from far fewer labels than classic classifiers:** 76% with 100 labels, against 17–24% for a fine-tuned ModernBERT and an embedding classifier. It stays ahead of both with the full data.
+- **The fine-tuned LLM learns from far fewer labels than classic classifiers:** 76% with 100 labels, against 17–24% for a fine-tuned ModernBERT and an embedding classifier. It stays ahead of both with the full data: 94.7% against 93.3% (ModernBERT) and 90.6% (embeddings) on the full test set, significant in every run.
 - **Most remaining errors come from the dataset.** Of the 22 messages both top systems got wrong, a manual review judged 7 to have a wrong gold label, 14 to be ambiguous and 1 to be a genuine error by both.
-- **The advantage of the small model is cost and control:** about €0.002–0.012 per 1,000 requests on a dedicated GPU, against an estimated $1.91 for Claude with examples. Running it yourself pays off above roughly 40–260 requests per hour, and no message leaves your hardware.
+- **The advantage of the small model is cost and control:** about €0.002–0.012 per 1,000 requests in inference compute on a dedicated GPU, against a list-price estimate of $1.91 for Claude with examples. Running it yourself pays off above roughly 40–260 requests per hour, and inference data stays on your own infrastructure. These are inference costs only, not total cost of ownership.
 
 ## Results
 
-All systems are scored on the same 500 test messages with exact-match scoring.
+All systems are scored on the same 500 test messages, drawn once at random with a fixed seed (all 77 intents present), with exact-match scoring. Systems trained here are also scored on the full 3,076-message test set; Claude was run on the 500 only.
 
-| System | Labelled examples | Accuracy | Latency (p50, batch 1) | Cost per 1,000 requests |
-|---|---|---|---|---|
-| Qwen3-4B + LoRA | 9,993 | **94.3%** ± 0.5 | 258 ms | €0.002–0.012 |
-| Claude Opus 5.5, 5 retrieved examples per message | 2,000 (pool) | **94.2%** | n/a | ≈ $1.91 (CLI estimate) |
-| ModernBERT-base, fine-tuned | 9,993 | 91.3% ± 0.4 | 16 ms | < €0.001 |
-| Qwen3-4B + LoRA | 2,000 | 90.5% ± 1.2 | 258 ms | €0.002–0.012 |
-| bge-small embeddings + logistic regression | 9,993 | 89.6% | 7 ms | < €0.001 |
-| Claude Opus 5.5, no examples | 0 | 89.2% | n/a | ≈ $0.94 (CLI estimate) |
-| Claude Opus 5.5, one example per intent | 77 | 88.8% | n/a | ≈ $0.66 (CLI estimate) |
+| System | Labelled examples | Accuracy (500) | Accuracy (full test) | Latency (p50, batch 1) | Cost per 1,000 requests |
+|---|---|---|---|---|---|
+| Qwen3-4B + LoRA | 9,993 | **94.3%** ± 0.5 | 94.7% ± 0.3 | 258 ms | €0.002–0.012 |
+| Claude Opus 5.5, 5 retrieved examples per message | 2,000 (pool) | **94.2%** | not run | n/a | ≈ $1.91 (CLI estimate) |
+| ModernBERT-base, fine-tuned | 9,993 | 91.3% ± 0.4 | 93.3% ± 0.1 | 16 ms | < €0.001 |
+| Qwen3-4B + LoRA | 2,000 | 90.5% ± 1.2 | 91.3% ± 0.2 | 258 ms | €0.002–0.012 |
+| bge-small embeddings + logistic regression | 9,993 | 89.6% | 90.6% | 7 ms | < €0.001 |
+| Claude Opus 5.5, no examples | 0 | 89.2% | not run | n/a | ≈ $0.94 (CLI estimate) |
+| Claude Opus 5.5, one example per intent | 77 | 88.8% | not run | n/a | ≈ $0.66 (CLI estimate) |
 
-± is the standard deviation over three training runs. GPU costs assume electricity only (€0.30/kWh) or a rented GPU at €0.25–0.50 per hour; Claude costs are the CLI's own list-price estimates, not bills. Claude Haiku 5.5 was also tested but often returned the wrong number of labels for a batch of 25 messages, so its scores reflect the batch format rather than the model; see the baselines report.
+± is the standard deviation over three training runs; each Claude configuration was run once, through the Claude Code CLI with 25 messages per call. GPU costs assume electricity only (€0.30/kWh) or a rented GPU at €0.25–0.50 per hour; Claude costs are the CLI's own list-price estimates, not bills. Claude Haiku 5.5 was also tested but often returned the wrong number of labels for a batch of 25 messages, so its scores reflect the batch format rather than the model; see the baselines report.
 
 <p align="center"><img src="figures/label_efficiency.png" width="520" alt="Accuracy against the number of labelled training examples"></p>
 
@@ -58,7 +58,8 @@ Every number in the reports is computed by a script from the files in `results/`
 
 - The same 500 test messages for every system, drawn once with a fixed seed. Messages were sent to Claude in a shuffled order, because the test file is sorted by label and in-order batches leak that.
 - Exact-match scoring; no model judges another model.
-- Seeds, prompts, example selection and training settings fixed in advance; every deviation is listed in the reports.
+- Seeds, prompts, example selection and training settings fixed in advance. One change was made after a result was seen (the order in which Claude received messages); it and every other deviation are listed in the reports.
+- Retrieved examples: the 5 nearest training examples per message by `bge-small-en-v1.5` cosine similarity; with 25 messages per call, each prompt holds the union of up to 125.
 - Examples shown to Claude come from the same 2,000 labelled messages the small model trained on.
 - Paired exact McNemar tests, Wilson intervals, bootstrap intervals for differences, and Holm correction.
 - Every prediction is published.
@@ -69,7 +70,9 @@ Every number in the reports is computed by a script from the files in `results/`
 - One frontier model family, called through a command-line tool with 25 messages per call, a single run and no temperature control. This is not an API benchmark.
 - The best systems are close to the dataset's ceiling, so small differences between them mean little.
 - Banking77 has been public since 2020 and may appear in any compared model's training data.
-- The full-data model was not trained to reject out-of-scope messages. A single model doing both is untested.
+- Closed-set classification: the full-data model always picks one of the 77 intents and was not trained to reject out-of-scope messages. A production router also needs abstention, calibration, drift monitoring and human review.
+- Claude saw the other messages in each 25-message call; the small model saw one message at a time.
+- The label review covers only the 22 messages both the full-data model (seed 0) and zero-shot Claude got wrong, by a single reviewer.
 
 ## Reproduce
 
