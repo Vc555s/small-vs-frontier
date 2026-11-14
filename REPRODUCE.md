@@ -22,9 +22,19 @@ for s in 0 1 2; do
 done
 # full training set (9,993 labels), seed 0
 CUDA_VISIBLE_DEVICES=0 python full_data.py && python full_data.py --collect
+# full training set, seeds 1 and 2 (outputs go to results/next/; --log extracts the training loss)
+mkdir -p results/next/logs
+for s in 1 2; do
+  CUDA_VISIBLE_DEVICES=0 python full_data.py --seed $s --out results/next/full_data_s$s --dest results/next \
+    2>&1 | tee results/next/logs/e1_s$s.log
+  python full_data.py --collect --seed $s --out results/next/full_data_s$s --dest results/next \
+    --log results/next/logs/e1_s$s.log
+done
 ```
 
-About 1 hour per seed for budgets 0–2,000 (the 2,000-label run takes about 32 minutes to train), and about 3 hours for the full training set. Evaluating on the full 3,076-message test set takes about 6 minutes per run.
+About 1 hour per seed for budgets 0–2,000 (the 2,000-label run takes about 32 minutes to train), and about 3 hours per seed for the full training set. Evaluating on the full 3,076-message test set takes about 6 minutes per run.
+
+All three full-training-set seeds (0, 1 and 2) are reported: the reports give their mean ± standard deviation, and the published full-data adapter is seed 0, fixed before any result was seen. The seed 1 and 2 runs are the same as the `e1_s1` and `e1_s2` stages of `run_next.sh` (section 6), which runs them for you.
 
 ## 3. T1: Claude baseline
 
