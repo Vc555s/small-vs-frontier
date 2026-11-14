@@ -15,6 +15,7 @@ import random
 import statistics as st
 from collections import Counter
 
+from summarise_review import review_caveat
 from t1_common import load_data, system_prompt
 
 TAG = "Qwen3-4B-Instruct-2507"
@@ -552,7 +553,7 @@ def main():
         "Example prompts are longer, so they cost more per request; the cost column uses the CLI's own estimate.",
         "Latency was measured on a shared GPU with other users' jobs running; the numbers are not best-case.",
         "At 9,993 labels the three seeds share the same training set.",
-    ]:
+    ] + [c for c in [review_caveat()] if c]:
         w(f"- {c}")
     w("")
     with open(a.out, "w") as f:
