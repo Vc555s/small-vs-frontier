@@ -216,7 +216,7 @@ Lowest per-intent accuracy (500 sample; few messages per intent): declined_trans
 | Claude E2a | Qwen 9,993 s0 | 22 | 34 | 9 |
 | Qwen 2,000 s0 | Qwen 9,993 s0 | 24 | 21 | 7 |
 
-`results/next/joint_errors_for_review.csv` lists the 22 messages that both Qwen 9,993 (seed 0) and Claude zero-shot got wrong, with an empty `judgement` column (`label_wrong`, `ambiguous`, `models_wrong`) for manual review.
+`results/next/joint_errors_for_review.csv` lists the 22 messages that both Qwen 9,993 (seed 0) and Claude zero-shot got wrong, with a `judgement` column (`label_wrong`, `ambiguous`, `models_wrong`) for manual review. `label_a` and `label_b` hold the two predictions in random order (`random.Random(31)`); `proposed_judgement` and `reason` are proposals made from the message, the gold label and the 77 intent names. `summarise_review.py` counts the judgements once every cell is filled in.
 
 ## 6. Test messages that also appear in training
 

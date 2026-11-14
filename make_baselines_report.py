@@ -389,14 +389,23 @@ def main():
         w("")
     if "qwen_n9993_s0" in complete:
         both = [i for i in idx if runs["qwen_n9993_s0"]["preds"][i] != gold[i] and runs[ref]["preds"][i] != gold[i]]
-        with open(f"{N}/joint_errors_for_review.csv", "w", newline="") as f:
-            cw = csv.writer(f)
-            cw.writerow(["test_idx", "text", "gold", "qwen_9993_s0_pred", "claude_zeroshot_pred", "judgement"])
-            for i in both:
-                cw.writerow([i, test[i][0], gold[i], runs["qwen_n9993_s0"]["preds"][i], runs[ref]["preds"][i], ""])
+        review = f"{N}/joint_errors_for_review.csv"
+        if os.path.exists(review):
+            # written once, then edited by hand (judgements, blinded labels, proposals): never overwrite it
+            with open(review, newline="") as f:
+                have = [int(r["test_idx"]) for r in csv.DictReader(f)]
+            assert have == both, f"{review} no longer matches the joint errors; remove it to rebuild"
+        else:
+            with open(review, "w", newline="") as f:
+                cw = csv.writer(f)
+                cw.writerow(["test_idx", "text", "gold", "qwen_9993_s0_pred", "claude_zeroshot_pred", "judgement"])
+                for i in both:
+                    cw.writerow([i, test[i][0], gold[i], runs["qwen_n9993_s0"]["preds"][i], runs[ref]["preds"][i], ""])
         w(f"`results/next/joint_errors_for_review.csv` lists the {len(both)} messages that both Qwen 9,993 (seed 0) "
-          "and Claude zero-shot got wrong, with an empty `judgement` column (`label_wrong`, `ambiguous`, "
-          "`models_wrong`) for manual review.")
+          "and Claude zero-shot got wrong, with a `judgement` column (`label_wrong`, `ambiguous`, "
+          "`models_wrong`) for manual review. `label_a` and `label_b` hold the two predictions in random order "
+          "(`random.Random(31)`); `proposed_judgement` and `reason` are proposals made from the message, the gold "
+          "label and the 77 intent names. `summarise_review.py` counts the judgements once every cell is filled in.")
         w("")
 
     # overlap between test and training messages
