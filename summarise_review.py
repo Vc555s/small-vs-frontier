@@ -48,7 +48,8 @@ def review_caveat(path=PATH):
         return None
     both = counts["Both"]
     return (f"Of the {sum(both.values())} messages both systems got wrong, a manual review judged "
-            f"{both['label_wrong']} to have a wrong gold label and {both['ambiguous']} to be ambiguous.")
+            f"{both['label_wrong']} to have a wrong gold label, {both['ambiguous']} to be ambiguous and "
+            f"{both['models_wrong']} to be a genuine error by both systems.")
 
 
 def main():
