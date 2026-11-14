@@ -218,7 +218,33 @@ Lowest per-intent accuracy (500 sample; few messages per intent): declined_trans
 
 `results/next/joint_errors_for_review.csv` lists the 22 messages that both Qwen 9,993 (seed 0) and Claude zero-shot got wrong, with an empty `judgement` column (`label_wrong`, `ambiguous`, `models_wrong`) for manual review.
 
-## 6. Prompts and example selection
+## 6. Test messages that also appear in training
+
+Exact-text overlap between the test and training splits is 0. After lowercasing and trimming surrounding whitespace, 6 test messages also occur in the training split (1 of them in the 500-message sample). The same overlap exists in the original `PolyAI/banking77` splits; it is not introduced by the `mteb/banking77` copy.
+
+| Test idx | Label | In 500 sample | Message |
+|---|---|---|---|
+| 553 | pin_blocked | yes | How do I unblock my PIN? |
+| 974 | card_acceptance | no | What businesses accept this card? |
+| 975 | card_acceptance | no | Where can I use my card? |
+| 1430 | compromised_card | no | There are a few transaction that I don't recognize, I think someone managed to get my card details and use it. |
+| 1471 | atm_support | no | At which ATMs can I use this card? |
+| 2145 | change_pin | no | Which cash machines will allow me to change my PIN? |
+
+Accuracy with and without these messages (the main tables above are unchanged):
+
+| System | Runs | 500 sample, all (n=500) | 500 sample, without overlap | Full test, all (n=3,076) | Full test, without overlap |
+|---|---|---|---|---|---|
+| Claude Opus 5.5, zero-shot | 1 | 0.892 | 0.892 (n=499) | n/a | n/a |
+| Claude Opus 5.5, retrieved examples (E2b) | 1 | 0.942 | 0.942 (n=499) | n/a | n/a |
+| Qwen3-4B + LoRA, 2,000 labels | 3 | 0.905 ± 0.012 | 0.905 ± 0.012 (n=499) | 0.913 ± 0.002 | 0.913 ± 0.002 (n=3,070) |
+| Qwen3-4B + LoRA, 9,993 labels | 3 | 0.943 ± 0.005 | 0.943 ± 0.005 (n=499) | 0.947 ± 0.003 | 0.947 ± 0.003 (n=3,070) |
+| ModernBERT-base fine-tuned (E4b), 9,993 labels | 3 | 0.913 ± 0.004 | 0.913 ± 0.004 (n=499) | 0.933 ± 0.001 | 0.933 ± 0.001 (n=3,070) |
+| bge-small + logistic regression (E4a), 9,993 labels | 3 | 0.896 ± 0.000 | 0.896 ± 0.000 (n=499) | 0.906 ± 0.000 | 0.906 ± 0.000 (n=3,070) |
+
+Claude was run on the 500 sample only, so it has no full-test figures.
+
+## 7. Prompts and example selection
 
 All Claude runs use the T1 instructions (`system_prompt(labels)`), the T1 batch order (`results/sample500_batch_order.json`, 25 messages per call) and the T1 batch instruction. Example variants add a block headed `Examples:` with one line per example in the form `<message> => <label>`, placed between the instructions and the batch instruction.
 
@@ -394,7 +420,7 @@ You will receive 25 numbered customer messages. Return only a JSON array of exac
 
 </details>
 
-## 7. Claude calls
+## 8. Claude calls
 
 Calls used in this task: 91 of 140 (includes test-run calls kept as batch 0 and retries). Per set: E2a 20, E2b 20, E3a 28, E3b 23. CLI version 2.1.323 (Claude Code). Answering models: claude-haiku-5-5, claude-opus-5-5.
 
@@ -407,9 +433,10 @@ Calls used in this task: 91 of 140 (includes test-run calls kept as batch 0 and 
 
 A reply counts as malformed when it is not a JSON array of exactly 25 strings (for example 24 or 26 labels). A malformed batch is retried once with the identical prompt; if the retry is also malformed, its 25 messages get no answer and **count as wrong**, as fixed before the runs. Accuracy on the answered messages only, for reference: E2a 0.888 on 500; E2b 0.942 on 500; E3a 0.533 on 375; E3b 0.628 on 500.
 
-## 8. Caveats
+## 9. Caveats
 
 - Banking77 has been public since 2020, so it may appear in the training data of any of the models compared. This study cannot rule that out.
+- Exact-text overlap between the test and training splits is 0; after lowercasing and trimming whitespace it is 6 messages, and the same overlap exists in the original Banking77 splits. Section 6 gives the accuracies with these messages removed.
 - Claude saw 25 messages per call; the small models saw one at a time.
 - The Claude Code CLI adds some prompt text of its own; its temperature cannot be set; each Claude variant was run once. These are calls through one CLI on a subscription, not API baselines.
 - The zero-shot Opus run (T1) used CLI version 2.1.322 and was launched from a shell with Claude Code session environment variables set; the E2 and E3 calls used CLI version 2.1.323 from a clean environment.

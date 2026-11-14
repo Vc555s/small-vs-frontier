@@ -544,6 +544,13 @@ done""", "bash"))
              "later with every other setting identical (`full_data.py --seed`)."))
         w("")
 
+    from t1_common import normalised_overlap
+    _n_exact, _ov = normalised_overlap(train, test)
+    overlap_caveat = (f"Exact-text overlap between the test and training splits is {_n_exact}; after lowercasing and "
+                      f"trimming whitespace, {len(_ov)} test messages also occur in training "
+                      f"({sum(i in set(idx) for i, _, _ in _ov)} of them in the 500 sample). The same overlap exists in "
+                      "the original Banking77 splits. Accuracies with these messages removed are in `results/t1_baselines.md`, section 6.")
+
     # ---------------- 7. caveats
     w("## 7. Caveats (read before quoting any number)")
     w("")
@@ -559,6 +566,7 @@ done""", "bash"))
         "Some Banking77 intents overlap (for example, the test message \"I would like to reactivate my card\" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. This was observed, not measured.",
         "The 500-sample comparison has wider error bars than the full-test-set numbers; the small model's full-set numbers are more precise but have no Claude counterpart.",
         "Budget 0 was run once (greedy decoding is deterministic, so other seeds would match).",
+        overlap_caveat,
         ("The full-training-set budget (9,993 labels) was run with one seed only, so it shows no run-to-run spread."
          if n_full == 1 else "At 9,993 labels all seeds use the same training set, so their spread reflects only "
          "initialisation and data order."),

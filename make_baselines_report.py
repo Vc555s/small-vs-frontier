@@ -399,8 +399,70 @@ def main():
           "`models_wrong`) for manual review.")
         w("")
 
+    # overlap between test and training messages
+    from t1_common import load_data as _ld, normalised_overlap
+    train_all, _, _ = _ld("mteb/banking77")
+    n_exact, overlap = normalised_overlap(train_all, test)
+    ov_idx = {i for i, _, _ in overlap}
+    w("## 6. Test messages that also appear in training")
+    w("")
+    w(f"Exact-text overlap between the test and training splits is {n_exact}. After lowercasing and trimming "
+      f"surrounding whitespace, {len(overlap)} test messages also occur in the training split "
+      f"({sum(i in set(idx) for i in ov_idx)} of them in the 500-message sample). The same overlap exists in the "
+      "original `PolyAI/banking77` splits; it is not introduced by the `mteb/banking77` copy.")
+    w("")
+    w("| Test idx | Label | In 500 sample | Message |")
+    w("|---|---|---|---|")
+    for i, t_, l_ in overlap:
+        w(f"| {i} | {l_} | {'yes' if i in set(idx) else 'no'} | {esc(' '.join(t_.split()))} |")
+    w("")
+    w("Accuracy with and without these messages (the main tables above are unchanged):")
+    w("")
+    w("| System | Runs | 500 sample, all (n=500) | 500 sample, without overlap | Full test, all (n=3,076) | Full test, without overlap |")
+    w("|---|---|---|---|---|---|")
+    keep500 = [i for i in idx if i not in ov_idx]
+    keepall = [i for i in range(len(test)) if i not in ov_idx]
+
+    def full_preds(path):
+        if not os.path.exists(path):
+            return None
+        rows = jl(path)
+        return [r["pred"] for r in rows] if len(rows) == len(test) else None
+
+    def ov_row(name, keys, full_paths):
+        keys = [k for k in keys if k in complete]
+        if not keys:
+            w(f"| {name} | 0 | not completed | | | |")
+            return
+        a5 = [sum(runs[k]["preds"][i] == gold[i] for i in idx) / len(idx) for k in keys]
+        b5 = [sum(runs[k]["preds"][i] == gold[i] for i in keep500) / len(keep500) for k in keys]
+        fa, fb = [], []
+        for fp in full_paths:
+            pr = full_preds(fp)
+            if pr:
+                fa.append(sum(pr[i] == test[i][1] for i in range(len(test))) / len(test))
+                fb.append(sum(pr[i] == test[i][1] for i in keepall) / len(keepall))
+        w(f"| {name} | {len(keys)} | {ms(a5)} | {ms(b5)} (n={len(keep500)}) | {ms(fa) if fa else 'n/a'} | "
+          f"{(ms(fb) + f' (n={len(keepall):,})') if fb else 'n/a'} |")
+
+    def qp(n, s):
+        q = f"results/preds_{TAG}_n{n}_s{s}.jsonl"
+        return q if os.path.exists(q) else f"{N}/preds_{TAG}_n{n}_s{s}.jsonl"
+
+    ov_row("Claude Opus 5.5, zero-shot", [ref], [])
+    ov_row("Claude Opus 5.5, retrieved examples (E2b)", ["claude_opus_E2b"], [])
+    ov_row("Qwen3-4B + LoRA, 2,000 labels", [f"qwen_n2000_s{s}" for s in SEEDS], [qp(2000, s) for s in SEEDS])
+    ov_row("Qwen3-4B + LoRA, 9,993 labels", [f"qwen_n9993_s{s}" for s in SEEDS], [qp(9993, s) for s in SEEDS])
+    ov_row("ModernBERT-base fine-tuned (E4b), 9,993 labels", [f"e4b_n9993_s{s}" for s in SEEDS],
+           [f"{N}/preds_{E4B}_n9993_s{s}.jsonl" for s in SEEDS])
+    ov_row("bge-small + logistic regression (E4a), 9,993 labels", [f"e4a_n9993_s{s}" for s in SEEDS],
+           [f"{N}/preds_{E4A}_n9993_s{s}.jsonl" for s in SEEDS])
+    w("")
+    w("Claude was run on the 500 sample only, so it has no full-test figures.")
+    w("")
+
     # prompts
-    w("## 6. Prompts and example selection")
+    w("## 7. Prompts and example selection")
     w("")
     w("All Claude runs use the T1 instructions (`system_prompt(labels)`), the T1 batch order "
       "(`results/sample500_batch_order.json`, 25 messages per call) and the T1 batch instruction. Example "
@@ -431,7 +493,7 @@ def main():
         w("")
 
     # Claude call facts
-    w("## 7. Claude calls")
+    w("## 8. Claude calls")
     w("")
     if calls:
         by = Counter(c["set"] for c in calls)
@@ -466,10 +528,13 @@ def main():
         w("")
 
     # caveats
-    w("## 8. Caveats")
+    w("## 9. Caveats")
     w("")
     for c in [
         CONTAMINATION,
+        f"Exact-text overlap between the test and training splits is {n_exact}; after lowercasing and trimming "
+        f"whitespace it is {len(overlap)} messages, and the same overlap exists in the original Banking77 splits. "
+        "Section 6 gives the accuracies with these messages removed.",
         "Claude saw 25 messages per call; the small models saw one at a time.",
         "The Claude Code CLI adds some prompt text of its own; its temperature cannot be set; each Claude "
         "variant was run once. These are calls through one CLI on a subscription, not API baselines.",
