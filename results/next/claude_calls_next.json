@@ -1,0 +1,1370 @@
+{
+ "note": "Per-call summary of the Claude Code CLI output for E2 and E3, identifiers removed (no session ids, paths or prompts). The cost is the CLI's own list-price estimate.",
+ "calls": [
+  {
+   "set": "E2a",
+   "batch": 0,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 8.38,
+   "num_turns": 1,
+   "prompt_tokens": 4074,
+   "output_tokens": 867,
+   "cli_list_price_estimate_usd": 0.049924,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 1,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.93,
+   "num_turns": 1,
+   "prompt_tokens": 4018,
+   "output_tokens": 217,
+   "cli_list_price_estimate_usd": 0.0126704,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 2,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 4.14,
+   "num_turns": 1,
+   "prompt_tokens": 4013,
+   "output_tokens": 234,
+   "cli_list_price_estimate_usd": 0.0129704,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 3,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 4.21,
+   "num_turns": 1,
+   "prompt_tokens": 4033,
+   "output_tokens": 233,
+   "cli_list_price_estimate_usd": 0.013110400000000001,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 4,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 4.09,
+   "num_turns": 1,
+   "prompt_tokens": 4031,
+   "output_tokens": 240,
+   "cli_list_price_estimate_usd": 0.0132344,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 5,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.83,
+   "num_turns": 1,
+   "prompt_tokens": 4082,
+   "output_tokens": 247,
+   "cli_list_price_estimate_usd": 0.0137824,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 6,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 4.38,
+   "num_turns": 1,
+   "prompt_tokens": 4066,
+   "output_tokens": 224,
+   "cli_list_price_estimate_usd": 0.0131944,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 7,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 4.15,
+   "num_turns": 1,
+   "prompt_tokens": 4022,
+   "output_tokens": 251,
+   "cli_list_price_estimate_usd": 0.0133824,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 8,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 7.43,
+   "num_turns": 1,
+   "prompt_tokens": 4152,
+   "output_tokens": 816,
+   "cli_list_price_estimate_usd": 0.025722400000000003,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 9,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 4.17,
+   "num_turns": 1,
+   "prompt_tokens": 4055,
+   "output_tokens": 284,
+   "cli_list_price_estimate_usd": 0.0143064,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 10,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 6.97,
+   "num_turns": 1,
+   "prompt_tokens": 4055,
+   "output_tokens": 711,
+   "cli_list_price_estimate_usd": 0.0228464,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 11,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 6.13,
+   "num_turns": 1,
+   "prompt_tokens": 3985,
+   "output_tokens": 597,
+   "cli_list_price_estimate_usd": 0.0200064,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 12,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.61,
+   "num_turns": 1,
+   "prompt_tokens": 4073,
+   "output_tokens": 224,
+   "cli_list_price_estimate_usd": 0.013250399999999999,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 13,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.76,
+   "num_turns": 1,
+   "prompt_tokens": 4047,
+   "output_tokens": 257,
+   "cli_list_price_estimate_usd": 0.0137024,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 14,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.87,
+   "num_turns": 1,
+   "prompt_tokens": 4043,
+   "output_tokens": 240,
+   "cli_list_price_estimate_usd": 0.013330400000000001,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 15,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.85,
+   "num_turns": 1,
+   "prompt_tokens": 4157,
+   "output_tokens": 237,
+   "cli_list_price_estimate_usd": 0.0141824,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 16,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.9,
+   "num_turns": 1,
+   "prompt_tokens": 4055,
+   "output_tokens": 213,
+   "cli_list_price_estimate_usd": 0.0128864,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 17,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.82,
+   "num_turns": 1,
+   "prompt_tokens": 4072,
+   "output_tokens": 236,
+   "cli_list_price_estimate_usd": 0.0134824,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 18,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 4.24,
+   "num_turns": 1,
+   "prompt_tokens": 4064,
+   "output_tokens": 234,
+   "cli_list_price_estimate_usd": 0.0133784,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2a",
+   "batch": 19,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.67,
+   "num_turns": 1,
+   "prompt_tokens": 3994,
+   "output_tokens": 217,
+   "cli_list_price_estimate_usd": 0.0124784,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 0,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 5.96,
+   "num_turns": 1,
+   "prompt_tokens": 5159,
+   "output_tokens": 504,
+   "cli_list_price_estimate_usd": 0.051344,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 1,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 6.2,
+   "num_turns": 1,
+   "prompt_tokens": 4762,
+   "output_tokens": 650,
+   "cli_list_price_estimate_usd": 0.051088,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 2,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.82,
+   "num_turns": 1,
+   "prompt_tokens": 5035,
+   "output_tokens": 245,
+   "cli_list_price_estimate_usd": 0.045172000000000004,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 3,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.96,
+   "num_turns": 1,
+   "prompt_tokens": 5021,
+   "output_tokens": 244,
+   "cli_list_price_estimate_usd": 0.04504,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 4,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.67,
+   "num_turns": 1,
+   "prompt_tokens": 5188,
+   "output_tokens": 240,
+   "cli_list_price_estimate_usd": 0.046296,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 5,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.79,
+   "num_turns": 1,
+   "prompt_tokens": 5195,
+   "output_tokens": 247,
+   "cli_list_price_estimate_usd": 0.046492,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 6,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.59,
+   "num_turns": 1,
+   "prompt_tokens": 4914,
+   "output_tokens": 226,
+   "cli_list_price_estimate_usd": 0.043823999999999995,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 7,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 6.88,
+   "num_turns": 1,
+   "prompt_tokens": 4969,
+   "output_tokens": 655,
+   "cli_list_price_estimate_usd": 0.052844,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 8,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 6.09,
+   "num_turns": 1,
+   "prompt_tokens": 5740,
+   "output_tokens": 523,
+   "cli_list_price_estimate_usd": 0.056372,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 9,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 7.69,
+   "num_turns": 1,
+   "prompt_tokens": 5119,
+   "output_tokens": 868,
+   "cli_list_price_estimate_usd": 0.058304,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 10,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 4.97,
+   "num_turns": 1,
+   "prompt_tokens": 5279,
+   "output_tokens": 383,
+   "cli_list_price_estimate_usd": 0.049884,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 11,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 6.29,
+   "num_turns": 1,
+   "prompt_tokens": 4630,
+   "output_tokens": 629,
+   "cli_list_price_estimate_usd": 0.049612,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 12,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 4.75,
+   "num_turns": 1,
+   "prompt_tokens": 5076,
+   "output_tokens": 353,
+   "cli_list_price_estimate_usd": 0.04766,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 13,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.65,
+   "num_turns": 1,
+   "prompt_tokens": 5071,
+   "output_tokens": 250,
+   "cli_list_price_estimate_usd": 0.045559999999999996,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 14,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.57,
+   "num_turns": 1,
+   "prompt_tokens": 4877,
+   "output_tokens": 230,
+   "cli_list_price_estimate_usd": 0.043608,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 15,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.51,
+   "num_turns": 1,
+   "prompt_tokens": 5322,
+   "output_tokens": 238,
+   "cli_list_price_estimate_usd": 0.047328,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 16,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.47,
+   "num_turns": 1,
+   "prompt_tokens": 4959,
+   "output_tokens": 221,
+   "cli_list_price_estimate_usd": 0.044084,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 17,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.49,
+   "num_turns": 1,
+   "prompt_tokens": 4910,
+   "output_tokens": 228,
+   "cli_list_price_estimate_usd": 0.043832,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 18,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.48,
+   "num_turns": 1,
+   "prompt_tokens": 5072,
+   "output_tokens": 228,
+   "cli_list_price_estimate_usd": 0.045128,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E2b",
+   "batch": 19,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.41,
+   "num_turns": 1,
+   "prompt_tokens": 4775,
+   "output_tokens": 217,
+   "cli_list_price_estimate_usd": 0.042532,
+   "models": [
+    "claude-opus-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 0,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.17,
+   "num_turns": 1,
+   "prompt_tokens": 1913,
+   "output_tokens": 252,
+   "cli_list_price_estimate_usd": 0.0005084,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 1,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.16,
+   "num_turns": 1,
+   "prompt_tokens": 1858,
+   "output_tokens": 18,
+   "cli_list_price_estimate_usd": 0.00021567000000000003,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 1,
+   "attempt": 2,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.96,
+   "num_turns": 1,
+   "prompt_tokens": 1857,
+   "output_tokens": 251,
+   "cli_list_price_estimate_usd": 0.00021284,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 2,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.93,
+   "num_turns": 1,
+   "prompt_tokens": 1853,
+   "output_tokens": 232,
+   "cli_list_price_estimate_usd": 0.00032167000000000003,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 3,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.07,
+   "num_turns": 1,
+   "prompt_tokens": 1871,
+   "output_tokens": 222,
+   "cli_list_price_estimate_usd": 0.00032027,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 4,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.26,
+   "num_turns": 1,
+   "prompt_tokens": 1871,
+   "output_tokens": 239,
+   "cli_list_price_estimate_usd": 0.00032877000000000004,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 5,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.98,
+   "num_turns": 1,
+   "prompt_tokens": 1925,
+   "output_tokens": 251,
+   "cli_list_price_estimate_usd": 0.00034557,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 6,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.87,
+   "num_turns": 1,
+   "prompt_tokens": 1906,
+   "output_tokens": 217,
+   "cli_list_price_estimate_usd": 0.00032477,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 7,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.85,
+   "num_turns": 1,
+   "prompt_tokens": 1862,
+   "output_tokens": 216,
+   "cli_list_price_estimate_usd": 0.00031547,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 7,
+   "attempt": 2,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.77,
+   "num_turns": 1,
+   "prompt_tokens": 1861,
+   "output_tokens": 256,
+   "cli_list_price_estimate_usd": 0.00021538,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 8,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.16,
+   "num_turns": 1,
+   "prompt_tokens": 1991,
+   "output_tokens": 272,
+   "cli_list_price_estimate_usd": 0.00036927,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 8,
+   "attempt": 2,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.15,
+   "num_turns": 1,
+   "prompt_tokens": 1992,
+   "output_tokens": 284,
+   "cli_list_price_estimate_usd": 0.00023088000000000004,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 9,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.92,
+   "num_turns": 1,
+   "prompt_tokens": 1893,
+   "output_tokens": 267,
+   "cli_list_price_estimate_usd": 0.00034717,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 10,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.94,
+   "num_turns": 1,
+   "prompt_tokens": 1895,
+   "output_tokens": 249,
+   "cli_list_price_estimate_usd": 0.00033857,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 10,
+   "attempt": 2,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.76,
+   "num_turns": 1,
+   "prompt_tokens": 1895,
+   "output_tokens": 221,
+   "cli_list_price_estimate_usd": 0.00019841000000000005,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 11,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.99,
+   "num_turns": 1,
+   "prompt_tokens": 1825,
+   "output_tokens": 251,
+   "cli_list_price_estimate_usd": 0.00032557,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 11,
+   "attempt": 2,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.02,
+   "num_turns": 1,
+   "prompt_tokens": 1825,
+   "output_tokens": 225,
+   "cli_list_price_estimate_usd": 0.00019971000000000002,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 12,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.95,
+   "num_turns": 1,
+   "prompt_tokens": 1912,
+   "output_tokens": 243,
+   "cli_list_price_estimate_usd": 0.00033897000000000007,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 13,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 6.15,
+   "num_turns": 1,
+   "prompt_tokens": 1888,
+   "output_tokens": 1267,
+   "cli_list_price_estimate_usd": 0.0008461699999999999,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 14,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.01,
+   "num_turns": 1,
+   "prompt_tokens": 1884,
+   "output_tokens": 238,
+   "cli_list_price_estimate_usd": 0.00033087000000000004,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 14,
+   "attempt": 2,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.95,
+   "num_turns": 1,
+   "prompt_tokens": 1881,
+   "output_tokens": 250,
+   "cli_list_price_estimate_usd": 0.00021239000000000002,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 15,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.77,
+   "num_turns": 1,
+   "prompt_tokens": 1997,
+   "output_tokens": 251,
+   "cli_list_price_estimate_usd": 0.00035997000000000004,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 16,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.77,
+   "num_turns": 1,
+   "prompt_tokens": 1895,
+   "output_tokens": 230,
+   "cli_list_price_estimate_usd": 0.00032907,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 17,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.88,
+   "num_turns": 1,
+   "prompt_tokens": 1911,
+   "output_tokens": 280,
+   "cli_list_price_estimate_usd": 0.00035727,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 17,
+   "attempt": 2,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.8,
+   "num_turns": 1,
+   "prompt_tokens": 1911,
+   "output_tokens": 229,
+   "cli_list_price_estimate_usd": 0.00020238,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 18,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.7,
+   "num_turns": 1,
+   "prompt_tokens": 1906,
+   "output_tokens": 232,
+   "cli_list_price_estimate_usd": 0.00033227,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 19,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.68,
+   "num_turns": 1,
+   "prompt_tokens": 1836,
+   "output_tokens": 210,
+   "cli_list_price_estimate_usd": 0.00030727,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3a",
+   "batch": 19,
+   "attempt": 2,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.88,
+   "num_turns": 1,
+   "prompt_tokens": 1836,
+   "output_tokens": 268,
+   "cli_list_price_estimate_usd": 0.00022132,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 0,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.92,
+   "num_turns": 1,
+   "prompt_tokens": 4099,
+   "output_tokens": 232,
+   "cli_list_price_estimate_usd": 0.0009356000000000001,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 0,
+   "attempt": 2,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.92,
+   "num_turns": 1,
+   "prompt_tokens": 4099,
+   "output_tokens": 248,
+   "cli_list_price_estimate_usd": 0.00023395000000000002,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 1,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.74,
+   "num_turns": 1,
+   "prompt_tokens": 4043,
+   "output_tokens": 231,
+   "cli_list_price_estimate_usd": 0.00034402000000000006,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 2,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.88,
+   "num_turns": 1,
+   "prompt_tokens": 4037,
+   "output_tokens": 252,
+   "cli_list_price_estimate_usd": 0.00035332,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 2,
+   "attempt": 2,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.75,
+   "num_turns": 1,
+   "prompt_tokens": 4038,
+   "output_tokens": 236,
+   "cli_list_price_estimate_usd": 0.00022753,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 3,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.85,
+   "num_turns": 1,
+   "prompt_tokens": 4058,
+   "output_tokens": 232,
+   "cli_list_price_estimate_usd": 0.00034752000000000003,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 4,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.94,
+   "num_turns": 1,
+   "prompt_tokens": 4055,
+   "output_tokens": 237,
+   "cli_list_price_estimate_usd": 0.00034941999999999997,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 5,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.77,
+   "num_turns": 1,
+   "prompt_tokens": 4108,
+   "output_tokens": 235,
+   "cli_list_price_estimate_usd": 0.00035902000000000004,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 5,
+   "attempt": 2,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.73,
+   "num_turns": 1,
+   "prompt_tokens": 4109,
+   "output_tokens": 235,
+   "cli_list_price_estimate_usd": 0.00022755000000000003,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 6,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.69,
+   "num_turns": 1,
+   "prompt_tokens": 4090,
+   "output_tokens": 231,
+   "cli_list_price_estimate_usd": 0.00035342,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 7,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.72,
+   "num_turns": 1,
+   "prompt_tokens": 4047,
+   "output_tokens": 253,
+   "cli_list_price_estimate_usd": 0.00035582,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 8,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.6,
+   "num_turns": 1,
+   "prompt_tokens": 4178,
+   "output_tokens": 230,
+   "cli_list_price_estimate_usd": 0.00037052000000000005,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 9,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.69,
+   "num_turns": 1,
+   "prompt_tokens": 4079,
+   "output_tokens": 262,
+   "cli_list_price_estimate_usd": 0.00036672000000000007,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 10,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.83,
+   "num_turns": 1,
+   "prompt_tokens": 4080,
+   "output_tokens": 237,
+   "cli_list_price_estimate_usd": 0.00035442,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 11,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.71,
+   "num_turns": 1,
+   "prompt_tokens": 4009,
+   "output_tokens": 242,
+   "cli_list_price_estimate_usd": 0.00034272,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 12,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.67,
+   "num_turns": 1,
+   "prompt_tokens": 4097,
+   "output_tokens": 236,
+   "cli_list_price_estimate_usd": 0.00035732000000000006,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 13,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.83,
+   "num_turns": 1,
+   "prompt_tokens": 4072,
+   "output_tokens": 251,
+   "cli_list_price_estimate_usd": 0.00035982,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 14,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.82,
+   "num_turns": 1,
+   "prompt_tokens": 4068,
+   "output_tokens": 236,
+   "cli_list_price_estimate_usd": 0.00035152,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 15,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.75,
+   "num_turns": 1,
+   "prompt_tokens": 4182,
+   "output_tokens": 252,
+   "cli_list_price_estimate_usd": 0.00038232,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 16,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.72,
+   "num_turns": 1,
+   "prompt_tokens": 4080,
+   "output_tokens": 239,
+   "cli_list_price_estimate_usd": 0.00035542,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 17,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 3.23,
+   "num_turns": 1,
+   "prompt_tokens": 4095,
+   "output_tokens": 291,
+   "cli_list_price_estimate_usd": 0.00038442,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 18,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.72,
+   "num_turns": 1,
+   "prompt_tokens": 4091,
+   "output_tokens": 231,
+   "cli_list_price_estimate_usd": 0.00035362,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  },
+  {
+   "set": "E3b",
+   "batch": 19,
+   "attempt": 1,
+   "cli_version": "2.1.323 (Claude Code)",
+   "returncode": 0,
+   "wall_seconds": 2.89,
+   "num_turns": 1,
+   "prompt_tokens": 4021,
+   "output_tokens": 229,
+   "cli_list_price_estimate_usd": 0.00033862,
+   "models": [
+    "claude-haiku-5-5"
+   ]
+  }
+ ]
+}
