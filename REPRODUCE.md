@@ -48,7 +48,9 @@ Resumable: a re-run skips finished stages. About 2.5 hours of GPU time, most of 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python measure_latency.py --adapter <path to the S3 seed-0 adapter>
 python compute_cost.py
-python make_model_card.py
+python make_model_card.py           # model_card/ (router adapter) and model_card_full/ (full-training-set adapter)
+python model_card/verify_usage.py        # each card's usage snippet, run against the Hub adapter,
+python model_card_full/verify_usage.py   # must reproduce 100 saved predictions
 ```
 
 ## 6. Baselines: examples in the prompt, Claude Haiku, non-generative models, more seeds

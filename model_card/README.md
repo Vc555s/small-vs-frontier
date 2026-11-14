@@ -13,11 +13,39 @@ tags:
 - intent-classification
 - customer-support
 - banking77
+model-index:
+- name: qwen3-4b-banking77-router-lora
+  results:
+  - task:
+      type: text-classification
+      name: Intent classification
+    dataset:
+      name: Banking77 test, 500-message sample (mteb/banking77 copy)
+      type: mteb/banking77
+      split: test
+    metrics:
+    - type: accuracy
+      value: 0.9100
+      name: In-scope accuracy, seed 0 (published weights)
+  - task:
+      type: text-classification
+      name: Intent classification
+    dataset:
+      name: CLINC150 out-of-scope test, 200 messages
+      type: clinc/clinc_oos
+      config: plus
+      split: test
+    metrics:
+    - type: recall
+      value: 0.9900
+      name: Out-of-scope recall, seed 0 (published weights)
 ---
 
 # Qwen3-4B Banking77 router (LoRA)
 
 A LoRA adapter for [Qwen/Qwen3-4B-Instruct-2507](https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507) that routes bank customer-support messages to one of the 77 Banking77 intents, or to `none_of_these` when a message fits none of them. Given one message, it answers with exactly one label.
+
+A sibling adapter trained on all 9,993 Banking77 training examples, without out-of-scope examples, is [vishal77796/qwen3-4b-banking77-full-lora](https://huggingface.co/vishal77796/qwen3-4b-banking77-full-lora). It always answers with one of the 77 intents.
 
 Vishal Jadhav · MSc Computer Science, RPTU Kaiserslautern-Landau · code, data and full evaluation: [https://github.com/Vc555s/small-vs-frontier](https://github.com/Vc555s/small-vs-frontier)
 
