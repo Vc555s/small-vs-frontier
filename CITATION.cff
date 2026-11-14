@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this code or these results, please cite them as below."
+title: "Small fine-tuned model vs frontier LLM: Banking77 intent routing"
+authors:
+  - family-names: Jadhav
+    given-names: Vishal
+    affiliation: "RPTU Kaiserslautern-Landau"
+repository-code: "https://github.com/Vc555s/small-vs-frontier"
+license: MIT
+date-released: 2026-11-14
+keywords:
+  - small language models
+  - LoRA
+  - fine-tuning
+  - intent classification
+  - Banking77
+  - LLM evaluation
