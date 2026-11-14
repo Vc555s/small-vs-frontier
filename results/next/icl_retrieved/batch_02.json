@@ -1,0 +1,804 @@
+{
+ "batch": 2,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 124,
+ "neighbours_by_message": {
+  "T380": [
+   102,
+   1491,
+   1991,
+   595,
+   369
+  ],
+  "T2626": [
+   38,
+   1381,
+   453,
+   1364,
+   267
+  ],
+  "T1086": [
+   1668,
+   517,
+   1031,
+   1579,
+   728
+  ],
+  "T2295": [
+   1033,
+   767,
+   1512,
+   1327,
+   945
+  ],
+  "T283": [
+   1507,
+   1233,
+   675,
+   796,
+   732
+  ],
+  "T1193": [
+   1432,
+   877,
+   1332,
+   1606,
+   1055
+  ],
+  "T2614": [
+   499,
+   301,
+   1938,
+   1922,
+   1971
+  ],
+  "T1001": [
+   1561,
+   742,
+   910,
+   1557,
+   363
+  ],
+  "T1083": [
+   427,
+   1935,
+   1520,
+   656,
+   426
+  ],
+  "T168": [
+   1567,
+   112,
+   1009,
+   1923,
+   1644
+  ],
+  "T1469": [
+   1915,
+   1370,
+   1046,
+   879,
+   1727
+  ],
+  "T2517": [
+   129,
+   214,
+   828,
+   729,
+   1922
+  ],
+  "T1586": [
+   28,
+   826,
+   1383,
+   240,
+   1276
+  ],
+  "T2852": [
+   1945,
+   41,
+   1173,
+   1301,
+   1103
+  ],
+  "T1334": [
+   410,
+   1587,
+   1477,
+   894,
+   560
+  ],
+  "T2124": [
+   440,
+   502,
+   1261,
+   615,
+   804
+  ],
+  "T1313": [
+   1458,
+   690,
+   943,
+   1116,
+   1412
+  ],
+  "T1698": [
+   1104,
+   1085,
+   1094,
+   1819,
+   1948
+  ],
+  "T1664": [
+   1124,
+   446,
+   713,
+   1409,
+   459
+  ],
+  "T1753": [
+   811,
+   1850,
+   1119,
+   154,
+   1167
+  ],
+  "T629": [
+   1858,
+   1334,
+   769,
+   1392,
+   294
+  ],
+  "T795": [
+   228,
+   1468,
+   819,
+   1814,
+   1413
+  ],
+  "T621": [
+   1369,
+   279,
+   1680,
+   1397,
+   1143
+  ],
+  "T2643": [
+   1728,
+   510,
+   1845,
+   71,
+   1810
+  ],
+  "T1922": [
+   1029,
+   122,
+   946,
+   605,
+   62
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 675,
+   "text": "How long does it take to get my money",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 459,
+   "text": "Do I need to do anything? My phone was stolen yesterday.",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1432,
+   "text": "Can I use my account before the identity verification is complete?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1055,
+   "text": "Should I complete my security verification before I can use my account?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 62,
+   "text": "I didn't get my card back from the ATM.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1579,
+   "text": "There was a strange transaction made on my account a couple weeks ago by a seller I don't recognize. May you please check on this transaction for me.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1814,
+   "text": "I was not distributed all of cash that I requested",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1810,
+   "text": "I topped up my card but the app rejected it.",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 301,
+   "text": "How can I obtain a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1991,
+   "text": "Something's wrong my card won't work.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 28,
+   "text": "The atm didn't give me all my cash",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 879,
+   "text": "Are there any ATM's near me that accept this card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 1606,
+   "text": "Can I use my account without verifying identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1412,
+   "text": "What places accept my card?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 804,
+   "text": "I want to choose a new PIN.",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1383,
+   "text": "Why didn't I receive the right amount of cash at the ATM?",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1557,
+   "text": "Looks like my top-up has been cancelled",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 946,
+   "text": "The ATM machine would not give my card back",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 38,
+   "text": "Please explain how I use the disposable cards?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1033,
+   "text": "When I attempted to make a transfer, it failed.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 656,
+   "text": "I do not recognise this card payment.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1491,
+   "text": "My card don't work.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1046,
+   "text": "Where are the ATMs that accept this card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 826,
+   "text": "Why didn't I get the amount I requested at the ATM?",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 279,
+   "text": "Do I pay a fee for SEPA transfers?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 1103,
+   "text": "I have a new card. How do I activate it?",
+   "label": "activate_my_card"
+  },
+  {
+   "subset_pos": 894,
+   "text": "If I want a friend to top off my account, can they?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1370,
+   "text": "How can I find an ATM that accepts this card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 1680,
+   "text": "For SEPA transfers, what kind of charge will be applied?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 440,
+   "text": "How can I set a new pin.",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 769,
+   "text": "Is a SWIFT transfer acceptable?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 426,
+   "text": "I just checked my account on the App and there is a payment on there that I did not make.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 767,
+   "text": "Why didn't my transfer work?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 41,
+   "text": "I want to activate the card.",
+   "label": "activate_my_card"
+  },
+  {
+   "subset_pos": 1327,
+   "text": "The attempted transfer failed.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1301,
+   "text": "I have my card now how do I activate it?",
+   "label": "activate_my_card"
+  },
+  {
+   "subset_pos": 1923,
+   "text": "There seems to be an additional charge of \u00a31 on my statement, what is the reason for this?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1850,
+   "text": "Why has my card been declined?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 214,
+   "text": "I cannot get my disposable virtual card to work",
+   "label": "virtual_card_not_working"
+  },
+  {
+   "subset_pos": 1116,
+   "text": "where is card accepted",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 605,
+   "text": "An ATM machine didn't give me back my card.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1915,
+   "text": "What kind of ATMs would this card be accepted at?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 1728,
+   "text": "The app rejected my top up",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 728,
+   "text": "There is a missing transfer on my account",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1369,
+   "text": "Am I going to see a charge for a SEPA transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 1409,
+   "text": "Someone mugged my and stole everything.  I can't use the app.  What should I do?",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 427,
+   "text": "Card payment didn't go through.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 595,
+   "text": "The card that I have isn't working. This is the physical card.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 615,
+   "text": "Please let me know how to change my PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1029,
+   "text": "How can I get my card out of the ATM?",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 690,
+   "text": "Which merchants accept this card?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1397,
+   "text": "How much would it cost me if I transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 1009,
+   "text": "Why is there an additional fee showing on the statement I received?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 828,
+   "text": "I can't use my virtual disposable card",
+   "label": "virtual_card_not_working"
+  },
+  {
+   "subset_pos": 796,
+   "text": "how long does it take for a transfer to arrive",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1587,
+   "text": "Will my friends be able to top up my account?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1413,
+   "text": "Why was I charged more than I should have been?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1334,
+   "text": "I want to do a swift transfer",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 1971,
+   "text": "Do you offer disposable virtual cards too?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1276,
+   "text": "The ATM did not give me my card back?",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 517,
+   "text": "There's been a transaction to the wrong account.",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1104,
+   "text": "I want to cancel a purchase",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 1938,
+   "text": "Is there a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1031,
+   "text": "i didnt put that money in my account",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 732,
+   "text": "It's been a couple days how much longer do I have to wait for my transfer?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1567,
+   "text": "How come there is an extra fee on my statement?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1085,
+   "text": "I did not receive my purchase, how do I cancel it?",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 499,
+   "text": "Can I use a disposable virtual card for any purchase?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1468,
+   "text": "I asked for a certain amount of money from the ATM, but it gave me a different amount. Less than what I asked for.",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1644,
+   "text": "Why did I get charged extra?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1858,
+   "text": "Are SWIFT Transfers available at this bank?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 819,
+   "text": "I requested money from the ATM and it didn't give me as much as I requested.",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 453,
+   "text": "What are the disposable cards used for?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1332,
+   "text": "Can I go ahead and use my account even though my identify hasn't been verified yet?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 267,
+   "text": "Please explain how disposable virtual card work.",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 446,
+   "text": "I got mugged yesterday and they took everything. I can't use the app, so I need some help.",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1392,
+   "text": "Am I able to do a SWIFT transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 729,
+   "text": "My disposable virtual card got rejected",
+   "label": "virtual_card_not_working"
+  },
+  {
+   "subset_pos": 1458,
+   "text": "what cards and currencies are accepted?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 1520,
+   "text": "There is a payment in the app I did not make",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1124,
+   "text": "I was mugged.  They took everything.  I can't use the app.  What do I do?",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 369,
+   "text": "How do I get my card to work?",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1922,
+   "text": "I want a disposable virtual card, how do I do that?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 713,
+   "text": "I can't use the app because I got mugged yesterday and they took everything. Please help.",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 363,
+   "text": "I want to know why my top-up was reverted",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 1167,
+   "text": "Do you know the reason why my card payment was declined?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 102,
+   "text": "My card is not working.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1512,
+   "text": "My transfer did not work, what was the reason?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1935,
+   "text": "I didn't make these transactions. Is someone else using my card?",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 1945,
+   "text": "what are the steps to activate my card?",
+   "label": "activate_my_card"
+  },
+  {
+   "subset_pos": 1477,
+   "text": "Can a friend top up my account",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1233,
+   "text": "How quickly can you get me my card?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 1561,
+   "text": "My top-up has been reverted and I would like to know why.",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 1845,
+   "text": "My top up was rejected. Why?",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 1507,
+   "text": "How long will it take to get to the US?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 1364,
+   "text": "Why would I need a disposable card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 510,
+   "text": "My top up was denied",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 294,
+   "text": "Do you accept SWIFT transfers?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 1173,
+   "text": "How do I activate my card so I can start using it?",
+   "label": "activate_my_card"
+  },
+  {
+   "subset_pos": 1819,
+   "text": "Hello I changed my mind and want a refund on one of things I bought recently. Can you please cancel the transaction and get me my money back. Please it's urgent.",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 943,
+   "text": "I want to add money to my card, what payments do you accept?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 1143,
+   "text": "What is this fee for transferring money?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1727,
+   "text": "What ATM machines allow this card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 560,
+   "text": "Can I let other people have access to my account in order to top up?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 129,
+   "text": "Why isn't my disposable virtual card working?",
+   "label": "virtual_card_not_working"
+  },
+  {
+   "subset_pos": 910,
+   "text": "Seems like my top-up has been cancelled",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 945,
+   "text": "I did a transfer earlier but see that it failed to go through.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 228,
+   "text": "I got less money than I asked for.",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 71,
+   "text": "I tried to top up my account and it didn't work",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 502,
+   "text": "I want to create a new pin.",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1094,
+   "text": "I'm going to cancel a purchase.",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 122,
+   "text": "How do I get my card back after the ATM swallowed it.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1261,
+   "text": "How do I change the PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 811,
+   "text": "Why has my card been declined?  whats the deal?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 240,
+   "text": "How come I can't get money at the ATM",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1119,
+   "text": "Why was my payment declined? I keep trying my card but it's not working.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1668,
+   "text": "I inadvertently completed a transaction on a wrong account.",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 154,
+   "text": "I received my new card and tried using it today, just to have it show declined over and over again.  Why is this happening?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 112,
+   "text": "My statement shows an extra fee - what is it?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1381,
+   "text": "Can you tell me what are disposable cards for?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 877,
+   "text": "Can I use my account now, even though my identity verification has not gone through yet?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 410,
+   "text": "Can my friends top up my account?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1948,
+   "text": "Hey, I ordered a thing but changed my mind and want a refund on it. Since I haven't received the thing, would you just go ahead and cancel the payment for me?",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 742,
+   "text": "Has my top-up gone through?",
+   "label": "top_up_reverted"
+  }
+ ]
+}

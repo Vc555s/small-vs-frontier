@@ -1,0 +1,784 @@
+{
+ "batch": 0,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 120,
+ "neighbours_by_message": {
+  "T774": [
+   1232,
+   1257,
+   1821,
+   27,
+   677
+  ],
+  "T1786": [
+   1440,
+   1306,
+   1174,
+   1698,
+   56
+  ],
+  "T2998": [
+   1463,
+   1305,
+   1205,
+   882,
+   1313
+  ],
+  "T2958": [
+   1045,
+   353,
+   132,
+   312,
+   127
+  ],
+  "T176": [
+   1567,
+   112,
+   1009,
+   1923,
+   1410
+  ],
+  "T2896": [
+   1178,
+   640,
+   1773,
+   352,
+   845
+  ],
+  "T246": [
+   618,
+   115,
+   426,
+   1636,
+   48
+  ],
+  "T2303": [
+   1033,
+   1327,
+   945,
+   1485,
+   767
+  ],
+  "T1716": [
+   1104,
+   1094,
+   551,
+   1624,
+   1085
+  ],
+  "T1249": [
+   1784,
+   1627,
+   717,
+   1215,
+   788
+  ],
+  "T3075": [
+   85,
+   1694,
+   1027,
+   1456,
+   941
+  ],
+  "T1405": [
+   24,
+   1717,
+   563,
+   260,
+   1935
+  ],
+  "T2995": [
+   1154,
+   139,
+   272,
+   312,
+   1827
+  ],
+  "T105": [
+   1266,
+   1615,
+   14,
+   768,
+   147
+  ],
+  "T2950": [
+   1152,
+   1833,
+   667,
+   1616,
+   1075
+  ],
+  "T1981": [
+   109,
+   1497,
+   1802,
+   347,
+   534
+  ],
+  "T1597": [
+   53,
+   483,
+   70,
+   611,
+   748
+  ],
+  "T2300": [
+   1512,
+   466,
+   767,
+   1758,
+   772
+  ],
+  "T2732": [
+   1180,
+   289,
+   287,
+   178,
+   329
+  ],
+  "T1574": [
+   1821,
+   27,
+   1232,
+   91,
+   715
+  ],
+  "T1376": [
+   1657,
+   501,
+   388,
+   1865,
+   848
+  ],
+  "T1113": [
+   515,
+   1417,
+   1493,
+   684,
+   1088
+  ],
+  "T2228": [
+   337,
+   164,
+   404,
+   163,
+   124
+  ],
+  "T286": [
+   1861,
+   821,
+   962,
+   1872,
+   1507
+  ],
+  "T2870": [
+   891,
+   1103,
+   1945,
+   1692,
+   974
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 1085,
+   "text": "I did not receive my purchase, how do I cancel it?",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 1827,
+   "text": "How do i top up my google pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 483,
+   "text": "Why is my payment still pending?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 1327,
+   "text": "The attempted transfer failed.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 48,
+   "text": "I made a payment but it's still pending",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 772,
+   "text": "It appears my transfer was declined.",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 974,
+   "text": "I just got my new card.  How can I activate it?",
+   "label": "activate_my_card"
+  },
+  {
+   "subset_pos": 1178,
+   "text": "Why am I being charge a fee when using an ATM?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 1945,
+   "text": "what are the steps to activate my card?",
+   "label": "activate_my_card"
+  },
+  {
+   "subset_pos": 14,
+   "text": "Can you tell me your exchange rates?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 24,
+   "text": "Could you please freeze my card immediately?",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 891,
+   "text": "Can you tell me how I go about activating a new card?",
+   "label": "activate_my_card"
+  },
+  {
+   "subset_pos": 941,
+   "text": "I live in the EU, can I get one of your cards?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 1417,
+   "text": "I have a confusing payment appear on my statement and I don't recognise it!",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 611,
+   "text": "Why is their a charge pending on my card still?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 147,
+   "text": "I want to know your exchange rates.",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 667,
+   "text": "My card is expiring soon, How do I order a new card?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 132,
+   "text": "I can't see my Google Pay top up. Is it not working correctly?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 329,
+   "text": "I saw on the app that a cash withdrawal was completed on my account; however, I did not complete it.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1758,
+   "text": "What may be the reason that my transfer did not go through?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1205,
+   "text": "How to verify my identity",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1232,
+   "text": "My cash withdrawal was declined.  Why?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 287,
+   "text": "I have a cash withdrawal that I don't recognize.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1717,
+   "text": "Can you provide information for freezing my card immediately?",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 748,
+   "text": "My card payment has been stuck on pending. What is the problem? It should have gone through by now.",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 640,
+   "text": "There was an extra fee when I was at the ATM.  Why?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 1266,
+   "text": "What will my exchange rate be?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1616,
+   "text": "My card expires soon",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 1802,
+   "text": "A transaction is showing more than once.",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 501,
+   "text": "how many transactions can go on a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1627,
+   "text": "How do I know what my PIN is?",
+   "label": "get_physical_card"
+  },
+  {
+   "subset_pos": 27,
+   "text": "Why do I get declined when I try to withdraw cash?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 945,
+   "text": "I did a transfer earlier but see that it failed to go through.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 684,
+   "text": "Why is there a random payment in my statement?",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1861,
+   "text": "How long does it take for deliver to the US?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 788,
+   "text": "Where is my card PIN?",
+   "label": "get_physical_card"
+  },
+  {
+   "subset_pos": 112,
+   "text": "My statement shows an extra fee - what is it?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1045,
+   "text": "Why doesn't my Google pay top up work?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 426,
+   "text": "I just checked my account on the App and there is a payment on there that I did not make.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1075,
+   "text": "I need a new card, my old card is expiring.",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 1833,
+   "text": "I need a new card to replace an expired one. Will it cost anything, and how soon?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 551,
+   "text": "I made a transfer into my account and now I need to cancel it",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1215,
+   "text": "How do I find my PIN?",
+   "label": "get_physical_card"
+  },
+  {
+   "subset_pos": 1313,
+   "text": "How can you assist on verifying my identity?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 272,
+   "text": "I want to top up my account. Can I do it with Google Pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 404,
+   "text": "Why was I charged this extra fee while doing a transfer?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 466,
+   "text": "I attemped a transfer and it didn't go through.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 882,
+   "text": "I don't know how to verify my identity.",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 515,
+   "text": "I have an odd payment in my statement",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1872,
+   "text": "When will it get delivered?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 1692,
+   "text": "I want to activate my new card.",
+   "label": "activate_my_card"
+  },
+  {
+   "subset_pos": 1009,
+   "text": "Why is there an additional fee showing on the statement I received?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 677,
+   "text": "Can you tell me why I was declined from getting cash?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1624,
+   "text": "Help me cancel a transfer.",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1410,
+   "text": "What is the extra fee that showed up on my card?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1180,
+   "text": "I see in the app some cash was withdrawn, but it's not mine.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1935,
+   "text": "I didn't make these transactions. Is someone else using my card?",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 1512,
+   "text": "My transfer did not work, what was the reason?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 962,
+   "text": "What is the wait time for delivery to the US?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 1485,
+   "text": "I couldn't make a transfer",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 353,
+   "text": "What do I do if my Google pay top up isn't working?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 260,
+   "text": "I noticed my card was used in a small town that I have never been to. Can you stop the card from being used more?",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 767,
+   "text": "Why didn't my transfer work?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1615,
+   "text": "What's the foreign exchange rate I will receive?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1027,
+   "text": "Is it possible to get one of your cards in the European Union?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 337,
+   "text": "Why was I charged a fee for transferring money",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1456,
+   "text": "Will my new card work outside of the EU?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 1636,
+   "text": "I'm not sure what is going on here. I've received payment back into my account  for an item I've already received, from about 2 weeks ago.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1821,
+   "text": "I tried to withdraw cash, but got declined!",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 717,
+   "text": "What can you tell me about the card PIN?",
+   "label": "get_physical_card"
+  },
+  {
+   "subset_pos": 312,
+   "text": "How can I top up using google pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 127,
+   "text": "How to activate Google Pay for top up?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 289,
+   "text": "My app shows a money withdrawal that I did not do.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1305,
+   "text": "How do I verify my identity?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 563,
+   "text": "I think my card is being used by someone else to make purchases that I didn't authorize! I checked my account and see that there have been quite a few purchases over the last two days that I have no idea where they came from. We need to freeze my card now! And I need to find a way to get my money back.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1440,
+   "text": "How can I check if I have received a refund if it is not yet on my statement?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1507,
+   "text": "How long will it take to get to the US?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 1094,
+   "text": "I'm going to cancel a purchase.",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 164,
+   "text": "why am I being charged a fee for transferring money ?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1657,
+   "text": "How many transactions can I do with a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 534,
+   "text": "Why have I been charged more than once for the same transaction?",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 163,
+   "text": "I transferred money, but I think I've been charged a fee for it?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1104,
+   "text": "I want to cancel a purchase",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 56,
+   "text": "My refund isn't showing up",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1497,
+   "text": "Why do I have a transaction showing multiple times?",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 1865,
+   "text": "How much transactions do I get with a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1923,
+   "text": "There seems to be an additional charge of \u00a31 on my statement, what is the reason for this?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1463,
+   "text": "I need to verify my identity. How do I do that?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1154,
+   "text": "Can I top-up my google pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 1567,
+   "text": "How come there is an extra fee on my statement?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1784,
+   "text": "Where do I find PIN for my card?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 1493,
+   "text": "A payment on my statement is wrong.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1257,
+   "text": "My cash withdrawal was not entirely complete",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 352,
+   "text": "Today I noticed a charge for an ATM withdrawal on my account. Can you please fix this? It's supposed to be no charge.",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 139,
+   "text": "Does Google Pay offer a top up option?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 1152,
+   "text": "My card is about to expire.  Are there any costs with a replacement card?  How quick do you mail it to me?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 1773,
+   "text": "Can you tell me why I was charged to withdraw cash?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 845,
+   "text": "I hate this ATM, it charged me an extra fee, Why did it charge?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 1103,
+   "text": "I have a new card. How do I activate it?",
+   "label": "activate_my_card"
+  },
+  {
+   "subset_pos": 1694,
+   "text": "Are your cards available in the EU?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 388,
+   "text": "What is the maximum number of transactions I can do with a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 91,
+   "text": "I tried to take out some money from an ATM earlier today and it was declined. Looking on my screen now, I still see that it's pending for that amount. I didn't actually get that money, so I don't want it processed on my account.",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 821,
+   "text": "How long is a delivery to the US?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 848,
+   "text": "Is there a transaction limit for a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 115,
+   "text": "I sent a payment but now it's not showing up.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 53,
+   "text": "How is my card payment still pending?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 347,
+   "text": "Why does the same transaction appear multiple times?",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 1033,
+   "text": "When I attempted to make a transfer, it failed.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 85,
+   "text": "Is it possible to get one the your cards in the EU?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 1174,
+   "text": "I can't see a refund for a return I completed recently.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 715,
+   "text": "I tried to make a withdrawal from the ATM, but it was cancelled.",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 124,
+   "text": "Why do I see a fee when I do a transfer?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1088,
+   "text": "I looked at my statement and found a payment I and found a mistake.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1698,
+   "text": "Where is the refund on my statement?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 109,
+   "text": "Why do I have a transaction showing up more than once?",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 70,
+   "text": "Why hasn't my card payment cleared yet?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 1306,
+   "text": "I have received my statement but I do not see my refund, why is that?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 768,
+   "text": "How much are the rates of exchange?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 178,
+   "text": "There's a cash withdrawal I am certain I did not make",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 618,
+   "text": "I have a payment which has not been approved.",
+   "label": "pending_card_payment"
+  }
+ ]
+}

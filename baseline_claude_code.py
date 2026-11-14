@@ -92,6 +92,10 @@ def get_args():
     p.add_argument("--prompt_variant", default="base", choices=["base", "none_option"])
     p.add_argument("--set", default="", help="set name used in output file names, e.g. A, B, C1")
     p.add_argument("--dir", default="results/stress", help="output dir for stress sets")
+    p.add_argument("--examples_file", default="", help="JSON with an 'examples' list added to every call")
+    p.add_argument("--examples_dir", default="", help="dir with batch_XX.json example lists, one per call")
+    p.add_argument("--expected_model", default="", help="answering model the gate and every call must report")
+    p.add_argument("--cap", type=int, default=0, help="Claude call cap for this output dir (default: 90)")
     return p.parse_args()
 
 
@@ -459,6 +463,17 @@ def run_stress_set(args):
     allowed = list(labels) + ([sc.NONE_LABEL] if args.prompt_variant == "none_option" else [])
     valid = {norm(l): l for l in allowed}
     base_sys = sc.extended_prompt(labels) if args.prompt_variant == "none_option" else system_prompt(labels)
+    expected_model = args.expected_model or sc.EXPECTED_MODEL
+    cap = args.cap or sc.CLAUDE_CAP
+    fixed_examples = json.load(open(args.examples_file))["examples"] if args.examples_file else None
+
+    def examples_block(b):
+        """'Examples:' block, one line '<message> => <label>' per example (section E2)."""
+        if fixed_examples is None and not args.examples_dir:
+            return ""
+        exs = fixed_examples if fixed_examples is not None else \
+            json.load(open(os.path.join(args.examples_dir, f"batch_{b:02d}.json")))["examples"]
+        return "\n\nExamples:\n" + "\n".join(f"{' '.join(e['text'].split())} => {e['label']}" for e in exs)
     preds_path = os.path.join(d, f"preds_claude_{setname}.jsonl")
     raw_dir = os.path.join(d, "claude_raw", setname)
     gate_path = os.path.join(d, f".gate_{setname}.json")
@@ -498,15 +513,15 @@ def run_stress_set(args):
         batch = batches[b]
         n = len(batch)
         addition = BATCH_ADDITION if n == BATCH else BATCH_ADDITION.replace("25", str(n))
-        cmd = cli_cmd(claude, base_sys + addition, args.model)
+        cmd = cli_cmd(claude, base_sys + examples_block(b) + addition, args.model)
         user_msg = "\n".join(f"{i + 1}. {' '.join(r['text'].split())}" for i, r in enumerate(batch))
         is_gate = (b == 0 and not gate_passed)
         transient_used, malformed_used, gate_retry_used = 0, False, False
         attempt = 0
         while True:
-            c = sc.take_claude_call(d)
+            c = sc.take_claude_call(d, cap)
             if c is None:
-                log(f"call cap {sc.CLAUDE_CAP} reached before batch {b}")
+                log(f"call cap {cap} reached before batch {b}")
                 sys.exit(EXIT["cap"])
             attempt += 1
             r = invoke(cmd, user_msg, args.timeout,
@@ -543,10 +558,10 @@ def run_stress_set(args):
                 err = f"transient errors persisted (rc={r['rc']}, timeout={r['timed_out']})"
                 arr = None
             else:
-                if model != sc.EXPECTED_MODEL:
+                if model != expected_model:
                     with open(os.path.join(d, ".model_changed"), "w") as f:
                         f.write(f"set {setname} batch {b}: answering model was {model!r}, "
-                                f"expected {sc.EXPECTED_MODEL!r} ({sc.now()})")
+                                f"expected {expected_model!r} ({sc.now()})")
                     log(f"answering model changed to {model}; aborting Claude stages")
                     sys.exit(EXIT["model_changed"])
                 arr, err = parse_array(m.get("result") or "", n)

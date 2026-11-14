@@ -1,0 +1,27 @@
+{
+ "model": "bge-small-en-v1.5-logreg (2,000 labels, seed 0)",
+ "device": "Quadro RTX 6000",
+ "shared_gpu": true,
+ "shared_gpu_note": "The card was shared with other users' jobs; these are not best-case numbers.",
+ "gpu_state_before": {
+  "other_processes": 3,
+  "other_processes_memory_mib": 10724,
+  "gpu_utilization_percent": 0.0,
+  "gpu_memory_used_mib": 11345,
+  "gpu_memory_total_mib": 24576
+ },
+ "batch1_latency_ms": {
+  "n": 200,
+  "p50": 6.7,
+  "p95": 7.2,
+  "p99": 7.36,
+  "mean": 6.77
+ },
+ "batch1_timing_scope": "embed + classify, torch.cuda.synchronize() around the region",
+ "throughput": {
+  "16": {
+   "messages_per_second": 1492.1
+  }
+ },
+ "peak_memory_gb": 0.133
+}

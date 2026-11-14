@@ -1,0 +1,789 @@
+{
+ "batch": 14,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 121,
+ "neighbours_by_message": {
+  "T175": [
+   1478,
+   1644,
+   586,
+   948,
+   1695
+  ],
+  "T2497": [
+   51,
+   1781,
+   211,
+   1018,
+   1934
+  ],
+  "T2059": [
+   1039,
+   989,
+   796,
+   1670,
+   297
+  ],
+  "T3038": [
+   175,
+   1456,
+   1694,
+   941,
+   85
+  ],
+  "T1360": [
+   848,
+   1657,
+   388,
+   1752,
+   750
+  ],
+  "T2808": [
+   182,
+   978,
+   1411,
+   1966,
+   26
+  ],
+  "T130": [
+   433,
+   1207,
+   1794,
+   1123,
+   1711
+  ],
+  "T190": [
+   908,
+   1644,
+   919,
+   101,
+   1683
+  ],
+  "T932": [
+   19,
+   385,
+   1894,
+   257,
+   1640
+  ],
+  "T679": [
+   271,
+   496,
+   886,
+   1770,
+   1624
+  ],
+  "T2340": [
+   646,
+   1788,
+   762,
+   1502,
+   1820
+  ],
+  "T670": [
+   1542,
+   1625,
+   374,
+   123,
+   862
+  ],
+  "T1240": [
+   757,
+   823,
+   1786,
+   290,
+   1215
+  ],
+  "T1558": [
+   715,
+   67,
+   1232,
+   1131,
+   1983
+  ],
+  "T2739": [
+   289,
+   492,
+   1180,
+   178,
+   1734
+  ],
+  "T2334": [
+   1008,
+   1438,
+   1895,
+   890,
+   1780
+  ],
+  "T343": [
+   1801,
+   488,
+   1122,
+   985,
+   936
+  ],
+  "T1087": [
+   852,
+   1520,
+   426,
+   656,
+   3
+  ],
+  "T2978": [
+   131,
+   1213,
+   800,
+   1260,
+   924
+  ],
+  "T727": [
+   818,
+   1903,
+   187,
+   649,
+   998
+  ],
+  "T2048": [
+   591,
+   699,
+   1670,
+   52,
+   1754
+  ],
+  "T489": [
+   653,
+   1199,
+   157,
+   773,
+   1270
+  ],
+  "T866": [
+   189,
+   989,
+   968,
+   1662,
+   1039
+  ],
+  "T817": [
+   227,
+   1489,
+   1410,
+   1601,
+   550
+  ],
+  "T1": [
+   335,
+   790,
+   233,
+   1401,
+   1371
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 1456,
+   "text": "Will my new card work outside of the EU?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 271,
+   "text": "I need to reverse a transaction",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1644,
+   "text": "Why did I get charged extra?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1232,
+   "text": "My cash withdrawal was declined.  Why?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 211,
+   "text": "What is the process for getting an actual physical card?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 51,
+   "text": "Is it possible to get a physical card?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1734,
+   "text": "What do I do if I see a cash withdrawal on my account that I don't remember making?",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 591,
+   "text": "How long should I have to wait before I see the transfer in my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 852,
+   "text": "I don't recognize this payment",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 586,
+   "text": "What is this $1 charge on my account?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 3,
+   "text": "I sent a payment, but the person I sent it to says they don't have it",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 19,
+   "text": "Is there a way to get a virtual card?",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 1694,
+   "text": "Are your cards available in the EU?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 924,
+   "text": "Can I add funds directly from my Apple Watch?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 989,
+   "text": "How long does a transfer transaction take?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1801,
+   "text": "If I don't have much money in the account can I auto top-up?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 941,
+   "text": "I live in the EU, can I get one of your cards?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 1207,
+   "text": "I didn't receive the correct exchange rate for an item that I bought.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 187,
+   "text": "What limits are the to top-ups?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 1601,
+   "text": "how much does a card cost and why do you charge me",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 848,
+   "text": "Is there a transaction limit for a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 800,
+   "text": "Can I top-up via Apple Pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 1780,
+   "text": "Is it possible to top up by card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 290,
+   "text": "Where's my card PIN?",
+   "label": "get_physical_card"
+  },
+  {
+   "subset_pos": 1770,
+   "text": "How to cancel a transaction",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 948,
+   "text": "What was the $1 charge for on my statement?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1670,
+   "text": "How long does it take for a transfer to show up in my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 374,
+   "text": "The top-up is broken.",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 757,
+   "text": "I can't find my PIN anywhere.",
+   "label": "get_physical_card"
+  },
+  {
+   "subset_pos": 1401,
+   "text": "Is there a reason my new card hasn't arrived?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1489,
+   "text": "I want to see what this fee is on my card payment.",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1983,
+   "text": "Looks like my card payment was cancelled.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 26,
+   "text": "Do I get charged if I top up with my European bank card?",
+   "label": "top_up_by_card_charge"
+  },
+  {
+   "subset_pos": 750,
+   "text": "I need more than one disposable card",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1788,
+   "text": "How do I transfer money into my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1894,
+   "text": "Please tell me how I can get a virtual card.",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 773,
+   "text": "What are the requirements to open an account for a minor?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 157,
+   "text": "Do you have to be 18 to make an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 998,
+   "text": "Do top-ups have limits?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 496,
+   "text": "I messed up a transfer and need to reverse it.",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1008,
+   "text": "How do I top up on my card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1754,
+   "text": "When will my transfer post to my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 653,
+   "text": "At what age can a person open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 1260,
+   "text": "Can I use Apple Pay to top-up?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 1438,
+   "text": "What's the process for topping up my card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 289,
+   "text": "My app shows a money withdrawal that I did not do.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 492,
+   "text": "My app is showing a cash balance that I did not receive.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 550,
+   "text": "What fees do you charge for the standard card?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 919,
+   "text": "I've been charged an extra \u00a31 and I don't know why",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 646,
+   "text": "I would like to know how to transfer money into my account.",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1411,
+   "text": "If I were to use a European bank card for a top up, will I incur a charge?",
+   "label": "top_up_by_card_charge"
+  },
+  {
+   "subset_pos": 908,
+   "text": "I noticed that there was an extra charge fee on my account. Could You explain to me why?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 818,
+   "text": "Do top-ups have a limit?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 762,
+   "text": "I want to transfer money into my account, what do I do?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1683,
+   "text": "Why have I been charged an extra \u00a31?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1478,
+   "text": "Hello, I see that I have been charged an extra $1 on my app.  Could you please provide me with a reason for this charge?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1215,
+   "text": "How do I find my PIN?",
+   "label": "get_physical_card"
+  },
+  {
+   "subset_pos": 1966,
+   "text": "European bank card for top up will come with any extra fees?",
+   "label": "top_up_by_card_charge"
+  },
+  {
+   "subset_pos": 1213,
+   "text": "Will be Apple Watch be able to let me top up?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 968,
+   "text": "Why is it taking so long to update my balance transfer?",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 936,
+   "text": "I want to auto top-up.",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1371,
+   "text": "I still haven't gotten my new card.  When will it get here?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 433,
+   "text": "I bought an item and the exchange rate was wrong.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 699,
+   "text": "When can I expect money to be transferred to my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1662,
+   "text": "Why is a transaction still pending?",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 978,
+   "text": "What are the top up fees for using an European bank card?",
+   "label": "top_up_by_card_charge"
+  },
+  {
+   "subset_pos": 385,
+   "text": "How can I obtain a virtual card?",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 1520,
+   "text": "There is a payment in the app I did not make",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1695,
+   "text": "There is an unexplained $1\u00a0charge on my statement, can you please explain this to me?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1794,
+   "text": "I purchased an item and the exchange rate was wrong",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 796,
+   "text": "how long does it take for a transfer to arrive",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 335,
+   "text": "It's been a week since I ordered my card and it's not here. Please help?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 182,
+   "text": "Are there any charges for European bank card for top up?",
+   "label": "top_up_by_card_charge"
+  },
+  {
+   "subset_pos": 297,
+   "text": "how long does a US transfer take",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1903,
+   "text": "Is there a top-up limit?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 656,
+   "text": "I do not recognise this card payment.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1502,
+   "text": "How can I transfer money into my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1640,
+   "text": "can i get a virtual card online",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1039,
+   "text": "How long does a transfer take?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 233,
+   "text": "Can you tell me why I haven't received my new card?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1711,
+   "text": "I bought something in another currency, but the exchange rate was incorrect.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 649,
+   "text": "is there a limit to top up",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 227,
+   "text": "What is the charge for paying with my card?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 1123,
+   "text": "The exchange rate was incorrect for this item I bought.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 67,
+   "text": "Why did the ATM cancel my transaction",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1625,
+   "text": "My top up hasn't gone through",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 1895,
+   "text": "I want to top up by card",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1934,
+   "text": "How would I go about getting a physical card to use in stores?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1542,
+   "text": "My top-up didn't go through",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 1180,
+   "text": "I see in the app some cash was withdrawn, but it's not mine.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1657,
+   "text": "How many transactions can I do with a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1786,
+   "text": "I forgot my PIN number.",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 1624,
+   "text": "Help me cancel a transfer.",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1270,
+   "text": "What is needed for my daughter to open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 426,
+   "text": "I just checked my account on the App and there is a payment on there that I did not make.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 189,
+   "text": "Why is it taking so long for a transfer to complete!",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1131,
+   "text": "My withdrawals were going smooth until I got declined today. What is going on?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1781,
+   "text": "Please tell me how I can receive a physical card",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 886,
+   "text": "Please cancel my last transaction.",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1122,
+   "text": "Can I auto top if I'm low on funds?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1820,
+   "text": "What is the process for transferring money into my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 488,
+   "text": "Does auto top-up have a limit?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 123,
+   "text": "I made a top up yesterday but it's still pending.",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 862,
+   "text": "Has my top up gone through?",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 890,
+   "text": "Can i top up by card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 175,
+   "text": "Can I use it outside of Europe?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 52,
+   "text": "How long do I have to wait until the transferred money shows up?",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 388,
+   "text": "What is the maximum number of transactions I can do with a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 985,
+   "text": "Do I need to set a limit on auto top-up?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 101,
+   "text": "I have no idea why there is a dollar that has been charged to my account.",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1199,
+   "text": "How old does my daughter have to be to open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 790,
+   "text": "It's been a week since you sent my card and I still don't have it.",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 178,
+   "text": "There's a cash withdrawal I am certain I did not make",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1018,
+   "text": "I would like a physical card",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1752,
+   "text": "What is the daily limit on my card?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 131,
+   "text": "I want to top up with my Apple Watch.",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 85,
+   "text": "Is it possible to get one the your cards in the EU?",
+   "label": "country_support"
+  },
+  {
+   "subset_pos": 1410,
+   "text": "What is the extra fee that showed up on my card?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 823,
+   "text": "What do I do if I forgot my PIN?",
+   "label": "pin_blocked"
+  },
+  {
+   "subset_pos": 257,
+   "text": "I want to get a virtual card!",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 715,
+   "text": "I tried to make a withdrawal from the ATM, but it was cancelled.",
+   "label": "declined_cash_withdrawal"
+  }
+ ]
+}

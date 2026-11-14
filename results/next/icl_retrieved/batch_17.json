@@ -1,0 +1,779 @@
+{
+ "batch": 17,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 119,
+ "neighbours_by_message": {
+  "T2495": [
+   51,
+   1018,
+   1640,
+   1972,
+   585
+  ],
+  "T904": [
+   1659,
+   322,
+   1458,
+   1285,
+   159
+  ],
+  "T2348": [
+   639,
+   1611,
+   95,
+   1010,
+   1281
+  ],
+  "T962": [
+   1198,
+   644,
+   1599,
+   1494,
+   419
+  ],
+  "T57": [
+   1324,
+   709,
+   724,
+   601,
+   1595
+  ],
+  "T979": [
+   1599,
+   1198,
+   644,
+   419,
+   1494
+  ],
+  "T1174": [
+   59,
+   542,
+   305,
+   1976,
+   1035
+  ],
+  "T1948": [
+   1836,
+   122,
+   42,
+   805,
+   177
+  ],
+  "T2069": [
+   1670,
+   675,
+   1854,
+   52,
+   1115
+  ],
+  "T363": [
+   1879,
+   102,
+   369,
+   1491,
+   1991
+  ],
+  "T1426": [
+   1217,
+   1065,
+   984,
+   1682,
+   1935
+  ],
+  "T671": [
+   474,
+   1648,
+   392,
+   123,
+   361
+  ],
+  "T357": [
+   1335,
+   1903,
+   1928,
+   1801,
+   629
+  ],
+  "T2413": [
+   55,
+   626,
+   1229,
+   883,
+   1293
+  ],
+  "T1098": [
+   24,
+   1717,
+   563,
+   1743,
+   1996
+  ],
+  "T570": [
+   50,
+   1672,
+   607,
+   1323,
+   925
+  ],
+  "T1367": [
+   973,
+   1913,
+   403,
+   1657,
+   501
+  ],
+  "T2652": [
+   1139,
+   197,
+   348,
+   1845,
+   1930
+  ],
+  "T3019": [
+   1671,
+   1305,
+   1463,
+   1313,
+   1205
+  ],
+  "T955": [
+   19,
+   385,
+   1661,
+   1894,
+   1640
+  ],
+  "T2194": [
+   651,
+   325,
+   1488,
+   351,
+   466
+  ],
+  "T2089": [
+   575,
+   339,
+   397,
+   1761,
+   1290
+  ],
+  "T2573": [
+   29,
+   1366,
+   1077,
+   1710,
+   1476
+  ],
+  "T1144": [
+   859,
+   89,
+   599,
+   688,
+   1685
+  ],
+  "T86": [
+   1375,
+   147,
+   14,
+   37,
+   74
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 1198,
+   "text": "Where can my card be used?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1205,
+   "text": "How to verify my identity",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1894,
+   "text": "Please tell me how I can get a virtual card.",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 1488,
+   "text": "My transfer to a beneficiary was rejected.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 29,
+   "text": "When I got cash, the exchange rate applied was wrong.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1913,
+   "text": "I need several disposable cards made per day.",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 984,
+   "text": "i didnt make these transactions, i think my card details might be stolen",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 1685,
+   "text": "How do I edit my personal details?",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 348,
+   "text": "My top-up didn't work.",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 14,
+   "text": "Can you tell me your exchange rates?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1743,
+   "text": "Is it possible someone has access to my card? I noticed that there are a couple of payments in the app I'm sure I did not make. Can you find out what's going on here?",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 322,
+   "text": "Do you support fiat currencies?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 1996,
+   "text": "There seems to be a couple of payments listed in the app I know weren't made by me. Is there a possibility someone has access to my card? Can you find out what's going on?",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 925,
+   "text": "My contactless is non-functional.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1494,
+   "text": "Can I use my card wherever I want?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 123,
+   "text": "I made a top up yesterday but it's still pending.",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 1018,
+   "text": "I would like a physical card",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 102,
+   "text": "My card is not working.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 474,
+   "text": "My top up says it is still pending",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 651,
+   "text": "Why didn't my transfer to a beneficiary go through?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 629,
+   "text": "Is it possible for me to top up with cash?",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 709,
+   "text": "I got my card now, how do I make it show up in the app?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 1671,
+   "text": "Where can I verify my identity?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1035,
+   "text": "What's the reason for needing to verify my identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 585,
+   "text": "Can I get a physical card for free, or is there a charge?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1640,
+   "text": "can i get a virtual card online",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1323,
+   "text": "I need help fixing my contactless. It's not working anywhere I go today.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 24,
+   "text": "Could you please freeze my card immediately?",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 1010,
+   "text": "How do I initiated a bank transfer to top up?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 19,
+   "text": "Is there a way to get a virtual card?",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 1672,
+   "text": "Why wasn't my contactless accepted at the metro?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1065,
+   "text": "i dont recognise some of these transactions, i think someone has my card details",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 1930,
+   "text": "I think my top-up has failed.",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 601,
+   "text": "My new card isn't in my app, how do I get it in there?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 59,
+   "text": "DO you know the reason for the identity check?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1845,
+   "text": "My top up was rejected. Why?",
+   "label": "top_up_reverted"
+  },
+  {
+   "subset_pos": 403,
+   "text": "How many disposable  cards are available per account?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1139,
+   "text": "So my top-up failed, could you tell me why?",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 1801,
+   "text": "If I don't have much money in the account can I auto top-up?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 563,
+   "text": "I think my card is being used by someone else to make purchases that I didn't authorize! I checked my account and see that there have been quite a few purchases over the last two days that I have no idea where they came from. We need to freeze my card now! And I need to find a way to get my money back.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1324,
+   "text": "How do I see my card in the app?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 1972,
+   "text": "Is it possible to get a real card?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 305,
+   "text": "Why do you guys need to verify my identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 397,
+   "text": "Is it possible that my card payment was reverted?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 419,
+   "text": "Can I use my card no matter where I go?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1335,
+   "text": "Does it cost anything to top up?",
+   "label": "top_up_by_card_charge"
+  },
+  {
+   "subset_pos": 501,
+   "text": "how many transactions can go on a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1463,
+   "text": "I need to verify my identity. How do I do that?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 724,
+   "text": "Can I track the card that was just sent to me?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 626,
+   "text": "I want to give a second card for this account to my daughter, would this be possible?",
+   "label": "getting_spare_card"
+  },
+  {
+   "subset_pos": 1682,
+   "text": "my card details could be stolen, as i didnt make these transactions",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 1491,
+   "text": "My card don't work.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1313,
+   "text": "How can you assist on verifying my identity?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1991,
+   "text": "Something's wrong my card won't work.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1661,
+   "text": "Where do i go to receive a virtual card",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 973,
+   "text": "How many disposable cards can I make in a day?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1366,
+   "text": "I got cash and the exchange rate should have been different than it ended up being.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 385,
+   "text": "How can I obtain a virtual card?",
+   "label": "getting_virtual_card"
+  },
+  {
+   "subset_pos": 197,
+   "text": "Why did my top-up not work?",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 675,
+   "text": "How long does it take to get my money",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1928,
+   "text": "Can I top up?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 466,
+   "text": "I attemped a transfer and it didn't go through.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 607,
+   "text": "How can I fix my card if the contactless function didn't work this morning?",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1077,
+   "text": "When I got cash I believe that the exchange rate was wrong",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 351,
+   "text": "I tried to transfer funds to a beneficiary and was denied. Can you tell me why?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1599,
+   "text": "Is there restrictions on where I can use my card?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1710,
+   "text": "When I received my cash, the exchange rate was wrong.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1903,
+   "text": "Is there a top-up limit?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 644,
+   "text": "Can I use my card anywhere?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 339,
+   "text": "What is the reason for my card payment to be reverted?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 95,
+   "text": "Tell me how to top up my account using bank transfer.",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 325,
+   "text": "Why is a transfer to a beneficiary not possible?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1458,
+   "text": "what cards and currencies are accepted?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 575,
+   "text": "Tell me why my card payment would be reverted.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1595,
+   "text": "I've obtained the card, how do I enable it on the app?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 1659,
+   "text": "Do you have a list of the cards and currencies supported?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 1229,
+   "text": "Is it possible to give a second card from my account to my daughter?",
+   "label": "getting_spare_card"
+  },
+  {
+   "subset_pos": 159,
+   "text": "What fiat currencies are supported?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 1717,
+   "text": "Can you provide information for freezing my card immediately?",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 542,
+   "text": "Why is there a verification to identity",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 147,
+   "text": "I want to know your exchange rates.",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1285,
+   "text": "What fiat currencies do you support?",
+   "label": "fiat_currency_support"
+  },
+  {
+   "subset_pos": 42,
+   "text": "The ATM took my card.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1657,
+   "text": "How many transactions can I do with a disposable card?",
+   "label": "disposable_card_limits"
+  },
+  {
+   "subset_pos": 1935,
+   "text": "I didn't make these transactions. Is someone else using my card?",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 1976,
+   "text": "Why is it required to verify my identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1611,
+   "text": "How do I use bank transfer to top up my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1293,
+   "text": "I would like an extra card.",
+   "label": "getting_spare_card"
+  },
+  {
+   "subset_pos": 1670,
+   "text": "How long does it take for a transfer to show up in my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1879,
+   "text": "Can you tell me whats going on with my card it seems to be not working?",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1648,
+   "text": "Is there a reason that my top-up is still pending?",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 1375,
+   "text": "Does the exchange rate change?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 369,
+   "text": "How do I get my card to work?",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 122,
+   "text": "How do I get my card back after the ATM swallowed it.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 1290,
+   "text": "I see a reverted payment on my account. Why has this happened?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1854,
+   "text": "How long does a bank transfer take to show up in available funds?",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 859,
+   "text": "I've just moved and I need to change my details",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 1281,
+   "text": "How do I go forth with bank transfers for top up accounts?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1761,
+   "text": "why did my payment revert",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 392,
+   "text": "I'm pretty sure my top up is still pending.",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 52,
+   "text": "How long do I have to wait until the transferred money shows up?",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 805,
+   "text": "My card got stuck in an ATM.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 883,
+   "text": "May I get an account for my daughter?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 74,
+   "text": "Your exchange rates come from where?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 37,
+   "text": "Do you know what your exchange rates are?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 361,
+   "text": "How long will my top-up stay pending?",
+   "label": "pending_top_up"
+  },
+  {
+   "subset_pos": 1115,
+   "text": "How long do I have to wait for my bank transfer to appear in my account?",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 51,
+   "text": "Is it possible to get a physical card?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1305,
+   "text": "How do I verify my identity?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 639,
+   "text": "How can you assist me on topping up on bank transfers to my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 89,
+   "text": "Tell me how to change my details.",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 1217,
+   "text": "I have transactions that I don't recognize - I think someone is using my card.",
+   "label": "compromised_card"
+  },
+  {
+   "subset_pos": 1836,
+   "text": "Please help, the atm swallowed my card, what do I do?",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 55,
+   "text": "I am interested in giving a second card to my daughter, how can I make this happen?",
+   "label": "getting_spare_card"
+  },
+  {
+   "subset_pos": 50,
+   "text": "I was trying to use contactless earlier, but it didn't work.",
+   "label": "contactless_not_working"
+  },
+  {
+   "subset_pos": 1476,
+   "text": "I think that the exchange rate for the withdrawal of my cash is not right.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 688,
+   "text": "Is there a way to modify my details?",
+   "label": "edit_personal_details"
+  },
+  {
+   "subset_pos": 177,
+   "text": "The ATM sucked my card in.",
+   "label": "card_swallowed"
+  },
+  {
+   "subset_pos": 599,
+   "text": "My details need to be changed, how can I do so?",
+   "label": "edit_personal_details"
+  }
+ ]
+}

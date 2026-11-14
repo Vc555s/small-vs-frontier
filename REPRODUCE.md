@@ -48,10 +48,21 @@ Resumable: a re-run skips finished stages. About 2.5 hours of GPU time, most of 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python measure_latency.py --adapter <path to the S3 seed-0 adapter>
 python compute_cost.py
-python make_model_card.py
+python make_model_card.py           # model_card/ (router adapter) and model_card_full/ (full-training-set adapter)
+python model_card/verify_usage.py        # each card's usage snippet, run against the Hub adapter,
+python model_card_full/verify_usage.py   # must reproduce 100 saved predictions
 ```
 
-## 6. Reports and figures
+## 6. Baselines: examples in the prompt, Claude Haiku, non-generative models, more seeds
+
+```bash
+python next_build.py                 # frozen inputs: the 500 messages in batch order and the example lists
+bash run_next.sh all                 # E4a, E4b, E1 seeds 1-2 on the GPU; E2a, E2b, E3a, E3b via the CLI; report
+```
+
+Resumable. About 6 hours on one GPU (most of it the two full-data Qwen seeds, about 2.75 hours each) and 80 Claude CLI calls (the pipeline stops at 140). `make_baselines_report.py` writes `results/t1_baselines.md`. Needs `sentence-transformers` (see `requirements.txt`).
+
+## 7. Reports and figures
 
 These need no GPU. The report scripts need only `datasets` and `scikit-learn`; the figures also need `matplotlib`.
 

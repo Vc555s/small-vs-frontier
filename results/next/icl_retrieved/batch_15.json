@@ -1,0 +1,774 @@
+{
+ "batch": 15,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 118,
+ "neighbours_by_message": {
+  "T66": [
+   709,
+   601,
+   233,
+   1324,
+   813
+  ],
+  "T2179": [
+   1380,
+   1485,
+   1137,
+   1985,
+   988
+  ],
+  "T119": [
+   527,
+   1266,
+   14,
+   1707,
+   147
+  ],
+  "T27": [
+   371,
+   1401,
+   885,
+   285,
+   1400
+  ],
+  "T2279": [
+   1231,
+   573,
+   1485,
+   1985,
+   1380
+  ],
+  "T2016": [
+   1943,
+   1678,
+   201,
+   604,
+   625
+  ],
+  "T1653": [
+   1209,
+   608,
+   358,
+   1979,
+   642
+  ],
+  "T1477": [
+   580,
+   46,
+   1556,
+   1051,
+   830
+  ],
+  "T909": [
+   1605,
+   1895,
+   890,
+   1008,
+   1780
+  ],
+  "T1785": [
+   1306,
+   1698,
+   250,
+   56,
+   1440
+  ],
+  "T807": [
+   356,
+   1478,
+   180,
+   908,
+   689
+  ],
+  "T499": [
+   1199,
+   1270,
+   304,
+   883,
+   653
+  ],
+  "T516": [
+   653,
+   1199,
+   773,
+   157,
+   1270
+  ],
+  "T1762": [
+   1597,
+   250,
+   452,
+   1980,
+   1294
+  ],
+  "T379": [
+   308,
+   102,
+   1491,
+   369,
+   972
+  ],
+  "T2948": [
+   1075,
+   332,
+   667,
+   1833,
+   1785
+  ],
+  "T993": [
+   1133,
+   856,
+   1049,
+   1495,
+   1343
+  ],
+  "T2447": [
+   801,
+   1052,
+   524,
+   892,
+   1806
+  ],
+  "T1696": [
+   637,
+   338,
+   1277,
+   1650,
+   151
+  ],
+  "T2629": [
+   499,
+   301,
+   1922,
+   1396,
+   1938
+  ],
+  "T1607": [
+   1608,
+   1192,
+   48,
+   483,
+   70
+  ],
+  "T1978": [
+   723,
+   1140,
+   265,
+   755,
+   226
+  ],
+  "T1889": [
+   1315,
+   703,
+   317,
+   904,
+   1299
+  ],
+  "T811": [
+   586,
+   101,
+   919,
+   1695,
+   455
+  ],
+  "T626": [
+   917,
+   186,
+   704,
+   652,
+   1658
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 972,
+   "text": "What do I do if my card gets broken?",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 988,
+   "text": "Why is my transfer not working? I tried multiple times to transfer money, and all that happens is an error message pops up.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 642,
+   "text": "What do I do to lock my phone after losing it so my account isn't accessed",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1943,
+   "text": "What do I need to see my source of money?",
+   "label": "verify_source_of_funds"
+  },
+  {
+   "subset_pos": 56,
+   "text": "My refund isn't showing up",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1785,
+   "text": "My card is about to expire.  How do I order another?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 332,
+   "text": "How do I replace a card that's going to expire?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 625,
+   "text": "What is the source of funds for my money?",
+   "label": "verify_source_of_funds"
+  },
+  {
+   "subset_pos": 1209,
+   "text": "I misplaced my phone so I can't use the app! Does this mean I can't use my card?",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 14,
+   "text": "Can you tell me your exchange rates?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 890,
+   "text": "Can i top up by card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 883,
+   "text": "May I get an account for my daughter?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 704,
+   "text": "Will I be charged for a top off transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 667,
+   "text": "My card is expiring soon, How do I order a new card?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 1650,
+   "text": "I've changed my mind on an item.  How do I get a refund?",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 265,
+   "text": "My transaction history is looking a little off. I have been charged twice for multiple different purchases, and would like to have those duplicate charges refunded.",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 358,
+   "text": "I'm not sure where my phone is.  Can someone else use the app?",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 233,
+   "text": "Can you tell me why I haven't received my new card?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1597,
+   "text": "A while ago i requested a refund from a seller. I keep checking my statement but I have not been refunded yet. I'm confused why i haven't gotten my money back yet but I need your help getting it please.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 885,
+   "text": "How long until the card arrives?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 892,
+   "text": "Can I use check to deposit?",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 904,
+   "text": "I would like to invalidate my account.  I am very disappointed with your services.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 1478,
+   "text": "Hello, I see that I have been charged an extra $1 on my app.  Could you please provide me with a reason for this charge?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1266,
+   "text": "What will my exchange rate be?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1833,
+   "text": "I need a new card to replace an expired one. Will it cost anything, and how soon?",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 48,
+   "text": "I made a payment but it's still pending",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 580,
+   "text": "I see a direct debit that I didn't authorize",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 46,
+   "text": "I have an unfamiliar direct debit in my statement.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1192,
+   "text": "I made a payment with my card and it hasn't changed. How long do you think this will take?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 1008,
+   "text": "How do I top up on my card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1491,
+   "text": "My card don't work.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1922,
+   "text": "I want a disposable virtual card, how do I do that?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1985,
+   "text": "I don't understand why you aren't accepting my transfer. After a couple times trying I'm still getting an error message.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 180,
+   "text": "Hello! I randomly got charged an extra fee today as i was shopping online and i have no idea why! Are there extra fees for card payments? Or am i missing something here?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 917,
+   "text": "If I top up by transfer, am I going to be charged?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 524,
+   "text": "Can I deposit a check?",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 1895,
+   "text": "I want to top up by card",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1678,
+   "text": "What information do I need to see my source of money?",
+   "label": "verify_source_of_funds"
+  },
+  {
+   "subset_pos": 604,
+   "text": "I would like to know where my source of funds came from.",
+   "label": "verify_source_of_funds"
+  },
+  {
+   "subset_pos": 1199,
+   "text": "How old does my daughter have to be to open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 1294,
+   "text": "I contacted a seller about a refund last week but he still hasn't returned my money. I am frustrated and need these funds. Please help me get my money back.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 317,
+   "text": "I am upset with your service.  Please delete my account.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 908,
+   "text": "I noticed that there was an extra charge fee on my account. Could You explain to me why?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 527,
+   "text": "What is the current exchange rate?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 773,
+   "text": "What are the requirements to open an account for a minor?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 586,
+   "text": "What is this $1 charge on my account?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1277,
+   "text": "How do I return something for a full refund?",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 755,
+   "text": "Looks like my card payment was made twice by mistake. I went to pay at the store earlier which rejected once, second time it worked. App is on pending for one of the payments. Can you please remove one of them as it's wrong and clearly was declined?",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 653,
+   "text": "At what age can a person open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 1556,
+   "text": "There was a direct debit I don't recognize.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1306,
+   "text": "I have received my statement but I do not see my refund, why is that?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1315,
+   "text": "your company is awful, i would like to delete my account please",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 1980,
+   "text": "I keep checking to see if I've received a refund that I requested from a seller, but I'm not seeing the refund. I need you to help me get the refund.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1495,
+   "text": "What businesses accept this card?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 856,
+   "text": "This card is accepted by what businesses?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1231,
+   "text": "I've been trying to make a transfer and it doesn't seem to be working. (5 times) What is wrong with your system?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 455,
+   "text": "I have a duplicate charge",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 308,
+   "text": "My card won't work at all for anything.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 709,
+   "text": "I got my card now, how do I make it show up in the app?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 1695,
+   "text": "There is an unexplained $1\u00a0charge on my statement, can you please explain this to me?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 573,
+   "text": "Hi there, I've tried to make a transfer 5 different times and its not working. Is your system down or something?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 652,
+   "text": "Is there a top up fee for transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 499,
+   "text": "Can I use a disposable virtual card for any purchase?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 369,
+   "text": "How do I get my card to work?",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1343,
+   "text": "What businesses can I use this card with?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1605,
+   "text": "I want to top up by card, what do you support?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 1806,
+   "text": "How can I receive money?",
+   "label": "receiving_money"
+  },
+  {
+   "subset_pos": 703,
+   "text": "I am not happy with your company. Please delete my account asap.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 356,
+   "text": "I have been charged a fee, I didn't know about this fee before! When do you charge extra for card payments?",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 226,
+   "text": "I got charged two times for a transaction",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 338,
+   "text": "I want a refund for an item",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 1396,
+   "text": "How can I get disposable virtual cards?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 608,
+   "text": "left my phone at hotel, cant use app",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1324,
+   "text": "How do I see my card in the app?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 1440,
+   "text": "How can I check if I have received a refund if it is not yet on my statement?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1051,
+   "text": "I didn't make the direct debit payment on my account.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 301,
+   "text": "How can I obtain a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1608,
+   "text": "I have a payment that hasn't went through yet.",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 601,
+   "text": "My new card isn't in my app, how do I get it in there?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 285,
+   "text": "How long does it take for me to get my new card?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1075,
+   "text": "I need a new card, my old card is expiring.",
+   "label": "card_about_to_expire"
+  },
+  {
+   "subset_pos": 101,
+   "text": "I have no idea why there is a dollar that has been charged to my account.",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1401,
+   "text": "Is there a reason my new card hasn't arrived?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1938,
+   "text": "Is there a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1979,
+   "text": "I don't have my cell phone with me so I cannot access the system to complete the transaction.",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1380,
+   "text": "I was trying to make a transfer and got an error message telling me it was not possible to make the transfer. This has never happened before, what happened?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1137,
+   "text": "I couldn't transfer to an account.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1485,
+   "text": "I couldn't make a transfer",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1780,
+   "text": "Is it possible to top up by card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1400,
+   "text": "How long does it take for a card to arrive?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 1270,
+   "text": "What is needed for my daughter to open an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 452,
+   "text": "I keep checking my statements but no progress.I requested a refund but seems it's not reaching my account for some reason. Can you please help me get the money back from the seller for me",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 250,
+   "text": "I don't see a refund in my account.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1133,
+   "text": "Do all businesses take this card?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1707,
+   "text": "What exchange rate is it?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 813,
+   "text": "I haven't received my card and am worried it is lost.",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1052,
+   "text": "How do I use a check to top up?",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 1658,
+   "text": "Does it cost anything to transfer money for a top-up?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 483,
+   "text": "Why is my payment still pending?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 151,
+   "text": "Can I get a refund on an item?",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 801,
+   "text": "I would like to pay by cheque.",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 830,
+   "text": "There is a direct debit payment I don't recognize.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 186,
+   "text": "Will I be charged for topping up my account using a bank transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 70,
+   "text": "Why hasn't my card payment cleared yet?",
+   "label": "pending_card_payment"
+  },
+  {
+   "subset_pos": 371,
+   "text": "What's the expected wait time to recieve my new card?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 919,
+   "text": "I've been charged an extra \u00a31 and I don't know why",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 147,
+   "text": "I want to know your exchange rates.",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1140,
+   "text": "My card is showing multiple charges for the same items on my recent statement. I was wondering what actions of needed to take to fix this issue",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 689,
+   "text": "Why was I charged extra on my app?",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 201,
+   "text": "can i see money source?",
+   "label": "verify_source_of_funds"
+  },
+  {
+   "subset_pos": 1049,
+   "text": "Are there limits to businesses that will accept this card?",
+   "label": "card_acceptance"
+  },
+  {
+   "subset_pos": 1698,
+   "text": "Where is the refund on my statement?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 157,
+   "text": "Do you have to be 18 to make an account?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 102,
+   "text": "My card is not working.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1299,
+   "text": "How can I delete my account?",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 723,
+   "text": "How do I query a payment on my card? It looks like I have paid for the same thing twice.",
+   "label": "transaction_charged_twice"
+  },
+  {
+   "subset_pos": 304,
+   "text": "Am I allowed to get an account for my daughter?",
+   "label": "age_limit"
+  },
+  {
+   "subset_pos": 637,
+   "text": "How do I get a refund for something I bought?",
+   "label": "request_refund"
+  }
+ ]
+}

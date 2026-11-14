@@ -78,3 +78,12 @@ def norm(s):
     s = s.strip().splitlines()[0] if s.strip() else ""
     s = s.strip().strip("\"'`*.:,;").strip().lower()
     return re.sub(r"[\s\-]+", "_", s)
+
+
+def normalised_overlap(train, test):
+    """Test indices whose text, lowercased and trimmed, also occurs in the training split.
+    Returns (exact_count, [(test_idx, text, label)])."""
+    exact = {t for t, _ in train}
+    norm_train = {t.strip().lower() for t, _ in train}
+    hits = [(i, t, l) for i, (t, l) in enumerate(test) if t.strip().lower() in norm_train]
+    return sum(t in exact for t, _ in test), hits

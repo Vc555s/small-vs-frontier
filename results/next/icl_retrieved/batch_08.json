@@ -1,0 +1,799 @@
+{
+ "batch": 8,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 123,
+ "neighbours_by_message": {
+  "T845": [
+   1150,
+   395,
+   1538,
+   1581,
+   412
+  ],
+  "T796": [
+   1383,
+   668,
+   826,
+   819,
+   1468
+  ],
+  "T1770": [
+   1646,
+   679,
+   269,
+   926,
+   338
+  ],
+  "T2240": [
+   1990,
+   810,
+   1418,
+   1099,
+   1806
+  ],
+  "T2283": [
+   967,
+   1609,
+   797,
+   988,
+   1582
+  ],
+  "T1167": [
+   1048,
+   1463,
+   1378,
+   1200,
+   1622
+  ],
+  "T1668": [
+   247,
+   1767,
+   451,
+   1953,
+   459
+  ],
+  "T852": [
+   395,
+   566,
+   1320,
+   1909,
+   115
+  ],
+  "T2738": [
+   766,
+   1095,
+   1130,
+   178,
+   1734
+  ],
+  "T2312": [
+   1758,
+   767,
+   466,
+   1512,
+   651
+  ],
+  "T736": [
+   1903,
+   649,
+   1157,
+   1404,
+   818
+  ],
+  "T2347": [
+   1582,
+   1251,
+   1073,
+   1039,
+   1820
+  ],
+  "T132": [
+   433,
+   1711,
+   777,
+   1794,
+   1123
+  ],
+  "T156": [
+   1816,
+   93,
+   1311,
+   1524,
+   1248
+  ],
+  "T873": [
+   815,
+   938,
+   655,
+   206,
+   1203
+  ],
+  "T2073": [
+   1857,
+   1568,
+   428,
+   362,
+   1319
+  ],
+  "T1869": [
+   316,
+   887,
+   966,
+   1272,
+   995
+  ],
+  "T1800": [
+   156,
+   1129,
+   1850,
+   811,
+   105
+  ],
+  "T24": [
+   1041,
+   520,
+   146,
+   1401,
+   1371
+  ],
+  "T2458": [
+   504,
+   436,
+   629,
+   202,
+   307
+  ],
+  "T440": [
+   1838,
+   792,
+   1807,
+   813,
+   676
+  ],
+  "T2205": [
+   1397,
+   1143,
+   1843,
+   652,
+   1291
+  ],
+  "T2219": [
+   404,
+   1933,
+   337,
+   1204,
+   1607
+  ],
+  "T1874": [
+   310,
+   1037,
+   1513,
+   1926,
+   1111
+  ],
+  "T2335": [
+   557,
+   1555,
+   1502,
+   1186,
+   1490
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 676,
+   "text": "My card has gone missing.",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 504,
+   "text": "Can I use cash to top up",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 1291,
+   "text": "Does transferring money have a fee?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1099,
+   "text": "I would like to know how my friend would be able to send me money",
+   "label": "receiving_money"
+  },
+  {
+   "subset_pos": 146,
+   "text": "My card was supposed to arrive, but hasn't?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1607,
+   "text": "How come I can see an extra charge for my transfer?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1806,
+   "text": "How can I receive money?",
+   "label": "receiving_money"
+  },
+  {
+   "subset_pos": 1794,
+   "text": "I purchased an item and the exchange rate was wrong",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 395,
+   "text": "Is there a reason why a recipient might not see my money transaction",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1990,
+   "text": "Are there ways for other people to send me money?",
+   "label": "receiving_money"
+  },
+  {
+   "subset_pos": 93,
+   "text": "How will I know what the exchange rate is?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 938,
+   "text": "How much time do transfers take? I sent money to a friend who needs it fast. It's been hours, and the money has not gone through.",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1622,
+   "text": "How do you check my identity?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1418,
+   "text": "How can I receive money from someone?",
+   "label": "receiving_money"
+  },
+  {
+   "subset_pos": 815,
+   "text": "How long do money transfers take? My friend really needs the money i sent a couple of hours ago but it's not there yet.",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1909,
+   "text": "My money transfer has not happened yet",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1568,
+   "text": "There is an urgent transfer I need to make from China.  How long will it take to get it processed?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1037,
+   "text": "why have I got a pending transfer? I'm confused!!",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 105,
+   "text": "My card isn't letting me purchase something and I wanted to know why.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1073,
+   "text": "How do I make my transfer go through",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 668,
+   "text": "The ATM didn't give me enough money.",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 1319,
+   "text": "How long does it take to make an urgent transfer from China?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1095,
+   "text": "Someone has copied my card. I have my card with me, but someone just made a 500\u00a3 cash withdrawal. Please help now.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 826,
+   "text": "Why didn't I get the amount I requested at the ATM?",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 338,
+   "text": "I want a refund for an item",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 1129,
+   "text": "I wanted to buy something online yesterday, but I could not because the card got declined on the day of and the following day. What is wrong with the card?",
+   "label": "declined_transfer"
+  },
+  {
+   "subset_pos": 966,
+   "text": "I've been waiting for a pending transfer to go through for a while now, and don't see any reason why I've been waiting this long.  I know that I have the correct account details, so that isn't the problem.",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1371,
+   "text": "I still haven't gotten my new card.  When will it get here?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1850,
+   "text": "Why has my card been declined?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 451,
+   "text": "I have lost my phone.",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 811,
+   "text": "Why has my card been declined?  whats the deal?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 433,
+   "text": "I bought an item and the exchange rate was wrong.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 810,
+   "text": "Who can send me money?",
+   "label": "receiving_money"
+  },
+  {
+   "subset_pos": 115,
+   "text": "I sent a payment but now it's not showing up.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1272,
+   "text": "I have done a transfer within the country the day before yesterday, but it's still not there yet. Can you please check what's going on with that, the account number is the right one, I've checked that several times already.",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1251,
+   "text": "I was wondering about transferring money into my account and how it works.  Can you tell me about that?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1857,
+   "text": "I need to transfer something to China. It is urgent. How many days will it take to get there?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1820,
+   "text": "What is the process for transferring money into my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 307,
+   "text": "I would like to use cash to make a top-up?",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 1143,
+   "text": "What is this fee for transferring money?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 652,
+   "text": "Is there a top up fee for transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 1843,
+   "text": "Is there a fee for transferring money",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1767,
+   "text": "My phone was stolen, what should I do first?",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 767,
+   "text": "Why didn't my transfer work?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1513,
+   "text": "Why is my transfer still pending after all this time?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1404,
+   "text": "Whats the limit on my top up",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 436,
+   "text": "Can I top up with cash",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 651,
+   "text": "Why didn't my transfer to a beneficiary go through?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 655,
+   "text": "How long do EU transfers actually take? I bought something online a couple days ago, sent the money immediately online but the seller says it's still not there yet.",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1041,
+   "text": "Where is my new card if I haven't received it yet?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 679,
+   "text": "I am missing my refund.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1401,
+   "text": "Is there a reason my new card hasn't arrived?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1039,
+   "text": "How long does a transfer take?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 887,
+   "text": "I transferred money to another country several days ago, but my transaction is still pending. i have checked that the accounts are keyed in correctly. what sees to be the problem?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 813,
+   "text": "I haven't received my card and am worried it is lost.",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1609,
+   "text": "Hello.  I ran into a problem with a transfer this morning.  I was trying to send money to some friends but when I tried to send it, the transfer failed.  I don't know what is causing the transfer to be rejected.  Please let me know what is causing the problem.  Thanks.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1463,
+   "text": "I need to verify my identity. How do I do that?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1311,
+   "text": "How do you determine the exchange rate?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1933,
+   "text": "After a transfer, I see an extra fee.  Why?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1468,
+   "text": "I asked for a certain amount of money from the ATM, but it gave me a different amount. Less than what I asked for.",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 629,
+   "text": "Is it possible for me to top up with cash?",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 1130,
+   "text": "Someone has a copy of my card !! I definitely still have it here but someone just made a 500\u00a3 cash withdrawal, HELP!",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1378,
+   "text": "How do I go through the identity checks?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 1048,
+   "text": "For the identity check, do I need any kind of documentation?",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 792,
+   "text": "My card was stolen",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 1582,
+   "text": "How is this transfer supposed to work? It's not working for me.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1111,
+   "text": "I sent a transfer and it has been pending for awhile. How long will it stay pending?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 520,
+   "text": "My card appears to have never arrived?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1502,
+   "text": "How can I transfer money into my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1646,
+   "text": "Where is my refund? it appears to be missing.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1838,
+   "text": "I think my card is stolen!",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 819,
+   "text": "I requested money from the ATM and it didn't give me as much as I requested.",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 466,
+   "text": "I attemped a transfer and it didn't go through.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 337,
+   "text": "Why was I charged a fee for transferring money",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 459,
+   "text": "Do I need to do anything? My phone was stolen yesterday.",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 1397,
+   "text": "How much would it cost me if I transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 777,
+   "text": "When I bought something abroad, the exchange rate was wrong.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 1490,
+   "text": "How can I transfer money between accounts?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1555,
+   "text": "I have an account at another bank, but I want to transfer some of the money to my account here.\n.",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1157,
+   "text": "Are there any top-up limits that I must follow?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 412,
+   "text": "I do not know where the transaction is.",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1711,
+   "text": "I bought something in another currency, but the exchange rate was incorrect.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 766,
+   "text": "I think somebody made an unauthorized copy of my card.  My account has a cash withdrawal for 500\u00a3 that I did not make.  Please help.",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 404,
+   "text": "Why was I charged this extra fee while doing a transfer?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1200,
+   "text": "What will I need to verify my identity",
+   "label": "verify_my_identity"
+  },
+  {
+   "subset_pos": 178,
+   "text": "There's a cash withdrawal I am certain I did not make",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 1538,
+   "text": "Why can't the recepient of my money transaction see it?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1903,
+   "text": "Is there a top-up limit?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 1926,
+   "text": "My transfer is still pending",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1512,
+   "text": "My transfer did not work, what was the reason?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1204,
+   "text": "Can you elaborate on why I have an extra charge just for transferring?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1581,
+   "text": "Why can't the person I sent the money transfer to see it?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1816,
+   "text": "Where can I find the exchange rate for my transfer?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1524,
+   "text": "How do you determine exchange rates?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1320,
+   "text": "My friend says he hasn't received my transaction",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 566,
+   "text": "Could you please help me figure out why the seller has not received their money after I sent it.",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 362,
+   "text": "I need to transfer something ASAP from China, how long will it take to post to my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1203,
+   "text": "How long will my most recent transfer take to go through? The recipient needs the money urgently.",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1807,
+   "text": "Need help with a stolen card.",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 988,
+   "text": "Why is my transfer not working? I tried multiple times to transfer money, and all that happens is an error message pops up.",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1186,
+   "text": "I need to move money from another bank to this account.",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1758,
+   "text": "What may be the reason that my transfer did not go through?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 649,
+   "text": "is there a limit to top up",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 247,
+   "text": "stolen phone, what should i do",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 967,
+   "text": "The transfer keeps rejected, I tried to transfer some money to friends but it keeps getting rejected for some reason, Would you please check the issue?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 995,
+   "text": "I have done a transfer within the country the day before yesterday, but it's still not there yet. Can you please check what's going on with that, the account number definitely is the right one, I've checked that several times already.",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 310,
+   "text": "Can you tell me why my transfer is pending still?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 156,
+   "text": "I tried to make a purchase in the store but my card was declined.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 557,
+   "text": "HOW DO I TRANSFER MONEY FROM MY BANK ACCOUNT?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1123,
+   "text": "The exchange rate was incorrect for this item I bought.",
+   "label": "card_payment_wrong_exchange_rate"
+  },
+  {
+   "subset_pos": 206,
+   "text": "How long do you expect me to wait for the transfer? It finally worked out, but has been pending for a long time and it's quite urgent.",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1248,
+   "text": "How does the exchange rate work on this app?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 818,
+   "text": "Do top-ups have a limit?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 316,
+   "text": "Hello. How long does it usually take to transfer money to another country? I've made sure all the information is correct, but the transfer still says that it's \"pending.\"",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1150,
+   "text": "How can I the person see my money transaction?",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1734,
+   "text": "What do I do if I see a cash withdrawal on my account that I don't remember making?",
+   "label": "cash_withdrawal_not_recognised"
+  },
+  {
+   "subset_pos": 269,
+   "text": "There is a refund missing.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 202,
+   "text": "I want to use cash to top up.",
+   "label": "top_up_by_cash_or_cheque"
+  },
+  {
+   "subset_pos": 1383,
+   "text": "Why didn't I receive the right amount of cash at the ATM?",
+   "label": "wrong_amount_of_cash_received"
+  },
+  {
+   "subset_pos": 926,
+   "text": "I need my refund",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 428,
+   "text": "Can I quickly send a transfer from China?  How long will it take?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1953,
+   "text": "What should I do if my phone is lost or stolen?",
+   "label": "lost_or_stolen_phone"
+  },
+  {
+   "subset_pos": 797,
+   "text": "Can you help me transfer money into my friend's bank account? I tried to do it but it keeps rejecting me. I need to get the money in there asap. I have enough and all the account info is correct.",
+   "label": "failed_transfer"
+  }
+ ]
+}

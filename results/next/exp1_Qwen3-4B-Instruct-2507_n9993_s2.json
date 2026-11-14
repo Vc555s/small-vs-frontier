@@ -1,0 +1,15 @@
+[
+  {
+    "model": "Qwen3-4B-Instruct-2507",
+    "budget": 9993,
+    "seed": 2,
+    "epochs": 3,
+    "accuracy": 0.9447,
+    "valid_label_rate": 1.0,
+    "train_seconds": 9592,
+    "eval_seconds": 329,
+    "ms_per_example": 107.1,
+    "peak_gpu_gb": 9.6,
+    "test_n": 3076
+  }
+]

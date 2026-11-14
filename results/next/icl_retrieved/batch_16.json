@@ -1,0 +1,794 @@
+{
+ "batch": 16,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 122,
+ "neighbours_by_message": {
+  "T1537": [
+   1054,
+   1317,
+   1273,
+   977,
+   23
+  ],
+  "T743": [
+   998,
+   187,
+   818,
+   1903,
+   649
+  ],
+  "T377": [
+   592,
+   555,
+   6,
+   1850,
+   418
+  ],
+  "T2974": [
+   1262,
+   198,
+   1641,
+   1253,
+   1325
+  ],
+  "T1715": [
+   338,
+   136,
+   151,
+   637,
+   926
+  ],
+  "T1445": [
+   87,
+   556,
+   1533,
+   1790,
+   879
+  ],
+  "T716": [
+   886,
+   1770,
+   4,
+   659,
+   1457
+  ],
+  "T1454": [
+   1528,
+   1722,
+   1689,
+   1944,
+   443
+  ],
+  "T97": [
+   1615,
+   1266,
+   376,
+   147,
+   14
+  ],
+  "T1914": [
+   68,
+   1402,
+   1553,
+   1403,
+   1899
+  ],
+  "T1470": [
+   1370,
+   1046,
+   879,
+   119,
+   470
+  ],
+  "T2297": [
+   1231,
+   573,
+   1512,
+   767,
+   1033
+  ],
+  "T2234": [
+   404,
+   337,
+   1933,
+   163,
+   164
+  ],
+  "T1820": [
+   1612,
+   102,
+   1491,
+   1850,
+   513
+  ],
+  "T1757": [
+   56,
+   250,
+   1825,
+   1306,
+   679
+  ],
+  "T2188": [
+   325,
+   651,
+   306,
+   351,
+   1308
+  ],
+  "T2964": [
+   1260,
+   800,
+   378,
+   1188,
+   693
+  ],
+  "T1291": [
+   113,
+   827,
+   1882,
+   45,
+   1628
+  ],
+  "T224": [
+   1022,
+   142,
+   1241,
+   1158,
+   1572
+  ],
+  "T2349": [
+   1611,
+   186,
+   639,
+   95,
+   1281
+  ],
+  "T1318": [
+   1008,
+   890,
+   1895,
+   1780,
+   1701
+  ],
+  "T2704": [
+   796,
+   732,
+   1473,
+   554,
+   52
+  ],
+  "T1813": [
+   1167,
+   1521,
+   1119,
+   1850,
+   1554
+  ],
+  "T2118": [
+   633,
+   1163,
+   1870,
+   1912,
+   850
+  ],
+  "T461": [
+   676,
+   813,
+   1743,
+   1509,
+   1460
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 554,
+   "text": "I have a transfer from the US, How long is the wait?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 337,
+   "text": "Why was I charged a fee for transferring money",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1262,
+   "text": "I am having a slight problem with my American express in apple play, can you help me fix the problem with top up?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 998,
+   "text": "Do top-ups have limits?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 23,
+   "text": "How do I get the passcode reset?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 1611,
+   "text": "How do I use bank transfer to top up my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 1770,
+   "text": "How to cancel a transaction",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1743,
+   "text": "Is it possible someone has access to my card? I noticed that there are a couple of payments in the app I'm sure I did not make. Can you find out what's going on here?",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 151,
+   "text": "Can I get a refund on an item?",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 1944,
+   "text": "Can I use my card to withdraw from my account?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 4,
+   "text": "I have arranged a transfer, but no longer need to send it. How do I stop the transfer?",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 796,
+   "text": "how long does it take for a transfer to arrive",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1615,
+   "text": "What's the foreign exchange rate I will receive?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1403,
+   "text": "I would like to terminate my account.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 659,
+   "text": "I just bought an item and would like to stop payment, is this possible?  The item has not been received yet.",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 1903,
+   "text": "Is there a top-up limit?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 1553,
+   "text": "How do I terminate my account.",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 850,
+   "text": "Can I change my PIN at any cash machines?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 6,
+   "text": "Today I used my card at a restaurant and it was declined. Why?",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 926,
+   "text": "I need my refund",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 513,
+   "text": "I am unable to use my card for some reason.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1273,
+   "text": "I tried entering my passcode and it isn't working. Can you help?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 977,
+   "text": "I am entering my passcode but getting an error.",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 693,
+   "text": "How can I set up Google Pay on my device?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 142,
+   "text": "I made a cash withdraw and it shows up as pending why is that?",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1033,
+   "text": "When I attempted to make a transfer, it failed.",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 800,
+   "text": "Can I top-up via Apple Pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 1306,
+   "text": "I have received my statement but I do not see my refund, why is that?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1882,
+   "text": "I hope to get a Visa card",
+   "label": "visa_or_mastercard"
+  },
+  {
+   "subset_pos": 250,
+   "text": "I don't see a refund in my account.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 649,
+   "text": "is there a limit to top up",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 187,
+   "text": "What limits are the to top-ups?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 639,
+   "text": "How can you assist me on topping up on bank transfers to my account?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 14,
+   "text": "Can you tell me your exchange rates?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1260,
+   "text": "Can I use Apple Pay to top-up?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 1253,
+   "text": "Apple pay is not accepting my American Express card, can you assist me with this problem?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 1895,
+   "text": "I want to top up by card",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1825,
+   "text": "My refund has not shown up in my account.   Where is it?",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 102,
+   "text": "My card is not working.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1054,
+   "text": "The passcode isn't working for me.",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 443,
+   "text": "Are there charges for cash withdrawals?",
+   "label": "cash_withdrawal_charge"
+  },
+  {
+   "subset_pos": 1870,
+   "text": "Do I need to go to a physical bank to change my PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1722,
+   "text": "need to know places i can withdraw money",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 573,
+   "text": "Hi there, I've tried to make a transfer 5 different times and its not working. Is your system down or something?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1512,
+   "text": "My transfer did not work, what was the reason?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1402,
+   "text": "What do I do to close my account?",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 198,
+   "text": "Why is top up not working if I use my American express with my apple pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 418,
+   "text": "What's wrong with my card? The clerk at the grocery store said it was declined.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 470,
+   "text": "Are there only certain ATM machines where I can use this card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 886,
+   "text": "Please cancel my last transaction.",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 555,
+   "text": "I tried to use my card today in the restaurant but it didn't work and just got declined. What's wrong?",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1370,
+   "text": "How can I find an ATM that accepts this card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 879,
+   "text": "Are there any ATM's near me that accept this card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 732,
+   "text": "It's been a couple days how much longer do I have to wait for my transfer?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 651,
+   "text": "Why didn't my transfer to a beneficiary go through?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1612,
+   "text": "My card was not accepted in a shop",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1457,
+   "text": "Is there any way to cancel a recent transfer?  I did not mean to make it and need to make sure it does not go through.",
+   "label": "cancel_transfer"
+  },
+  {
+   "subset_pos": 1266,
+   "text": "What will my exchange rate be?",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1933,
+   "text": "After a transfer, I see an extra fee.  Why?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1460,
+   "text": "Could you assist me in finding my lost card?",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 378,
+   "text": "Can I use my American Express card with Apple Pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 1046,
+   "text": "Where are the ATMs that accept this card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 1308,
+   "text": "Why can't I use my beneficiary?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 890,
+   "text": "Can i top up by card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 633,
+   "text": "Do I have to go to the bank to change my PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1572,
+   "text": "If my cash withdrawal is still not showing, is something wrong?",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1008,
+   "text": "How do I top up on my card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 338,
+   "text": "I want a refund for an item",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 1491,
+   "text": "My card don't work.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1628,
+   "text": "I need to get a card, how do I do that?",
+   "label": "order_physical_card"
+  },
+  {
+   "subset_pos": 1850,
+   "text": "Why has my card been declined?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 679,
+   "text": "I am missing my refund.",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 325,
+   "text": "Why is a transfer to a beneficiary not possible?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 136,
+   "text": "I would like it if I could get an item refunded",
+   "label": "request_refund"
+  },
+  {
+   "subset_pos": 306,
+   "text": "Why can't I transfer money to a beneficiery?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1325,
+   "text": "how do I get top up to work for my card",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 592,
+   "text": "My card was declined at a restaurant today and I am not sure why.",
+   "label": "card_not_working"
+  },
+  {
+   "subset_pos": 1473,
+   "text": "Transfers from the US how long will the wait be?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1533,
+   "text": "Where is the closest ATM I can use?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 1158,
+   "text": "Why is the pending status on my cash withdrawal taking so long?",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 164,
+   "text": "why am I being charged a fee for transferring money ?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1641,
+   "text": "Why can't I get my top up to work in Apple Pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 556,
+   "text": "Is there a Mastercard ATM nearby?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 163,
+   "text": "I transferred money, but I think I've been charged a fee for it?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 1167,
+   "text": "Do you know the reason why my card payment was declined?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 52,
+   "text": "How long do I have to wait until the transferred money shows up?",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1528,
+   "text": "I need to know where I can withdraw money.",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 1899,
+   "text": "I want to terminate my account",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 1912,
+   "text": "At what ATM can I change my PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1509,
+   "text": "Please help me.  My card is missing.",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 1231,
+   "text": "I've been trying to make a transfer and it doesn't seem to be working. (5 times) What is wrong with your system?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 1554,
+   "text": "I was out today looking forward to paying with my new card, turns out the payment kept getting declined. This is really sad, what's going on?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1790,
+   "text": "Is there a way to find an ATM around me?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 1521,
+   "text": "I made a card payment, but it has been declined?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1281,
+   "text": "How do I go forth with bank transfers for top up accounts?",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 376,
+   "text": "how do you get exchange rates",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 147,
+   "text": "I want to know your exchange rates.",
+   "label": "exchange_rate"
+  },
+  {
+   "subset_pos": 1188,
+   "text": "What are the steps needed to top up with Apple Pay?",
+   "label": "apple_pay_or_google_pay"
+  },
+  {
+   "subset_pos": 1780,
+   "text": "Is it possible to top up by card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 818,
+   "text": "Do top-ups have a limit?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 1163,
+   "text": "Is there a way to change my PIN without having to go to the bank?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1701,
+   "text": "What cards and currencies can I use to top up my account?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 404,
+   "text": "Why was I charged this extra fee while doing a transfer?",
+   "label": "transfer_fee_charged"
+  },
+  {
+   "subset_pos": 87,
+   "text": "What ATM locations are near me?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 813,
+   "text": "I haven't received my card and am worried it is lost.",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 827,
+   "text": "I'd like to get a Visa card, please.",
+   "label": "visa_or_mastercard"
+  },
+  {
+   "subset_pos": 113,
+   "text": "I'd like to apply for a Visa Card.",
+   "label": "visa_or_mastercard"
+  },
+  {
+   "subset_pos": 45,
+   "text": "I need to get visa and mastercard",
+   "label": "visa_or_mastercard"
+  },
+  {
+   "subset_pos": 351,
+   "text": "I tried to transfer funds to a beneficiary and was denied. Can you tell me why?",
+   "label": "beneficiary_not_allowed"
+  },
+  {
+   "subset_pos": 1022,
+   "text": "Why is the cash withdraw I made shown as pending?",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 68,
+   "text": "How to I close my account?",
+   "label": "terminate_account"
+  },
+  {
+   "subset_pos": 1241,
+   "text": "Why is my cash withdrawal pending?",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 676,
+   "text": "My card has gone missing.",
+   "label": "lost_or_stolen_card"
+  },
+  {
+   "subset_pos": 119,
+   "text": "I can use this card at which ATMs?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 1119,
+   "text": "Why was my payment declined? I keep trying my card but it's not working.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1689,
+   "text": "What locations allow me to withdraw money?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 95,
+   "text": "Tell me how to top up my account using bank transfer.",
+   "label": "transfer_into_account"
+  },
+  {
+   "subset_pos": 56,
+   "text": "My refund isn't showing up",
+   "label": "Refund_not_showing_up"
+  },
+  {
+   "subset_pos": 1317,
+   "text": "Why doesn't my passcode work?",
+   "label": "passcode_forgotten"
+  },
+  {
+   "subset_pos": 767,
+   "text": "Why didn't my transfer work?",
+   "label": "failed_transfer"
+  },
+  {
+   "subset_pos": 186,
+   "text": "Will I be charged for topping up my account using a bank transfer?",
+   "label": "top_up_by_bank_transfer_charge"
+  },
+  {
+   "subset_pos": 637,
+   "text": "How do I get a refund for something I bought?",
+   "label": "request_refund"
+  }
+ ]
+}

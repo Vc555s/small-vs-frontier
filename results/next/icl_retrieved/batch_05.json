@@ -1,0 +1,744 @@
+{
+ "batch": 5,
+ "rule": "union of the 5 nearest subset examples (cosine, BAAI/bge-small-en-v1.5) of each message in the call, duplicates removed, sorted by subset position then shuffled with random.Random(7)",
+ "n": 112,
+ "neighbours_by_message": {
+  "T417": [
+   97,
+   1573,
+   911,
+   661,
+   1362
+  ],
+  "T1842": [
+   1926,
+   310,
+   1513,
+   1111,
+   1135
+  ],
+  "T1320": [
+   890,
+   1895,
+   1780,
+   1008,
+   1321
+  ],
+  "T2232": [
+   490,
+   1891,
+   1947,
+   674,
+   1987
+  ],
+  "T1178": [
+   1976,
+   1035,
+   305,
+   59,
+   1001
+  ],
+  "T1460": [
+   87,
+   470,
+   556,
+   1790,
+   1533
+  ],
+  "T51": [
+   417,
+   638,
+   794,
+   282,
+   343
+  ],
+  "T1587": [
+   1821,
+   27,
+   91,
+   677,
+   1232
+  ],
+  "T1089": [
+   1690,
+   1996,
+   1743,
+   1893,
+   426
+  ],
+  "T1723": [
+   1850,
+   148,
+   154,
+   811,
+   1119
+  ],
+  "T2578": [
+   778,
+   1536,
+   888,
+   587,
+   1710
+  ],
+  "T2049": [
+   1670,
+   52,
+   1768,
+   591,
+   699
+  ],
+  "T1566": [
+   514,
+   1974,
+   1869,
+   1119,
+   1353
+  ],
+  "T1192": [
+   1606,
+   1432,
+   1332,
+   1976,
+   1035
+  ],
+  "T358": [
+   1346,
+   488,
+   985,
+   1404,
+   781
+  ],
+  "T21": [
+   1067,
+   1426,
+   1423,
+   1560,
+   885
+  ],
+  "T2100": [
+   339,
+   397,
+   1761,
+   575,
+   935
+  ],
+  "T2686": [
+   816,
+   1576,
+   728,
+   1614,
+   1769
+  ],
+  "T2605": [
+   301,
+   1396,
+   1938,
+   1922,
+   1351
+  ],
+  "T1091": [
+   852,
+   656,
+   1652,
+   215,
+   1417
+  ],
+  "T2082": [
+   1761,
+   1212,
+   397,
+   1290,
+   339
+  ],
+  "T665": [
+   484,
+   1125,
+   1756,
+   1859,
+   1992
+  ],
+  "T44": [
+   282,
+   417,
+   638,
+   794,
+   1036
+  ],
+  "T2570": [
+   1710,
+   29,
+   778,
+   1077,
+   587
+  ],
+  "T2116": [
+   1696,
+   1604,
+   850,
+   1447,
+   1912
+  ]
+ },
+ "examples": [
+  {
+   "subset_pos": 1135,
+   "text": "How long do transfers take, mine just says pending?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1922,
+   "text": "I want a disposable virtual card, how do I do that?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 1573,
+   "text": "Does this app allow currencies to be exchanged?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 1780,
+   "text": "Is it possible to top up by card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 27,
+   "text": "Why do I get declined when I try to withdraw cash?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1332,
+   "text": "Can I go ahead and use my account even though my identify hasn't been verified yet?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1067,
+   "text": "How can I check on the delivery status of my card?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 1036,
+   "text": "Is there a way to link the card i just got?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 575,
+   "text": "Tell me why my card payment would be reverted.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1769,
+   "text": "My money hasn't been transferred yet.",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 490,
+   "text": "I have a charge I did not make.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1290,
+   "text": "I see a reverted payment on my account. Why has this happened?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 339,
+   "text": "What is the reason for my card payment to be reverted?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1125,
+   "text": "I really need to top-up my card today urgently but my card keeps getting declined!! Can you please help me with this problem or let me know if you have any alternatives",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 1947,
+   "text": "I received a fee I should not have.",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 885,
+   "text": "How long until the card arrives?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 811,
+   "text": "Why has my card been declined?  whats the deal?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 587,
+   "text": "I didn't receive the correct exchange rate when I got cash.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1346,
+   "text": "What is the limit on Auto top?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1976,
+   "text": "Why is it required to verify my identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 52,
+   "text": "How long do I have to wait until the transferred money shows up?",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1321,
+   "text": "Can I top up my card with other cards?",
+   "label": "supported_cards_and_currencies"
+  },
+  {
+   "subset_pos": 29,
+   "text": "When I got cash, the exchange rate applied was wrong.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1912,
+   "text": "At what ATM can I change my PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1996,
+   "text": "There seems to be a couple of payments listed in the app I know weren't made by me. Is there a possibility someone has access to my card? Can you find out what's going on?",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 677,
+   "text": "Can you tell me why I was declined from getting cash?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 282,
+   "text": "How do I link one of your card that I already have?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 1891,
+   "text": "I was charged an extra fee for a card payment. I was unaware of these fees beforehand.",
+   "label": "card_payment_fee_charged"
+  },
+  {
+   "subset_pos": 850,
+   "text": "Can I change my PIN at any cash machines?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1821,
+   "text": "I tried to withdraw cash, but got declined!",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 397,
+   "text": "Is it possible that my card payment was reverted?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1606,
+   "text": "Can I use my account without verifying identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1232,
+   "text": "My cash withdrawal was declined.  Why?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1761,
+   "text": "why did my payment revert",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1536,
+   "text": "In a recent withdrawal I received less cash than I expected to receive.  Did someone make an error with the exchange rate?",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 488,
+   "text": "Does auto top-up have a limit?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 1756,
+   "text": "My credit card got declined for top up! What's going on? Can you check on why it didn't go through?",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 699,
+   "text": "When can I expect money to be transferred to my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 890,
+   "text": "Can i top up by card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1212,
+   "text": "I did a payment but the app cancelled it.",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 1533,
+   "text": "Where is the closest ATM I can use?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 1576,
+   "text": "I transferred some funds but I don't see it",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1768,
+   "text": "The transfer on my account is not showing up.",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1926,
+   "text": "My transfer is still pending",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1992,
+   "text": "Where did my top-up go? I can't find it in my wallet",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1362,
+   "text": "How can I trade currencies with this app?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 1001,
+   "text": "Why do you need me to verify who I am?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1710,
+   "text": "When I received my cash, the exchange rate was wrong.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 656,
+   "text": "I do not recognise this card payment.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 484,
+   "text": "Won't let me top my card up!! Who can get it sorted out for me? It's urgent! How do I find out what the problem is with my card and how else to top it up?",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 1008,
+   "text": "How do I top up on my card?",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1869,
+   "text": "Hello, is there any way to double check my card? I have never had issues with withdraws in the past, but this morning on the way to work it was unexpectedly declined.",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 728,
+   "text": "There is a missing transfer on my account",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 888,
+   "text": "When I received my cash; they had my exchange rate incorrect.",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 674,
+   "text": "I see I was charged $1 for a transaction.",
+   "label": "extra_charge_on_statement"
+  },
+  {
+   "subset_pos": 1353,
+   "text": "Will any ATM's decline my card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 1396,
+   "text": "How can I get disposable virtual cards?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 59,
+   "text": "DO you know the reason for the identity check?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 781,
+   "text": "What is the maximum top up?",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 1859,
+   "text": "I tried again to top up my card after doing it a couple days ago when it had worked. Now, it doesn't seem to be working. Can you tell me what the deal is here please?",
+   "label": "top_up_failed"
+  },
+  {
+   "subset_pos": 911,
+   "text": "Is this app capable of exchanging currencies?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 778,
+   "text": "the exchange rate I got for cash was wrong",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1560,
+   "text": "When will I get my card shipped to me?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 985,
+   "text": "Do I need to set a limit on auto top-up?",
+   "label": "automatic_top_up"
+  },
+  {
+   "subset_pos": 556,
+   "text": "Is there a Mastercard ATM nearby?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 310,
+   "text": "Can you tell me why my transfer is pending still?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 514,
+   "text": "The ATM keeps declining my card! I tried two different ATMs already can you please check if everything is alright with my account??",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 816,
+   "text": "I transferred money and it didn't get there.",
+   "label": "transfer_not_received_by_recipient"
+  },
+  {
+   "subset_pos": 1696,
+   "text": "Are there any specific cash machines that I have to go to in order to change my PIN?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1417,
+   "text": "I have a confusing payment appear on my statement and I don't recognise it!",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 426,
+   "text": "I just checked my account on the App and there is a payment on there that I did not make.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1790,
+   "text": "Is there a way to find an ATM around me?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 794,
+   "text": "I want to link my new card. Can you help?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 417,
+   "text": "How do I link the new card?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 1426,
+   "text": "What is the expected delivery date for my card?",
+   "label": "card_arrival"
+  },
+  {
+   "subset_pos": 91,
+   "text": "I tried to take out some money from an ATM earlier today and it was declined. Looking on my screen now, I still see that it's pending for that amount. I didn't actually get that money, so I don't want it processed on my account.",
+   "label": "pending_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1690,
+   "text": "There are a few payments in the app that I didn't make! Does someone else have my card?  What should I do?",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1974,
+   "text": "The ATM keeps declining my Transaction . I tried two different ATMs already can you please check if everything is okay with my account?",
+   "label": "declined_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1987,
+   "text": "I see a charge for a direct debit that was not me.",
+   "label": "direct_debit_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1614,
+   "text": "Although I transferred some money, it has not as of yet, arrived.",
+   "label": "balance_not_updated_after_bank_transfer"
+  },
+  {
+   "subset_pos": 1447,
+   "text": "Can I change my pin at an atm?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 1743,
+   "text": "Is it possible someone has access to my card? I noticed that there are a couple of payments in the app I'm sure I did not make. Can you find out what's going on here?",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1895,
+   "text": "I want to top up by card",
+   "label": "topping_up_by_card"
+  },
+  {
+   "subset_pos": 1670,
+   "text": "How long does it take for a transfer to show up in my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1604,
+   "text": "Are their certain cash machines where I can change my pin?",
+   "label": "change_pin"
+  },
+  {
+   "subset_pos": 638,
+   "text": "Help me figure out how to link the new card.",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 343,
+   "text": "how do I link an old card?",
+   "label": "card_linking"
+  },
+  {
+   "subset_pos": 1432,
+   "text": "Can I use my account before the identity verification is complete?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1893,
+   "text": "There are a couple of payments with my card shown in the app that I really didn't make myself. What's going on with this?",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1111,
+   "text": "I sent a transfer and it has been pending for awhile. How long will it stay pending?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 1423,
+   "text": "I ordered my card a couple weeks ago and haven't received it yet. When can I expect it?",
+   "label": "card_delivery_estimate"
+  },
+  {
+   "subset_pos": 1850,
+   "text": "Why has my card been declined?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 661,
+   "text": "Is exchanging currencies a feature of the app?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 154,
+   "text": "I received my new card and tried using it today, just to have it show declined over and over again.  Why is this happening?",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1077,
+   "text": "When I got cash I believe that the exchange rate was wrong",
+   "label": "wrong_exchange_rate_for_cash_withdrawal"
+  },
+  {
+   "subset_pos": 1119,
+   "text": "Why was my payment declined? I keep trying my card but it's not working.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 301,
+   "text": "How can I obtain a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 87,
+   "text": "What ATM locations are near me?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 591,
+   "text": "How long should I have to wait before I see the transfer in my account?",
+   "label": "transfer_timing"
+  },
+  {
+   "subset_pos": 1351,
+   "text": "How do I order a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 148,
+   "text": "My card payment is being declined and I've tried several times.",
+   "label": "declined_card_payment"
+  },
+  {
+   "subset_pos": 1513,
+   "text": "Why is my transfer still pending after all this time?",
+   "label": "pending_transfer"
+  },
+  {
+   "subset_pos": 935,
+   "text": "What does it mean if my payment has been reverted?",
+   "label": "reverted_card_payment?"
+  },
+  {
+   "subset_pos": 305,
+   "text": "Why do you guys need to verify my identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 1404,
+   "text": "Whats the limit on my top up",
+   "label": "top_up_limits"
+  },
+  {
+   "subset_pos": 1938,
+   "text": "Is there a disposable virtual card?",
+   "label": "get_disposable_virtual_card"
+  },
+  {
+   "subset_pos": 215,
+   "text": "I don't recognize this payment at all!  Help!",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 97,
+   "text": "Does this app exchange currencies?",
+   "label": "exchange_via_app"
+  },
+  {
+   "subset_pos": 1652,
+   "text": "There is a payment on my card that I do not recognize.  I've never seen the name on the transaction before.",
+   "label": "card_payment_not_recognised"
+  },
+  {
+   "subset_pos": 1035,
+   "text": "What's the reason for needing to verify my identity?",
+   "label": "why_verify_identity"
+  },
+  {
+   "subset_pos": 470,
+   "text": "Are there only certain ATM machines where I can use this card?",
+   "label": "atm_support"
+  },
+  {
+   "subset_pos": 852,
+   "text": "I don't recognize this payment",
+   "label": "card_payment_not_recognised"
+  }
+ ]
+}
