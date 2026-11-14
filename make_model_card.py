@@ -323,7 +323,7 @@ Three adapters were trained with identical settings and seeds 0, 1 and 2. **The 
 | Accuracy, full test set ({len(test):,}) | {m(acc, full_idx)} | {acc(SEED, full_idx):.3f} |
 | Answers that are one of the 77 labels, full test set | {m(valid, full_idx, 4)} | {valid(SEED, full_idx):.4f} |
 
-{ov_sentence} Comparisons with other systems are in the repository report ([baselines]({REPO}/blob/next-experiments/results/t1_baselines.md)). This card makes no claim about any other model.
+{ov_sentence} Comparisons with other systems are in the repository report ([baselines]({REPO}/blob/main/results/t1_baselines.md)). This card makes no claim about any other model.
 
 Latency was not measured separately for this adapter. It has the same base model and LoRA size as [{ROUTER_ID}]({HF}/{ROUTER_ID}), whose card reports latency, and a slightly shorter prompt (no `none_of_these` label or instruction).
 
