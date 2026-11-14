@@ -245,17 +245,18 @@ def main():
       "run compared with Claude zero-shot in this report as one family "
       f"({len(comp)} comparisons; all seeds are in section 2).")
     w("")
-    w("| System | Labels | Runs | Accuracy | Macro-F1 | Wilson 95% (seed 0) | Δ vs Claude zero-shot (95% bootstrap) | p raw | p Holm | Batch-1 p50 | Cost / 1,000 requests |")
-    w("|---|---|---|---|---|---|---|---|---|---|---|")
+    w("| System | Labels | Runs | Accuracy | Macro-F1 | Valid labels | Wilson 95% (seed 0) | Δ vs Claude zero-shot (95% bootstrap) | p raw | p Holm | Batch-1 p50 | Cost / 1,000 requests |")
+    w("|---|---|---|---|---|---|---|---|---|---|---|---|")
 
     def row_for(keys, system, labels_txt, kind):
         keys = [k for k in keys if k in runs and "preds" in runs[k]]
         if not keys:
-            w(f"| {system} | {labels_txt} | 0 | not completed | | | | | | | |")
+            w(f"| {system} | {labels_txt} | 0 | not completed | | | | | | | | |")
             return
         accs = [sum(correct(k)) / len(idx) for k in keys]
         f1s = [macro_f1([gold[i] for i in idx], [runs[k]["preds"][i] for i in idx], labels) for k in keys]
         k0 = keys[0]
+        vals = [sum(runs[k]["preds"][i] is not None for i in idx) / len(idx) for k in keys]
         lo, hi = wilson(sum(correct(k0)), len(idx))
         if k0 == ref:
             dtxt, praw, pholm = "reference", "", ""
@@ -273,7 +274,7 @@ def main():
             gc_ = gpu_cost(kind)
             cost_txt = (" / ".join(f"EUR {x:.4f}" for x in gc_) + f" at EUR {' / '.join(f'{r:.2f}' for r in rates)} per GPU-hour"
                         if gc_ else "n/a")
-        w(f"| {system} | {labels_txt} | {len(keys)} | {ms(accs)} | {ms(f1s)} | {lo:.3f}–{hi:.3f} | {dtxt} | "
+        w(f"| {system} | {labels_txt} | {len(keys)} | {ms(accs)} | {ms(f1s)} | {ms(vals)} | {lo:.3f}–{hi:.3f} | {dtxt} | "
           f"{praw} | {pholm} | {lat_txt} | {cost_txt} |")
 
     row_for([ref], "Claude Opus 5.5, zero-shot", "0", "claude")
@@ -439,12 +440,26 @@ def main():
           + ", ".join(sorted({str(c['cli_version']) for c in calls})) + ". Answering models: "
           + ", ".join(sorted({m for c in calls for m in c["models"]})) + ".")
         w("")
-        w("| Set | Calls | Mean prompt tokens | Mean wall s | CLI estimate per 1,000 messages |")
-        w("|---|---|---|---|---|")
+        w("| Set | Calls | Retry calls | Messages without an answer | Valid labels | Mean prompt tokens | Mean wall s | CLI estimate per 1,000 messages |")
+        w("|---|---|---|---|---|---|---|---|")
+        unanswered = {}
         for s_ in sorted(by):
             cs = [c for c in calls if c["set"] == s_]
-            w(f"| {s_} | {len(cs)} | {st.mean(c['prompt_tokens'] for c in cs):,.0f} | "
-              f"{st.mean(c['wall_seconds'] for c in cs):.1f} | USD {sum(c['cli_list_price_estimate_usd'] or 0 for c in cs) / 500 * 1000:.2f} |")
+            pp = f"{N}/preds_claude_{s_}.jsonl"
+            rows_ = jl(pp) if os.path.exists(pp) else []
+            unanswered[s_] = sum(1 for r in rows_ if r.get("error"))
+            nvalid = sum(1 for r in rows_ if r["pred"] is not None)
+            w(f"| {s_} | {len(cs)} | {sum(1 for c in cs if c['attempt'] > 1)} | {unanswered[s_]} | {nvalid}/{len(rows_)} | "
+              f"{st.mean(c['prompt_tokens'] for c in cs):,.0f} | {st.mean(c['wall_seconds'] for c in cs):.1f} | "
+              f"USD {sum(c['cli_list_price_estimate_usd'] or 0 for c in cs) / 500 * 1000:.2f} |")
+        w("")
+        w("A reply counts as malformed when it is not a JSON array of exactly 25 strings (for example 24 or 26 labels). "
+          "A malformed batch is retried once with the identical prompt; if the retry is also malformed, its 25 messages "
+          "get no answer and **count as wrong**, as fixed before the runs. Accuracy on the answered messages only, for "
+          "reference: " + "; ".join(
+              f"{s_} {sum(r['pred'] == r['gold'] for r in rs_) / len(rs_):.3f} on {len(rs_)}"
+              for s_ in sorted(by)
+              for rs_ in [[r for r in jl(f'{N}/preds_claude_{s_}.jsonl') if not r.get('error')]] if rs_) + ".")
         w("")
     else:
         w("No calls recorded.")
@@ -476,14 +491,28 @@ def main():
     def acc_of(k):
         return sum(correct(k)) / len(idx) if k in complete else None
 
+    unans = {}
+    for s_ in ("E2a", "E2b", "E3a", "E3b"):
+        pp = f"{N}/preds_claude_{s_}.jsonl"
+        if os.path.exists(pp):
+            rs_ = jl(pp)
+            ans = [r for r in rs_ if not r.get("error")]
+            unans[f"claude_{'opus' if s_.startswith('E2') else 'haiku'}_{s_}"] = (len(rs_) - len(ans),
+                sum(r["pred"] == r["gold"] for r in ans) / len(ans) if ans else None, len(ans))
+
     def line(label, k):
         if k not in complete:
             return f"- {label}: not completed."
+        extra = ""
+        if unans.get(k, (0,))[0]:
+            u, a_acc, n_ans = unans[k]
+            extra = (f" {u} of 500 messages got no answer because the reply was malformed twice (wrong number of "
+                     f"labels); they count as wrong. On the {n_ans} answered messages its accuracy is {a_acc:.3f}.")
         c = cmap.get(k)
         if not c:
-            return f"- {label}: {acc_of(k):.3f}."
+            return f"- {label}: {acc_of(k):.3f}.{extra}"
         return (f"- {label}: {acc_of(k):.3f} ({100 * c['diff']:+.1f} points against Claude zero-shot "
-                f"{acc_of(ref):.3f}; Holm-corrected p = {c['p_holm']:.3g}).")
+                f"{acc_of(ref):.3f}; Holm-corrected p = {c['p_holm']:.3g}).{extra}")
     S += ["## Results (500-message sample)", ""]
     S.append(line("Claude Opus with one example per intent (E2a)", "claude_opus_E2a"))
     S.append(line("Claude Opus with retrieved examples (E2b)", "claude_opus_E2b"))

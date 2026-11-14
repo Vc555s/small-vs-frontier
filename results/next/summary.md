@@ -4,7 +4,7 @@
 
 - Claude Opus with one example per intent (E2a): 0.888 (-0.4 points against Claude zero-shot 0.892; Holm-corrected p = 1).
 - Claude Opus with retrieved examples (E2b): 0.942 (+5.0 points against Claude zero-shot 0.892; Holm-corrected p = 0.000492).
-- Claude Haiku zero-shot (E3a): 0.400 (-49.2 points against Claude zero-shot 0.892; Holm-corrected p = 4.04e-67).
+- Claude Haiku zero-shot (E3a): 0.400 (-49.2 points against Claude zero-shot 0.892; Holm-corrected p = 4.04e-67). 125 of 500 messages got no answer because the reply was malformed twice (wrong number of labels); they count as wrong. On the 375 answered messages its accuracy is 0.533.
 - Claude Haiku with one example per intent (E3b): 0.628 (-26.4 points against Claude zero-shot 0.892; Holm-corrected p = 1.77e-31).
 - Qwen3-4B + LoRA, 9,993 labels, seed 0 (E1): 0.938 (+4.6 points against Claude zero-shot 0.892; Holm-corrected p = 0.00819).
 - Qwen3-4B + LoRA, 9,993 labels, seed 1 (E1): 0.948 (+5.6 points against Claude zero-shot 0.892; Holm-corrected p = 0.000192).
