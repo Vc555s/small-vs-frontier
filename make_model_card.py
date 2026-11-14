@@ -23,7 +23,29 @@ def scores(rows):
             "n_in": len(ins), "n_oos": len(oos)}
 
 
+def banking77_source_note():
+    """Compare the mteb/banking77 copy used in the study with the original PolyAI/banking77."""
+    from collections import Counter
+
+    from datasets import load_dataset
+    m, p = load_dataset("mteb/banking77"), load_dataset("PolyAI/banking77")
+    names = p["train"].features["label"].names
+    out = {}
+    for split in ("train", "test"):
+        a = Counter((r["text"], r["label_text"]) for r in m[split])
+        b = Counter((r["text"], names[r["label"]]) for r in p[split])
+        assert not (a - b), f"mteb {split} has examples not in PolyAI/banking77"
+        out[split] = (sum(b.values()) - sum(a.values()), sum(b.values()), sum(a.values()))
+    (tr_drop, tr_all, tr_kept), (te_drop, te_all, te_kept) = out["train"], out["test"]
+    return (f"Loaded from the `mteb/banking77` copy on the Hub. It is a cleaned subset of the original "
+            f"`PolyAI/banking77` splits: it omits {tr_drop} of the {tr_all:,} training and {te_drop} of the "
+            f"{te_all:,} test examples (duplicates, some differing only in surrounding whitespace, and a few "
+            f"messages of two or three words), leaving {tr_kept:,} and {te_kept:,}. Every example it contains "
+            f"appears in the original with the same label.")
+
+
 def main():
+    source_note = banking77_source_note()
     runs = {s: read_jsonl(f"results/stress/preds_small_S3_s{s}.jsonl") for s in (0, 1, 2)}
     sc = {s: scores(v) for s, v in runs.items()}
     # how many individual predictions change when only the seed changes (pairwise mean)
@@ -82,6 +104,7 @@ Tested with transformers 5.22.2, peft 0.21.2 and torch 2.15.0 on one GPU in fp16
 ## Training data
 
 - **Banking77**: 2,000 training examples, a class-balanced sample (round-robin over the 77 intents) drawn with seed {SEED}.
+  {source_note}
 - **CLINC150 out-of-scope class**: {n_s3} out-of-scope training examples labelled `none_of_these`. Items containing banking keywords were removed by a fixed filter (see the repository).
 
 Datasets and licences:

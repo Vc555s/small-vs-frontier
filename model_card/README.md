@@ -75,6 +75,7 @@ print(route("What's the weather like in Berlin tomorrow?"))
 ## Training data
 
 - **Banking77**: 2,000 training examples, a class-balanced sample (round-robin over the 77 intents) drawn with seed 0.
+  Loaded from the `mteb/banking77` copy on the Hub. It is a cleaned subset of the original `PolyAI/banking77` splits: it omits 10 of the 10,003 training and 4 of the 3,080 test examples (duplicates, some differing only in surrounding whitespace, and a few messages of two or three words), leaving 9,993 and 3,076. Every example it contains appears in the original with the same label.
 - **CLINC150 out-of-scope class**: 200 out-of-scope training examples labelled `none_of_these`. Items containing banking keywords were removed by a fixed filter (see the repository).
 
 Datasets and licences:
