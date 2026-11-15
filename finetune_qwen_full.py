@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Step C: the full-training-set budget (9,993 labels, seed 0) with finetune_qwen.py.
+"""The full-training-set budget (9,993 labels; seed 0 by default) with finetune_qwen.py.
 
   python finetune_qwen_full.py            train (or resume) and evaluate on the full test set
-  python finetune_qwen_full.py --collect  copy the outputs next to the other T1 files
+  python finetune_qwen_full.py --collect  copy the outputs next to the other result files
 
-finetune_qwen.py is run unchanged (same hyperparameters as every other T1 run). Its output
+finetune_qwen.py is run unchanged (same hyperparameters as every other Qwen run). Its output
 goes to results/full_data/ so that results/exp1_Qwen3-4B-Instruct-2507_s0.json (the seed-0
 rows for budgets 0-2000) is never overwritten. If the adapter was saved but the evaluation
 did not finish, a re-run evaluates the saved adapter instead of retraining.
@@ -26,7 +26,7 @@ DEST = "results/full_data_testrun" if DRY else "results"
 
 
 def set_paths(seed, out=None, dest=None):
-    """Seed 0 keeps its original paths; other seeds (E1) pass their own output folders."""
+    """Seed 0 keeps its original paths; seeds 1 and 2 pass their own output folders."""
     global SEED, OUT, DEST, ADAPTER, PREDS, RESULT
     SEED = seed
     OUT = out or OUT

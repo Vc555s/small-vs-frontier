@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-T1 baseline: Claude via the Claude Code CLI (Pro subscription), Banking77 routing.
+Claude baseline: Claude via the Claude Code CLI on a Claude Pro subscription, Banking77 routing.
 
-NOT an API baseline. One Claude model, whichever the Pro plan serves, called through
+NOT an API baseline. One Claude model, whichever the subscription serves, called through
 the `claude` CLI in print mode. The rules are summarised in results/main_report.md.
 
 Each batch of 25 test messages is sent to a fresh `claude -p` process whose cwd is a
@@ -42,7 +42,7 @@ REPORT = os.path.join(OUT, "claude_vs_small_sample500.md")
 SMALL_TAG = "Qwen3-4B-Instruct-2507"
 SMALL_BUDGETS = [0, 100, 500, 2000]
 SMALL_SEEDS = [0, 1, 2]
-LABEL = "Claude via Claude Code CLI (Pro subscription)"
+LABEL = "Claude Opus 5.5 via the Claude Code CLI"
 
 # Written once (rule 3/6): minimum extra wording for batched JSON output.
 BATCH_ADDITION = ("\n\nYou will receive 25 numbered customer messages. Return only a JSON "
@@ -83,7 +83,7 @@ def get_args():
     p = argparse.ArgumentParser()
     p.add_argument("--limit_batches", type=int, default=0, help="run only the first N batches")
     p.add_argument("--claude_bin", default="")
-    p.add_argument("--model", default="", help="leave empty to use whatever the plan serves")
+    p.add_argument("--model", default="", help="leave empty to use whatever the subscription serves")
     p.add_argument("--timeout", type=int, default=300)
     p.add_argument("--pause", type=float, default=5.0)
     p.add_argument("--score_only", action="store_true")
@@ -184,7 +184,7 @@ def parse_array(text, n=BATCH):
 
 
 def call_batch(cmd, user_msg, timeout, b, attempt):
-    tmp = tempfile.mkdtemp(prefix="cc_t1_")
+    tmp = tempfile.mkdtemp(prefix="cc_")
     before = os.listdir(tmp)
     t0 = time.time()
     try:
@@ -245,12 +245,12 @@ def run(args, test, labels, idx):
     valid = {norm(l): l for l in labels}
     order = get_batch_order(idx)
     batches = [order[i:i + BATCH] for i in range(0, len(order), BATCH)]
-    todo = [b for b in range(len(batches)) if b not in done_batches()]
+    pending = [b for b in range(len(batches)) if b not in done_batches()]
     if args.limit_batches:
-        todo = [b for b in todo if b < args.limit_batches]
-    print(f"claude={claude}\nbatches total={len(batches)} done={len(batches) - len([b for b in range(len(batches)) if b not in done_batches()])} to_run={todo}")
+        pending = [b for b in pending if b < args.limit_batches]
+    print(f"claude={claude}\nbatches total={len(batches)} done={len(batches) - len([b for b in range(len(batches)) if b not in done_batches()])} to_run={pending}")
 
-    for k, b in enumerate(todo):
+    for k, b in enumerate(pending):
         bidx = batches[b]
         # Message texts only: no gold labels reach the subprocess.
         user_msg = "\n".join(f"{i + 1}. {' '.join(test[j][0].split())}"
@@ -278,7 +278,7 @@ def run(args, test, labels, idx):
                     "pred": valid.get(norm(raw)) if raw is not None else None,
                     "batch": b, "attempt": attempt, "model": model,
                     "wall_seconds": round(wall, 2), "error": None if arr else err}) + "\n")
-        if k < len(todo) - 1:
+        if k < len(pending) - 1:
             time.sleep(args.pause)
 
 
@@ -318,7 +318,7 @@ def score(test, labels, idx):
     models = sorted({r["model"] for r in rows if r["model"]})
     have = [i for i in idx if i in by_idx]
 
-    lines = [f"# T1 routing on a fixed 500-example Banking77 sample: {LABEL} vs fine-tuned small model",
+    lines = [f"# Routing on a fixed 500-example Banking77 sample: {LABEL} vs fine-tuned small model",
              "", f"Run date: {date.today().isoformat()}. "
              f"Sample: `results/sample500.json` (500 test indices, `random.Random(123)`).", ""]
     if len(have) < SAMPLE_N:
@@ -392,7 +392,7 @@ def score(test, labels, idx):
               "`--system-prompt` (a 15-character test prompt was billed as ~789 prompt tokens). "
               "The CLI also makes a small side call to `claude-haiku-5-5`, which does not produce the answers.",
               "- **Temperature could not be set.** The small model used greedy decoding.",
-              "- The model is whichever one the Pro plan served (recorded above), not a chosen API model.",
+              "- Claude was called through the CLI on a Claude Pro subscription; the model is whichever one the subscription served (recorded above), not a chosen API model.",
               "- Wall time per call includes CLI start-up and network; it is not model latency "
               "and is not comparable to local latency.",
               "- This is one Claude model through one CLI. It is not an API baseline and says nothing about other frontier models.",
@@ -468,7 +468,7 @@ def run_stress_set(args):
     fixed_examples = json.load(open(args.examples_file))["examples"] if args.examples_file else None
 
     def examples_block(b):
-        """'Examples:' block, one line '<message> => <label>' per example (section E2)."""
+        """'Examples:' block, one line '<message> => <label>' per example."""
         if fixed_examples is None and not args.examples_dir:
             return ""
         exs = fixed_examples if fixed_examples is not None else \
@@ -503,13 +503,13 @@ def run_stress_set(args):
             cnt[r["batch"]] = cnt.get(r["batch"], 0) + 1
         done = {b for b, c in cnt.items() if c == len(batches[b])}
     gate_passed = os.path.exists(gate_path) and json.load(open(gate_path)).get("passed")
-    todo = [b for b in range(len(batches)) if b not in done]
+    pending = [b for b in range(len(batches)) if b not in done]
     if args.limit_batches:
-        todo = [b for b in todo if b < args.limit_batches]
-    log(f"{len(batches)} batches, {len(done)} done, to run {todo}; gate passed: {bool(gate_passed)}")
+        pending = [b for b in pending if b < args.limit_batches]
+    log(f"{len(batches)} batches, {len(done)} done, to run {pending}; gate passed: {bool(gate_passed)}")
     waited = 0
 
-    for k, b in enumerate(todo):
+    for k, b in enumerate(pending):
         batch = batches[b]
         n = len(batch)
         addition = BATCH_ADDITION if n == BATCH else BATCH_ADDITION.replace("25", str(n))
@@ -603,7 +603,7 @@ def run_stress_set(args):
                             "batch": b, "attempt": attempt, "model": model,
                             "wall_seconds": round(r["wall"], 2), "error": None if arr else err})
                 f.write(json.dumps(rec) + "\n")
-        if k < len(todo) - 1:
+        if k < len(pending) - 1:
             time.sleep(args.pause)
     log("finished")
 

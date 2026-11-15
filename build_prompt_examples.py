@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Build and freeze the inputs for the next experiments (before any model call).
+"""Build and freeze the inputs of the Claude baseline runs with examples in the prompt (before any model call).
 
   python build_prompt_examples.py [--dir results/baselines]
 
 Writes:
-  clean500.jsonl               the 500 sample messages in the T1 batch order (Random(456))
-  icl_one_per_class.json       E2a: one example per intent from the 2,000-example seed-0 subset
-  icl_retrieved/batch_XX.json  E2b: the examples for each 25-message call (retrieved by embedding)
+  clean500.jsonl               the 500 sample messages in the batch order of the main Claude run (Random(456))
+  icl_one_per_class.json       one example per intent from the 2,000-example seed-0 subset
+  icl_retrieved/batch_XX.json  retrieved examples: the examples for each 25-message call (retrieved by embedding)
   emb/                         cached sentence embeddings (not committed)
 All examples come from the 2,000-example seed-0 training subset; no test label is used.
 """
@@ -50,7 +50,7 @@ def main():
 
     sub = pick_subset(train, 2000, 0)   # the 2,000-example seed-0 training subset
 
-    # E2a: shuffle the subset with Random(2024); first example of each intent, in that order
+    # one example per intent: shuffle the subset with Random(2024); first example of each intent, in that order
     shuf = sub[:]
     random.Random(2024).shuffle(shuf)
     seen, one = set(), []
@@ -63,7 +63,7 @@ def main():
                        "each intent, kept in that shuffled order",
                "n": len(one), "examples": one}, open(os.path.join(d, "icl_one_per_class.json"), "w"), indent=1)
 
-    # E2b: embeddings of the subset and the 500 messages; 5 nearest by cosine per message
+    # retrieved examples: embeddings of the subset and the 500 messages; 5 nearest by cosine per message
     os.makedirs(os.path.join(d, "emb"), exist_ok=True)
     sub_emb = embed([t for t, _ in sub], a.device)
     msg_emb = embed([test[i][0] for i in order], a.device)
@@ -87,7 +87,7 @@ def main():
                    "examples": [{"subset_pos": j, "text": sub[j][0], "label": sub[j][1]} for j in idxs]},
                   open(os.path.join(d, "icl_retrieved", f"batch_{b:02d}.json"), "w"), indent=1)
     sizes = [json.load(open(os.path.join(d, "icl_retrieved", f"batch_{b:02d}.json")))["n"] for b in range(20)]
-    print(f"clean500: {len(order)} | E2a examples: {len(one)} | E2b examples per call: min {min(sizes)}, "
+    print(f"clean500: {len(order)} | one-per-intent examples: {len(one)} | retrieved examples per call: min {min(sizes)}, "
           f"max {max(sizes)}, mean {sum(sizes) / len(sizes):.1f}")
 
 

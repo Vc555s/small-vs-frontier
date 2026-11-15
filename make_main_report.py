@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Build results/main_report.md: the complete T1 write-up (fine-tuned Qwen3-4B vs
-Claude via Claude Code CLI), with every number read from the result files and every
+"""Build results/main_report.md: the main results (fine-tuned Qwen3-4B vs Claude Opus 5.5 via the
+Claude Code CLI), with every number read from the result files and every
 log embedded in full. No GPU, no Claude calls.
 
   python make_main_report.py
@@ -81,11 +81,11 @@ def main():
     for s in SEEDS:
         for r in json.load(open(os.path.join(R, f"exp1_{TAG}_s{s}.json"))):
             rows[(r["budget"], s)] = r
-    # full training set: seed 0 lives in results/, further seeds (E1) in results/baselines/
-    NEXT = os.path.join(R, "baselines")
+    # full training set: seed 0 is stored in results/, seeds 1 and 2 with the baselines in results/baselines/
+    BASELINES_DIR = os.path.join(R, "baselines")
 
     def find(name):
-        for base in (R, NEXT):
+        for base in (R, BASELINES_DIR):
             if os.path.exists(os.path.join(base, name)):
                 return os.path.join(base, name)
         return None
@@ -112,7 +112,7 @@ def main():
     w = L.append
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
 
-    w("# T1 report: support-ticket routing (Banking77) — fine-tuned Qwen3-4B vs Claude via Claude Code CLI")
+    w("# Main results: fine-tuned Qwen3-4B vs Claude Opus 5.5 on Banking77 intent routing")
     w("")
     w(f"Generated {now} (server time) by `make_main_report.py` from the files in `results/`. "
       "Every number below is read from those files; nothing is typed in by hand.")
@@ -139,7 +139,7 @@ def main():
     s500 = sample_scores(500)
     w("## 1. Summary")
     w("")
-    w(f"- **Claude via Claude Code CLI (Pro subscription)**, model `claude-opus-5-5`, scored "
+    w(f"- **Claude Opus 5.5 via the Claude Code CLI**, model `claude-opus-5-5`, scored "
       f"**{c_acc:.3f}** accuracy on a fixed 500-example sample (95% Wilson CI {c_lo:.3f}–{c_hi:.3f}), "
       f"with every answer a valid label.")
     w(f"- **Fine-tuned Qwen3-4B with 2,000 labels** scored **{ms([x[0] for x in s2000], 3)}** on the same 500 "
@@ -201,7 +201,7 @@ def main():
     # ---------------- 3. systems
     w("## 3. Systems")
     w("")
-    w("### 3.1 Small model (yours): Qwen3-4B-Instruct-2507, untuned and LoRA fine-tuned")
+    w("### 3.1 Small model: Qwen3-4B-Instruct-2507, untuned and LoRA fine-tuned")
     w("")
     w("| Setting | Value |")
     w("|---|---|")
@@ -226,7 +226,7 @@ def main():
         "Python 3.11.15", "torch 2.15.0+cu132", "transformers 5.22.2", "peft 0.21.2",
         "datasets 5.2.0", "accelerate 1.15.0", "scikit-learn 1.9.1"]) + ". Driver 580.178.04, CUDA 13.0.")
     w("")
-    w("### 3.2 Claude via Claude Code CLI (Pro subscription)")
+    w("### 3.2 Claude Opus 5.5 via the Claude Code CLI")
     w("")
     # Public version: per-call summaries without identifiers (see results/claude_calls_main.json).
     calls_doc = json.load(open(os.path.join(R, "claude_calls_main.json")))
@@ -235,7 +235,8 @@ def main():
     w("| Setting | Value |")
     w("|---|---|")
     for k, v in [
-        ("Answering model", "`claude-opus-5-5` (as reported by the CLI for all 20 calls; not chosen, it is what the plan served)"),
+        ("Access", "the Claude Code CLI logged in with a Claude Pro subscription; not the API"),
+        ("Answering model", "`claude-opus-5-5` (as reported by the CLI for all 20 calls; not chosen, it is what the subscription served)"),
         ("Side model", "`claude-haiku-5-5`: a small call the CLI makes itself; it does not produce the answers"),
         ("CLI", f"`{cli_ver}`, the binary bundled with the Cursor extension (no `claude` on PATH)"),
         ("Flags", "`-p --output-format json --system-prompt <ours> --tools \"\" --safe-mode --strict-mcp-config --disable-slash-commands --no-session-persistence --permission-prompts none`"),
@@ -489,7 +490,7 @@ done""", "bash"))
     w("")
     w("### 6.3 Claude CLI checks before the run")
     w("")
-    w("- `claude` was not on PATH; the Claude Code binary bundled with the Cursor extension was used.")
+    w("- `claude` was not on PATH; the CLI binary bundled with its editor extension was used (section 3.2).")
     w("- `claude --help` was read for the installed version. Every needed capability had a flag except "
       "a turn limit (no `--max-turns`). With all tools disabled only one turn is possible; the script "
       "rejects any call where `num_turns != 1`, and all 20 had `num_turns = 1`.")
@@ -529,7 +530,7 @@ done""", "bash"))
       f"0 rate limits. Wall time per call {min(walls):.1f}–{max(walls):.1f} s (median {st.median(walls):.1f} s), "
       f"including CLI start-up and network. Answering-model tokens over 20 calls: input {tot['in']}, "
       f"cache-creation {tot['cc']:,}, cache-read {tot['cr']:,}, output {tot['out']:,}. "
-      f"The CLI's own list-price estimate was ${tot['cost']:.2f} in total; on a Pro plan this is not a "
+      f"The CLI's own list-price estimate was ${tot['cost']:.2f} in total; on the subscription this is not a "
       "charge, and it is not an API cost measurement. Per-call summary: Appendix C; every raw answer: Appendix D.")
     w("")
 
@@ -562,7 +563,7 @@ done""", "bash"))
         "**Claude saw 25 messages per call**; the small model saw one at a time. Mixed batches still give Claude some context across messages.",
         "The Claude Code CLI wraps our system prompt in some text of its own and makes a side call to `claude-haiku-5-5`.",
         "**Claude's temperature could not be set**; the small model used greedy decoding.",
-        "Claude's model is whatever the Pro plan served (`claude-opus-5-5`), not a chosen API model. "
+        "Claude's model is whatever the subscription served (`claude-opus-5-5`), not a chosen API model. "
         "This is **one Claude model through one CLI. It is not an API baseline** and says nothing about GPT or other frontier models.",
         "Claude was run once on the 500 sample; its CI reflects sampling of test items, not run-to-run variation.",
         "Claude's wall time includes CLI start-up and network and is not model latency. The small model's "

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage `build`: create and freeze the T1 robustness test sets.
+"""Stage `build`: create and freeze the robustness test sets.
 
 Outputs (in --dir):
   typo500.jsonl        Test A  (500 base messages with typos, p = 0.15)
@@ -138,8 +138,8 @@ def main():
     log["typo_examples"] = [{"src_idx": typo_rows[k]["src_idx"], "before": typo_rows[k]["orig_text"],
                              "after": typo_rows[k]["text"]} for k in ex_ids]
     log["decisions"].append(
-        "Test A rows are stored in the T1 Claude batch order (results/sample500_batch_order.json, "
-        "Random(456)), so Claude's typo batches contain the same messages as its clean T1 batches.")
+        "Test A rows are stored in the batch order of the main Claude run (results/sample500_batch_order.json, "
+        "Random(456)), so Claude's typo batches contain the same messages as its clean batches in the main run.")
 
     # ------------------------------------------------------------- Test B
     pairs, leftovers, dropped = build_merged(base, test)

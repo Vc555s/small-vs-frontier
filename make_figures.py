@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Figures for the T1 study, computed from the prediction files in results/.
+"""Figures for the study, computed from the prediction files in results/.
 
   python make_figures.py      writes results/figures/{label_efficiency,stress_tests,out_of_scope}.png
 

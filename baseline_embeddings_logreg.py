@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""E4a: frozen sentence embeddings (BAAI/bge-small-en-v1.5) + logistic regression.
+"""Baseline: frozen sentence embeddings (BAAI/bge-small-en-v1.5) + logistic regression.
 
   python baseline_embeddings_logreg.py [--dir results/baselines] [--budgets 100,500,2000,9993] [--seeds 0,1,2] [--test]
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""E4b: fine-tuned encoder (answerdotai/ModernBERT-base) with a classification head.
+"""Baseline: fine-tuned encoder (answerdotai/ModernBERT-base) with a classification head.
 
   python baseline_modernbert.py [--dir results/baselines] [--budgets 100,500,2000,9993] [--seeds 0,1,2] [--test]
 

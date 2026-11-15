@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Stage train_S3_s<seed>: retrain a LoRA adapter on the same 2,000 Banking77 examples as
-the T1 seed plus the 200 frozen CLINC oos train examples labelled none_of_these, with the
+the main run's seed plus the 200 frozen CLINC oos train examples labelled none_of_these, with the
 extended prompt, then evaluate on oos_mixed.jsonl.
 
-Same hyperparameters as T1 (finetune_qwen.py): LoRA r16/alpha32/dropout .05/all-linear,
+Same hyperparameters as the main Qwen runs (finetune_qwen.py): LoRA r16/alpha32/dropout .05/all-linear,
 lr 2e-4, 6% warmup + linear decay, batch 4 x accum 2, 3 epochs, fp16 autocast + GradScaler,
 gradient checkpointing, loss on answer tokens only. The adapter is saved before evaluation;
 on re-run, training is skipped if the adapter directory is complete.

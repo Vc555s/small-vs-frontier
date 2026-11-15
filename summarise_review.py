@@ -52,6 +52,18 @@ def review_caveat(path=PATH):
             f"{both['models_wrong']} to be a genuine error by both systems.")
 
 
+def review_method_sentence(path=PATH):
+    """How the judgements were made, with the number changed by hand computed from the file."""
+    rows = list(csv.DictReader(open(path, newline="")))
+    done = [r for r in rows if r["judgement"].strip()]
+    if len(done) < len(rows):
+        return ("Each message has a proposed judgement with a one-line reason from its text, gold label and the "
+                f"77 intent names; {len(done)} of {len(rows)} have been reviewed by hand so far.")
+    changed = sum(r["judgement"].strip() != r["proposed_judgement"].strip() for r in rows)
+    return ("Each message was given a proposed judgement with a one-line reason from its text, gold label and the "
+            f"77 intent names, then confirmed or changed by hand ({changed} of {len(rows)} changed).")
+
+
 def main():
     path = sys.argv[1] if len(sys.argv) > 1 else PATH
     try:
