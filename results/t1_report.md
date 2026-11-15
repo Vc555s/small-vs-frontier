@@ -1,6 +1,6 @@
 # T1 report: support-ticket routing (Banking77) — fine-tuned Qwen3-4B vs Claude via Claude Code CLI
 
-Generated 2026-11-15 00:51 (server time) by `make_t1_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
+Generated 2026-11-15 05:31 (server time) by `make_t1_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
 
 Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-head on the 500 sample · 6 Procedure and issues · 7 Caveats · 8 Open work · Appendices A–E
 
@@ -189,7 +189,7 @@ At budget 100, seeds 1 and 2 have identical accuracy (0.7585). This was checked:
 | 2000 | 0.9131 | +5.8 pts |
 | 9993 | 0.9474 | +3.4 pts |
 
-Accuracy on the 500-message sample against the number of labels, with Claude's accuracy and its 95% interval (`make_figures.py`). The 9,993-label point is a single seed (hollow marker); the figure was drawn when only seed 0 existed, and the tables here include all 3 seeds.
+Accuracy on the 500-message sample against the number of labels, with Claude's accuracy and its 95% interval (`make_figures.py`). Points from 100 labels up are the mean over 3 seeds with min–max whiskers; the untuned model (0 labels) is one run.
 
 ![Label efficiency](figures/label_efficiency.png)
 

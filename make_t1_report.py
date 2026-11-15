@@ -302,8 +302,9 @@ def main():
         prev = n
     w("")
     w("Accuracy on the 500-message sample against the number of labels, with Claude's accuracy and its "
-      "95% interval (`make_figures.py`). The 9,993-label point is a single seed (hollow marker)"
-      + (f"; the figure was drawn when only seed 0 existed, and the tables here include all {n_full} seeds." if n_full > 1 else "."))
+      "95% interval (`make_figures.py`). "
+      + (f"Points from 100 labels up are the mean over {n_full} seeds with min–max whiskers; the untuned model "
+         "(0 labels) is one run." if n_full > 1 else "The 9,993-label point is a single seed (hollow marker)."))
     w("")
     w("![Label efficiency](figures/label_efficiency.png)")
     w("")
