@@ -246,7 +246,7 @@ Claude was run on the 500 sample only, so it has no full-test figures.
 
 ## 7. Prompts and example selection
 
-All Claude runs use the instructions of the main Claude run (`system_prompt(labels)`), its batch order (`results/sample500_batch_order.json`, 25 messages per call) and its batch instruction. Example variants add a block headed `Examples:` with one line per example in the form `<message> => <label>`, placed between the instructions and the batch instruction.
+All Claude runs were made through the Claude Code CLI on a Claude Pro subscription and use the instructions of the main Claude run (`system_prompt(labels)`), its batch order (`results/sample500_batch_order.json`, 25 messages per call) and its batch instruction. Example variants add a block headed `Examples:` with one line per example in the form `<message> => <label>`, placed between the instructions and the batch instruction.
 
 - **Claude Opus and Claude Haiku, one example per intent:** 77 examples, the seed-0 2,000-example training subset shuffled with `random.Random(2024)`, first example of each intent, kept in that order (`results/baselines/icl_one_per_class.json`). The same 77 examples go into every call.
 - **Claude Opus, retrieved examples:** for each message in a call, its 5 nearest examples in the seed-0 2,000-example subset by cosine similarity of `BAAI/bge-small-en-v1.5` embeddings (no query instruction); the union per call, duplicates removed, sorted by subset position and shuffled with `random.Random(7)` (`results/baselines/icl_retrieved/batch_XX.json`).

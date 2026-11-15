@@ -481,7 +481,8 @@ def main():
     # prompts
     w("## 7. Prompts and example selection")
     w("")
-    w("All Claude runs use the instructions of the main Claude run (`system_prompt(labels)`), its batch order "
+    w("All Claude runs were made through the Claude Code CLI on a Claude Pro subscription and use the instructions "
+      "of the main Claude run (`system_prompt(labels)`), its batch order "
       "(`results/sample500_batch_order.json`, 25 messages per call) and its batch instruction. Example "
       "variants add a block headed `Examples:` with one line per example in the form `<message> => <label>`, "
       "placed between the instructions and the batch instruction.")
