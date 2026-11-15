@@ -1,6 +1,6 @@
 # T1 report: support-ticket routing (Banking77) — fine-tuned Qwen3-4B vs Claude via Claude Code CLI
 
-Generated 2026-11-15 00:48 (server time) by `make_t1_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
+Generated 2026-11-15 00:51 (server time) by `make_t1_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
 
 Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-head on the 500 sample · 6 Procedure and issues · 7 Caveats · 8 Open work · Appendices A–E
 
@@ -414,12 +414,12 @@ Budget 9,993 (the whole training set, checked to contain every training example 
 - Claude's model is whatever the Pro plan served (`claude-opus-5-5`), not a chosen API model. This is **one Claude model through one CLI. It is not an API baseline** and says nothing about GPT or other frontier models.
 - Claude was run once on the 500 sample; its CI reflects sampling of test items, not run-to-run variation.
 - Claude's wall time includes CLI start-up and network and is not model latency. The small model's ms/example is at eval batch 16 with an unmerged adapter. **Neither is a latency measurement**; batch-1 latency of a merged adapter is in section 4.5.
-- Some Banking77 intents overlap (for example, the test message "I would like to reactivate my card" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. This was observed, not measured.
+- Of the 22 messages both systems got wrong, a manual review judged 7 to have a wrong gold label, 14 to be ambiguous and 1 to be a genuine error by both systems.
+- Some Banking77 intents overlap (for example, the test message "I would like to reactivate my card" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. Label quality was reviewed by hand only for the 22 messages both systems got wrong (see the caveat above); it was not measured on the rest of the test set.
 - The 500-sample comparison has wider error bars than the full-test-set numbers; the small model's full-set numbers are more precise but have no Claude counterpart.
 - Budget 0 was run once (greedy decoding is deterministic, so other seeds would match).
 - Exact-text overlap between the test and training splits is 0; after lowercasing and trimming whitespace, 6 test messages also occur in training (1 of them in the 500 sample). The same overlap exists in the original Banking77 splits. Accuracies with these messages removed are in `results/t1_baselines.md`, section 6.
 - At 9,993 labels all seeds use the same training set, so their spread reflects only initialisation and data order.
-- Of the 22 messages both systems got wrong, a manual review judged 7 to have a wrong gold label and 14 to be ambiguous.
 
 ## 8. Open work
 

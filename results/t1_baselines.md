@@ -443,5 +443,5 @@ A reply counts as malformed when it is not a JSON array of exactly 25 strings (f
 - Example prompts are longer, so they cost more per request; the cost column uses the CLI's own estimate.
 - Latency was measured on a shared GPU with other users' jobs running; the numbers are not best-case.
 - At 9,993 labels the three seeds share the same training set.
-- Of the 22 messages both systems got wrong, a manual review judged 7 to have a wrong gold label and 14 to be ambiguous.
+- Of the 22 messages both systems got wrong, a manual review judged 7 to have a wrong gold label, 14 to be ambiguous and 1 to be a genuine error by both systems.
 

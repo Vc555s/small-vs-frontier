@@ -14,7 +14,7 @@ import subprocess
 from datetime import datetime
 
 from baseline_claude_code import LABEL, metrics, wilson
-from summarise_review import review_caveat
+from summarise_review import review_caveat, review_counts
 from t1_common import load_data
 
 R = "results"
@@ -555,6 +555,8 @@ done""", "bash"))
     # ---------------- 7. caveats
     w("## 7. Caveats (read before quoting any number)")
     w("")
+    review = review_caveat()
+    n_reviewed = sum(review_counts()[0]["Both"].values()) if review else 0
     for c in [
         "**Claude saw 25 messages per call**; the small model saw one at a time. Mixed batches still give Claude some context across messages.",
         "The Claude Code CLI wraps our system prompt in some text of its own and makes a side call to `claude-haiku-5-5`.",
@@ -564,14 +566,17 @@ done""", "bash"))
         "Claude was run once on the 500 sample; its CI reflects sampling of test items, not run-to-run variation.",
         "Claude's wall time includes CLI start-up and network and is not model latency. The small model's "
         "ms/example is at eval batch 16 with an unmerged adapter. **Neither is a latency measurement**; batch-1 latency of a merged adapter is in section 4.5.",
-        "Some Banking77 intents overlap (for example, the test message \"I would like to reactivate my card\" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. This was observed, not measured.",
+    ] + ([review] if review else []) + [
+        "Some Banking77 intents overlap (for example, the test message \"I would like to reactivate my card\" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. "
+        + (f"Label quality was reviewed by hand only for the {n_reviewed} messages both systems got wrong (see the caveat above); "
+           "it was not measured on the rest of the test set." if review else "This was observed, not measured."),
         "The 500-sample comparison has wider error bars than the full-test-set numbers; the small model's full-set numbers are more precise but have no Claude counterpart.",
         "Budget 0 was run once (greedy decoding is deterministic, so other seeds would match).",
         overlap_caveat,
         ("The full-training-set budget (9,993 labels) was run with one seed only, so it shows no run-to-run spread."
          if n_full == 1 else "At 9,993 labels all seeds use the same training set, so their spread reflects only "
          "initialisation and data order."),
-    ] + [c for c in [review_caveat()] if c]:
+    ]:
         w(f"- {c}")
     w("")
     w("## 8. Open work")
