@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Count the manual judgements in results/next/joint_errors_for_review.csv, split by which
+"""Count the manual judgements in results/baselines/joint_errors_for_review.csv, split by which
 system was wrong (Claude zero-shot only, Qwen 9,993 seed 0 only, or both). Refuses to run while
 any judgement cell is empty or holds a value other than label_wrong, ambiguous or models_wrong.
 
@@ -10,7 +10,7 @@ The report scripts import review_caveat() for their caveat sentence.
 import csv
 import sys
 
-PATH = "results/next/joint_errors_for_review.csv"
+PATH = "results/baselines/joint_errors_for_review.csv"
 VALUES = ("label_wrong", "ambiguous", "models_wrong")
 GROUPS = ("Claude only", "Qwen only", "Both")
 

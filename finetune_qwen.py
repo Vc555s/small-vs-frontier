@@ -8,9 +8,9 @@ Compares one small open model
 on the same test set, with exact-match scoring (no LLM judge).
 
 Usage (smoke test first, about 2-5 minutes):
-  CUDA_VISIBLE_DEVICES=1 python exp1_routing.py --smoke
+  CUDA_VISIBLE_DEVICES=1 python finetune_qwen.py --smoke
 Full run:
-  CUDA_VISIBLE_DEVICES=1 python exp1_routing.py
+  CUDA_VISIBLE_DEVICES=1 python finetune_qwen.py
 If you hit CUDA out-of-memory, add:  --load4bit   (or lower --bs / --eval_bs)
 """
 import argparse
@@ -27,7 +27,7 @@ from collections import defaultdict
 os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 
 import torch
-from t1_common import (chat, full_text, load_data, norm, pick_subset,  # noqa: F401  (re-exported)
+from common import (chat, full_text, load_data, norm, pick_subset,  # noqa: F401  (re-exported)
                        prompt_text, system_prompt)
 from peft import LoraConfig, get_peft_model
 from transformers import AutoModelForCausalLM, AutoTokenizer

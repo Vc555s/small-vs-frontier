@@ -85,7 +85,7 @@ Differences inside the seed spread or with McNemar p ≥ 0.05 should be read as 
 - **Test A:** per message `random.Random(1000 + idx)`; lowercase; remove all punctuation except apostrophes; each word of 4+ letters (no digits) gets, with probability 0.15, one edit chosen uniformly from: swap two adjacent inner letters, delete an inner letter, duplicate an inner letter, replace an inner letter with a QWERTY neighbour. Probability fixed at 0.15 before any model output; no adjustment.
 - **Test B:** base indices shuffled with `random.Random(789)`, paired off, equal-label pairs re-paired; text `"<A> Also, <b lowercased first letter>"`.
 - **Test C:** CLINC150 `oos` items only (never in-scope CLINC intents), fixed banking-keyword filter, 500 base + out-of-scope test items shuffled with `random.Random(987)`.
-- **Prompts:** original `system_prompt(labels)` from `exp1_routing.py` for A, B and S2; the extended prompt (one extra label line `none_of_these` plus "If a message does not fit any label, answer none_of_these.") for C1, S1 and S3. Claude gets the same text plus the batch JSON paragraph.
+- **Prompts:** original `system_prompt(labels)` from `finetune_qwen.py` for A, B and S2; the extended prompt (one extra label line `none_of_these` plus "If a message does not fit any label, answer none_of_these.") for C1, S1 and S3. Claude gets the same text plus the batch JSON paragraph.
 
 Counts: typo500 500, typo_messages_with_at_least_one_edit 257, merged_pairs 249, merged_equal_label_pairs_redrawn 1, merged_dropped 2, oos_test 200, oos_s3_train 200, oos_s2_val 100, oos_removed_by_filter 44, oos_mixed 700.
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Step C: the full-training-set budget (9,993 labels, seed 0) with exp1_routing.py.
+"""Step C: the full-training-set budget (9,993 labels, seed 0) with finetune_qwen.py.
 
-  python full_data.py            train (or resume) and evaluate on the full test set
-  python full_data.py --collect  copy the outputs next to the other T1 files
+  python finetune_qwen_full.py            train (or resume) and evaluate on the full test set
+  python finetune_qwen_full.py --collect  copy the outputs next to the other T1 files
 
-exp1_routing.py is run unchanged (same hyperparameters as every other T1 run). Its output
+finetune_qwen.py is run unchanged (same hyperparameters as every other T1 run). Its output
 goes to results/full_data/ so that results/exp1_Qwen3-4B-Instruct-2507_s0.json (the seed-0
 rows for budgets 0-2000) is never overwritten. If the adapter was saved but the evaluation
 did not finish, a re-run evaluates the saved adapter instead of retraining.
@@ -18,11 +18,11 @@ import shutil
 import sys
 from collections import Counter
 
-DRY = os.environ.get("FINISH_DRY") == "1"   # test run: 64 labels, 1 epoch, 20 test items, separate folder
+DRY = os.environ.get("FULL_DATA_TEST") == "1"   # test run: 64 labels, 1 epoch, 20 test items, separate folder
 N, SEED = (64 if DRY else 9993), 0
 TAG = "Qwen3-4B-Instruct-2507"
-OUT = "results/finish_dryrun/full_data" if DRY else "results/full_data"
-DEST = "results/finish_dryrun" if DRY else "results"
+OUT = "results/full_data_testrun/full_data" if DRY else "results/full_data"
+DEST = "results/full_data_testrun" if DRY else "results"
 
 
 def set_paths(seed, out=None, dest=None):
@@ -40,7 +40,7 @@ set_paths(SEED)
 
 
 def check_subset():
-    from t1_common import load_data, pick_subset
+    from common import load_data, pick_subset
     train, test, _ = load_data("mteb/banking77")
     n_full = 9993
     assert len(train) == n_full, f"train size {len(train)} != {n_full}"
@@ -55,11 +55,11 @@ def adapter_complete():
 
 
 def evaluate_saved(low_mem):
-    """Evaluate the saved adapter exactly as exp1_routing.main() does after training."""
+    """Evaluate the saved adapter exactly as finetune_qwen.main() does after training."""
     import torch
     from peft import PeftModel
     from transformers import AutoTokenizer
-    import exp1_routing as e
+    import finetune_qwen as e
     from types import SimpleNamespace
     train, test, labels = e.load_data("mteb/banking77")
     tok = AutoTokenizer.from_pretrained(f"Qwen/{TAG}")
@@ -95,8 +95,8 @@ def run(low_mem):
             print(f"adapter {ADAPTER} exists; evaluating it without retraining", flush=True)
             evaluate_saved(low_mem)
         else:
-            import exp1_routing as e
-            argv = ["exp1_routing.py", "--budgets", str(N), "--seed", str(SEED), "--out", OUT]
+            import finetune_qwen as e
+            argv = ["finetune_qwen.py", "--budgets", str(N), "--seed", str(SEED), "--out", OUT]
             if DRY:
                 argv += ["--epochs", "1", "--eval_n", "20"]
             if low_mem:
@@ -132,7 +132,7 @@ def collect(log):
                              "loss": float(m.group(5)), "elapsed_s": int(m.group(6))})
     with open(f"{DEST}/train_loss_n{N}_s{SEED}.json", "w") as f:
         json.dump({"note": "Training loss as logged every 20 optimiser steps (single-batch values) by "
-                           "exp1_routing.py for the full-training-set run.", "seed": SEED, "rows": rows}, f, indent=1)
+                           "finetune_qwen.py for the full-training-set run.", "seed": SEED, "rows": rows}, f, indent=1)
     print(f"loss rows: {len(rows)}")
 
 

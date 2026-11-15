@@ -3,7 +3,7 @@
 T1 baseline: Claude via the Claude Code CLI (Pro subscription), Banking77 routing.
 
 NOT an API baseline. One Claude model, whichever the Pro plan serves, called through
-the `claude` CLI in print mode. The rules are summarised in results/t1_report.md.
+the `claude` CLI in print mode. The rules are summarised in results/main_report.md.
 
 Each batch of 25 test messages is sent to a fresh `claude -p` process whose cwd is a
 new empty temp dir, with all tools disabled, no CLAUDE.md / memory / skills / hooks /
@@ -11,9 +11,9 @@ MCP servers, and no session persistence. Gold labels are never in the prompt; th
 are joined to predictions here, after the subprocess returns.
 
 Usage:
-  python baseline_claude_code.py --limit_batches 1     # one-batch test
-  python baseline_claude_code.py                       # all remaining batches, then score
-  python baseline_claude_code.py --score_only          # just (re)write the report
+  python claude_baseline.py --limit_batches 1     # one-batch test
+  python claude_baseline.py                       # all remaining batches, then score
+  python claude_baseline.py --score_only          # just (re)write the report
 """
 import argparse
 import glob
@@ -28,7 +28,7 @@ import tempfile
 import time
 from datetime import date
 
-from t1_common import load_data, norm, system_prompt
+from common import load_data, norm, system_prompt
 
 BATCH = 25
 SAMPLE_N = 500
@@ -38,7 +38,7 @@ ORDER_FILE = os.path.join(OUT, "sample500_batch_order.json")
 ORDER_SEED = 456
 PREDS_FILE = os.path.join(OUT, "preds_claude_code_sample500.jsonl")
 RAW_DIR = os.path.join(OUT, "claude_code_raw")
-REPORT = os.path.join(OUT, "t1_claude_vs_small_sample500.md")
+REPORT = os.path.join(OUT, "claude_vs_small_sample500.md")
 SMALL_TAG = "Qwen3-4B-Instruct-2507"
 SMALL_BUDGETS = [0, 100, 500, 2000]
 SMALL_SEEDS = [0, 1, 2]
@@ -87,7 +87,7 @@ def get_args():
     p.add_argument("--timeout", type=int, default=300)
     p.add_argument("--pause", type=float, default=5.0)
     p.add_argument("--score_only", action="store_true")
-    # Robustness (stress) sets; see STRESS_DECISIONS.md.
+    # Robustness (stress) sets; see docs/robustness_fixed_choices.md.
     p.add_argument("--input", default="", help="stress-set JSONL (id, text, gold, ...)")
     p.add_argument("--prompt_variant", default="base", choices=["base", "none_option"])
     p.add_argument("--set", default="", help="set name used in output file names, e.g. A, B, C1")

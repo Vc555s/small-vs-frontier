@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the two Hugging Face model cards from the result files:
-  model_card/README.md       qwen3-4b-banking77-router-lora (2,000 labels + out-of-scope examples)
-  model_card_full/README.md  qwen3-4b-banking77-full-lora   (all 9,993 training labels)
+  model_cards/router/README.md       qwen3-4b-banking77-router-lora (2,000 labels + out-of-scope examples)
+  model_cards/full/README.md  qwen3-4b-banking77-full-lora   (all 9,993 training labels)
 Every number is read from results/; the usage code is each folder's usage.py verbatim.
 
   python make_model_card.py
@@ -108,8 +108,8 @@ def router_card(source_note):
     pair_flip, any_flip = seed_flips(p, ids)
     summ = json.load(open("results/stress/run_summary.json"))
     meta = next(x for x in summ["stages"] if x["stage"] == f"train_S3_s{SEED}")["meta"]
-    lat = json.load(open("results/latency_t1.json"))
-    usage = open("model_card/usage.py").read().strip()
+    lat = json.load(open("results/latency_router_adapter.json"))
+    usage = open("model_cards/router/usage.py").read().strip()
     oos = read_jsonl("results/stress/oos_mixed.jsonl")
     n_bank = sum(r["gold"] != NONE_LABEL for r in oos)
     n_oos = len(oos) - n_bank
@@ -186,7 +186,7 @@ Test set: {n_bank} Banking77 test messages plus {n_oos} CLINC150 out-of-scope te
 | Out-of-scope recall ({sc[SEED]['n_oos']} CLINC150 messages) | {sc[SEED]['oos_recall']:.3f} | {m('oos_recall')} |
 | Overall accuracy (all {sc[SEED]['n_in'] + sc[SEED]['n_oos']}) | {sc[SEED]['overall_acc']:.3f} | {m('overall_acc')} |
 
-Results for typo-laden and two-issue messages, and comparisons with other systems, are in the repository reports ([robustness]({REPO}/blob/main/results/t1_robustness.md), [main results]({REPO}/blob/main/results/t1_report.md)). This card makes no claim about any other model.
+Results for typo-laden and two-issue messages, and comparisons with other systems, are in the repository reports ([robustness]({REPO}/blob/main/results/robustness_report.md), [main results]({REPO}/blob/main/results/main_report.md)). This card makes no claim about any other model.
 
 ## Latency
 
@@ -211,12 +211,12 @@ Merged adapter (`merge_and_unload()`), fp16, greedy decoding, {lat['prompt_token
 
 
 def full_card(source_note):
-    from t1_common import load_data
+    from common import load_data
     train, test, labels = load_data("mteb/banking77")
     exp = {}
     preds = {}
     for s in (0, 1, 2):
-        d = "results" if s == 0 else "results/next"
+        d = "results" if s == 0 else "results/baselines"
         exp[s] = json.load(open(f"{d}/exp1_{QWEN}_n9993_s{s}.json"))[0]
         rows = read_jsonl(f"{d}/preds_{QWEN}_n9993_s{s}.jsonl")
         assert len(rows) == len(test) and all(r["text"] == t for r, (t, _) in zip(rows, test))
@@ -239,7 +239,7 @@ def full_card(source_note):
     # the saved accuracy must equal the one recomputed from the predictions
     for s in (0, 1, 2):
         assert round(acc(s, full_idx), 4) == exp[s]["accuracy"], s
-    from t1_common import normalised_overlap
+    from common import normalised_overlap
     n_exact, hits = normalised_overlap(train, test)
     ov = {i for i, _, _ in hits}
     keep_full = [i for i in full_idx if i not in ov]
@@ -255,8 +255,8 @@ def full_card(source_note):
         ov_sentence += (f"Without them: {m(acc, keep_sample)} on the sample ({len(keep_sample)} messages) and "
                         f"{m(acc, keep_full)} on the full test set ({len(keep_full):,}).")
     pair_flip, any_flip = seed_flips({s: dict(enumerate(preds[s])) for s in (0, 1, 2)}, full_idx)
-    lat = json.load(open("results/latency_t1.json"))
-    usage = open("model_card_full/usage.py").read().strip()
+    lat = json.load(open("results/latency_router_adapter.json"))
+    usage = open("model_cards/full/usage.py").read().strip()
     mins = [exp[s]["train_seconds"] / 60 for s in (0, 1, 2)]
     n_s = len(sample)
     mi = model_index(FULL_ID.split("/")[1], [
@@ -323,7 +323,7 @@ Three adapters were trained with identical settings and seeds 0, 1 and 2. **The 
 | Accuracy, full test set ({len(test):,}) | {m(acc, full_idx)} | {acc(SEED, full_idx):.3f} |
 | Answers that are one of the 77 labels, full test set | {m(valid, full_idx, 4)} | {valid(SEED, full_idx):.4f} |
 
-{ov_sentence} Comparisons with other systems are in the repository report ([baselines]({REPO}/blob/main/results/t1_baselines.md)). This card makes no claim about any other model.
+{ov_sentence} Comparisons with other systems are in the repository report ([baselines]({REPO}/blob/main/results/baselines_report.md)). This card makes no claim about any other model.
 
 Latency was not measured separately for this adapter. It has the same base model and LoRA size as [{ROUTER_ID}]({HF}/{ROUTER_ID}), whose card reports latency, and a slightly shorter prompt (no `none_of_these` label or instruction).
 
@@ -340,7 +340,7 @@ Latency was not measured separately for this adapter. It has the same base model
 
 def main():
     source_note = banking77_source_note()
-    for folder, card in (("model_card", router_card(source_note)), ("model_card_full", full_card(source_note))):
+    for folder, card in (("model_cards/router", router_card(source_note)), ("model_cards/full", full_card(source_note))):
         os.makedirs(folder, exist_ok=True)
         with open(f"{folder}/README.md", "w") as f:
             f.write(card)

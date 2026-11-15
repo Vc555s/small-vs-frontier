@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""T1 baselines report (E1-E6): writes results/t1_baselines.md, <next>/summary.md,
-<next>/joint_errors_for_review.csv and <next>/claude_calls_next.json. Every number is computed
+"""T1 baselines report (E1-E6): writes results/baselines_report.md, <next>/summary.md,
+<next>/joint_errors_for_review.csv and <next>/claude_calls_baselines.json. Every number is computed
 from result files. Missing runs are reported as missing.
 
-  python make_baselines_report.py [--next results/next] [--out results/t1_baselines.md]
+  python make_baselines_report.py [--dir results/baselines] [--out results/baselines_report.md]
 """
 import argparse
 import csv
@@ -16,10 +16,18 @@ import statistics as st
 from collections import Counter
 
 from summarise_review import review_caveat
-from t1_common import load_data, system_prompt
+from common import load_data, system_prompt
 
 TAG = "Qwen3-4B-Instruct-2507"
-E4A, E4B = "bge-small-en-v1.5-logreg", "ModernBERT-base-ft"
+LOGREG, MBERT = "bge-small-en-v1.5-logreg", "ModernBERT-base-ft"
+# run key -> Claude set name (file names preds_claude_<set>.jsonl; set field of the call summary)
+CLAUDE_SETS = {"claude_opus_one_example": "opus_one_example_per_intent",
+               "claude_opus_retrieved": "opus_retrieved_examples",
+               "claude_haiku_zero_shot": "haiku_zero_shot",
+               "claude_haiku_one_example": "haiku_one_example_per_intent"}
+# set names under which the raw CLI output of these runs was recorded
+RAW_SET_IDS = {"E2a": "opus_one_example_per_intent", "E2b": "opus_retrieved_examples",
+               "E3a": "haiku_zero_shot", "E3b": "haiku_one_example_per_intent"}
 BUDGETS = [100, 500, 2000, 9993]
 SEEDS = [0, 1, 2]
 BOOT_N, BOOT_SEED = 10000, 99
@@ -94,10 +102,10 @@ def esc(s):
 # ------------------------------------------------------------------ loading
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--next", default="results/next")
-    ap.add_argument("--out", default="results/t1_baselines.md")
+    ap.add_argument("--dir", default="results/baselines")
+    ap.add_argument("--out", default="results/baselines_report.md")
     a = ap.parse_args()
-    N = a.next
+    N = a.dir
     _, test, labels = load_data("mteb/banking77")
     idx = json.load(open("results/sample500.json"))["indices"]
     gold = {i: test[i][1] for i in idx}
@@ -130,18 +138,18 @@ def main():
                       "preds": {i: p[i] for i in idx}}
 
     add_claude("claude_opus_zeroshot", "Claude Opus 5.5, zero-shot (T1)", "results/preds_claude_code_sample500.jsonl", "claude")
-    add_claude("claude_opus_E2a", "Claude Opus 5.5, one example per intent (E2a)", f"{N}/preds_claude_E2a.jsonl", "claude", "src_idx")
-    add_claude("claude_opus_E2b", "Claude Opus 5.5, retrieved examples (E2b)", f"{N}/preds_claude_E2b.jsonl", "claude", "src_idx")
-    add_claude("claude_haiku_E3a", "Claude Haiku 5.5, zero-shot (E3a)", f"{N}/preds_claude_E3a.jsonl", "claude", "src_idx")
-    add_claude("claude_haiku_E3b", "Claude Haiku 5.5, one example per intent (E3b)", f"{N}/preds_claude_E3b.jsonl", "claude", "src_idx")
+    add_claude("claude_opus_one_example", "Claude Opus 5.5, one example per intent", f"{N}/preds_claude_opus_one_example_per_intent.jsonl", "claude", "src_idx")
+    add_claude("claude_opus_retrieved", "Claude Opus 5.5, retrieved examples", f"{N}/preds_claude_opus_retrieved_examples.jsonl", "claude", "src_idx")
+    add_claude("claude_haiku_zero_shot", "Claude Haiku 5.5, zero-shot", f"{N}/preds_claude_haiku_zero_shot.jsonl", "claude", "src_idx")
+    add_claude("claude_haiku_one_example", "Claude Haiku 5.5, one example per intent", f"{N}/preds_claude_haiku_one_example_per_intent.jsonl", "claude", "src_idx")
     for n in BUDGETS:
         for s in SEEDS:
             qp = f"results/preds_{TAG}_n{n}_s{s}.jsonl"
             if not os.path.exists(qp):
                 qp = f"{N}/preds_{TAG}_n{n}_s{s}.jsonl"
             add_full_test(f"qwen_n{n}_s{s}", "Qwen3-4B + LoRA", n, s, qp, "qwen")
-            add_full_test(f"e4a_n{n}_s{s}", "bge-small + logistic regression (E4a)", n, s, f"{N}/preds_{E4A}_n{n}_s{s}.jsonl", "e4a")
-            add_full_test(f"e4b_n{n}_s{s}", "ModernBERT-base fine-tuned (E4b)", n, s, f"{N}/preds_{E4B}_n{n}_s{s}.jsonl", "e4b")
+            add_full_test(f"logreg_n{n}_s{s}", "bge-small + logistic regression", n, s, f"{N}/preds_{LOGREG}_n{n}_s{s}.jsonl", "logreg")
+            add_full_test(f"mbert_n{n}_s{s}", "ModernBERT-base fine-tuned", n, s, f"{N}/preds_{MBERT}_n{n}_s{s}.jsonl", "mbert")
 
     def correct(name):
         r = runs[name]
@@ -173,7 +181,7 @@ def main():
         raw = json.load(open(f))
         m = raw.get("stdout_json") or {}
         u = m.get("usage") or {}
-        calls.append({"set": raw.get("set"), "batch": raw.get("batch"), "attempt": raw.get("attempt"),
+        calls.append({"set": RAW_SET_IDS.get(raw.get("set"), raw.get("set")), "batch": raw.get("batch"), "attempt": raw.get("attempt"),
                       "cli_version": raw.get("cli_version"), "returncode": raw.get("returncode"),
                       "wall_seconds": raw.get("wall_seconds"), "num_turns": m.get("num_turns"),
                       "prompt_tokens": (u.get("input_tokens") or 0) + (u.get("cache_creation_input_tokens") or 0)
@@ -183,11 +191,11 @@ def main():
     if calls:
         json.dump({"note": "Per-call summary of the Claude Code CLI output for E2 and E3, identifiers removed "
                            "(no session ids, paths or prompts). The cost is the CLI's own list-price estimate.",
-                   "calls": calls}, open(f"{N}/claude_calls_next.json", "w"), indent=1)
-    elif os.path.exists(f"{N}/claude_calls_next.json"):
-        calls = json.load(open(f"{N}/claude_calls_next.json"))["calls"]
+                   "calls": calls}, open(f"{N}/claude_calls_baselines.json", "w"), indent=1)
+    elif os.path.exists(f"{N}/claude_calls_baselines.json"):
+        calls = json.load(open(f"{N}/claude_calls_baselines.json"))["calls"]
     calls_used = sum(1 for _ in calls)
-    t1_calls = json.load(open("results/claude_calls_t1.json"))["calls"]
+    t1_calls = json.load(open("results/claude_calls_main.json"))["calls"]
 
     def claude_cost(set_name):
         cs = [c for c in calls if c["set"] == set_name] if set_name else \
@@ -200,11 +208,11 @@ def main():
         tok = st.mean(c["prompt_tokens"] for c in cs)
         return usd, tok
 
-    cost_rows = {"claude_opus_zeroshot": claude_cost(None), "claude_opus_E2a": claude_cost("E2a"),
-                 "claude_opus_E2b": claude_cost("E2b"), "claude_haiku_E3a": claude_cost("E3a"),
-                 "claude_haiku_E3b": claude_cost("E3b")}
+    cost_rows = {"claude_opus_zeroshot": claude_cost(None), "claude_opus_one_example": claude_cost("opus_one_example_per_intent"),
+                 "claude_opus_retrieved": claude_cost("opus_retrieved_examples"), "claude_haiku_zero_shot": claude_cost("haiku_zero_shot"),
+                 "claude_haiku_one_example": claude_cost("haiku_one_example_per_intent")}
     import compute_cost
-    lat = {"qwen": "results/latency_t1.json", "e4a": f"{N}/latency_e4a.json", "e4b": f"{N}/latency_e4b.json"}
+    lat = {"qwen": "results/latency_router_adapter.json", "logreg": f"{N}/latency_embeddings_logreg.json", "mbert": f"{N}/latency_modernbert.json"}
     lat = {k: json.load(open(v)) for k, v in lat.items() if os.path.exists(v)}
     rates = compute_cost.RENTAL_EUR_PER_GPU_HOUR
 
@@ -219,14 +227,14 @@ def main():
     w = L.append
     w("# T1 baselines: examples in the prompt, cheaper Claude models, non-generative models, more seeds")
     w("")
-    w("Generated by `make_baselines_report.py` from the files in `results/` and `results/next/`. Every number "
+    w("Generated by `make_baselines_report.py` from the files in `results/` and `results/baselines/`. Every number "
       "is computed from those files. All systems are scored on the same 500 Banking77 test messages "
       "(`results/sample500.json`) with exact match after the same normalisation.")
     w("")
     missing = [k for k, r in runs.items() if "incomplete" in r]
-    expected = (["claude_opus_E2a", "claude_opus_E2b", "claude_haiku_E3a", "claude_haiku_E3b"]
+    expected = (["claude_opus_one_example", "claude_opus_retrieved", "claude_haiku_zero_shot", "claude_haiku_one_example"]
                 + [f"qwen_n9993_s{s}" for s in SEEDS]
-                + [f"{p}_n{n}_s{s}" for p in ("e4a", "e4b") for n in BUDGETS for s in SEEDS])
+                + [f"{p}_n{n}_s{s}" for p in ("logreg", "mbert") for n in BUDGETS for s in SEEDS])
     absent = [k for k in expected if k not in runs]
     if missing or absent:
         w("## Not completed")
@@ -279,16 +287,16 @@ def main():
           f"{praw} | {pholm} | {lat_txt} | {cost_txt} |")
 
     row_for([ref], "Claude Opus 5.5, zero-shot", "0", "claude")
-    row_for(["claude_opus_E2a"], "Claude Opus 5.5, one example per intent (E2a)", "77 in prompt", "claude")
-    row_for(["claude_opus_E2b"], "Claude Opus 5.5, retrieved examples (E2b)", "≤125 in prompt", "claude")
-    row_for(["claude_haiku_E3a"], "Claude Haiku 5.5, zero-shot (E3a)", "0", "claude")
-    row_for(["claude_haiku_E3b"], "Claude Haiku 5.5, one example per intent (E3b)", "77 in prompt", "claude")
+    row_for(["claude_opus_one_example"], "Claude Opus 5.5, one example per intent", "77 in prompt", "claude")
+    row_for(["claude_opus_retrieved"], "Claude Opus 5.5, retrieved examples", "≤125 in prompt", "claude")
+    row_for(["claude_haiku_zero_shot"], "Claude Haiku 5.5, zero-shot", "0", "claude")
+    row_for(["claude_haiku_one_example"], "Claude Haiku 5.5, one example per intent", "77 in prompt", "claude")
     for n in BUDGETS:
         row_for([f"qwen_n{n}_s{s}" for s in SEEDS], "Qwen3-4B + LoRA", f"{n:,}", "qwen")
-        row_for([f"e4b_n{n}_s{s}" for s in SEEDS], "ModernBERT-base fine-tuned (E4b)", f"{n:,}", "e4b")
-        row_for([f"e4a_n{n}_s{s}" for s in SEEDS], "bge-small + logistic regression (E4a)", f"{n:,}", "e4a")
+        row_for([f"mbert_n{n}_s{s}" for s in SEEDS], "ModernBERT-base fine-tuned", f"{n:,}", "mbert")
+        row_for([f"logreg_n{n}_s{s}" for s in SEEDS], "bge-small + logistic regression", f"{n:,}", "logreg")
     w("")
-    w("Qwen latency is the merged out-of-scope adapter from `results/latency_t1.json` (same base model and "
+    w("Qwen latency is the merged out-of-scope adapter from `results/latency_router_adapter.json` (same base model and "
       "LoRA settings); E4a and E4b latency is measured on the 2,000-label seed-0 model. Latency was measured on a "
       "shared GPU and is not best-case. GPU cost per 1,000 requests = 1,000 ÷ throughput at batch 16 ÷ 3,600 × the "
       "assumed hourly rate (`compute_cost.py`); the rates are assumptions, not quoted prices. Claude cost is the "
@@ -306,7 +314,7 @@ def main():
         if k.startswith("claude"):
             return (0, k, 0, 0)
         p, n, s = k.split("_")
-        return ({"qwen": 1, "e4b": 2, "e4a": 3}[p], "", int(n[1:]), int(s[1:]))
+        return ({"qwen": 1, "mbert": 2, "logreg": 3}[p], "", int(n[1:]), int(s[1:]))
     for c in sorted(comp, key=run_key):
         w(f"| {c['run']} | {sum(correct(c['run'])) / len(idx):.3f} | {100 * c['diff']:+.1f} pts "
           f"({100 * c['lo']:+.1f} to {100 * c['hi']:+.1f}) | {c['b']} | {c['c']} | {c['p']:.3g} | {c['p_holm']:.3g} |")
@@ -325,7 +333,7 @@ def main():
     w("")
     w("| Run | Qwen same budget and seed | Run right, Qwen wrong | Qwen right, run wrong | p |")
     w("|---|---|---|---|---|")
-    for p in ("e4a", "e4b"):
+    for p in ("logreg", "mbert"):
         for n in BUDGETS:
             for s in SEEDS:
                 k, q = f"{p}_n{n}_s{s}", f"qwen_n{n}_s{s}"
@@ -347,7 +355,7 @@ def main():
     w("|---|---|---|---|")
     for n in BUDGETS:
         cells = []
-        for p in ("qwen", "e4b", "e4a"):
+        for p in ("qwen", "mbert", "logreg"):
             ks = [f"{p}_n{n}_s{s}" for s in SEEDS if f"{p}_n{n}_s{s}" in complete]
             cells.append(f"{ms([sum(correct(k)) / len(idx) for k in ks])} / {ms([runs[k]['full_acc'] for k in ks], 4)}"
                          if ks else "n/a")
@@ -357,7 +365,7 @@ def main():
     # E5 error analysis
     w("## 5. Error analysis")
     w("")
-    ea = [("Claude zero-shot", ref), ("Claude E2a", "claude_opus_E2a"), ("Qwen 2,000 s0", "qwen_n2000_s0"),
+    ea = [("Claude zero-shot", ref), ("Claude, one example per intent", "claude_opus_one_example"), ("Qwen 2,000 s0", "qwen_n2000_s0"),
           ("Qwen 9,993 s0", "qwen_n9993_s0")]
     ea = [(n_, k) for n_, k in ea if k in complete]
     for name, k in ea:
@@ -402,7 +410,7 @@ def main():
                 cw.writerow(["test_idx", "text", "gold", "qwen_9993_s0_pred", "claude_zeroshot_pred", "judgement"])
                 for i in both:
                     cw.writerow([i, test[i][0], gold[i], runs["qwen_n9993_s0"]["preds"][i], runs[ref]["preds"][i], ""])
-        w(f"`results/next/joint_errors_for_review.csv` lists the {len(both)} messages that both Qwen 9,993 (seed 0) "
+        w(f"`results/baselines/joint_errors_for_review.csv` lists the {len(both)} messages that both Qwen 9,993 (seed 0) "
           "and Claude zero-shot got wrong, with a `judgement` column (`label_wrong`, `ambiguous`, "
           "`models_wrong`) for manual review. `label_a` and `label_b` hold the two predictions in random order "
           "(`random.Random(31)`); `proposed_judgement` and `reason` are proposals made from the message, the gold "
@@ -410,7 +418,7 @@ def main():
         w("")
 
     # overlap between test and training messages
-    from t1_common import load_data as _ld, normalised_overlap
+    from common import load_data as _ld, normalised_overlap
     train_all, _, _ = _ld("mteb/banking77")
     n_exact, overlap = normalised_overlap(train_all, test)
     ov_idx = {i for i, _, _ in overlap}
@@ -460,13 +468,13 @@ def main():
         return q if os.path.exists(q) else f"{N}/preds_{TAG}_n{n}_s{s}.jsonl"
 
     ov_row("Claude Opus 5.5, zero-shot", [ref], [])
-    ov_row("Claude Opus 5.5, retrieved examples (E2b)", ["claude_opus_E2b"], [])
+    ov_row("Claude Opus 5.5, retrieved examples", ["claude_opus_retrieved"], [])
     ov_row("Qwen3-4B + LoRA, 2,000 labels", [f"qwen_n2000_s{s}" for s in SEEDS], [qp(2000, s) for s in SEEDS])
     ov_row("Qwen3-4B + LoRA, 9,993 labels", [f"qwen_n9993_s{s}" for s in SEEDS], [qp(9993, s) for s in SEEDS])
-    ov_row("ModernBERT-base fine-tuned (E4b), 9,993 labels", [f"e4b_n9993_s{s}" for s in SEEDS],
-           [f"{N}/preds_{E4B}_n9993_s{s}.jsonl" for s in SEEDS])
-    ov_row("bge-small + logistic regression (E4a), 9,993 labels", [f"e4a_n9993_s{s}" for s in SEEDS],
-           [f"{N}/preds_{E4A}_n9993_s{s}.jsonl" for s in SEEDS])
+    ov_row("ModernBERT-base fine-tuned, 9,993 labels", [f"mbert_n9993_s{s}" for s in SEEDS],
+           [f"{N}/preds_{MBERT}_n9993_s{s}.jsonl" for s in SEEDS])
+    ov_row("bge-small + logistic regression, 9,993 labels", [f"logreg_n9993_s{s}" for s in SEEDS],
+           [f"{N}/preds_{LOGREG}_n9993_s{s}.jsonl" for s in SEEDS])
     w("")
     w("Claude was run on the 500 sample only, so it has no full-test figures.")
     w("")
@@ -480,17 +488,17 @@ def main():
       "placed between the instructions and the batch instruction.")
     w("")
     w("- **E2a / E3b:** one example per intent (77): the seed-0 2,000-example training subset shuffled with "
-      "`random.Random(2024)`, first example of each intent, kept in that order (`results/next/icl_one_per_class.json`). "
+      "`random.Random(2024)`, first example of each intent, kept in that order (`results/baselines/icl_one_per_class.json`). "
       "The same 77 examples go into every call.")
     w("- **E2b:** for each message in a call, its 5 nearest examples in the seed-0 2,000-example subset by "
       "cosine similarity of `BAAI/bge-small-en-v1.5` embeddings (no query instruction); the union per call, "
       "duplicates removed, sorted by subset position and shuffled with `random.Random(7)` "
-      "(`results/next/icl_retrieved/batch_XX.json`).")
+      "(`results/baselines/icl_retrieved/batch_XX.json`).")
     w("- **E3a / E3b:** as zero-shot / E2a, with `--model claude-haiku-5-5`.")
     w("")
     one = json.load(open(f"{N}/icl_one_per_class.json"))["examples"] if os.path.exists(f"{N}/icl_one_per_class.json") else []
     if one:
-        from baseline_claude_code import BATCH_ADDITION
+        from claude_baseline import BATCH_ADDITION
         prompt = (system_prompt(labels) + "\n\nExamples:\n"
                   + "\n".join(f"{' '.join(e['text'].split())} => {e['label']}" for e in one) + BATCH_ADDITION)
         w("<details><summary>Exact E2a / E3b system prompt</summary>")
@@ -567,12 +575,12 @@ def main():
         return sum(correct(k)) / len(idx) if k in complete else None
 
     unans = {}
-    for s_ in ("E2a", "E2b", "E3a", "E3b"):
+    for k_, s_ in CLAUDE_SETS.items():
         pp = f"{N}/preds_claude_{s_}.jsonl"
         if os.path.exists(pp):
             rs_ = jl(pp)
             ans = [r for r in rs_ if not r.get("error")]
-            unans[f"claude_{'opus' if s_.startswith('E2') else 'haiku'}_{s_}"] = (len(rs_) - len(ans),
+            unans[k_] = (len(rs_) - len(ans),
                 sum(r["pred"] == r["gold"] for r in ans) / len(ans) if ans else None, len(ans))
 
     def line(label, k):
@@ -589,18 +597,18 @@ def main():
         return (f"- {label}: {acc_of(k):.3f} ({100 * c['diff']:+.1f} points against Claude zero-shot "
                 f"{acc_of(ref):.3f}; Holm-corrected p = {c['p_holm']:.3g}).{extra}")
     S += ["## Results (500-message sample)", ""]
-    S.append(line("Claude Opus with one example per intent (E2a)", "claude_opus_E2a"))
-    S.append(line("Claude Opus with retrieved examples (E2b)", "claude_opus_E2b"))
-    S.append(line("Claude Haiku zero-shot (E3a)", "claude_haiku_E3a"))
-    S.append(line("Claude Haiku with one example per intent (E3b)", "claude_haiku_E3b"))
+    S.append(line("Claude Opus with one example per intent", "claude_opus_one_example"))
+    S.append(line("Claude Opus with retrieved examples", "claude_opus_retrieved"))
+    S.append(line("Claude Haiku zero-shot", "claude_haiku_zero_shot"))
+    S.append(line("Claude Haiku with one example per intent", "claude_haiku_one_example"))
     for s in SEEDS:
-        S.append(line(f"Qwen3-4B + LoRA, 9,993 labels, seed {s} (E1)", f"qwen_n9993_s{s}"))
-    for p, nm in (("e4b", "ModernBERT-base fine-tuned (E4b)"), ("e4a", "bge-small + logistic regression (E4a)")):
+        S.append(line(f"Qwen3-4B + LoRA, 9,993 labels, seed {s}", f"qwen_n9993_s{s}"))
+    for p, nm in (("mbert", "ModernBERT-base fine-tuned"), ("logreg", "bge-small + logistic regression")):
         for n in BUDGETS:
             ks = [f"{p}_n{n}_s{s}" for s in SEEDS if f"{p}_n{n}_s{s}" in complete]
             if ks:
                 S.append(f"- {nm}, {n:,} labels: {ms([acc_of(k) for k in ks])} over {len(ks)} seed(s).")
-    S += ["", "Full tables, paired tests, error analysis and prompts: `results/t1_baselines.md`.", "",
+    S += ["", "Full tables, paired tests, error analysis and prompts: `results/baselines_report.md`.", "",
           "## Claude calls", "", f"{calls_used} of {CAP} used (E2c and the Sonnet runs were not run).", "",
           "## Deviations", ""]
     dev_path = f"{N}/deviations.json"

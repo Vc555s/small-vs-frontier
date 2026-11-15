@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Shared helpers for the T1 robustness (stress) pipeline.
+"""Shared helpers for the robustness (stress) tests and the resumable pipelines.
 
-Imported by the stage scripts, and used from run_stress.sh as a small CLI:
+Imported by the stage scripts, and used from the run_*.sh pipelines as a small CLI:
   python stress_common.py status   --dir D       rewrite D/STATUS.md
   python stress_common.py pick_gpu --min_mb 11000 print the GPU index with most free memory (exit 1 if none)
   python stress_common.py mark     --dir D --stage S --state running|done|failed|skipped [--reason R] [--log F]
@@ -38,32 +38,27 @@ STAGES = [
     ("train_S3_s2", "GPU", ["build"]),
     ("report", "CPU", []),
 ]
-# Stages of run_finish.sh (full-training-set run, figures, reports, push)
-FINISH_STAGES = [
+# Stages of run_full_data.sh (full-training-set run, figures, reports)
+FULL_DATA_STAGES = [
     ("full_train", "GPU", []),
     ("full_collect", "CPU", ["full_train"]),
     ("figures", "CPU", []),
     ("reports", "CPU", []),
     ("verify_light", "CPU", ["reports"]),
-    ("scan", "CPU", ["reports"]),
-    ("summary", "CPU", []),
-    ("commit_push", "CPU", ["scan"]),
 ]
-# Stages of run_next.sh (next experiments)
-NEXT_STAGES = [
-    ("e4a", "GPU", []),
-    ("e4b", "GPU", []),
-    ("e1_s1", "GPU", []),
-    ("e1_s2", "GPU", []),
-    ("e2a", "Claude", []),
-    ("e2b", "Claude", []),
-    ("e3a", "Claude", []),
-    ("e3b", "Claude", []),
+# Stages of run_baselines.sh
+BASELINE_STAGES = [
+    ("embeddings_logreg", "GPU", []),
+    ("modernbert", "GPU", []),
+    ("full_s1", "GPU", []),
+    ("full_s2", "GPU", []),
+    ("claude_opus_one_example", "Claude", []),
+    ("claude_opus_retrieved", "Claude", []),
+    ("claude_haiku_zero_shot", "Claude", []),
+    ("claude_haiku_one_example", "Claude", []),
     ("report", "CPU", []),
-    ("scan", "CPU", ["report"]),
-    ("commit_push", "CPU", ["scan"]),
 ]
-NEXT_CAP = 140
+BASELINE_CAP = 140
 TEST_C_STAGES = ["small_C_S1", "small_C_S2", "claude_C1", "train_S3_s0", "train_S3_s1", "train_S3_s2"]
 
 
@@ -73,7 +68,7 @@ def now():
 
 def extended_prompt(labels):
     """Prompt for C1 / S1 / S3: one extra label line plus one sentence."""
-    from t1_common import system_prompt  # lazy: keeps the status CLI light
+    from common import system_prompt  # lazy: keeps the status CLI light
     return system_prompt(list(labels) + [NONE_LABEL]) + "\n\n" + NONE_SENTENCE
 
 
@@ -219,10 +214,10 @@ def modes_alive(d, modes=("gpu", "claude", "report", "all")):
 
 
 def write_status(d, pipeline="stress"):
-    stages = {"finish": FINISH_STAGES, "next": NEXT_STAGES}.get(pipeline, STAGES)
-    final_stage = "report" if pipeline == "stress" else "commit_push"
-    title = {"finish": "T1 finishing pipeline status", "next": "T1 next-experiments pipeline status"}.get(
-        pipeline, "T1 robustness pipeline status")
+    stages = {"full_data": FULL_DATA_STAGES, "baselines": BASELINE_STAGES}.get(pipeline, STAGES)
+    final_stage = stages[-1][0]
+    title = {"full_data": "Full-training-set pipeline status", "baselines": "Baselines pipeline status"}.get(
+        pipeline, "Robustness pipeline status")
     os.makedirs(d, exist_ok=True)
     with locked(os.path.join(d, ".status.lock")):
         L = [f"# {title}", "", f"Updated {now()} (server time).", ""]
@@ -247,14 +242,14 @@ def write_status(d, pipeline="stress"):
                      f"{m.get('gpu', '')} | {m.get('peak_gb', '')} | {note} |")
             if st == "failed":
                 fails.append((s, body))
-        if pipeline in ("stress", "next"):
-            L += ["", f"Claude calls used: {claude_calls(d)} of {NEXT_CAP if pipeline == 'next' else CLAUDE_CAP}."]
+        if pipeline in ("stress", "baselines"):
+            L += ["", f"Claude calls used: {claude_calls(d)} of {BASELINE_CAP if pipeline == 'baselines' else CLAUDE_CAP}."]
             wp = os.path.join(d, ".claude_wait")
             if os.path.exists(wp):
                 L.append(f"Claude: {open(wp).read().strip()}")
         else:
             L.append("")
-        alive = modes_alive(d, ("finish",) if pipeline == "finish" else ("gpu", "claude", "report", "all"))
+        alive = modes_alive(d, ("full_data",) if pipeline == "full_data" else ("gpu", "claude", "report", "all"))
         final_ready = states[final_stage] in ("done", "failed", "skipped") and not alive
         L.append(f"Pipeline processes alive: {', '.join(alive) if alive else 'none'}.")
         for s, body in fails:
@@ -267,7 +262,7 @@ def write_status(d, pipeline="stress"):
         else:
             if not alive:
                 L += ["", "No pipeline process is alive. If this persists, resume with "
-                      + {"finish": "`bash run_finish.sh`", "next": "`bash run_next.sh all`"}.get(pipeline, "`bash run_stress.sh all`")
+                      + {"full_data": "`bash run_full_data.sh`", "baselines": "`bash run_baselines.sh all`"}.get(pipeline, "`bash run_robustness.sh all`")
                       + " from the repository root."]
             final = "STATE: RUNNING"
         L += ["", final]
@@ -286,7 +281,7 @@ def main():
     p.add_argument("--state")
     p.add_argument("--reason", default="")
     p.add_argument("--log")
-    p.add_argument("--pipeline", default="stress", choices=["stress", "finish", "next"])
+    p.add_argument("--pipeline", default="stress", choices=["stress", "full_data", "baselines"])
     a = p.parse_args()
     if a.cmd == "status":
         write_status(a.dir, a.pipeline)

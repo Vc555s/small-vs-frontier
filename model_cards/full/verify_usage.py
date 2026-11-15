@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Run the model-card usage snippet (model_card_full/usage.py, unmodified source) on the first
-100 messages of results/next/clean500.jsonl (the 500-message sample in batch order) and compare
+"""Run the model-card usage snippet (model_cards/full/usage.py, unmodified source) on the first
+100 messages of results/baselines/clean500.jsonl (the 500-message sample in batch order) and compare
 with the saved full-test predictions of the same adapter
 (results/preds_Qwen3-4B-Instruct-2507_n9993_s0.jsonl, one row per test index).
 
-  python model_card_full/verify_usage.py                      # adapter from the Hugging Face Hub
-  python model_card_full/verify_usage.py --adapter <local>    # pre-upload check against a local copy
+  python model_cards/full/verify_usage.py                      # adapter from the Hugging Face Hub
+  python model_cards/full/verify_usage.py --adapter <local>    # pre-upload check against a local copy
 Writes results/model_card_full_verification.json when run against the Hub.
 """
 import argparse
@@ -14,7 +14,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from t1_common import load_data, system_prompt  # noqa: E402
+from common import load_data, system_prompt  # noqa: E402
 from stress_common import read_jsonl  # noqa: E402
 
 ap = argparse.ArgumentParser()
@@ -30,7 +30,7 @@ exec(compile(src, "usage.py", "exec"), ns)
 
 _, test, labels = load_data("mteb/banking77")
 prompt_identical = ns["SYSTEM"] == system_prompt(labels)
-items = read_jsonl("results/next/clean500.jsonl")[:a.n]
+items = read_jsonl("results/baselines/clean500.jsonl")[:a.n]
 saved_rows = read_jsonl("results/preds_Qwen3-4B-Instruct-2507_n9993_s0.jsonl")
 assert len(saved_rows) == len(test) and all(r["text"] == t for r, (t, _) in zip(saved_rows, test))
 saved = {r["src_idx"]: saved_rows[r["src_idx"]]["pred"] for r in items}

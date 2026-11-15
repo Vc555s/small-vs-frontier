@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Write results/t1_robustness.md from the files in results/stress only.
+"""Write results/robustness_report.md from the files in results/stress only.
 
 Handles any subset of stages being missing or incomplete: whatever exists is reported,
 and a "Not completed" section at the top lists the gaps.
 
-  python make_robustness_report.py [--dir results/stress] [--out results/t1_robustness.md]
+  python make_robustness_report.py [--dir results/stress] [--out results/robustness_report.md]
 """
 import argparse
 import json
@@ -12,7 +12,7 @@ import math
 import os
 import statistics as st
 
-from t1_common import load_data
+from common import load_data
 from stress_common import (CLAUDE_CAP, NONE_LABEL, SEEDS, SMALL_TAG, STAGES, claude_calls,
                            read_jsonl, stage_state)
 
@@ -68,7 +68,7 @@ def esc(s):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", default="results/stress")
-    ap.add_argument("--out", default="results/t1_robustness.md")
+    ap.add_argument("--out", default="results/robustness_report.md")
     a = ap.parse_args()
     D = a.dir
     _, test, labels = load_data("mteb/banking77")
@@ -376,7 +376,7 @@ def main():
       "re-paired; text `\"<A> Also, <b lowercased first letter>\"`.")
     w("- **Test C:** CLINC150 `oos` items only (never in-scope CLINC intents), fixed banking-keyword "
       "filter, 500 base + out-of-scope test items shuffled with `random.Random(987)`.")
-    w("- **Prompts:** original `system_prompt(labels)` from `exp1_routing.py` for A, B and S2; the "
+    w("- **Prompts:** original `system_prompt(labels)` from `finetune_qwen.py` for A, B and S2; the "
       "extended prompt (one extra label line `none_of_these` plus \"If a message does not fit any "
       "label, answer none_of_these.\") for C1, S1 and S3. Claude gets the same text plus the batch "
       "JSON paragraph.")
@@ -419,10 +419,10 @@ def main():
         for x in bl.get("decisions", []):
             w(f"- {x}")
         w("")
-    if os.path.exists("STRESS_DECISIONS.md"):
+    if os.path.exists("docs/robustness_fixed_choices.md"):
         w("## Decisions and deviations (recorded during setup)")
         w("")
-        w(open("STRESS_DECISIONS.md").read().split("\n", 1)[1].strip())  # drop its title line
+        w(open("docs/robustness_fixed_choices.md").read().split("\n", 1)[1].strip())  # drop its title line
         w("")
 
     # ---------------------------------------------------------- run facts

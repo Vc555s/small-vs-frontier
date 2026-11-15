@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Build results/t1_report.md: the complete T1 write-up (fine-tuned Qwen3-4B vs
+"""Build results/main_report.md: the complete T1 write-up (fine-tuned Qwen3-4B vs
 Claude via Claude Code CLI), with every number read from the result files and every
 log embedded in full. No GPU, no Claude calls.
 
-  python make_t1_report.py
+  python make_main_report.py
 """
 import glob
 import json
@@ -13,16 +13,16 @@ import statistics as st
 import subprocess
 from datetime import datetime
 
-from baseline_claude_code import LABEL, metrics, wilson
+from claude_baseline import LABEL, metrics, wilson
 from summarise_review import review_caveat, review_counts
-from t1_common import load_data
+from common import load_data
 
 R = "results"
 TAG = "Qwen3-4B-Instruct-2507"
 BUDGETS = [0, 100, 500, 2000, 9993]
 FULL_N = 9993  # full training set, seed 0 only
 SEEDS = [0, 1, 2]
-OUT = os.path.join(R, "t1_report.md")
+OUT = os.path.join(R, "main_report.md")
 
 
 def sh(cmd):
@@ -81,8 +81,8 @@ def main():
     for s in SEEDS:
         for r in json.load(open(os.path.join(R, f"exp1_{TAG}_s{s}.json"))):
             rows[(r["budget"], s)] = r
-    # full training set: seed 0 lives in results/, further seeds (E1) in results/next/
-    NEXT = os.path.join(R, "next")
+    # full training set: seed 0 lives in results/, further seeds (E1) in results/baselines/
+    NEXT = os.path.join(R, "baselines")
 
     def find(name):
         for base in (R, NEXT):
@@ -114,7 +114,7 @@ def main():
 
     w("# T1 report: support-ticket routing (Banking77) — fine-tuned Qwen3-4B vs Claude via Claude Code CLI")
     w("")
-    w(f"Generated {now} (server time) by `make_t1_report.py` from the files in `results/`. "
+    w(f"Generated {now} (server time) by `make_main_report.py` from the files in `results/`. "
       "Every number below is read from those files; nothing is typed in by hand.")
     w("")
     w("Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-head on the 500 sample · "
@@ -228,8 +228,8 @@ def main():
     w("")
     w("### 3.2 Claude via Claude Code CLI (Pro subscription)")
     w("")
-    # Public version: per-call summaries without identifiers (see results/claude_calls_t1.json).
-    calls_doc = json.load(open(os.path.join(R, "claude_calls_t1.json")))
+    # Public version: per-call summaries without identifiers (see results/claude_calls_main.json).
+    calls_doc = json.load(open(os.path.join(R, "claude_calls_main.json")))
     raws = calls_doc["calls"]
     cli_ver = calls_doc["cli_version"]
     w("| Setting | Value |")
@@ -240,7 +240,7 @@ def main():
         ("CLI", f"`{cli_ver}`, the binary bundled with the Cursor extension (no `claude` on PATH)"),
         ("Flags", "`-p --output-format json --system-prompt <ours> --tools \"\" --safe-mode --strict-mcp-config --disable-slash-commands --no-session-persistence --permission-prompts none`"),
         ("Isolation", "each call a fresh process in a new empty temp dir (checked empty before and after); no tools; no CLAUDE.md, memory, skills, hooks or MCP; message texts only, gold labels never sent"),
-        ("Prompt", "`system_prompt(labels)` from `exp1_routing.py` unchanged, plus one paragraph asking for a 25-item JSON array"),
+        ("Prompt", "`system_prompt(labels)` from `finetune_qwen.py` unchanged, plus one paragraph asking for a 25-item JSON array"),
         ("Batching", "25 messages per call, 20 calls; batches from a `random.Random(456)` shuffle of the 500 (section 6.4)"),
         ("Temperature", "not settable through the CLI"),
         ("Run date", "2026-11-13"),
@@ -249,8 +249,8 @@ def main():
     w("")
     w("The exact prompt text sent:")
     w("")
-    from baseline_claude_code import BATCH_ADDITION
-    from t1_common import system_prompt
+    from claude_baseline import BATCH_ADDITION
+    from common import system_prompt
     w(fence(system_prompt(labels) + BATCH_ADDITION))
     w("")
 
@@ -311,11 +311,11 @@ def main():
     w("### 4.4 Training loss")
     w("")
     w("Loss is logged every 20 optimiser steps and is a single-batch value, so it is noisy. "
-      "Every logged step is in Appendix B (from `results/train_loss_t1.json`). Final logged loss per run:")
+      "Every logged step is in Appendix B (from `results/train_loss_budgets.json`). Final logged loss per run:")
     w("")
     w("| Budget | Seed | Steps | Final logged loss |")
     w("|---|---|---|---|")
-    loss_doc = json.load(open(os.path.join(R, "train_loss_t1.json")))
+    loss_doc = json.load(open(os.path.join(R, "train_loss_budgets.json")))
     final_loss = {}
     for s in SEEDS:
         for row in loss_doc["seeds"][str(s)]:
@@ -338,7 +338,7 @@ def main():
     # ---------------- 4.5 latency and cost
     w("### 4.5 Latency and cost")
     w("")
-    lat_p, cost_p = os.path.join(R, "latency_t1.json"), os.path.join(R, "cost_t1.json")
+    lat_p, cost_p = os.path.join(R, "latency_router_adapter.json"), os.path.join(R, "cost_main.json")
     if os.path.exists(lat_p) and os.path.exists(cost_p):
         lat, cost = json.load(open(lat_p)), json.load(open(cost_p))
         b1, thr, pw = lat["batch1_latency_ms"], lat["throughput"], lat["power_during_batch16"]
@@ -378,11 +378,11 @@ def main():
           f"(a simplification; scale by your own exchange rate). At batch 16 the measured maximum is "
           f"{sm['throughput_batch16_messages_per_second'] * 3600:,.0f} requests per hour.")
     else:
-        w("Not measured (no `latency_t1.json` / `cost_t1.json`).")
+        w("Not measured (no `latency_router_adapter.json` / `cost_main.json`).")
     w("")
     w("### 4.6 Robustness at a glance")
     w("")
-    w("Details, paired tests and caveats are in `results/t1_robustness.md`.")
+    w("Details, paired tests and caveats are in `results/robustness_report.md`.")
     w("")
     w("![Clean, typo and two-issue accuracy](figures/stress_tests.png)")
     w("")
@@ -459,7 +459,7 @@ def main():
     # ---------------- 6. procedure
     w("## 6. Procedure, issues and fixes (chronological)")
     w("")
-    w("### 6.1 Smoke test of `exp1_routing.py` (2026-11-13, 01:36–01:52)")
+    w("### 6.1 Smoke test of `finetune_qwen.py` (2026-11-13, 01:36–01:52)")
     w("")
     w("The script had never run on a GPU. The smoke test found that the data, chat template, "
       "`dtype=` loading and `all-linear` LoRA all worked, and that untuned accuracy was well above chance. "
@@ -482,7 +482,7 @@ def main():
     w(fence("""cd ~/slm-study && source .venv/bin/activate && mkdir -p results
 for s in 0 1 2; do
   b="100,500,2000"; [ $s -eq 0 ] && b="0,100,500,2000"
-  CUDA_VISIBLE_DEVICES=1 python exp1_routing.py --seed $s --budgets $b 2>&1 | tee results/exp1_log_s$s.txt
+  CUDA_VISIBLE_DEVICES=1 python finetune_qwen.py --seed $s --budgets $b 2>&1 | tee results/exp1_log_s$s.txt
 done""", "bash"))
     w("")
     w("All 10 runs finished with no errors, NaNs or OOMs. Logged training loss: Appendix B.")
@@ -538,20 +538,20 @@ done""", "bash"))
         w("### 6.6 Full-training-set run")
         w("")
         w("Budget 9,993 (the whole training set, checked to contain every training example exactly once "
-          "and no test item), seed 0, 3 epochs, same hyperparameters as every other run, via `full_data.py`, "
-          "which runs `exp1_routing.py --budgets 9993 --seed 0` unchanged. Training took "
+          "and no test item), seed 0, 3 epochs, same hyperparameters as every other run, via `finetune_qwen_full.py`, "
+          "which runs `finetune_qwen.py --budgets 9993 --seed 0` unchanged. Training took "
           + (f"{rf['train_seconds'] / 3600:.1f} hours" if rf.get("train_seconds") else "an unrecorded time")
           + f"; evaluation on the full test set {rf['eval_seconds'] / 60:.0f} minutes. "
           + ("One seed only." if n_full == 1 else f"Seeds {', '.join(str(s) for s in full_seeds[1:])} were added "
-             "later with every other setting identical (`full_data.py --seed`)."))
+             "later with every other setting identical (`finetune_qwen_full.py --seed`)."))
         w("")
 
-    from t1_common import normalised_overlap
+    from common import normalised_overlap
     _n_exact, _ov = normalised_overlap(train, test)
     overlap_caveat = (f"Exact-text overlap between the test and training splits is {_n_exact}; after lowercasing and "
                       f"trimming whitespace, {len(_ov)} test messages also occur in training "
                       f"({sum(i in set(idx) for i, _, _ in _ov)} of them in the 500 sample). The same overlap exists in "
-                      "the original Banking77 splits. Accuracies with these messages removed are in `results/t1_baselines.md`, section 6.")
+                      "the original Banking77 splits. Accuracies with these messages removed are in `results/baselines_report.md`, section 6.")
 
     # ---------------- 7. caveats
     w("## 7. Caveats (read before quoting any number)")
@@ -598,13 +598,13 @@ done""", "bash"))
     w("")
     w("The smoke-test notes, raw run logs, full Claude CLI JSON for every call, GPU process list and "
       "version-control history contain server, account and session details and are not published. Everything they were used for is kept here "
-      "in identifier-free form: logged training loss (`results/train_loss_t1.json`), a per-call summary "
-      "of the Claude CLI output (`results/claude_calls_t1.json`), and every prediction. Every number in "
+      "in identifier-free form: logged training loss (`results/train_loss_budgets.json`), a per-call summary "
+      "of the Claude CLI output (`results/claude_calls_main.json`), and every prediction. Every number in "
       "sections 1–8 is computed from the published files.")
     w("")
     w("## Appendix B. Training loss, every logged step")
     w("")
-    w("Single-batch loss logged every 20 optimiser steps by `exp1_routing.py`.")
+    w("Single-batch loss logged every 20 optimiser steps by `finetune_qwen.py`.")
     for s in SEEDS:
         w("")
         w(f"### B.{s + 1} seed {s}")
@@ -638,7 +638,7 @@ done""", "bash"))
         w("")
         w(fence(read(fp), "json"))
     w("")
-    w("## Appendix C. Claude calls, one row per call (`results/claude_calls_t1.json`)")
+    w("## Appendix C. Claude calls, one row per call (`results/claude_calls_main.json`)")
     w("")
     w("| Batch | Attempt | Return code | Wall s | num_turns | subtype | Temp dir empty | In | Cache-create | Cache-read | Out |")
     w("|---|---|---|---|---|---|---|---|---|---|---|")

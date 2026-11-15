@@ -79,7 +79,7 @@ def main():
 
     def small_sample_acc(n, s):
         # the full-training-set seeds 1 and 2 were run with the baselines and are stored with them
-        p = next((q for q in (f"results/preds_{TAG}_n{n}_s{s}.jsonl", f"results/next/preds_{TAG}_n{n}_s{s}.jsonl")
+        p = next((q for q in (f"results/preds_{TAG}_n{n}_s{s}.jsonl", f"results/baselines/preds_{TAG}_n{n}_s{s}.jsonl")
                   if os.path.exists(q)), None)
         if p is None:
             return None

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build and freeze the inputs for the next experiments (before any model call).
 
-  python next_build.py [--dir results/next]
+  python build_prompt_examples.py [--dir results/baselines]
 
 Writes:
   clean500.jsonl               the 500 sample messages in the T1 batch order (Random(456))
@@ -17,7 +17,7 @@ import random
 
 import numpy as np
 
-from t1_common import load_data, pick_subset
+from common import load_data, pick_subset
 
 EMB_MODEL = "BAAI/bge-small-en-v1.5"
 EMB_REVISION = "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a"
@@ -35,7 +35,7 @@ def embed(texts, device="cpu"):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dir", default="results/next")
+    ap.add_argument("--dir", default="results/baselines")
     ap.add_argument("--device", default="cpu")
     a = ap.parse_args()
     d = a.dir

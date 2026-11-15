@@ -8,17 +8,16 @@ Outputs (in --dir):
   s3_train_oos.jsonl   200 CLINC oos train messages for S3 training
   s2_val_s{0,1,2}.jsonl  S2 threshold-selection sets (500 in-scope train + 100 oos)
   build_log.json       counts, every removed out-of-scope item, typo examples, decisions
-All rules and seeds are described in STRESS_DECISIONS.md and
-results/t1_robustness.md). Nothing here depends on any model output.
+All rules and seeds are described in docs/robustness_fixed_choices.md and
+results/robustness_report.md). Nothing here depends on any model output.
 """
 import argparse
 import json
 import os
 import random
 import re
-import subprocess
 
-from t1_common import load_data, pick_subset
+from common import load_data, pick_subset
 from stress_common import NONE_LABEL, SEEDS, write_json_atomic, write_jsonl_atomic
 
 TYPO_P = 0.15
@@ -116,7 +115,6 @@ def build_merged(base, test):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", default="results/stress")
-    ap.add_argument("--commit", action="store_true", help="git-commit the frozen sets")
     a = ap.parse_args()
     d = a.dir
     os.makedirs(d, exist_ok=True)
@@ -268,14 +266,6 @@ def main():
     print(json.dumps(log["counts"], indent=1))
     for x in log["decisions"]:
         print("DECISION:", x)
-
-    if a.commit:
-        paths = [os.path.join(d, f) for f in files]
-        subprocess.run(["git", "add", "-f"] + paths, check=True)
-        r = subprocess.run(["git", "commit", "-q", "-m",
-                            "Freeze T1 robustness test sets (built before any model output)"],
-                           capture_output=True, text=True)
-        print("git commit:", r.returncode, r.stdout.strip(), r.stderr.strip())
 
 
 if __name__ == "__main__":

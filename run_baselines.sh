@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# Next experiments for T1 (E1-E6). Safe to re-run: each stage has a .done_<stage> marker in
-# results/next/ and finished work is skipped.
+# Baselines: embeddings + logistic regression, fine-tuned ModernBERT, the full training set with
+# seeds 1 and 2, Claude Opus with examples in the prompt and Claude Haiku. Resumable: each finished
+# stage leaves a .done_<stage> marker in results/baselines/, so a re-run skips it.
 #
-#   bash run_next.sh gpu      E4a, E4b, then E1 seeds 1 and 2
-#   bash run_next.sh claude   E2a, E2b, E3a, E3b (Claude CLI, at most 140 calls)
-#   bash run_next.sh report   wait for gpu and claude to exit, then report, scan, commit and push the branch
-#   bash run_next.sh all      gpu and claude in parallel, then report (use this to resume)
+#   bash run_baselines.sh gpu      embeddings + logistic regression, ModernBERT, full training set seeds 1 and 2
+#   bash run_baselines.sh claude   the four Claude runs (Claude CLI, at most 140 calls)
+#   bash run_baselines.sh report   wait for the gpu and claude modes to exit, then write the reports
+#   bash run_baselines.sh all      gpu and claude in parallel, then report (use this to resume)
 #
-# Env: VENV (python environment), SCAN_SCRIPT (private-detail scanner with --check; without it the
-# scan fails and nothing is pushed), NEXT_TEST=1 for a test run in results/next_testrun (no commit).
+# Env: VENV (python environment), BASELINES_TEST=1 for a test run in results/baselines_testrun.
 set -u
 cd "$(dirname "$(readlink -f "$0")")"
 [ -n "${VENV:-}" ] && source "$VENV/bin/activate"
@@ -16,8 +16,8 @@ for v in $(compgen -e | grep -E '^(CLAUDE|AI_AGENT)'); do [ "$v" = CLAUDE_BIN ] 
 export PYTHONUNBUFFERED=1 TQDM_DISABLE=1 HF_HUB_DISABLE_PROGRESS_BARS=1
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 MODE=${1:-all}
-TEST=${NEXT_TEST:-0}
-D=results/next; [ "$TEST" = 1 ] && D=results/next_testrun
+TEST=${BASELINES_TEST:-0}
+D=results/baselines; [ "$TEST" = 1 ] && D=results/baselines_testrun
 mkdir -p "$D/logs"
 OOM_WAIT=600; [ "$TEST" = 1 ] && OOM_WAIT=10
 GPU_WAIT_MAX=21600; GPU_POLL=300
@@ -25,8 +25,8 @@ CAP=140
 
 say()   { echo "[$(date '+%F %T')] [$MODE] $*"; }
 ts()    { while IFS= read -r l; do printf '%s %s\n' "$(date '+%F %T')" "$l"; done; }
-status(){ python stress_common.py status --dir "$D" --pipeline next >/dev/null 2>&1 || true; }
-mark()  { python stress_common.py mark --dir "$D" --stage "$1" --state "$2" --reason "${3:-}" --log "$D/logs/$1.log" --pipeline next >/dev/null 2>&1 || true; }
+status(){ python stress_common.py status --dir "$D" --pipeline baselines >/dev/null 2>&1 || true; }
+mark()  { python stress_common.py mark --dir "$D" --stage "$1" --state "$2" --reason "${3:-}" --log "$D/logs/$1.log" --pipeline baselines >/dev/null 2>&1 || true; }
 is_done(){ [ -e "$D/.done_$1" ]; }
 run_logged(){ local st=$1; shift; "$@" 2>&1 | ts | tee -a "$D/logs/$st.log"; return "${PIPESTATUS[0]}"; }
 
@@ -60,20 +60,20 @@ gpu_stage(){
   done
 }
 
-e1_seed(){
+full_seed(){
   local s=$1
   local dry=""; [ "$TEST" = 1 ] && dry=1
-  FINISH_DRY=$dry python full_data.py --seed "$s" --out "$D/full_data_s$s" --dest "$D" || return $?
-  FINISH_DRY=$dry python full_data.py --collect --seed "$s" --out "$D/full_data_s$s" --dest "$D" --log "$D/logs/e1_s$s.log"
+  FULL_DATA_TEST=$dry python finetune_qwen_full.py --seed "$s" --out "$D/full_data_s$s" --dest "$D" || return $?
+  FULL_DATA_TEST=$dry python finetune_qwen_full.py --collect --seed "$s" --out "$D/full_data_s$s" --dest "$D" --log "$D/logs/full_s$s.log"
 }
 
 mode_gpu(){
   local T="" B=""; [ "$TEST" = 1 ] && { T="--test"; B="--budgets 100 --seeds 0"; }
-  gpu_stage e4a python next_e4a.py --dir "$D" $T $B
+  gpu_stage embeddings_logreg python baseline_embeddings_logreg.py --dir "$D" $T $B
   local B2=""; [ "$TEST" = 1 ] && B2="--budgets 2000 --seeds 0"
-  gpu_stage e4b python next_e4b.py --dir "$D" $T $B2
-  gpu_stage e1_s1 e1_seed 1
-  gpu_stage e1_s2 e1_seed 2
+  gpu_stage modernbert python baseline_modernbert.py --dir "$D" $T $B2
+  gpu_stage full_s1 full_seed 1
+  gpu_stage full_s2 full_seed 2
 }
 
 claude_stage(){
@@ -82,7 +82,7 @@ claude_stage(){
   if [ -e "$D/.claude_flags_missing" ]; then mark "$st" failed "CLI version changed and required flags are missing"; status; return 0; fi
   mark "$st" running; say "$st starting"
   local lim=""; [ "$TEST" = 1 ] && lim="--limit_batches 1"
-  run_logged "$st" python baseline_claude_code.py --input results/next/clean500.jsonl --set "$set" --dir "$D" \
+  run_logged "$st" python claude_baseline.py --input results/baselines/clean500.jsonl --set "$set" --dir "$D" \
     --cap $CAP --timeout 600 $lim "$@"; local rc=$?
   case $rc in
     0)  mark "$st" done; say "$st done";;
@@ -98,11 +98,11 @@ claude_stage(){
 }
 
 mode_claude(){
-  local ONE=results/next/icl_one_per_class.json RET=results/next/icl_retrieved
-  claude_stage e2a E2a --examples_file "$ONE"
-  claude_stage e2b E2b --examples_dir "$RET"
-  claude_stage e3a E3a --model claude-haiku-5-5 --expected_model claude-haiku-5-5
-  claude_stage e3b E3b --model claude-haiku-5-5 --expected_model claude-haiku-5-5 --examples_file "$ONE"
+  local ONE=results/baselines/icl_one_per_class.json RET=results/baselines/icl_retrieved
+  claude_stage claude_opus_one_example opus_one_example_per_intent --examples_file "$ONE"
+  claude_stage claude_opus_retrieved opus_retrieved_examples --examples_dir "$RET"
+  claude_stage claude_haiku_zero_shot haiku_zero_shot --model claude-haiku-5-5 --expected_model claude-haiku-5-5
+  claude_stage claude_haiku_one_example haiku_one_example_per_intent --model claude-haiku-5-5 --expected_model claude-haiku-5-5 --examples_file "$ONE"
 }
 
 cpu_stage(){
@@ -118,36 +118,9 @@ cpu_stage(){
 }
 
 reports(){
-  python make_baselines_report.py --next "$D" --out "$([ "$TEST" = 1 ] && echo "$D/t1_baselines.md" || echo results/t1_baselines.md)" || return 1
+  python make_baselines_report.py --dir "$D" --out "$([ "$TEST" = 1 ] && echo "$D/baselines_report.md" || echo results/baselines_report.md)" || return 1
   [ "$TEST" = 1 ] && return 0
-  python make_t1_report.py
-}
-
-scan(){
-  [ -n "${SCAN_SCRIPT:-}" ] && [ -f "$SCAN_SCRIPT" ] || { echo "SCAN_SCRIPT not set; cannot scan"; return 1; }
-  python "$SCAN_SCRIPT" . --check
-}
-
-commit_push(){
-  if [ "$TEST" = 1 ]; then echo "test run: would commit"; git status --short; return 0; fi
-  [ "$(git branch --show-current)" = next-experiments ] || { echo "not on next-experiments; refusing"; return 1; }
-  commit(){ local msg=$1; shift; git add -- "$@" 2>/dev/null; if ! git diff --cached --quiet; then git commit -q -m "$msg" && echo "committed: $msg"; fi; }
-  commit "Next experiments: scripts, frozen example lists and pipeline" \
-         next_build.py next_e4a.py next_e4b.py make_baselines_report.py run_next.sh full_data.py \
-         baseline_claude_code.py stress_common.py make_t1_report.py requirements.txt REPRODUCE.md .gitignore \
-         results/next/clean500.jsonl results/next/icl_one_per_class.json results/next/icl_retrieved results/next/deviations.json
-  commit "E4: embedding + logistic regression and fine-tuned ModernBERT baselines" \
-         results/next/preds_bge-small-en-v1.5-logreg_* results/next/result_bge-small-en-v1.5-logreg.json results/next/latency_e4a.json \
-         results/next/preds_ModernBERT-base-ft_* results/next/result_ModernBERT-base-ft.json results/next/latency_e4b.json
-  commit "E1: full training set, seeds 1 and 2" \
-         results/next/preds_Qwen3-4B-Instruct-2507_n9993_s* results/next/exp1_Qwen3-4B-Instruct-2507_n9993_s* \
-         results/next/train_loss_n9993_s*
-  commit "E2, E3: Claude with examples in the prompt and Claude Haiku" \
-         results/next/preds_claude_E* results/next/claude_calls_next.json
-  commit "Baselines report, error analysis, summary; T1 report with three full-data seeds" \
-         results/t1_baselines.md results/next/summary.md results/next/joint_errors_for_review.csv results/t1_report.md
-  git status --short
-  GIT_TERMINAL_PROMPT=0 git push -u origin next-experiments
+  python make_main_report.py
 }
 
 mode_report(){
@@ -159,8 +132,6 @@ sys.exit(0 if [m for m in sc.modes_alive(sys.argv[1]) if m in ("gpu", "claude")]
 EOF
   do sleep 60; done
   cpu_stage report -- reports
-  cpu_stage scan report -- scan
-  cpu_stage commit_push scan -- commit_push
 }
 
 echo $$ > "$D/.mode_${MODE}_running"

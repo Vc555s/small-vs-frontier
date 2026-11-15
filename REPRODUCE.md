@@ -18,37 +18,37 @@ pip install -r requirements.txt
 # untuned model plus LoRA at 100 / 500 / 2,000 labels, three seeds (budget 0 needs only one seed)
 for s in 0 1 2; do
   b="100,500,2000"; [ $s -eq 0 ] && b="0,100,500,2000"
-  CUDA_VISIBLE_DEVICES=0 python exp1_routing.py --seed $s --budgets $b
+  CUDA_VISIBLE_DEVICES=0 python finetune_qwen.py --seed $s --budgets $b
 done
 # full training set (9,993 labels), seed 0
-CUDA_VISIBLE_DEVICES=0 python full_data.py && python full_data.py --collect
-# full training set, seeds 1 and 2 (outputs go to results/next/; --log extracts the training loss)
-mkdir -p results/next/logs
+CUDA_VISIBLE_DEVICES=0 python finetune_qwen_full.py && python finetune_qwen_full.py --collect
+# full training set, seeds 1 and 2 (outputs go to results/baselines/; --log extracts the training loss)
+mkdir -p results/baselines/logs
 for s in 1 2; do
-  CUDA_VISIBLE_DEVICES=0 python full_data.py --seed $s --out results/next/full_data_s$s --dest results/next \
-    2>&1 | tee results/next/logs/e1_s$s.log
-  python full_data.py --collect --seed $s --out results/next/full_data_s$s --dest results/next \
-    --log results/next/logs/e1_s$s.log
+  CUDA_VISIBLE_DEVICES=0 python finetune_qwen_full.py --seed $s --out results/baselines/full_data_s$s --dest results/baselines \
+    2>&1 | tee results/baselines/logs/e1_s$s.log
+  python finetune_qwen_full.py --collect --seed $s --out results/baselines/full_data_s$s --dest results/baselines \
+    --log results/baselines/logs/e1_s$s.log
 done
 ```
 
 About 1 hour per seed for budgets 0–2,000 (the 2,000-label run takes about 32 minutes to train), and about 3 hours per seed for the full training set. Evaluating on the full 3,076-message test set takes about 6 minutes per run.
 
-All three full-training-set seeds (0, 1 and 2) are reported: the reports give their mean ± standard deviation, and the published full-data adapter is seed 0, fixed before any result was seen. The seed 1 and 2 runs are the same as the `e1_s1` and `e1_s2` stages of `run_next.sh` (section 6), which runs them for you.
+All three full-training-set seeds (0, 1 and 2) are reported: the reports give their mean ± standard deviation, and the published full-data adapter is seed 0, fixed before any result was seen. The seed 1 and 2 runs are the same as the `e1_s1` and `e1_s2` stages of `run_baselines.sh` (section 6), which runs them for you.
 
 ## 3. T1: Claude baseline
 
 Requires the **Claude Code CLI** (version 2.1.322 was used) logged in with a Claude subscription. Calls are subject to the subscription's usage and rate limits. The script sends 20 calls of 25 messages each, sequentially, from an empty temporary directory with all tools disabled.
 
 ```bash
-python baseline_claude_code.py --limit_batches 1   # one batch first, to check the CLI works
-python baseline_claude_code.py                     # remaining batches, then scoring
+python claude_baseline.py --limit_batches 1   # one batch first, to check the CLI works
+python claude_baseline.py                     # remaining batches, then scoring
 ```
 
 ## 4. Robustness tests (typos, two-issue messages, out-of-scope messages)
 
 ```bash
-bash run_stress.sh all      # builds the frozen test sets, runs GPU and Claude stages, writes the report
+bash run_robustness.sh all      # builds the frozen test sets, runs GPU and Claude stages, writes the report
 ```
 
 Resumable: a re-run skips finished stages. About 2.5 hours of GPU time, most of it the three retrained out-of-scope adapters (about 37 minutes each), plus about 59 Claude CLI calls. The built test sets in `results/stress/` are frozen; `stress_build.py` regenerates them byte for byte.
@@ -58,19 +58,19 @@ Resumable: a re-run skips finished stages. About 2.5 hours of GPU time, most of 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python measure_latency.py --adapter <path to the S3 seed-0 adapter>
 python compute_cost.py
-python make_model_card.py           # model_card/ (router adapter) and model_card_full/ (full-training-set adapter)
-python model_card/verify_usage.py        # each card's usage snippet, run against the Hub adapter,
-python model_card_full/verify_usage.py   # must reproduce 100 saved predictions
+python make_model_card.py           # model_cards/router/ (router adapter) and model_cards/full/ (full-training-set adapter)
+python model_cards/router/verify_usage.py        # each card's usage snippet, run against the Hub adapter,
+python model_cards/full/verify_usage.py   # must reproduce 100 saved predictions
 ```
 
 ## 6. Baselines: examples in the prompt, Claude Haiku, non-generative models, more seeds
 
 ```bash
-python next_build.py                 # frozen inputs: the 500 messages in batch order and the example lists
-bash run_next.sh all                 # E4a, E4b, E1 seeds 1-2 on the GPU; E2a, E2b, E3a, E3b via the CLI; report
+python build_prompt_examples.py                 # frozen inputs: the 500 messages in batch order and the example lists
+bash run_baselines.sh all                 # E4a, E4b, E1 seeds 1-2 on the GPU; E2a, E2b, E3a, E3b via the CLI; report
 ```
 
-Resumable. About 6 hours on one GPU (most of it the two full-data Qwen seeds, about 2.75 hours each) and 80 Claude CLI calls (the pipeline stops at 140). `make_baselines_report.py` writes `results/t1_baselines.md`. Needs `sentence-transformers` (see `requirements.txt`).
+Resumable. About 6 hours on one GPU (most of it the two full-data Qwen seeds, about 2.75 hours each) and 80 Claude CLI calls (the pipeline stops at 140). `make_baselines_report.py` writes `results/baselines_report.md`. Needs `sentence-transformers` (see `requirements.txt`).
 
 ## 7. Reports and figures
 
@@ -78,7 +78,7 @@ These need no GPU. The report scripts need only `datasets` and `scikit-learn`; t
 
 ```bash
 python make_figures.py
-python make_t1_report.py
+python make_main_report.py
 python make_robustness_report.py
 ```
 
