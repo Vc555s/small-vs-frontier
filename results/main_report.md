@@ -1,12 +1,12 @@
-# T1 report: support-ticket routing (Banking77) — fine-tuned Qwen3-4B vs Claude via Claude Code CLI
+# Main results: fine-tuned Qwen3-4B vs Claude Opus 5.5 on Banking77 intent routing
 
-Generated 2026-11-15 05:31 (server time) by `make_main_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
+Generated 2026-11-15 05:44 (server time) by `make_main_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
 
 Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-head on the 500 sample · 6 Procedure and issues · 7 Caveats · 8 Open work · Appendices A–E
 
 ## 1. Summary
 
-- **Claude via Claude Code CLI (Pro subscription)**, model `claude-opus-5-5`, scored **0.892** accuracy on a fixed 500-example sample (95% Wilson CI 0.862–0.916), with every answer a valid label.
+- **Claude Opus 5.5 via the Claude Code CLI**, model `claude-opus-5-5`, scored **0.892** accuracy on a fixed 500-example sample (95% Wilson CI 0.862–0.916), with every answer a valid label.
 - **Fine-tuned Qwen3-4B with 2,000 labels** scored **0.905 ± 0.012** on the same 500 (3 seeds) and **0.913 ± 0.002** on the full 3,076-example test set.
 - The 2,000-label gap to Claude is +1.3 points, inside Claude's confidence interval and the seed spread, and not significant in a paired test (section 5). Under the decision rule fixed in advance (differences inside the seed spread or not significant in the paired test count as ties) this is a **tie**, not a win.
 - With 500 labels the small model is 4.3 points **behind** Claude; with 100 labels, further behind. The small model needs somewhere between 500 and 2,000 labels to match Claude on this 77-class task.
@@ -24,7 +24,7 @@ Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-he
 
 ## 3. Systems
 
-### 3.1 Small model (yours): Qwen3-4B-Instruct-2507, untuned and LoRA fine-tuned
+### 3.1 Small model: Qwen3-4B-Instruct-2507, untuned and LoRA fine-tuned
 
 | Setting | Value |
 |---|---|
@@ -44,11 +44,12 @@ Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-he
 
 Software: Python 3.11.15, torch 2.15.0+cu132, transformers 5.22.2, peft 0.21.2, datasets 5.2.0, accelerate 1.15.0, scikit-learn 1.9.1. Driver 580.178.04, CUDA 13.0.
 
-### 3.2 Claude via Claude Code CLI (Pro subscription)
+### 3.2 Claude Opus 5.5 via the Claude Code CLI
 
 | Setting | Value |
 |---|---|
-| Answering model | `claude-opus-5-5` (as reported by the CLI for all 20 calls; not chosen, it is what the plan served) |
+| Access | the Claude Code CLI logged in with a Claude Pro subscription; not the API |
+| Answering model | `claude-opus-5-5` (as reported by the CLI for all 20 calls; not chosen, it is what the subscription served) |
 | Side model | `claude-haiku-5-5`: a small call the CLI makes itself; it does not produce the answers |
 | CLI | `2.1.322 (Claude Code)`, the binary bundled with the Cursor extension (no `claude` on PATH) |
 | Flags | `-p --output-format json --system-prompt <ours> --tools "" --safe-mode --strict-mcp-config --disable-slash-commands --no-session-persistence --permission-prompts none` |
@@ -232,7 +233,7 @@ Cost per 1,000 requests (`compute_cost.py`). **Every hourly rate is an assumptio
 | Qwen3-4B + LoRA, batch 16 | energy only: measured 251 W at EUR 0.3/kWh (EUR 0.075/h) | EUR 0.0019 | 80 requests/hour |
 | Qwen3-4B + LoRA, batch 16 | illustrative rental at EUR 0.25/GPU-hour (EUR 0.250/h) | EUR 0.0062 | 265 requests/hour |
 | Qwen3-4B + LoRA, batch 16 | illustrative rental at EUR 0.50/GPU-hour (EUR 0.500/h) | EUR 0.0124 | 530 requests/hour |
-| Claude via Claude Code CLI (Pro subscription) | the Claude Code CLI's list-price estimate with 25 messages per call and prompt caching; not a measured API bill, and not a charge on a subscription | USD 0.94 | n/a |
+| Claude Opus 5.5 via the Claude Code CLI | the Claude Code CLI's list-price estimate with 25 messages per call and prompt caching; not a measured API bill, and not a charge on a subscription | USD 0.94 | n/a |
 
 A dedicated GPU costs the same whether it handles 10 or 10,000 requests an hour, so the small model is cheaper only above the break-even volume = hourly GPU rate / Claude cost per request. The break-even volumes treat 1 USD as 1 EUR (a simplification; scale by your own exchange rate). At batch 16 the measured maximum is 40,284 requests per hour.
 
@@ -248,7 +249,7 @@ Details, paired tests and caveats are in `results/robustness_report.md`.
 
 | System | Label budget | Accuracy | Macro-F1 | Valid-label rate | Runs |
 |---|---|---|---|---|---|
-| Claude via Claude Code CLI (Pro subscription) | prompted | 0.892 (95% Wilson CI 0.862–0.916) | 0.891 | 1.000 | 1 |
+| Claude Opus 5.5 via the Claude Code CLI | prompted | 0.892 (95% Wilson CI 0.862–0.916) | 0.891 | 1.000 | 1 |
 | Qwen3-4B-Instruct-2507 untuned | 0 | 0.600 | 0.566 | 0.972 | 1 seed(s) |
 | Qwen3-4B-Instruct-2507 LoRA | 100 | 0.762 ± 0.014 | 0.749 ± 0.017 | 0.997 ± 0.002 | 3 seed(s) |
 | Qwen3-4B-Instruct-2507 LoRA | 500 | 0.849 ± 0.013 | 0.847 ± 0.012 | 0.999 ± 0.001 | 3 seed(s) |
@@ -384,7 +385,7 @@ All 10 runs finished with no errors, NaNs or OOMs. Logged training loss: Appendi
 
 ### 6.3 Claude CLI checks before the run
 
-- `claude` was not on PATH; the Claude Code binary bundled with the Cursor extension was used.
+- `claude` was not on PATH; the CLI binary bundled with its editor extension was used (section 3.2).
 - `claude --help` was read for the installed version. Every needed capability had a flag except a turn limit (no `--max-turns`). With all tools disabled only one turn is possible; the script rejects any call where `num_turns != 1`, and all 20 had `num_turns = 1`.
 - A probe call with a 15-character system prompt was billed as ~789 prompt tokens, so the CLI adds its own text even with `--system-prompt`.
 
@@ -400,7 +401,7 @@ Fix: the same 500 indices shuffled once with `random.Random(456)` (`results/samp
 
 ### 6.5 Claude run (02:17–02:21)
 
-20/20 batches returned a valid 25-item array on the first attempt: 0 retries, 0 failures, 0 rate limits. Wall time per call 3.9–9.9 s (median 6.8 s), including CLI start-up and network. Answering-model tokens over 20 calls: input 40, cache-creation 24,454, cache-read 17,340, output 13,427. The CLI's own list-price estimate was $0.47 in total; on a Pro plan this is not a charge, and it is not an API cost measurement. Per-call summary: Appendix C; every raw answer: Appendix D.
+20/20 batches returned a valid 25-item array on the first attempt: 0 retries, 0 failures, 0 rate limits. Wall time per call 3.9–9.9 s (median 6.8 s), including CLI start-up and network. Answering-model tokens over 20 calls: input 40, cache-creation 24,454, cache-read 17,340, output 13,427. The CLI's own list-price estimate was $0.47 in total; on the subscription this is not a charge, and it is not an API cost measurement. Per-call summary: Appendix C; every raw answer: Appendix D.
 
 ### 6.6 Full-training-set run
 
@@ -411,7 +412,7 @@ Budget 9,993 (the whole training set, checked to contain every training example 
 - **Claude saw 25 messages per call**; the small model saw one at a time. Mixed batches still give Claude some context across messages.
 - The Claude Code CLI wraps our system prompt in some text of its own and makes a side call to `claude-haiku-5-5`.
 - **Claude's temperature could not be set**; the small model used greedy decoding.
-- Claude's model is whatever the Pro plan served (`claude-opus-5-5`), not a chosen API model. This is **one Claude model through one CLI. It is not an API baseline** and says nothing about GPT or other frontier models.
+- Claude's model is whatever the subscription served (`claude-opus-5-5`), not a chosen API model. This is **one Claude model through one CLI. It is not an API baseline** and says nothing about GPT or other frontier models.
 - Claude was run once on the 500 sample; its CI reflects sampling of test items, not run-to-run variation.
 - Claude's wall time includes CLI start-up and network and is not model latency. The small model's ms/example is at eval batch 16 with an unmerged adapter. **Neither is a latency measurement**; batch-1 latency of a merged adapter is in section 4.5.
 - Of the 22 messages both systems got wrong, a manual review judged 7 to have a wrong gold label, 14 to be ambiguous and 1 to be a genuine error by both systems.
