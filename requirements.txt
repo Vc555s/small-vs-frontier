@@ -11,11 +11,11 @@ tokenizers==0.23.3
 safetensors==0.8.0
 numpy==2.4.6
 scikit-learn==1.9.1
-# only needed for exp1_routing.py --load4bit (not used for any reported result)
+# only needed for finetune_qwen.py --load4bit (not used for any reported result)
 bitsandbytes==0.50.2
 # The Claude baseline additionally needs the Claude Code CLI (version 2.1.322 was used),
 # which is not a Python package.
 # only needed for make_figures.py (the figures in results/figures/)
 matplotlib==3.11.2
-# only needed for the next experiments (embeddings for E2b and E4a)
+# only needed for the baselines (embeddings for retrieved examples and for embeddings + logistic regression)
 sentence-transformers==6.3.0

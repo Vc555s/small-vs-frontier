@@ -25,7 +25,7 @@ import time
 
 import torch
 
-from exp1_routing import left_pad, load_data, load_model, norm, prompt_text, system_prompt
+from finetune_qwen import left_pad, load_data, load_model, norm, prompt_text, system_prompt
 from stress_common import (NONE_LABEL, SEEDS, SMALL_TAG, extended_prompt, read_jsonl,
                            write_json_atomic, write_meta)
 

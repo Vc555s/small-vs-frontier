@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Count the manual judgements in results/next/joint_errors_for_review.csv, split by which
+"""Count the manual judgements in results/baselines/joint_errors_for_review.csv, split by which
 system was wrong (Claude zero-shot only, Qwen 9,993 seed 0 only, or both). Refuses to run while
 any judgement cell is empty or holds a value other than label_wrong, ambiguous or models_wrong.
 
@@ -10,7 +10,7 @@ The report scripts import review_caveat() for their caveat sentence.
 import csv
 import sys
 
-PATH = "results/next/joint_errors_for_review.csv"
+PATH = "results/baselines/joint_errors_for_review.csv"
 VALUES = ("label_wrong", "ambiguous", "models_wrong")
 GROUPS = ("Claude only", "Qwen only", "Both")
 
@@ -48,7 +48,20 @@ def review_caveat(path=PATH):
         return None
     both = counts["Both"]
     return (f"Of the {sum(both.values())} messages both systems got wrong, a manual review judged "
-            f"{both['label_wrong']} to have a wrong gold label and {both['ambiguous']} to be ambiguous.")
+            f"{both['label_wrong']} to have a wrong gold label, {both['ambiguous']} to be ambiguous and "
+            f"{both['models_wrong']} to be a genuine error by both systems.")
+
+
+def review_method_sentence(path=PATH):
+    """How the judgements were made, with the number changed by hand computed from the file."""
+    rows = list(csv.DictReader(open(path, newline="")))
+    done = [r for r in rows if r["judgement"].strip()]
+    if len(done) < len(rows):
+        return ("Each message has a proposed judgement with a one-line reason from its text, gold label and the "
+                f"77 intent names; {len(done)} of {len(rows)} have been reviewed by hand so far.")
+    changed = sum(r["judgement"].strip() != r["proposed_judgement"].strip() for r in rows)
+    return ("Each message was given a proposed judgement with a one-line reason from its text, gold label and the "
+            f"77 intent names, then confirmed or changed by hand ({changed} of {len(rows)} changed).")
 
 
 def main():

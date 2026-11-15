@@ -1,5 +1,5 @@
 {
- "note": "Training loss as logged every 20 optimiser steps (single-batch values) by exp1_routing.py for the full-training-set run.",
+ "note": "Training loss as logged every 20 optimiser steps (single-batch values) by finetune_qwen.py for the full-training-set run.",
  "seed": 0,
  "rows": [
   {

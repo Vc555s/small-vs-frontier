@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Figures for the T1 study, computed from the prediction files in results/.
+"""Figures for the study, computed from the prediction files in results/.
 
   python make_figures.py      writes results/figures/{label_efficiency,stress_tests,out_of_scope}.png
 
@@ -78,8 +78,10 @@ def main():
     c_acc, (c_lo, c_hi) = c_k / len(idx), wilson(c_k, len(idx))
 
     def small_sample_acc(n, s):
-        p = f"results/preds_{TAG}_n{n}_s{s}.jsonl"
-        if not os.path.exists(p):
+        # the full-training-set seeds 1 and 2 were run with the baselines and are stored with them
+        p = next((q for q in (f"results/preds_{TAG}_n{n}_s{s}.jsonl", f"results/baselines/preds_{TAG}_n{n}_s{s}.jsonl")
+                  if os.path.exists(q)), None)
+        if p is None:
             return None
         rows = read_jsonl(p)
         return sum(rows[i]["pred"] == rows[i]["gold"] for i in idx) / len(idx)
@@ -112,7 +114,8 @@ def main():
         ax.plot([pts[-2][0], pts[-1][0]], [summary(pts[-2][2])[0], pts[-1][2][0]], color=SMALL, lw=2,
                 ls=(0, (3, 2)), zorder=3)
     ax.plot([], [], "o-", color=SMALL, lw=2, ms=8, label=f"{SMALL_NAME}: mean, min–max over 3 seeds")
-    ax.plot([], [], "o", color="white", markeredgecolor=SMALL, markeredgewidth=2, ms=8, label="single seed")
+    if any(len(v) == 1 and n != 0 for _, n, v in pts):
+        ax.plot([], [], "o", color="white", markeredgecolor=SMALL, markeredgewidth=2, ms=8, label="single seed")
     ax.set_xticks(xs, [f"{n:,}" for n in BUDGETS])
     ax.set_xlabel("Labelled training examples (Banking77)")
     style(ax, "Accuracy on the 500-message sample")

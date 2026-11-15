@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
-# Driver for the T1 robustness tests (resumable pipeline). Safe to re-run:
-# every stage has a .done_<stage> marker in the output dir and finished work is skipped.
+# Robustness tests: typos (A), two-issue messages (B) and out-of-scope messages (C). Resumable:
+# each finished stage leaves a .done_<stage> marker in the output folder, so a re-run skips it.
 #
-#   bash run_stress.sh gpu      GPU stages in order (small_A, small_B, small_C_S1, small_C_S2, train_S3_s0..2)
-#   bash run_stress.sh claude   Claude stages in order (claude_A, claude_B, claude_C1)
-#   bash run_stress.sh report   wait for the gpu and claude modes to exit, then write the report and commit
-#   bash run_stress.sh all      gpu and claude in parallel, then report (use this to resume after a crash)
-#   bash run_stress.sh build    only build the frozen test sets
+#   bash run_robustness.sh gpu      GPU stages in order (small_A, small_B, small_C_S1, small_C_S2, train_S3_s0..2)
+#   bash run_robustness.sh claude   Claude stages in order (claude_A, claude_B, claude_C1)
+#   bash run_robustness.sh report   wait for the gpu and claude modes to exit, then write the report
+#   bash run_robustness.sh all      gpu and claude in parallel, then report (use this to resume after a crash)
+#   bash run_robustness.sh build    only build the frozen test sets
 #
 # Env: STRESS_DIR (default results/stress), DRY=1 for the tiny dry run (never use with results/stress).
 set -u
 cd "$(dirname "$(readlink -f "$0")")"
 source .venv/bin/activate
-# Clear Claude Code session environment variables so every CLI call starts from a clean environment.
+# Clear environment variables set by the Claude CLI or its editor integration, so every CLI call starts clean.
 for v in $(compgen -e | grep -E '^(CLAUDE|AI_AGENT)'); do [ "$v" = CLAUDE_BIN ] || unset "$v"; done
 export PYTHONUNBUFFERED=1 TQDM_DISABLE=1 HF_HUB_DISABLE_PROGRESS_BARS=1
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
@@ -21,7 +21,7 @@ D=${STRESS_DIR:-results/stress}
 DRY=${DRY:-0}
 if [ "$DRY" = 1 ] && [ "$D" = results/stress ]; then echo "refusing: DRY=1 must not write to results/stress"; exit 2; fi
 mkdir -p "$D/logs"
-REPORT_OUT=results/t1_robustness.md; [ "$DRY" = 1 ] && REPORT_OUT="$D/t1_robustness.md"
+REPORT_OUT=results/robustness_report.md; [ "$DRY" = 1 ] && REPORT_OUT="$D/robustness_report.md"
 OOM_WAIT=600; [ "$DRY" = 1 ] && OOM_WAIT=10
 GPU_WAIT_MAX=21600; GPU_POLL=300
 C_STAGES=" small_C_S1 small_C_S2 claude_C1 train_S3_s0 train_S3_s1 train_S3_s2 "
@@ -48,8 +48,7 @@ precheck(){
 do_build(){
   is_done build && return 0
   mark build running; say "build starting"
-  local commit=--commit; [ "$DRY" = 1 ] && commit=""
-  if run_logged build python stress_build.py --dir "$D" $commit; then mark build done; say "build done"
+  if run_logged build python stress_build.py --dir "$D"; then mark build done; say "build done"
   else mark build failed "stress_build.py exited non-zero"; say "build FAILED"; fi
 }
 ensure_build(){ ( flock 9; do_build ) 9>"$D/.build.lock"; }
@@ -112,7 +111,7 @@ claude_stage(){
   if [ "$DRY" = 1 ] && [ "$st" != claude_A ]; then mark "$st" skipped "dry run: only claude_A's first batch"; status; return 0; fi
   mark "$st" running; say "$st starting ($input, prompt $variant)"
   local lim=""; [ "$DRY" = 1 ] && lim="--limit_batches 1"
-  run_logged "$st" python baseline_claude_code.py --input "$D/$input" --set "$set" --prompt_variant "$variant" --dir "$D" $lim; rc=$?
+  run_logged "$st" python claude_baseline.py --input "$D/$input" --set "$set" --prompt_variant "$variant" --dir "$D" $lim; rc=$?
   case $rc in
     0)  mark "$st" done; say "$st done";;
     10) mark "$st" failed "aborted: the Claude answering model changed ($(cat "$D/.model_changed" 2>/dev/null))";;
@@ -151,13 +150,6 @@ EOF
     mark report failed "make_robustness_report.py exited non-zero"; say "report FAILED"
   fi
   status
-  if [ "$DRY" != 1 ]; then
-    git add run_stress.sh stress_common.py stress_build.py stress_eval_small.py stress_train_s3.py \
-            baseline_claude_code.py make_robustness_report.py STRESS_DECISIONS.md \
-            "$REPORT_OUT" "$D/STATUS.md" 2>/dev/null
-    git add -f "$D"/*.jsonl "$D"/*.json 2>/dev/null
-    git commit -q -m "T1 robustness: report and status ($(tail -1 "$D/STATUS.md"))" && say "committed" || say "nothing to commit / commit failed"
-  fi
 }
 
 # ------------------------------------------------------------------- main

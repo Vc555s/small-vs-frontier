@@ -1,6 +1,6 @@
 """Dependency-light helpers shared by training, evaluation and the report scripts.
 
-Moved verbatim from exp1_routing.py (which re-exports them) so that the report scripts run
+Moved verbatim from finetune_qwen.py (which re-exports them) so that the report scripts run
 without PyTorch, PEFT or Transformers installed. Behaviour is unchanged.
 """
 import random

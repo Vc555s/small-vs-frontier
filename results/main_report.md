@@ -1,12 +1,12 @@
-# T1 report: support-ticket routing (Banking77) — fine-tuned Qwen3-4B vs Claude via Claude Code CLI
+# Main results: fine-tuned Qwen3-4B vs Claude Opus 5.5 on Banking77 intent routing
 
-Generated 2026-11-15 00:48 (server time) by `make_t1_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
+Generated 2026-11-15 05:44 (server time) by `make_main_report.py` from the files in `results/`. Every number below is read from those files; nothing is typed in by hand.
 
 Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-head on the 500 sample · 6 Procedure and issues · 7 Caveats · 8 Open work · Appendices A–E
 
 ## 1. Summary
 
-- **Claude via Claude Code CLI (Pro subscription)**, model `claude-opus-5-5`, scored **0.892** accuracy on a fixed 500-example sample (95% Wilson CI 0.862–0.916), with every answer a valid label.
+- **Claude Opus 5.5 via the Claude Code CLI**, model `claude-opus-5-5`, scored **0.892** accuracy on a fixed 500-example sample (95% Wilson CI 0.862–0.916), with every answer a valid label.
 - **Fine-tuned Qwen3-4B with 2,000 labels** scored **0.905 ± 0.012** on the same 500 (3 seeds) and **0.913 ± 0.002** on the full 3,076-example test set.
 - The 2,000-label gap to Claude is +1.3 points, inside Claude's confidence interval and the seed spread, and not significant in a paired test (section 5). Under the decision rule fixed in advance (differences inside the seed spread or not significant in the paired test count as ties) this is a **tie**, not a win.
 - With 500 labels the small model is 4.3 points **behind** Claude; with 100 labels, further behind. The small model needs somewhere between 500 and 2,000 labels to match Claude on this 77-class task.
@@ -24,7 +24,7 @@ Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-he
 
 ## 3. Systems
 
-### 3.1 Small model (yours): Qwen3-4B-Instruct-2507, untuned and LoRA fine-tuned
+### 3.1 Small model: Qwen3-4B-Instruct-2507, untuned and LoRA fine-tuned
 
 | Setting | Value |
 |---|---|
@@ -44,16 +44,17 @@ Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-he
 
 Software: Python 3.11.15, torch 2.15.0+cu132, transformers 5.22.2, peft 0.21.2, datasets 5.2.0, accelerate 1.15.0, scikit-learn 1.9.1. Driver 580.178.04, CUDA 13.0.
 
-### 3.2 Claude via Claude Code CLI (Pro subscription)
+### 3.2 Claude Opus 5.5 via the Claude Code CLI
 
 | Setting | Value |
 |---|---|
-| Answering model | `claude-opus-5-5` (as reported by the CLI for all 20 calls; not chosen, it is what the plan served) |
+| Access | the Claude Code CLI logged in with a Claude Pro subscription; not the API |
+| Answering model | `claude-opus-5-5` (as reported by the CLI for all 20 calls; not chosen, it is what the subscription served) |
 | Side model | `claude-haiku-5-5`: a small call the CLI makes itself; it does not produce the answers |
 | CLI | `2.1.322 (Claude Code)`, the binary bundled with the Cursor extension (no `claude` on PATH) |
 | Flags | `-p --output-format json --system-prompt <ours> --tools "" --safe-mode --strict-mcp-config --disable-slash-commands --no-session-persistence --permission-prompts none` |
 | Isolation | each call a fresh process in a new empty temp dir (checked empty before and after); no tools; no CLAUDE.md, memory, skills, hooks or MCP; message texts only, gold labels never sent |
-| Prompt | `system_prompt(labels)` from `exp1_routing.py` unchanged, plus one paragraph asking for a 25-item JSON array |
+| Prompt | `system_prompt(labels)` from `finetune_qwen.py` unchanged, plus one paragraph asking for a 25-item JSON array |
 | Batching | 25 messages per call, 20 calls; batches from a `random.Random(456)` shuffle of the 500 (section 6.4) |
 | Temperature | not settable through the CLI |
 | Run date | 2026-11-13 |
@@ -189,13 +190,13 @@ At budget 100, seeds 1 and 2 have identical accuracy (0.7585). This was checked:
 | 2000 | 0.9131 | +5.8 pts |
 | 9993 | 0.9474 | +3.4 pts |
 
-Accuracy on the 500-message sample against the number of labels, with Claude's accuracy and its 95% interval (`make_figures.py`). The 9,993-label point is a single seed (hollow marker); the figure was drawn when only seed 0 existed, and the tables here include all 3 seeds.
+Accuracy on the 500-message sample against the number of labels, with Claude's accuracy and its 95% interval (`make_figures.py`). Points from 100 labels up are the mean over 3 seeds with min–max whiskers; the untuned model (0 labels) is one run.
 
 ![Label efficiency](figures/label_efficiency.png)
 
 ### 4.4 Training loss
 
-Loss is logged every 20 optimiser steps and is a single-batch value, so it is noisy. Every logged step is in Appendix B (from `results/train_loss_t1.json`). Final logged loss per run:
+Loss is logged every 20 optimiser steps and is a single-batch value, so it is noisy. Every logged step is in Appendix B (from `results/train_loss_budgets.json`). Final logged loss per run:
 
 | Budget | Seed | Steps | Final logged loss |
 |---|---|---|---|
@@ -232,13 +233,13 @@ Cost per 1,000 requests (`compute_cost.py`). **Every hourly rate is an assumptio
 | Qwen3-4B + LoRA, batch 16 | energy only: measured 251 W at EUR 0.3/kWh (EUR 0.075/h) | EUR 0.0019 | 80 requests/hour |
 | Qwen3-4B + LoRA, batch 16 | illustrative rental at EUR 0.25/GPU-hour (EUR 0.250/h) | EUR 0.0062 | 265 requests/hour |
 | Qwen3-4B + LoRA, batch 16 | illustrative rental at EUR 0.50/GPU-hour (EUR 0.500/h) | EUR 0.0124 | 530 requests/hour |
-| Claude via Claude Code CLI (Pro subscription) | the Claude Code CLI's list-price estimate with 25 messages per call and prompt caching; not a measured API bill, and not a charge on a subscription | USD 0.94 | n/a |
+| Claude Opus 5.5 via the Claude Code CLI | the Claude Code CLI's list-price estimate with 25 messages per call and prompt caching; not a measured API bill, and not a charge on a subscription | USD 0.94 | n/a |
 
 A dedicated GPU costs the same whether it handles 10 or 10,000 requests an hour, so the small model is cheaper only above the break-even volume = hourly GPU rate / Claude cost per request. The break-even volumes treat 1 USD as 1 EUR (a simplification; scale by your own exchange rate). At batch 16 the measured maximum is 40,284 requests per hour.
 
 ### 4.6 Robustness at a glance
 
-Details, paired tests and caveats are in `results/t1_robustness.md`.
+Details, paired tests and caveats are in `results/robustness_report.md`.
 
 ![Clean, typo and two-issue accuracy](figures/stress_tests.png)
 
@@ -248,7 +249,7 @@ Details, paired tests and caveats are in `results/t1_robustness.md`.
 
 | System | Label budget | Accuracy | Macro-F1 | Valid-label rate | Runs |
 |---|---|---|---|---|---|
-| Claude via Claude Code CLI (Pro subscription) | prompted | 0.892 (95% Wilson CI 0.862–0.916) | 0.891 | 1.000 | 1 |
+| Claude Opus 5.5 via the Claude Code CLI | prompted | 0.892 (95% Wilson CI 0.862–0.916) | 0.891 | 1.000 | 1 |
 | Qwen3-4B-Instruct-2507 untuned | 0 | 0.600 | 0.566 | 0.972 | 1 seed(s) |
 | Qwen3-4B-Instruct-2507 LoRA | 100 | 0.762 ± 0.014 | 0.749 ± 0.017 | 0.997 ± 0.002 | 3 seed(s) |
 | Qwen3-4B-Instruct-2507 LoRA | 500 | 0.849 ± 0.013 | 0.847 ± 0.012 | 0.999 ± 0.001 | 3 seed(s) |
@@ -359,7 +360,7 @@ Bold = matches gold.
 
 ## 6. Procedure, issues and fixes (chronological)
 
-### 6.1 Smoke test of `exp1_routing.py` (2026-11-13, 01:36–01:52)
+### 6.1 Smoke test of `finetune_qwen.py` (2026-11-13, 01:36–01:52)
 
 The script had never run on a GPU. The smoke test found that the data, chat template, `dtype=` loading and `all-linear` LoRA all worked, and that untuned accuracy was well above chance. Training ran out of GPU memory twice on the shared card (about 13.8 GB free):
 
@@ -376,7 +377,7 @@ Run on GPU 1 with:
 cd ~/slm-study && source .venv/bin/activate && mkdir -p results
 for s in 0 1 2; do
   b="100,500,2000"; [ $s -eq 0 ] && b="0,100,500,2000"
-  CUDA_VISIBLE_DEVICES=1 python exp1_routing.py --seed $s --budgets $b 2>&1 | tee results/exp1_log_s$s.txt
+  CUDA_VISIBLE_DEVICES=1 python finetune_qwen.py --seed $s --budgets $b 2>&1 | tee results/exp1_log_s$s.txt
 done
 ```
 
@@ -384,7 +385,7 @@ All 10 runs finished with no errors, NaNs or OOMs. Logged training loss: Appendi
 
 ### 6.3 Claude CLI checks before the run
 
-- `claude` was not on PATH; the Claude Code binary bundled with the Cursor extension was used.
+- `claude` was not on PATH; the CLI binary bundled with its editor extension was used (section 3.2).
 - `claude --help` was read for the installed version. Every needed capability had a flag except a turn limit (no `--max-turns`). With all tools disabled only one turn is possible; the script rejects any call where `num_turns != 1`, and all 20 had `num_turns = 1`.
 - A probe call with a 15-character system prompt was billed as ~789 prompt tokens, so the CLI adds its own text even with `--system-prompt`.
 
@@ -400,26 +401,26 @@ Fix: the same 500 indices shuffled once with `random.Random(456)` (`results/samp
 
 ### 6.5 Claude run (02:17–02:21)
 
-20/20 batches returned a valid 25-item array on the first attempt: 0 retries, 0 failures, 0 rate limits. Wall time per call 3.9–9.9 s (median 6.8 s), including CLI start-up and network. Answering-model tokens over 20 calls: input 40, cache-creation 24,454, cache-read 17,340, output 13,427. The CLI's own list-price estimate was $0.47 in total; on a Pro plan this is not a charge, and it is not an API cost measurement. Per-call summary: Appendix C; every raw answer: Appendix D.
+20/20 batches returned a valid 25-item array on the first attempt: 0 retries, 0 failures, 0 rate limits. Wall time per call 3.9–9.9 s (median 6.8 s), including CLI start-up and network. Answering-model tokens over 20 calls: input 40, cache-creation 24,454, cache-read 17,340, output 13,427. The CLI's own list-price estimate was $0.47 in total; on the subscription this is not a charge, and it is not an API cost measurement. Per-call summary: Appendix C; every raw answer: Appendix D.
 
 ### 6.6 Full-training-set run
 
-Budget 9,993 (the whole training set, checked to contain every training example exactly once and no test item), seed 0, 3 epochs, same hyperparameters as every other run, via `full_data.py`, which runs `exp1_routing.py --budgets 9993 --seed 0` unchanged. Training took 2.7 hours; evaluation on the full test set 6 minutes. Seeds 1, 2 were added later with every other setting identical (`full_data.py --seed`).
+Budget 9,993 (the whole training set, checked to contain every training example exactly once and no test item), seed 0, 3 epochs, same hyperparameters as every other run, via `finetune_qwen_full.py`, which runs `finetune_qwen.py --budgets 9993 --seed 0` unchanged. Training took 2.7 hours; evaluation on the full test set 6 minutes. Seeds 1, 2 were added later with every other setting identical (`finetune_qwen_full.py --seed`).
 
 ## 7. Caveats (read before quoting any number)
 
 - **Claude saw 25 messages per call**; the small model saw one at a time. Mixed batches still give Claude some context across messages.
 - The Claude Code CLI wraps our system prompt in some text of its own and makes a side call to `claude-haiku-5-5`.
 - **Claude's temperature could not be set**; the small model used greedy decoding.
-- Claude's model is whatever the Pro plan served (`claude-opus-5-5`), not a chosen API model. This is **one Claude model through one CLI. It is not an API baseline** and says nothing about GPT or other frontier models.
+- Claude's model is whatever the subscription served (`claude-opus-5-5`), not a chosen API model. This is **one Claude model through one CLI. It is not an API baseline** and says nothing about GPT or other frontier models.
 - Claude was run once on the 500 sample; its CI reflects sampling of test items, not run-to-run variation.
 - Claude's wall time includes CLI start-up and network and is not model latency. The small model's ms/example is at eval batch 16 with an unmerged adapter. **Neither is a latency measurement**; batch-1 latency of a merged adapter is in section 4.5.
-- Some Banking77 intents overlap (for example, the test message "I would like to reactivate my card" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. This was observed, not measured.
+- Of the 22 messages both systems got wrong, a manual review judged 7 to have a wrong gold label, 14 to be ambiguous and 1 to be a genuine error by both systems.
+- Some Banking77 intents overlap (for example, the test message "I would like to reactivate my card" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. Label quality was reviewed by hand only for the 22 messages both systems got wrong (see the caveat above); it was not measured on the rest of the test set.
 - The 500-sample comparison has wider error bars than the full-test-set numbers; the small model's full-set numbers are more precise but have no Claude counterpart.
 - Budget 0 was run once (greedy decoding is deterministic, so other seeds would match).
-- Exact-text overlap between the test and training splits is 0; after lowercasing and trimming whitespace, 6 test messages also occur in training (1 of them in the 500 sample). The same overlap exists in the original Banking77 splits. Accuracies with these messages removed are in `results/t1_baselines.md`, section 6.
+- Exact-text overlap between the test and training splits is 0; after lowercasing and trimming whitespace, 6 test messages also occur in training (1 of them in the 500 sample). The same overlap exists in the original Banking77 splits. Accuracies with these messages removed are in `results/baselines_report.md`, section 6.
 - At 9,993 labels all seeds use the same training set, so their spread reflects only initialisation and data order.
-- Of the 22 messages both systems got wrong, a manual review judged 7 to have a wrong gold label and 14 to be ambiguous.
 
 ## 8. Open work
 
@@ -432,11 +433,11 @@ Budget 9,993 (the whole training set, checked to contain every training example 
 
 ## Appendix A. About this public version
 
-The smoke-test notes, raw run logs, full Claude CLI JSON for every call, GPU process list and version-control history contain server, account and session details and are not published. Everything they were used for is kept here in identifier-free form: logged training loss (`results/train_loss_t1.json`), a per-call summary of the Claude CLI output (`results/claude_calls_t1.json`), and every prediction. Every number in sections 1–8 is computed from the published files.
+The smoke-test notes, raw run logs, full Claude CLI JSON for every call, GPU process list and version-control history contain server, account and session details and are not published. Everything they were used for is kept here in identifier-free form: logged training loss (`results/train_loss_budgets.json`), a per-call summary of the Claude CLI output (`results/claude_calls_main.json`), and every prediction. Every number in sections 1–8 is computed from the published files.
 
 ## Appendix B. Training loss, every logged step
 
-Single-batch loss logged every 20 optimiser steps by `exp1_routing.py`.
+Single-batch loss logged every 20 optimiser steps by `finetune_qwen.py`.
 
 ### B.1 seed 0
 
@@ -1361,7 +1362,7 @@ Single-batch loss logged every 20 optimiser steps by `exp1_routing.py`.
 ]
 ```
 
-`results/next/exp1_Qwen3-4B-Instruct-2507_n9993_s1.json`
+`results/baselines/exp1_Qwen3-4B-Instruct-2507_n9993_s1.json`
 
 ```json
 [
@@ -1381,7 +1382,7 @@ Single-batch loss logged every 20 optimiser steps by `exp1_routing.py`.
 ]
 ```
 
-`results/next/exp1_Qwen3-4B-Instruct-2507_n9993_s2.json`
+`results/baselines/exp1_Qwen3-4B-Instruct-2507_n9993_s2.json`
 
 ```json
 [
@@ -1401,7 +1402,7 @@ Single-batch loss logged every 20 optimiser steps by `exp1_routing.py`.
 ]
 ```
 
-## Appendix C. Claude calls, one row per call (`results/claude_calls_t1.json`)
+## Appendix C. Claude calls, one row per call (`results/claude_calls_main.json`)
 
 | Batch | Attempt | Return code | Wall s | num_turns | subtype | Temp dir empty | In | Cache-create | Cache-read | Out |
 |---|---|---|---|---|---|---|---|---|---|---|

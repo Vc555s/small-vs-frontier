@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""E4a: frozen sentence embeddings (BAAI/bge-small-en-v1.5) + logistic regression.
+"""Baseline: frozen sentence embeddings (BAAI/bge-small-en-v1.5) + logistic regression.
 
-  python next_e4a.py [--dir results/next] [--budgets 100,500,2000,9993] [--seeds 0,1,2] [--test]
+  python baseline_embeddings_logreg.py [--dir results/baselines] [--budgets 100,500,2000,9993] [--seeds 0,1,2] [--test]
 
 Same training subsets as the Qwen runs: pick_subset(train, n, seed). LogisticRegression(max_iter=2000,
 C=1.0), no tuning. Writes preds_<system>_n<n>_s<seed>.jsonl (full test set, test order) and
@@ -17,7 +17,7 @@ import numpy as np
 import torch
 from sklearn.linear_model import LogisticRegression
 
-from t1_common import load_data, pick_subset
+from common import load_data, pick_subset
 
 SYSTEM = "bge-small-en-v1.5-logreg"
 EMB_MODEL = "BAAI/bge-small-en-v1.5"
@@ -31,7 +31,7 @@ def encoder(device):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dir", default="results/next")
+    ap.add_argument("--dir", default="results/baselines")
     ap.add_argument("--budgets", default="100,500,2000,9993")
     ap.add_argument("--seeds", default="0,1,2")
     ap.add_argument("--test", action="store_true", help="test run: 300 test items, no latency")
@@ -68,7 +68,7 @@ def main():
     for n in [int(x) for x in a.budgets.split(",")]:
         for s in [int(x) for x in a.seeds.split(",")]:
             out = os.path.join(d, f"preds_{SYSTEM}_n{n}_s{s}.jsonl")
-            need_latency = n == 2000 and s == 0 and not a.test and not os.path.exists(os.path.join(d, "latency_e4a.json"))
+            need_latency = n == 2000 and s == 0 and not a.test and not os.path.exists(os.path.join(d, "latency_embeddings_logreg.json"))
             if (n, s) in done and os.path.exists(out) and not need_latency:
                 print(f"n={n} s={s} already done", flush=True)
                 continue
@@ -138,7 +138,7 @@ def measure_latency(enc, clf, d, device):
            "batch1_timing_scope": "embed + classify, torch.cuda.synchronize() around the region",
            "throughput": {"16": {"messages_per_second": round(len(meas) / secs, 1)}},
            "peak_memory_gb": round(torch.cuda.max_memory_allocated() / 2 ** 30, 3) if device == "cuda" else None}
-    json.dump(res, open(os.path.join(d, "latency_e4a.json"), "w"), indent=1)
+    json.dump(res, open(os.path.join(d, "latency_embeddings_logreg.json"), "w"), indent=1)
     print("LATENCY", json.dumps(res), flush=True)
 
 

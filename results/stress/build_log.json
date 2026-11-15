@@ -1,6 +1,6 @@
 {
  "decisions": [
-  "Test A rows are stored in the T1 Claude batch order (results/sample500_batch_order.json, Random(456)), so Claude's typo batches contain the same messages as its clean T1 batches.",
+  "Test A rows are stored in the batch order of the main Claude run (results/sample500_batch_order.json, Random(456)), so Claude's typo batches contain the same messages as its clean batches in the main run.",
   "Test B re-pairing: items from equal-label pairs (and any odd item) are re-paired greedily in shuffled order with the first remaining item of a different label; unpairable items are dropped.",
   "CLINC source: clinc/clinc_oos, config 'plus' (the config with the most oos train examples: 250; 'small' and 'imbalanced' have 100). oos intent id 42.",
   "S2 validation oos items: 100 drawn with Random(655) from the 'plus' train oos items not used by S3 plus the 'plus' validation-split oos items, because the train split alone cannot supply 200 (S3) + 100 (S2) after filtering. The test split is never used for either.",

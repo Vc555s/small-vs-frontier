@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Cost per 1,000 requests from measured throughput (results/latency_t1.json) and the Claude
-Code CLI's own list-price estimate (results/claude_calls_t1.json). Every rate below is an
+"""Cost per 1,000 requests from measured throughput (results/latency_router_adapter.json) and the Claude
+Code CLI's own list-price estimate (results/claude_calls_main.json). Every rate below is an
 ASSUMPTION, not a quoted market price.
 
-  python compute_cost.py            writes results/cost_t1.json and prints a Markdown table
+  python compute_cost.py            writes results/cost_main.json and prints a Markdown table
 """
 import json
 
@@ -15,8 +15,8 @@ CLAUDE_LABEL = ("the Claude Code CLI's list-price estimate with 25 messages per 
 
 
 def main():
-    lat = json.load(open("results/latency_t1.json"))
-    calls = json.load(open("results/claude_calls_t1.json"))["calls"]
+    lat = json.load(open("results/latency_router_adapter.json"))
+    calls = json.load(open("results/claude_calls_main.json"))["calls"]
     mps = lat["throughput"]["16"]["messages_per_second"]
     watts = lat["power_during_batch16"]["mean_watts"]
     gpu_hours_per_1k = 1000 / mps / 3600
@@ -59,7 +59,7 @@ def main():
                              "an hour, so the small model is cheaper only above the break-even "
                              "volume = hourly GPU rate / Claude cost per request."),
     }
-    with open("results/cost_t1.json", "w") as f:
+    with open("results/cost_main.json", "w") as f:
         json.dump(out, f, indent=1)
 
     print("| System | Assumed rate | Cost per 1,000 requests | Break-even volume |")

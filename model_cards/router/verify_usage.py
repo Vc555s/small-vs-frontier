@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Run the model-card usage snippet (model_card/usage.py, unmodified source) on 100 items of
+"""Run the model-card usage snippet (model_cards/router/usage.py, unmodified source) on 100 items of
 results/stress/oos_mixed.jsonl and compare with the saved predictions of the same adapter
 (results/stress/preds_small_S3_s0.jsonl).
 
-  python model_card/verify_usage.py                      # adapter from the Hugging Face Hub
-  python model_card/verify_usage.py --adapter <local>    # pre-upload check against a local copy
+  python model_cards/router/verify_usage.py                      # adapter from the Hugging Face Hub
+  python model_cards/router/verify_usage.py --adapter <local>    # pre-upload check against a local copy
 Writes results/model_card_verification.json when run against the Hub.
 """
 import argparse
@@ -12,8 +12,8 @@ import json
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from t1_common import load_data  # noqa: E402
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from common import load_data  # noqa: E402
 from stress_common import extended_prompt, read_jsonl  # noqa: E402
 
 ap = argparse.ArgumentParser()

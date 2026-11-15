@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Build results/t1_report.md: the complete T1 write-up (fine-tuned Qwen3-4B vs
-Claude via Claude Code CLI), with every number read from the result files and every
+"""Build results/main_report.md: the main results (fine-tuned Qwen3-4B vs Claude Opus 5.5 via the
+Claude Code CLI), with every number read from the result files and every
 log embedded in full. No GPU, no Claude calls.
 
-  python make_t1_report.py
+  python make_main_report.py
 """
 import glob
 import json
@@ -13,16 +13,16 @@ import statistics as st
 import subprocess
 from datetime import datetime
 
-from baseline_claude_code import LABEL, metrics, wilson
-from summarise_review import review_caveat
-from t1_common import load_data
+from claude_baseline import LABEL, metrics, wilson
+from summarise_review import review_caveat, review_counts
+from common import load_data
 
 R = "results"
 TAG = "Qwen3-4B-Instruct-2507"
 BUDGETS = [0, 100, 500, 2000, 9993]
 FULL_N = 9993  # full training set, seed 0 only
 SEEDS = [0, 1, 2]
-OUT = os.path.join(R, "t1_report.md")
+OUT = os.path.join(R, "main_report.md")
 
 
 def sh(cmd):
@@ -81,11 +81,11 @@ def main():
     for s in SEEDS:
         for r in json.load(open(os.path.join(R, f"exp1_{TAG}_s{s}.json"))):
             rows[(r["budget"], s)] = r
-    # full training set: seed 0 lives in results/, further seeds (E1) in results/next/
-    NEXT = os.path.join(R, "next")
+    # full training set: seed 0 is stored in results/, seeds 1 and 2 with the baselines in results/baselines/
+    BASELINES_DIR = os.path.join(R, "baselines")
 
     def find(name):
-        for base in (R, NEXT):
+        for base in (R, BASELINES_DIR):
             if os.path.exists(os.path.join(base, name)):
                 return os.path.join(base, name)
         return None
@@ -112,9 +112,9 @@ def main():
     w = L.append
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
 
-    w("# T1 report: support-ticket routing (Banking77) — fine-tuned Qwen3-4B vs Claude via Claude Code CLI")
+    w("# Main results: fine-tuned Qwen3-4B vs Claude Opus 5.5 on Banking77 intent routing")
     w("")
-    w(f"Generated {now} (server time) by `make_t1_report.py` from the files in `results/`. "
+    w(f"Generated {now} (server time) by `make_main_report.py` from the files in `results/`. "
       "Every number below is read from those files; nothing is typed in by hand.")
     w("")
     w("Contents: 1 Summary · 2 Task and data · 3 Systems · 4 Results · 5 Head-to-head on the 500 sample · "
@@ -139,7 +139,7 @@ def main():
     s500 = sample_scores(500)
     w("## 1. Summary")
     w("")
-    w(f"- **Claude via Claude Code CLI (Pro subscription)**, model `claude-opus-5-5`, scored "
+    w(f"- **Claude Opus 5.5 via the Claude Code CLI**, model `claude-opus-5-5`, scored "
       f"**{c_acc:.3f}** accuracy on a fixed 500-example sample (95% Wilson CI {c_lo:.3f}–{c_hi:.3f}), "
       f"with every answer a valid label.")
     w(f"- **Fine-tuned Qwen3-4B with 2,000 labels** scored **{ms([x[0] for x in s2000], 3)}** on the same 500 "
@@ -201,7 +201,7 @@ def main():
     # ---------------- 3. systems
     w("## 3. Systems")
     w("")
-    w("### 3.1 Small model (yours): Qwen3-4B-Instruct-2507, untuned and LoRA fine-tuned")
+    w("### 3.1 Small model: Qwen3-4B-Instruct-2507, untuned and LoRA fine-tuned")
     w("")
     w("| Setting | Value |")
     w("|---|---|")
@@ -226,21 +226,22 @@ def main():
         "Python 3.11.15", "torch 2.15.0+cu132", "transformers 5.22.2", "peft 0.21.2",
         "datasets 5.2.0", "accelerate 1.15.0", "scikit-learn 1.9.1"]) + ". Driver 580.178.04, CUDA 13.0.")
     w("")
-    w("### 3.2 Claude via Claude Code CLI (Pro subscription)")
+    w("### 3.2 Claude Opus 5.5 via the Claude Code CLI")
     w("")
-    # Public version: per-call summaries without identifiers (see results/claude_calls_t1.json).
-    calls_doc = json.load(open(os.path.join(R, "claude_calls_t1.json")))
+    # Public version: per-call summaries without identifiers (see results/claude_calls_main.json).
+    calls_doc = json.load(open(os.path.join(R, "claude_calls_main.json")))
     raws = calls_doc["calls"]
     cli_ver = calls_doc["cli_version"]
     w("| Setting | Value |")
     w("|---|---|")
     for k, v in [
-        ("Answering model", "`claude-opus-5-5` (as reported by the CLI for all 20 calls; not chosen, it is what the plan served)"),
+        ("Access", "the Claude Code CLI logged in with a Claude Pro subscription; not the API"),
+        ("Answering model", "`claude-opus-5-5` (as reported by the CLI for all 20 calls; not chosen, it is what the subscription served)"),
         ("Side model", "`claude-haiku-5-5`: a small call the CLI makes itself; it does not produce the answers"),
         ("CLI", f"`{cli_ver}`, the binary bundled with the Cursor extension (no `claude` on PATH)"),
         ("Flags", "`-p --output-format json --system-prompt <ours> --tools \"\" --safe-mode --strict-mcp-config --disable-slash-commands --no-session-persistence --permission-prompts none`"),
         ("Isolation", "each call a fresh process in a new empty temp dir (checked empty before and after); no tools; no CLAUDE.md, memory, skills, hooks or MCP; message texts only, gold labels never sent"),
-        ("Prompt", "`system_prompt(labels)` from `exp1_routing.py` unchanged, plus one paragraph asking for a 25-item JSON array"),
+        ("Prompt", "`system_prompt(labels)` from `finetune_qwen.py` unchanged, plus one paragraph asking for a 25-item JSON array"),
         ("Batching", "25 messages per call, 20 calls; batches from a `random.Random(456)` shuffle of the 500 (section 6.4)"),
         ("Temperature", "not settable through the CLI"),
         ("Run date", "2026-11-13"),
@@ -249,8 +250,8 @@ def main():
     w("")
     w("The exact prompt text sent:")
     w("")
-    from baseline_claude_code import BATCH_ADDITION
-    from t1_common import system_prompt
+    from claude_baseline import BATCH_ADDITION
+    from common import system_prompt
     w(fence(system_prompt(labels) + BATCH_ADDITION))
     w("")
 
@@ -302,19 +303,20 @@ def main():
         prev = n
     w("")
     w("Accuracy on the 500-message sample against the number of labels, with Claude's accuracy and its "
-      "95% interval (`make_figures.py`). The 9,993-label point is a single seed (hollow marker)"
-      + (f"; the figure was drawn when only seed 0 existed, and the tables here include all {n_full} seeds." if n_full > 1 else "."))
+      "95% interval (`make_figures.py`). "
+      + (f"Points from 100 labels up are the mean over {n_full} seeds with min–max whiskers; the untuned model "
+         "(0 labels) is one run." if n_full > 1 else "The 9,993-label point is a single seed (hollow marker)."))
     w("")
     w("![Label efficiency](figures/label_efficiency.png)")
     w("")
     w("### 4.4 Training loss")
     w("")
     w("Loss is logged every 20 optimiser steps and is a single-batch value, so it is noisy. "
-      "Every logged step is in Appendix B (from `results/train_loss_t1.json`). Final logged loss per run:")
+      "Every logged step is in Appendix B (from `results/train_loss_budgets.json`). Final logged loss per run:")
     w("")
     w("| Budget | Seed | Steps | Final logged loss |")
     w("|---|---|---|---|")
-    loss_doc = json.load(open(os.path.join(R, "train_loss_t1.json")))
+    loss_doc = json.load(open(os.path.join(R, "train_loss_budgets.json")))
     final_loss = {}
     for s in SEEDS:
         for row in loss_doc["seeds"][str(s)]:
@@ -337,7 +339,7 @@ def main():
     # ---------------- 4.5 latency and cost
     w("### 4.5 Latency and cost")
     w("")
-    lat_p, cost_p = os.path.join(R, "latency_t1.json"), os.path.join(R, "cost_t1.json")
+    lat_p, cost_p = os.path.join(R, "latency_router_adapter.json"), os.path.join(R, "cost_main.json")
     if os.path.exists(lat_p) and os.path.exists(cost_p):
         lat, cost = json.load(open(lat_p)), json.load(open(cost_p))
         b1, thr, pw = lat["batch1_latency_ms"], lat["throughput"], lat["power_during_batch16"]
@@ -377,11 +379,11 @@ def main():
           f"(a simplification; scale by your own exchange rate). At batch 16 the measured maximum is "
           f"{sm['throughput_batch16_messages_per_second'] * 3600:,.0f} requests per hour.")
     else:
-        w("Not measured (no `latency_t1.json` / `cost_t1.json`).")
+        w("Not measured (no `latency_router_adapter.json` / `cost_main.json`).")
     w("")
     w("### 4.6 Robustness at a glance")
     w("")
-    w("Details, paired tests and caveats are in `results/t1_robustness.md`.")
+    w("Details, paired tests and caveats are in `results/robustness_report.md`.")
     w("")
     w("![Clean, typo and two-issue accuracy](figures/stress_tests.png)")
     w("")
@@ -458,7 +460,7 @@ def main():
     # ---------------- 6. procedure
     w("## 6. Procedure, issues and fixes (chronological)")
     w("")
-    w("### 6.1 Smoke test of `exp1_routing.py` (2026-11-13, 01:36–01:52)")
+    w("### 6.1 Smoke test of `finetune_qwen.py` (2026-11-13, 01:36–01:52)")
     w("")
     w("The script had never run on a GPU. The smoke test found that the data, chat template, "
       "`dtype=` loading and `all-linear` LoRA all worked, and that untuned accuracy was well above chance. "
@@ -481,14 +483,14 @@ def main():
     w(fence("""cd ~/slm-study && source .venv/bin/activate && mkdir -p results
 for s in 0 1 2; do
   b="100,500,2000"; [ $s -eq 0 ] && b="0,100,500,2000"
-  CUDA_VISIBLE_DEVICES=1 python exp1_routing.py --seed $s --budgets $b 2>&1 | tee results/exp1_log_s$s.txt
+  CUDA_VISIBLE_DEVICES=1 python finetune_qwen.py --seed $s --budgets $b 2>&1 | tee results/exp1_log_s$s.txt
 done""", "bash"))
     w("")
     w("All 10 runs finished with no errors, NaNs or OOMs. Logged training loss: Appendix B.")
     w("")
     w("### 6.3 Claude CLI checks before the run")
     w("")
-    w("- `claude` was not on PATH; the Claude Code binary bundled with the Cursor extension was used.")
+    w("- `claude` was not on PATH; the CLI binary bundled with its editor extension was used (section 3.2).")
     w("- `claude --help` was read for the installed version. Every needed capability had a flag except "
       "a turn limit (no `--max-turns`). With all tools disabled only one turn is possible; the script "
       "rejects any call where `num_turns != 1`, and all 20 had `num_turns = 1`.")
@@ -528,7 +530,7 @@ done""", "bash"))
       f"0 rate limits. Wall time per call {min(walls):.1f}–{max(walls):.1f} s (median {st.median(walls):.1f} s), "
       f"including CLI start-up and network. Answering-model tokens over 20 calls: input {tot['in']}, "
       f"cache-creation {tot['cc']:,}, cache-read {tot['cr']:,}, output {tot['out']:,}. "
-      f"The CLI's own list-price estimate was ${tot['cost']:.2f} in total; on a Pro plan this is not a "
+      f"The CLI's own list-price estimate was ${tot['cost']:.2f} in total; on the subscription this is not a "
       "charge, and it is not an API cost measurement. Per-call summary: Appendix C; every raw answer: Appendix D.")
     w("")
 
@@ -537,41 +539,46 @@ done""", "bash"))
         w("### 6.6 Full-training-set run")
         w("")
         w("Budget 9,993 (the whole training set, checked to contain every training example exactly once "
-          "and no test item), seed 0, 3 epochs, same hyperparameters as every other run, via `full_data.py`, "
-          "which runs `exp1_routing.py --budgets 9993 --seed 0` unchanged. Training took "
+          "and no test item), seed 0, 3 epochs, same hyperparameters as every other run, via `finetune_qwen_full.py`, "
+          "which runs `finetune_qwen.py --budgets 9993 --seed 0` unchanged. Training took "
           + (f"{rf['train_seconds'] / 3600:.1f} hours" if rf.get("train_seconds") else "an unrecorded time")
           + f"; evaluation on the full test set {rf['eval_seconds'] / 60:.0f} minutes. "
           + ("One seed only." if n_full == 1 else f"Seeds {', '.join(str(s) for s in full_seeds[1:])} were added "
-             "later with every other setting identical (`full_data.py --seed`)."))
+             "later with every other setting identical (`finetune_qwen_full.py --seed`)."))
         w("")
 
-    from t1_common import normalised_overlap
+    from common import normalised_overlap
     _n_exact, _ov = normalised_overlap(train, test)
     overlap_caveat = (f"Exact-text overlap between the test and training splits is {_n_exact}; after lowercasing and "
                       f"trimming whitespace, {len(_ov)} test messages also occur in training "
                       f"({sum(i in set(idx) for i, _, _ in _ov)} of them in the 500 sample). The same overlap exists in "
-                      "the original Banking77 splits. Accuracies with these messages removed are in `results/t1_baselines.md`, section 6.")
+                      "the original Banking77 splits. Accuracies with these messages removed are in `results/baselines_report.md`, section 6.")
 
     # ---------------- 7. caveats
     w("## 7. Caveats (read before quoting any number)")
     w("")
+    review = review_caveat()
+    n_reviewed = sum(review_counts()[0]["Both"].values()) if review else 0
     for c in [
         "**Claude saw 25 messages per call**; the small model saw one at a time. Mixed batches still give Claude some context across messages.",
         "The Claude Code CLI wraps our system prompt in some text of its own and makes a side call to `claude-haiku-5-5`.",
         "**Claude's temperature could not be set**; the small model used greedy decoding.",
-        "Claude's model is whatever the Pro plan served (`claude-opus-5-5`), not a chosen API model. "
+        "Claude's model is whatever the subscription served (`claude-opus-5-5`), not a chosen API model. "
         "This is **one Claude model through one CLI. It is not an API baseline** and says nothing about GPT or other frontier models.",
         "Claude was run once on the 500 sample; its CI reflects sampling of test items, not run-to-run variation.",
         "Claude's wall time includes CLI start-up and network and is not model latency. The small model's "
         "ms/example is at eval batch 16 with an unmerged adapter. **Neither is a latency measurement**; batch-1 latency of a merged adapter is in section 4.5.",
-        "Some Banking77 intents overlap (for example, the test message \"I would like to reactivate my card\" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. This was observed, not measured.",
+    ] + ([review] if review else []) + [
+        "Some Banking77 intents overlap (for example, the test message \"I would like to reactivate my card\" is labelled `card_linking`, not `activate_my_card`), so some errors may be label ambiguity rather than model mistakes. "
+        + (f"Label quality was reviewed by hand only for the {n_reviewed} messages both systems got wrong (see the caveat above); "
+           "it was not measured on the rest of the test set." if review else "This was observed, not measured."),
         "The 500-sample comparison has wider error bars than the full-test-set numbers; the small model's full-set numbers are more precise but have no Claude counterpart.",
         "Budget 0 was run once (greedy decoding is deterministic, so other seeds would match).",
         overlap_caveat,
         ("The full-training-set budget (9,993 labels) was run with one seed only, so it shows no run-to-run spread."
          if n_full == 1 else "At 9,993 labels all seeds use the same training set, so their spread reflects only "
          "initialisation and data order."),
-    ] + [c for c in [review_caveat()] if c]:
+    ]:
         w(f"- {c}")
     w("")
     w("## 8. Open work")
@@ -592,13 +599,13 @@ done""", "bash"))
     w("")
     w("The smoke-test notes, raw run logs, full Claude CLI JSON for every call, GPU process list and "
       "version-control history contain server, account and session details and are not published. Everything they were used for is kept here "
-      "in identifier-free form: logged training loss (`results/train_loss_t1.json`), a per-call summary "
-      "of the Claude CLI output (`results/claude_calls_t1.json`), and every prediction. Every number in "
+      "in identifier-free form: logged training loss (`results/train_loss_budgets.json`), a per-call summary "
+      "of the Claude CLI output (`results/claude_calls_main.json`), and every prediction. Every number in "
       "sections 1–8 is computed from the published files.")
     w("")
     w("## Appendix B. Training loss, every logged step")
     w("")
-    w("Single-batch loss logged every 20 optimiser steps by `exp1_routing.py`.")
+    w("Single-batch loss logged every 20 optimiser steps by `finetune_qwen.py`.")
     for s in SEEDS:
         w("")
         w(f"### B.{s + 1} seed {s}")
@@ -632,7 +639,7 @@ done""", "bash"))
         w("")
         w(fence(read(fp), "json"))
     w("")
-    w("## Appendix C. Claude calls, one row per call (`results/claude_calls_t1.json`)")
+    w("## Appendix C. Claude calls, one row per call (`results/claude_calls_main.json`)")
     w("")
     w("| Batch | Attempt | Return code | Wall s | num_turns | subtype | Temp dir empty | In | Cache-create | Cache-read | Out |")
     w("|---|---|---|---|---|---|---|---|---|---|---|")

@@ -133,7 +133,7 @@ Test set: 500 Banking77 test messages plus 200 CLINC150 out-of-scope test messag
 | Out-of-scope recall (200 CLINC150 messages) | 0.990 | 0.990 ± 0.005 |
 | Overall accuracy (all 700) | 0.933 | 0.935 ± 0.007 |
 
-Results for typo-laden and two-issue messages, and comparisons with other systems, are in the repository reports ([robustness](https://github.com/Vc555s/small-vs-frontier/blob/main/results/t1_robustness.md), [main results](https://github.com/Vc555s/small-vs-frontier/blob/main/results/t1_report.md)). This card makes no claim about any other model.
+Results for typo-laden and two-issue messages, and comparisons with other systems, are in the repository reports ([robustness](https://github.com/Vc555s/small-vs-frontier/blob/main/results/robustness_report.md), [main results](https://github.com/Vc555s/small-vs-frontier/blob/main/results/main_report.md)). This card makes no claim about any other model.
 
 ## Latency
 

@@ -7,7 +7,7 @@ Inputs: the first 220 items of results/stress/oos_mixed.jsonl; the first 20 are 
 
   CUDA_VISIBLE_DEVICES=<gpu> python measure_latency.py --adapter <path to adapter_S3_s0>
 
-Writes results/latency_t1.json and prints a table. The GPU is shared with other users'
+Writes results/latency_router_adapter.json and prints a table. The GPU is shared with other users'
 jobs, so these are not best-case numbers; what else was on the card is recorded.
 """
 import argparse
@@ -22,7 +22,7 @@ import torch
 from peft import PeftModel
 from transformers import AutoTokenizer
 
-from exp1_routing import left_pad, load_data, load_model, norm, prompt_text
+from finetune_qwen import left_pad, load_data, load_model, norm, prompt_text
 from stress_common import NONE_LABEL, SMALL_TAG, extended_prompt, read_jsonl
 
 MODEL = f"Qwen/{SMALL_TAG}"
@@ -91,7 +91,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--adapter", required=True, help="path to the adapter_S3_s0 directory")
     ap.add_argument("--saved_preds", default="results/stress/preds_small_S3_s0.jsonl")
-    ap.add_argument("--out", default="results/latency_t1.json")
+    ap.add_argument("--out", default="results/latency_router_adapter.json")
     a = ap.parse_args()
     phys = os.environ.get("CUDA_VISIBLE_DEVICES", "0").split(",")[0]
 

@@ -1,14 +1,15 @@
-# Python environment and caches
+# Environments and Python caches
 .venv/
+.venv-light/
 venv/
 __pycache__/
 *.pyc
 
-# Secrets (never commit API keys)
+# Secrets
 .env
 .env.*
 
-# Model weights, LoRA adapters, Hugging Face caches
+# Model weights and caches
 results/adapter_*/
 results/stress/adapter_*/
 *.safetensors
@@ -16,36 +17,32 @@ results/stress/adapter_*/
 *.pt
 hf_cache/
 .cache/
+results/baselines/emb/
 
-# Raw Claude CLI output (contains session identifiers) and run logs
+# Raw Claude CLI output (contains session identifiers)
 results/claude_code_raw/
 results/stress/claude_raw/
-results/stress/logs/
-results/stress/pipeline.log
-results/*log*.txt
+results/baselines/claude_raw/
 
-# Pipeline state files and partial outputs
+# Pipeline state and logs (each finished stage leaves a marker so a re-run resumes)
+results/*log*.txt
 results/stress/.*
 results/stress/*.partial
 results/stress/STATUS.md
-results/stress_dryrun/
+results/stress/logs/
+results/stress/pipeline.log
+results/baselines/.*
+results/baselines/*.tmp
+results/baselines/STATUS.md
+results/baselines/logs/
+results/baselines/pipeline.log
 
-# Full-training-set run outputs (adapter and raw copies; results are copied into results/)
+# Working folders of the full-training-set runs (adapters, raw outputs, pipeline state);
+# their results are copied next to the other result files
 results/full_data/
-# Pipeline status, logs and markers for the finishing run
-results/finish/
-# Light virtual environment used to check the report scripts without PyTorch
-.venv-light/
-# Test runs of the finishing pipeline
-results/finish_dryrun/
+results/baselines/full_data_s*/
 
-# Next experiments: embeddings, raw CLI output, adapters, pipeline state, test runs
-results/next/emb/
-results/next/claude_raw/
-results/next/full_data_s*/
-results/next/logs/
-results/next/.*
-results/next/STATUS.md
-results/next/*.tmp
-results/next_testrun/
-results/next/pipeline.log
+# Test runs of the pipelines
+results/stress_dryrun/
+results/full_data_testrun/
+results/baselines_testrun/
