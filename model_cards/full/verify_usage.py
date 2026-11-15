@@ -13,7 +13,7 @@ import json
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 from common import load_data, system_prompt  # noqa: E402
 from stress_common import read_jsonl  # noqa: E402
 
